@@ -6,12 +6,12 @@ const patientSchema = new mongoose.Schema(
     pat_FirstName: { type: String, required: true },
     pat_Lastname: { type: String, required: true },
     pat_Email: { type: String, required: true },
-    pat_Gender: { type: String, require: ture },
-    pat_password: { type: String, require: ture },
+    pat_Gender: { type: String, require: true },
+    pat_password: { type: String, require: true },
     pat_birtday: { type: Date, require: true },
     pat_InsuranceNo: { type: String, require: false },
   },
-  { timestamps: ture }
+  { timestamps: true }
 );
 
 module.exports = mongoose.model("Patient", patientSchema);
