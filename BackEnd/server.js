@@ -1,11 +1,14 @@
 const express = require("express");
-const port = 3000;
+const port = 5000;
 const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-dotenv.config();
-const userRouter = require("./routers/user");
+const axios = require("axios");
 
+dotenv.config();
+
+const userRouter = require("./routers/user");
+const  testAPIRouter = require("./routes/testAPI");
 mongoose
   .connect(process.env.mongoUri)
   .then(() => console.log("Mongooes is connected"))
@@ -14,6 +17,7 @@ mongoose
   });
 
 app.use(express.json());
+app.use("/testAPI", testAPIRouter);
 app.use("/api/users", userRouter);
 
 app.listen(port, () => {
