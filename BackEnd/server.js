@@ -5,7 +5,6 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const PatientAuthRouter = require("./routers/PatientAuth");
 
-
 dotenv.config();
 
 mongoose
@@ -17,14 +16,10 @@ mongoose
 
 
 app.use(express.json());
+app.get("/",(req,res) =>{
+  res.send("working")
+});
 app.use("/api/patient", PatientAuthRouter);
-
-
-
-
-
-
-
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
