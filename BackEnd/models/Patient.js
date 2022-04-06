@@ -8,8 +8,8 @@ const patientSchema = new mongoose.Schema(
     pat_Email: { type: String, required: true },
     pat_Gender: { type: String, require: true },
     pat_password: { type: String, require: true },
-    pat_birtday: { type: Date, require: true },
-    pat_InsuranceNo: { type: String, require: false },
+    pat_birthday: { type: String, require: true },
+    pat_InsuranceNo: { type: String, require: false, unique: true },
   },
   { timestamps: true }
 );
