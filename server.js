@@ -6,6 +6,7 @@ const dotenv = require("dotenv");
 const path = require("path");
 const ejs = require("ejs");
 const PatientAuthRouter = require("./routers/PatientAuth");
+const user = require("./routers/user");
 
 dotenv.config();
 
@@ -31,9 +32,14 @@ app.get("/", (req, res) => {
   res.render("home.ejs");
 });
 app.use("/patient", PatientAuthRouter);
+app.use("/users", user);
 
 app.get("/signup", (req, res) => {
   res.render("signUp.ejs");
+});
+
+app.get("/signin", (req, res) => {
+  res.render("signIn.ejs");
 });
 
 app.listen(port, () => {

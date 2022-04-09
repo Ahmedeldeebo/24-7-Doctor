@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const User = require("../models/Patient");
 const CryptoJS = require("crypto-js");
+const jwt = require("jsonwebtoken");
+const { render } = require("ejs");
 
 //--------------------------------------------Register--------------------------------------------
 router.post("/register", async (req, res) => {
@@ -17,6 +19,8 @@ router.post("/register", async (req, res) => {
     pat_birthday: req.body.pat_birthday,
     pat_InsuranceNo: req.body.pat_InsuranceNo,
   });
+  const savedUser = await NewUser.save();
+  console.log(NewUser);
   try {
     const savedUser = await NewUser.save();
     console.log(NewUser);
@@ -24,14 +28,14 @@ router.post("/register", async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
-  res.render("signIn.ejs")
+  res.render("signIn.ejs", { errorMessage: "Wrong email or password" });
 });
 //-------------------------------------------- End Register---------------------------------------------
 //-------------------------------------------- Login ---------------------------------------------------
 router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ Pat_username: req.body.Pat_username });
-    !user && res.status(401).json("Wrong credentials!");
+    !user && res.Status(401).json("Wrong credentials!");
     const hashedPassword = CryptoJS.AES.decrypt(
       user.pat_password,
       process.env.PASS_SEC
@@ -41,11 +45,21 @@ router.post("/login", async (req, res) => {
     Originalpassword !== req.body.pat_password &&
       res.status(401).json("Wrong credentials!");
 
+    const accessToken = jwt.sign(
+      {
+        id: user._id,
+      },
+      process.env.JWT_SEC,
+      {
+        expiresIn: "3d",
+      }
+    );
+
     const { pat_password, ...others } = user._doc;
 
-    res.status(200).json(others);
+    return res.status(200).json({ ...others, accessToken });
   } catch (err) {
-    res.status(500).json(err);
+    return res.status(500).json(err);
   }
 });
 

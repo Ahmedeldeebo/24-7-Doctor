@@ -32,14 +32,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a
-                class="nav-link active position-absolute top-0 start-50 translate-middle mt-4"
-                aria-current="page"
-                href="#"
-                >Home</a
-              >
-            </li>
+            <li class="nav-item"></li>
           </ul>
           <button class="btn btn-outline-light mx-3" href="#">SingIn</button>
           <button class="btn btn-outline-light" href="#">SingUp</button>
@@ -49,7 +42,95 @@
 
     <!-----------------------------------------------End Header --------------------------------------------->
     <!-----------------------------------------------Start signup from --------------------------------------------->
-
+    <div class="container">
+      <div class="text-center">
+        <h2 class="my-5">SignUp Now</h2>
+        <p class="lead">What are you wating for SignUp Now</p>
+    </div >
+          <div class=" container justify-content-center" >
+              <form  action="/patient/register" method="POST" class="row g-3 needs-validation" novalidate>
+                <div class="col-md-2 form-floating ">
+                  <input type="text" class="form-control" id="validationCustom01" placeholder="Username" required name="Pat_username">
+                  <label for="validationCustom01" class="form-label">Username</label>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+                <div class="col-md-2 form-floating ">
+                  <input type="text" class="form-control" id="validationCustom02" placeholder="Fisrt Name" required name="pat_FirstName">
+                  <label for="validationCustom02" class="form-label">First name</label>
+                  
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+                <div class="col-md-2 form-floating">
+                  <input type="text" class="form-control" id="validationCustom02" placeholder="Last Name" required name="pat_Lastname">
+                  <label for="validationCustom02" class="form-label">Last name</label>
+                  
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+                <div class="col-md-3 form-floating">  
+                  <input type="text" class="form-control" id="validationCustom03" placeholder="exmpale@gmail.com" required name="pat_Email">
+                  <label for="validationCustom03" class="form-label">Email</label>
+                
+                  <div class="invalid-feedback">
+                    Please provide a valid Email.
+                  </div>
+                </div>
+                <div class="col-md-2 form-floating">
+                  <select class="form-select" id="validationCustom04" required name="pat_Gender">
+                    <option selected disabled >Gender</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                  </select>
+                  <label for="validationCustom04" class="form-label">Gender</label>
+                  
+                  <div class="invalid-feedback">
+                    Please select a valid state.
+                  </div>
+                </div>
+                <div class="col-md-3 form-floating">
+                  <input type="password" class="form-control" id="validationCustom05" placeholder="Password" required name="pat_password">
+                  <label for="validationCustom05" class="form-label">Password</label>
+                  <div class="invalid-feedback">
+                    Please provide a valid zip.
+                  </div>
+                  <div class="col-md my-2 form-floating">
+                    <input type="date" class="form-control" id="validationCustom05" placeholder="m/d/y" required name="pat_birthday">
+                    <label for="validationCustom05" class="form-label">Brithday</label>
+                    <div class="invalid-feedback">
+                      Please provide a valid Date.
+                    </div>
+                </div>
+                <div class=" form-floating">
+                  <input type="text" class="form-control" id="validationCustom05" placeholder="Insurnas number" required name="pat_InsuranceNo">
+                  <label for="validationCustom05" class="form-label">Insurans number</label>
+                  <div class="invalid-feedback">
+                    Please provide a valid zip.
+                  </div>
+                <div class="col-12">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                    <label class="form-check-label" for="invalidCheck">
+                      Agree to terms and conditions
+                    </label>
+                    <div class="invalid-feedback">
+                      You must agree before submitting.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <button class="btn btn-primary" type="submit">SingUp</button>
+                </div>
+            </form>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-----------------------------------------------End signup from --------------------------------------------->
 
     <script
