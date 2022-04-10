@@ -3,9 +3,13 @@ const User = require("../models/Patient");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
 const { render } = require("ejs");
-
+const cors = require('cors');
 //--------------------------------------------Register--------------------------------------------
+// router.use(cors({ origin: "*", credentials:true  } ) );
+
 router.post("/register", async (req, res) => {
+  console.log(req.body);
+
   const NewUser = new User({
     Pat_username: req.body.Pat_username,
     pat_FirstName: req.body.pat_FirstName,
@@ -19,16 +23,15 @@ router.post("/register", async (req, res) => {
     pat_birthday: req.body.pat_birthday,
     pat_InsuranceNo: req.body.pat_InsuranceNo,
   });
-  const savedUser = await NewUser.save();
+  const savedyUser = await NewUser.save();
   console.log(NewUser);
   try {
     const savedUser = await NewUser.save();
     console.log(NewUser);
-    res.status(201).json(savedUser);
+    res.render("home.ejs");
   } catch (err) {
     res.status(500).json(err);
   }
-  res.render("signIn.ejs", { errorMessage: "Wrong email or password" });
 });
 //-------------------------------------------- End Register---------------------------------------------
 //-------------------------------------------- Login ---------------------------------------------------
