@@ -37,6 +37,7 @@ router.post("/register", async (req, res) => {
 //-------------------------------------------- End Register---------------------------------------------
 //-------------------------------------------- Login ---------------------------------------------------
 router.post("/login", async (req, res) => {
+  const userName = req.body.pat_FirstName;
   try {
     const user = await User.findOne({ Pat_username: req.body.Pat_username });
     !user &&
@@ -64,10 +65,7 @@ router.post("/login", async (req, res) => {
 
     const { pat_password, ...others } = user._doc;
 
-    return (
-      console.log(req.body.pat_FirstName),
-      res.render("test.ejs", { userName: "Ahmed" })
-    ); //res.status(200).json({ ...others, accessToken });
+    return console.log(userName), res.render("test.ejs", { userName: "Ahmed" }); //res.status(200).json({ ...others, accessToken });
   } catch (err) {
     return res.status(500).json(err);
   }
