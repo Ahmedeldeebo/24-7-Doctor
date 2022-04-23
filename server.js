@@ -7,7 +7,7 @@ const path = require("path");
 const ejs = require("ejs");
 const PatientAuthRouter = require("./routers/PatientAuth");
 const user = require("./routers/user");
-const cors = require('cors');
+const cors = require("cors");
 const User = require("./models/Patient");
 
 dotenv.config();
@@ -28,12 +28,11 @@ app.set("views", path.join(__dirname, "/views"));
 // server static files form /pulbic
 let publicpaht = path.join(__dirname, "/public");
 app.use(express.static(publicpaht));
-app.use(express.urlencoded({extended:false}));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use("/patient", PatientAuthRouter);
 app.use("/users", user);
 app.use(cors({ origin: "*", credentials: true }));
-
 
 app.get("/", (req, res) => {
   res.render("home.ejs");
@@ -43,9 +42,8 @@ app.get("/signup", (req, res, next) => {
   res.render("signUp.ejs");
 });
 
-
 app.get("/signin", (req, res) => {
-  res.render("signIn.ejs");
+  res.render("signIn.ejs", { errorMessage: "" });
 });
 
 app.listen(port, () => {

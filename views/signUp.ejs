@@ -13,39 +13,15 @@
     />
   </head>
   <body>
-    <!-----------------------------------------------Start Header------------------------------------------>
-    <nav
-      class="navbar navbar-expand-xxl navbar navbar-dark bg-primary align-self-center"
-    >
-      <div class="container">
-        <a class="navbar-brand" href="http://localhost:5000/">Online Doctor</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item"></li>
-          </ul>
-          <button class="btn btn-outline-light mx-3" href="#">SignIn</button>
-          <button class="btn btn-outline-light" href="#">SignUp</button>
-        </div>
-      </div>
-    </nav>
+    <!-----------------------------------------------Start Header------------------------------------------>    <!--Start Hader-->
+    <%- include ('./partials/nav.ejs') %>
+    <!--End Hader-->
 
-    <!-----------------------------------------------End Header --------------------------------------------->
     <!-----------------------------------------------Start signup from --------------------------------------------->
     <div class="container">
       <div class="text-center">
         <h2 class="my-5">SignUp Now</h2>
-        <p class="lead">What are you wating for SignUp Now</p>
+        <p class="lead">What are you wating for Sign Up Now</p>
     </div >
           <div class=" container justify-content-center" >
               <form  action="http://localhost:5000/patient/register" method="POST" class="row g-3 needs-validation" novalidate>
