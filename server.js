@@ -46,6 +46,10 @@ app.get("/signin", (req, res) => {
   res.render("signIn.ejs", { errorMessage: "" });
 });
 
+app.get("/profile", (req, res) => {
+  res.render("Profile.ejs",);
+});
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
