@@ -10,15 +10,182 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
-    <title>Document</title>
+    <title>Home Page</title>
   </head>
   <body>
     <!--Start Hader-->
-    <%- include ('./partials/nav.ejs') %>
+    <%- include ('./partials/navHome.ejs') %>
     <!--End Hader-->
 
-    <H1>Welcom to the home page test login scc</H1>
-    <H1><%- userName %> </H1>
+    <main class="my-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7">
+            <img
+              src="https://picsum.photos/id/233/600/400"
+              alt=""
+              class="img-fluid"
+            />
+          </div>
+          <div class="col-md-5">
+            <h1 class="mt-5">24/7 Doctors</h1>
+            <p class="mt-4">
+              Welcome to 24/7 Doctors where you shall find the best available doctors in all specializations, compare between then, choose, and book your appointment right away.
+              <h5> <center>Always there when you need us the most.</center></h5>
+            </p>
+            <button type="button" class="btn btn-primary mt-3">
+              Call to action!
+            </button>
+          </div>
+        </div>
+        <div class="row my-5">
+          <div class="col">
+            <div class="bg-secondary text-white my-3 py-3 card text-center">
+              <div class="card-body">
+                Check out the best in their field below
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row my-5">
+          <div class="col">
+            <div class="card-group">
+              <div class="card">
+                <img
+                  src="https://picsum.photos/id/200/320/200"
+                  class="card-img-top"
+                  alt="..."
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Doctor A</h5>
+                  <p class="card-text">
+                    This is a wider card with supporting text below as a natural
+                    lead-in to additional content. This content is a little bit
+                    longer.
+                  </p>
+
+                  <div class="">
+                    <a href="#"
+                      ><button type="button" class="btn btn-primary">
+                        Book Now
+                      </button></a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://picsum.photos/id/201/320/200"
+                  class="card-img-top"
+                  alt="..."
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Doctor B</h5>
+                  <p class="card-text">
+                    This card has supporting text below as a natural lead-in to
+                    additional content.
+                  </p>
+
+                  <div class="">
+                    <a href="#"
+                      ><button type="button" class="btn btn-primary">
+                        Book Now
+                      </button></a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://picsum.photos/id/202/320/200"
+                  class="card-img-top"
+                  alt="..."
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Doctor C</h5>
+                  <p class="card-text">
+                    This is a wider card with supporting text below as a natural
+                    lead-in to additional content. This card has even longer
+                    content than the first to show that equal height action.
+                  </p>
+
+                  <div class="">
+                    <a href="#"
+                      ><button type="button" class="btn btn-primary">
+                        Book Now
+                      </button></a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row my-2">
+          <div class="col">
+            <div class="bg-secondary text-white my-1 py-1 card text-center">
+              <div class="card-body"> For more information:
+              </div>
+            </div>
+          </div>
+        <div class="my-2 text-center">
+          <h2>Get in touch</h2>
+          <p class="lead">Questions? Do not hesitate to contact us.</p>
+        </div>
+        <div class="row justify-content-center my-5">
+          <div class="col-lg-7">
+            <form action="">
+              <label for="email" class="form-label">Email:</label>
+              <input
+                type="email"
+                id="email"
+                placeholder="my@email.com"
+                class="form-control"
+              />
+              <div class="form-floating my-3">
+                <input
+                  type="name"
+                  id="name"
+                  placeholder="e.g. Dawid"
+                  class="form-control"
+                />
+                <label for="name" class="form-label">Name:</label>
+              </div>
+              <label for="subject" class="form=label">Subject</label>
+              <select name="subject" id="subject" class="form-select">
+                <option value="pricing">Pricing</option>
+                <option value="technical" selected>Technical question</option>
+                <option value="other">Other</option>
+              </select>
+
+              <div class="form-floating my-5">
+                <textarea
+                  name="query"
+                  id="query"
+                  style="height: 150px"
+                  class="form-control"
+                  placeholder="Write a message"
+                ></textarea>
+
+                <label for="query">Write a message</label>
+              </div>
+
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary">Send!</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="footer mt-auto py-3 bg-dark">
+      <div class="container">
+        <span class="text-muted"
+          >Copyrights
+          <a href="https://mdbootstrap.com">MDBootstrap.com</a></span
+        >
+      </div>
+    </footer>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
