@@ -49,6 +49,9 @@ app.get("/signin", (req, res) => {
 app.get("/profile", (req, res) => {
   res.render("Profile.ejs",);
 });
+app.get("/doctors", (req, res) => {
+  res.render("doctors.ejs",);
+});
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
