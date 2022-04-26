@@ -25,7 +25,7 @@ mongoose
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
 
-// server static files form /pulbic
+// server static files form /public
 let publicpaht = path.join(__dirname, "/public");
 app.use(express.static(publicpaht));
 app.use(express.urlencoded({ extended: false }));
