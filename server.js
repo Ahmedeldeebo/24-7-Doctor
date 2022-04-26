@@ -47,7 +47,7 @@ app.get("/signin", (req, res) => {
 });
 
 app.get("/profile", (req, res) => {
-  res.render("Profile.ejs",);
+  res.render("Profile.ejs");
 });
 
 app.listen(port, () => {
