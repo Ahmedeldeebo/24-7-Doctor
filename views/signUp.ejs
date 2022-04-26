@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />    
+     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <title>Online Doctor</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
@@ -94,12 +97,14 @@
                 <input
                   type="text"
                   class="form-control"
-                  placeholder="Insurnas number"
+                  placeholder="Insurnace number"
                   required
                   name="pat_InsuranceNo"
                 />
               </div>
             </div>
+
+                                
             <div class="row rfour">
               <div class="form-group col-md-6 fseven py-3">
                 <select
@@ -113,22 +118,40 @@
                   <option>Female</option>
                 </select>
               </div>
-              <div class="form-group col-md-6 fsix py-3">
-                <input
-                  type="date"
-                  class="form-control"
-                  placeholder="m/d/y"
-                  required
-                  name="pat_birthday"
-                />
-              </div>
-            </div>
+              <div class="form-group col-md-6 feight py-3">
+                <input type="date" class="form-control" placeholder="m/d/y"
+                required name="pat_birthday">
+               </div>
+            </div> 
 
             <div class="row rfive">
               <div class="form-group col-md-6 fnine py-3">
-                <button type="submit" class="btn btn-primary">
+                <div class="card-body">
+                  <div class="wrapper text-left">
+                      <button class="btn btn-primary" onclick="sSuccess('success-message')">Create an account</button>
+                  </div>
+              </div>
+                                              <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js'></script>
+                                              <script type='text/Javascript'>(function($) {
+              sSuccess = function(type) {
+              'use strict';
+              if (type == 'success-message') {
+              swal({
+              title: 'Congratulations!',
+              text: 'Account Successfully Created',
+              type: 'success',
+              })
+              
+              }else{
+              swal("Error occured !");
+              }
+              }
+              
+              })(jQuery);
+              </script> 
+                <!-- <button type="submit" class="btn btn-primary">
                   <span>Create account</span>
-                </button>
+                </button> -->
               </div>
               <div class="form-group col-md-6 ften py-3">
                 <p class="text-muted">
@@ -143,6 +166,9 @@
         </div>
       </div>
     </div>
+
+
+
     <!-- <div class="container">
       <div class="text-center">
         <h2 class="my-5">Signup Now</h2>
