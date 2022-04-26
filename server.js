@@ -18,7 +18,7 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => console.log("Mongooes is connected"))
-  .catch((err) => {
+  .catch((err) => {g
     console.log(err);
   });
 // view eingin setup
