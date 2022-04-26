@@ -34,13 +34,20 @@
         <!--right-column-->
         <div class="col-md-8 col-12 xcol">
           <h2 class="title pt-5 pb-3">Sign up</h2>
-          <form class="myform">
+          <form
+            class="myform row g-3 needs-validation"
+            action="http://localhost:5000/patient/register"
+            method="POST"
+            novalidate
+          >
             <div class="row rone">
               <div class="form-group col-md-6 fone py-3">
                 <input
                   type="text"
                   class="form-control"
                   placeholder="First name"
+                  required
+                  name="pat_FirstName"
                 />
               </div>
               <div class="form-group col-md-6 ftwo py-3">
@@ -48,6 +55,8 @@
                   type="text"
                   class="form-control"
                   placeholder="Last name"
+                  required
+                  name="pat_Lastname"
                 />
               </div>
             </div>
@@ -56,7 +65,9 @@
                 <input
                   type="text"
                   class="form-control jk"
-                  placeholder="Phone"
+                  placeholder="Username"
+                  required
+                  name="Pat_username"
                 />
               </div>
               <div class="form-group col-md-6 ffour py-3">
@@ -64,6 +75,8 @@
                   type="email"
                   class="form-control lm"
                   placeholder="knwst@gmail.com"
+                  required
+                  name="pat_Email"
                 />
               </div>
             </div>
@@ -73,25 +86,51 @@
                   type="password"
                   class="form-control"
                   placeholder="Password"
+                  required
+                  name="pat_password"
                 />
               </div>
               <div class="form-group col-md-6 fsix py-3">
                 <input
-                  type="password"
+                  type="text"
                   class="form-control"
-                  placeholder="Confirm Password"
+                  placeholder="Insurnas number"
+                  required
+                  name="pat_InsuranceNo"
                 />
               </div>
             </div>
             <div class="row rfour">
               <div class="form-group col-md-6 fseven py-3">
+                <select
+                  class="form-select"
+                  id="validationCustom04"
+                  required
+                  name="pat_Gender"
+                >
+                  <option selected disabled>Gender</option>
+                  <option>Male</option>
+                  <option>Female</option>
+                </select>
+              </div>
+              <div class="form-group col-md-6 feight py-3">
+                <input type="date" class="form-control" placeholder="m/d/y"
+                required name="pat_birthday>
+              </div>
+            </div>
+
+            <div class="row rfive">
+              <div class="form-group col-md-6 fnine py-3">
                 <button type="submit" class="btn btn-primary">
                   <span>Create account</span>
                 </button>
               </div>
-              <div class="form-group col-md-6 feight py-3">
+              <div class="form-group col-md-6 ften py-3">
                 <p class="text-muted">
-                  Already have an account?<br /><a href="http://localhost:5000/signin">Sign in</a>
+                  Already have an account?<br /><a
+                    href="http://localhost:5000/signin"
+                    >Sign in</a
+                  >
                 </p>
               </div>
             </div>

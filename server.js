@@ -50,7 +50,7 @@ app.get("/profile", (req, res) => {
   res.render("Profile.ejs");
 });
 app.get("/doctors", (req, res) => {
-  res.render("doctors.ejs",);
+  res.render("doctors.ejs");
 });
 
 app.listen(port, () => {
