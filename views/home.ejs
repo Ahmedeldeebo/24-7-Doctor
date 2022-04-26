@@ -13,9 +13,10 @@
     />
   </head>
   <body>
-    <!--Start Hader-->
+    <!--Start Headder-->
     <%- include ('./partials/nav.ejs') %>
-    <!--End Hader-->
+    <!--End Headder-->
+    <body>
 
     <!-----------------------------------------------Start Slider --------------------------------------------->
 
@@ -75,10 +76,7 @@
             class="d-block w-100 img-fluid"
             alt="Doctor pic3"
           />
-          <div class="carousel-caption d-none d-md-block">
-            <h5>Third slide label</h5>
-            <p>Some representative placeholder content for the third slide.</p>
-          </div>
+
         </div>
       </div>
       <button
@@ -119,7 +117,12 @@
               <h5> <center>Always there when you need us the most.</center></h5>
             </p>
             <button type="button" class="btn btn-primary mt-3">
-              Check our Doctors now
+              <a
+              type="buttton"
+              class="btn btn-primary"
+              href="http://localhost:5000/doctors"
+            > Check our Doctors now
+             </a>
             </button>
           </div>
         </div>
@@ -146,8 +149,8 @@
                   <h5 class="card-title">Dentistry</h5>
                   <p class="card-text">
                     Conducting oral screenings to identify diseases and infections
-Removing tooth decay and plaque
-Applying prosthetics, sealers and whiteners
+                    Removing tooth decay and plaque 
+                    Applying prosthetics, sealers and whiteners
                   </p>
 
                   <div class="">
@@ -169,10 +172,7 @@ Applying prosthetics, sealers and whiteners
                 <div class="card-body">
                   <h5 class="card-title">Dermatology</h5>
                   <p class="card-text">
-                    Assessing patients’ skin diseases, conditions, and ailments to determine appropriate treatment
-Prescribing medication and creating treatment plans, referring patients for surgery where necessary
-Monitoring patient progress
-Assessing and updating patients’ medical history, including keeping a record of patients’ symptoms
+                    Assessing patients’ skin diseases, conditions, and ailments to determine appropriate treatment prescribing medication and creating treatment plans, referring patients for surgery where necessary monitoring patient progress assessing and updating patients’ medical history, including keeping a record of patients’ symptoms
                   </p>
 
                   <div class="">
@@ -273,6 +273,14 @@ Assessing and updating patients’ medical history, including keeping a record o
         >
       </div>
     </footer> -->
+
+
+
+
+
+
+
+    
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
