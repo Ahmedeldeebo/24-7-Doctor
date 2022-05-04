@@ -29,9 +29,9 @@ router.post("/register", async (req, res) => {
   try {
     const savedUser = await NewUser.save();
     console.log(NewUser);
-    res.render("signIn.ejs", { errorMessage: "" });
+    res.render("signIn.ejs", { errorMessage: "aloo" });
   } catch (err) {
-    res.status(500).json(err);
+    console.log(err);
   }
 });
 //-------------------------------------------- End Register---------------------------------------------
@@ -40,8 +40,7 @@ router.post("/login", async (req, res) => {
   const userName = req.body.pat_FirstName;
   try {
     const user = await User.findOne({ Pat_username: req.body.Pat_username });
-    !user &&
-      res.render("signIn.ejs", { errorMessage: "Wrong email or password" });
+    !user && res.render("signIn.ejs", { errorMessage: "Wrong email" });
     //res.Status(401).json("Wrong credentials!");
     const hashedPassword = CryptoJS.AES.decrypt(
       user.pat_password,
@@ -50,7 +49,7 @@ router.post("/login", async (req, res) => {
     const Originalpassword = hashedPassword.toString(CryptoJS.enc.Utf8);
 
     Originalpassword !== req.body.pat_password &&
-      res.render("signIn.ejs", { errorMessage: "Wrong email or password" });
+      res.render("signIn.ejs", { errorMessage: "Wrong password" });
     // res.status(401).json("Wrong credentials!");
 
     const accessToken = jwt.sign(
@@ -65,9 +64,9 @@ router.post("/login", async (req, res) => {
 
     const { pat_password, ...others } = user._doc;
 
-    return console.log(userName), res.render("test.ejs", { userName: "Ahmed" }); //res.status(200).json({ ...others, accessToken });
+    return res.render("test.ejs", { userName: "Ahmed" }); //res.status(200).json({ ...others, accessToken });
   } catch (err) {
-    return res.status(500).json(err);
+    return console.log(err);
   }
 });
 
