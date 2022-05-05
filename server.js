@@ -6,6 +6,7 @@ const dotenv = require("dotenv");
 const path = require("path");
 const ejs = require("ejs");
 const PatientAuthRouter = require("./routers/PatientAuth");
+const DoctorAuthRouter = require("./routers/DoctorAuth");
 const user = require("./routers/user");
 const cors = require("cors");
 const User = require("./models/Patient");
@@ -31,6 +32,7 @@ app.use(express.static(publicpaht));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use("/patient", PatientAuthRouter);
+app.use("/doctor", DoctorAuthRouter);
 app.use("/users", user);
 app.use(cors({ origin: "*", credentials: true }));
 
