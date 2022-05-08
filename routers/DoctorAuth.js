@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const User = require("../models/Patient");
+const User = require("../models/Doctor");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
 const { render } = require("ejs");
@@ -8,21 +8,21 @@ const { body } = require("express-validator");
 //--------------------------------------------Register--------------------------------------------
 // router.use(cors({ origin: "*", credentials:true  } ) );
 
-router.post("/register", async (req, res) => {
+router.post("/Doctor-register", async (req, res) => {
   console.log(req.body);
 
   const NewUser = new User({
-    Pat_username: req.body.Pat_username,
-    pat_FirstName: req.body.pat_FirstName,
-    pat_Lastname: req.body.pat_Lastname,
-    pat_Email: req.body.pat_Email,
-    pat_Gender: req.body.pat_Gender,
-    pat_password: CryptoJS.AES.encrypt(
-      req.body.pat_password,
+    Doc_username: req.body.Doc_username,
+    Doc_FirstName: req.body.Doc_FirstName,
+    Doc_Lastname: req.body.Doc_Lastname,
+    Doc_Email: req.body.Doc_Email,
+    Doc_Gender: req.body.Doc_Gender,
+    Doc_password: CryptoJS.AES.encrypt(
+      req.body.Doc_password,
       process.env.PASS_SEC
     ).toString(),
-    pat_birthday: req.body.pat_birthday,
-    pat_InsuranceNo: req.body.pat_InsuranceNo,
+    Doc_birtday: req.body.Doc_birtday,
+    Upfornt_fees: req.body.Upfornt_fees,
   });
   const savedyUser = await NewUser.save();
   console.log(NewUser);
@@ -36,19 +36,19 @@ router.post("/register", async (req, res) => {
 });
 //-------------------------------------------- End Register---------------------------------------------
 //-------------------------------------------- Login ---------------------------------------------------
-router.post("/login", async (req, res) => {
+router.post("/Docter-login", async (req, res) => {
   const userName = req.body.pat_FirstName;
   try {
-    const user = await User.findOne({ Pat_username: req.body.Pat_username });
+    const user = await User.findOne({ Doc_username: req.body.Doc_username });
     !user && res.render("signIn.ejs", { errorMessage: "Wrong email" });
     //res.Status(401).json("Wrong credentials!");
     const hashedPassword = CryptoJS.AES.decrypt(
-      user.pat_password,
+      user.Doc_password,
       process.env.PASS_SEC
     );
     const Originalpassword = hashedPassword.toString(CryptoJS.enc.Utf8);
 
-    Originalpassword !== req.body.pat_password &&
+    Originalpassword !== req.body.Doc_password &&
       res.render("signIn.ejs", { errorMessage: "Wrong password" });
     // res.status(401).json("Wrong credentials!");
 
@@ -62,7 +62,7 @@ router.post("/login", async (req, res) => {
       }
     );
 
-    const { pat_password, ...others } = user._doc;
+    const { Doc_password, ...others } = user._doc;
 
     return res.render("test.ejs", { userName: "Ahmed" }); //res.status(200).json({ ...others, accessToken });
   } catch (err) {
