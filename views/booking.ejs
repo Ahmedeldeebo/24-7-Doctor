@@ -1,11 +1,15 @@
 <!doctype html>
 <html>
     <head>
+      
         <meta charset='utf-8'>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <title>Appointment</title>
+        
         <link href='#' rel='stylesheet'>
         <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
+        
+        
         <script type='text/javascript' src='#'></script>
         <style>::-webkit-scrollbar {
           width: 8px;
@@ -37,7 +41,7 @@ background-color:#e5e9f1;
 }
 
 .card{
-height:420px;
+height:520px;
 width:330px;
 background-color:#fff;
 border-radius:10px;
@@ -110,12 +114,12 @@ top:12px;
 right:-10px;
 }
 .progress-bar li.active::before{
-background-color:#664de5;
+background-color:#29a6af;
 border:none;
 color:#fff;
 }
 .progress-bar li.active::after{
-background-color:#664de5 !important;
+background-color:#000000 !important;
 }
 
 
@@ -174,11 +178,15 @@ font-weight:600;
 color:#99a1b2;
 }
 #radio-button-1:checked~.radio-button-1,
-#radio-button-2:checked~.radio-button-2 {
-border-color: #a89af0;
+#radio-button-2:checked~.radio-button-2,
+#radio-button-3:checked~.radio-button-3,
+#radio-button-4:checked~.radio-button-4  {
+border-color: #2e86b9;
 }
 #radio-button-1:checked~.radio-button-1 i,
-#radio-button-2:checked~.radio-button-2 i{
+#radio-button-2:checked~.radio-button-2 i,
+#radio-button-3:checked~.radio-button-3 i,
+#radio-button-4:checked~.radio-button-4 i{
 color:blue;
 }
 
@@ -187,8 +195,8 @@ color:blue;
 .input-text span{
 position:absolute;
 left:0;
-top:-16px;
-font-size:11px;
+top:-20px;
+font-size:10px;
 font-weight:900;
 color:#000;
 
@@ -206,12 +214,12 @@ border:1px solid red !important;
 display:flex;
 justify-content:center;
 align-items:center;
-margin-top:30px;
+margin-top:150px;
 } 
 .button button{
 height:40px;
 width:100%;
-background-color:#654de4;
+background-color:#2d9ea1;
 font-size:12px;
 color:#fff;
 border-radius:5px;
@@ -219,7 +227,7 @@ cursor:pointer;
 transition:all 0.5s;
 }
 .button button:hover{
-background-color:#361db7;
+background-color:#00ffff;
 }
 .button_gap{
 
@@ -230,7 +238,7 @@ margin-top:46px;
 gap:20px;
 }
 .launch{
-margin-top:75px;
+margin-top:100px;
 }
 
 .checkmark__circle {
@@ -244,8 +252,8 @@ animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
 }
 
 .checkmark {
-width: 56px;
-height: 56px;
+width: 60px;
+height: 60px;
 border-radius: 50%;
 display: block;
 stroke-width: 2;
@@ -281,14 +289,13 @@ transform: scale3d(1.1, 1.1, 1);
 box-shadow: inset 0px 0px 0px 30px #7ac142;
 }
 }</style>
-        </head>
-        <body className='snippet-body'>
+
         <div class="container">
 <div class="card">
 <div class="parent">
 <div class="top-div">
-<img src="https://imgur.com/3U0Yawd.png">
-<h3>Eden</h3>
+<img src="/img/icon.png">
+<h3>Booking Appointment</h3>
 </div>
 <ul class="progress-bar">
 <li class="active"></li>
@@ -300,34 +307,34 @@ box-shadow: inset 0px 0px 0px 30px #7ac142;
 <div class="main active">
 <div class="content">
 <h4>Welcome! First things first...</h4>
-<p>You can always change them later.</p>
+<p>Fill in the following</p>
 </div>
 <div class="input-text">
-<input type="text" placeholder="Steve Jobs" id="full-name" require>
-<span>Full Name</span>
+<input type="text" placeholder="Mahmoud Ahmed Abdrabbo" id="full-name" require>
+<span>Full Patient Name</span>
 </div>
 <div class="input-text"> 
-<input type="text" placeholder="Steve">
-<span>Display Name</span>
+<input type="text" placeholder="+20">
+<span>Mobile Number</span>
 </div>
 <div class="button">
-<button class="create-workspace">Create Workspace</button>
+<button class="create-workspace">Next</button>
 </div>
 
 </div> 
 <div class="main">
 
 <div class="content">
-<h4>Let's set up a home for all your work</h4>
-<p>You can always create another workspace later.</p>
+<h4>Method of Communication</h4>
+<p>How do you wish to connect with your Doctor</p>
 </div> 
 <div class="input-text">
-<input type="text" placeholder="Eden" require>
-<span>Workspace Name</span>
+<input type="text" placeholder="Zoom - WhatsApp - FacetoFace" require>
+<span>Desired Communication Method</span>
 </div>
 <div class="input-text">
-<input type="text" placeholder="Example : https://www.google.com/">
-<span>Workspace URL(optional)</span>
+<input type="text" placeholder="Optional">
+<span>Secondary Desired Method</span>
 </div>
 <div class="button button_gap">
 <button class="back-click">Back</button>
@@ -338,27 +345,47 @@ box-shadow: inset 0px 0px 0px 30px #7ac142;
 <div class="main">
 
 <div class="content">
-<h4>How are you planning to use Eden?</h4>
-<p>We'll stream line your setup accordingly.</p>
+<h5>Available Appointments for "Selected Doctor"</h5>
+<p>Choose the time & date you desire</p>
 </div>
 <div class="radio-text">
 <input type="radio" name="Select" id="radio-button-1">
-
 <input type="radio" name="Select" id="radio-button-2">
+
+
 <label for="radio-button-1" class="radio-button-1">
-<i class="fa fa-user"></i>
-<h5>For Myself</h5>
-<p>Write better.Think more clearly.Stay organized.</p>
+<i class="fa fa-calendar-times-o"></i>
+<h5>Today</h5>
+<p>2 Available Appointments</p>
 
 </label>
 <label for="radio-button-2" class="radio-button-2">
-<i class="fa fa-users"></i>
-<h5>With my team</h5>
-<p>Wikis,docs,tasks and projects all in one space.</p>
+<i class="fa fa-calendar"></i>
+<h5>Tomorrow</h5>
+<p>5 Available Appointments</p>
 </label>
 
 
 </div>
+<div class="radio-text">
+<input type="radio" name="Select" id="radio-button-3">
+<input type="radio" name="Select" id="radio-button-4">
+  <label for="radio-button-3" class="radio-button-3">
+  <i class="fa fa-calendar-times-o"></i>
+  <h5>Wednesday</h5>
+  <p>From 6:00 PM
+    To 10:00 PM</p>
+  
+  </label>
+  <label for="radio-button-4" class="radio-button-4">
+  <i class="fa fa-calendar"></i>
+  <h5>Thursday </h5>
+  <p>From 6:00 PM
+    To 10:00 PM</p>
+  </label>
+  
+  
+  </div>
 <div class="button button_gap1">
 <button class="back-click">Back</button>
 <button class="finish-click">Finish</button>
@@ -372,22 +399,23 @@ box-shadow: inset 0px 0px 0px 30px #7ac142;
 <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
 </svg>
 <div class="content">
-<h2>Congratulations! <span id="shown_name"></span></h2>
-<p>You have completed onboarding,you can start using the Eden!</p>
-</div>
-<div class="button launch">
-<button>Launch Eden</button>
-</div>
-
-</div>
-
-
+<h2>Successfully Booked!<span id="shown_name"></span></h2>
+<br>
+<p>Thank you for your time</p>
+<br>
+<p>A notification has been sent to the doctor with the desired Information</p> 
+<br>
+<p>Expect a notification or a phonecall incase of changes</p>
 </div>
 
+ <div class="button launch"> 
+  <a href="http://localhost:5000/patient/login"></a>
+<button onclick="backToHome()">Back to Home</button>
 </div>
-        <script type='text/javascript' src='#'></script>
-        <script type='text/javascript' src='#'></script>
-        <script type='text/javascript' src='#'></script>
+</div>
+</div>
+</div>
+
         <script type='text/javascript'>var create_workspace=document.querySelector(".create-workspace");
 var next_click=document.querySelectorAll(".next-click");
 var back_click=document.querySelectorAll(".back-click");
@@ -426,9 +454,9 @@ updateform();
 });
 
 finish_click.addEventListener('click',function(){
-//   if(!validateform()){
-//         return false;
-//         }
+  //  if(!validateform()){
+  //        return false;
+  //        }
 formnumber++;
 updateform();
 var remove_progress=document.querySelector(".progress-bar");
@@ -449,6 +477,9 @@ main_form[formnumber].classList.add('active');
 
 } 
 
+function backToHome(){
+  document.location.href="http://localhost:5000/patient/login";
+}
 
 
 
@@ -464,12 +495,15 @@ val.classList.add('warning');
 }
 }
 });
+
 return validate;
-}</script>
-        <script type='text/javascript'>var myLink = document.querySelector('a[href="#"]');
+}
+</script>
+        <script type='text/javascript'>var myLink = document.querySelector(ahref="http://localhost:5000/patient/login");
         myLink.addEventListener('click', function(e) {
           e.preventDefault();
         });</script>
     
         </body>
+
     </html>

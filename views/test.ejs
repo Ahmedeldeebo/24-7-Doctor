@@ -12,13 +12,99 @@
     />
     <title>Home Page</title>
   </head>
+  <style>::-webkit-scrollbar {
+    width: 8px;
+  }
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  } body {
+background: #0d6efd
+}
+
+.height-100 {
+height: 100vh
+}
+
+.card {
+width: 100%;
+border: none;
+height: 250px;
+max-width: 380px;
+overflow: hidden;
+position: relative;
+display: flex;
+cursor:pointer;
+justify-content: center;
+transition: all ease 0.4s
+}
+
+.card img {
+transition: all ease 0.4s
+}
+
+.card:hover img {
+margin-top: -80px
+}
+
+.card .content {
+width: 100%;
+background: #fff;
+position: absolute;
+bottom: -60%;
+margin-left: -8px;
+transition: all ease 0.5s;
+border-radius: 4px;
+box-shadow: 0px -3px 4px rgba(10, 10, 10, 0.09)
+}
+
+.card .content .category {
+font-size: 17px;
+font-weight: 600
+}
+
+.card .content .price {
+font-size: 17px;
+font-weight: 500;
+color: #0d6efd
+}
+
+.card .content p {
+font-weight: 500;
+font-size: 12px
+}
+
+.card:hover .content {
+bottom: 0%
+}
+
+.buttons button {
+border-radius: 1px;
+margin-bottom: 10px;
+transition: all ease 0.3s
+}
+
+.content {
+padding: 10px
+}</style>
   <body>
     <!--Start Header-->
     <%- include ('./partials/navHome.ejs') %>
     <!--End Header-->
 
 
-    <main class="my-5">
+   <main class="my-5">
+
       <div class="container">
         <div class="row">
           <div class="col-md-7">
@@ -44,92 +130,65 @@
             </button>
           </div>
         </div>
-        <div class="row my-5">
-          <div class="col">
-<hr/>
+      <hr>
+        
+        
+        <div class="container mt-5 mb-5"> 
+          <div class="row g-2"> 
+            <div class="col-md-4 d-flex justify-content-center"> 
+              <div class="card p-2"> <div class="text-center"> <img src="https://i.imgur.com/FyK2SAb.png" class="img-fluid" width="200" /> 
+            </div> 
+          <div class="content"> 
+              <div class="d-flex justify-content-between align-items-center"> <span class="category">Dentistry</span> <span class="price"></span> 
+              </div> 
+              <p>Conducting oral screenings to identify diseases and infections</p>
+              <p> Removing tooth decay and plaque</p>
+              <p> Applying prosthetics, sealers and whiteners</p>
+               <div class="buttons d-flex justify-content-center"> <button class="btn btn-outline-primary mr-1">Book Now</button>
+              </div> 
+            </div> 
+          </div> 
+        </div> 
+        <div class="col-md-4 d-flex justify-content-center"> 
+          <div class="card p-2">
+             <div class="text-center"> <img src="https://i.imgur.com/Uu14uwH.png" class="img-fluid" width="600" />
+             </div> 
+             <div class="content"> 
+               <div class="d-flex justify-content-between align-items-center"> <span class="category">Dermatology</span> <span class="price"></span>
+               </div>
+                <p>Assessing patients’ skin diseases, conditions, and ailments to determine appropriate treatment
+                  Prescribing medication and creating treatment plans, referring patients for surgery where necessary
+                  Monitoring patient progress
+                  Assessing and updating patients’ medical history, including keeping a record of patients’ symptoms</p>
+                 <div class="buttons d-flex justify-content-center"> <button class="btn btn-outline-primary mr-1">Book Now</button>
+                </div> 
+              </div> 
+            </div> 
           </div>
-        </div>
-        <div class="row my-5">
-          <div class="col">
-            <div class="card-group">
-              <div class="card">
-                <img
-                src="/img/unknown.png"
-                class="card-img-top"
-                width="100%"
-                height="45.7%"
-                />
-                <div class="card-body">
-                  <h5 class="card-title">Dentistry</h5>
-                  <p class="card-text">
-                    Conducting oral screenings to identify diseases and infections
-Removing tooth decay and plaque
-Applying prosthetics, sealers and whiteners
-                  </p>
-
-                  <div class="">
-                    <a href="#"
-                      ><button type="button" class="btn btn-primary">
-                        Book Now
-                      </button></a
-                    >
-                  </div>
-                </div>
+           <div class="col-md-4 d-flex justify-content-center">
+              <div class="card p-2"> <div class="text-center"> <img src="https://i.imgur.com/ruv783d.png" class="img-fluid" width="200" /> 
               </div>
-              <div class="card">
-                <img
-                 src="/img/derma.png"
-                  class="card-img-top"
-                  width="100%"
-                  height="100%"
-                />
-                <div class="card-body">
-                  <h5 class="card-title">Dermatology</h5>
-                  <p class="card-text">
-                    Assessing patients’ skin diseases, conditions, and ailments to determine appropriate treatment
-Prescribing medication and creating treatment plans, referring patients for surgery where necessary
-Monitoring patient progress
-Assessing and updating patients’ medical history, including keeping a record of patients’ symptoms
-                  </p>
-
-                  <div class="">
-                    <a href="#"
-                      ><button type="button" class="btn btn-primary">
-                        Book Now
-                      </button></a
-                    >
-                  </div>
+               <div class="content"> 
+                 <div class="d-flex justify-content-between align-items-center"> <span class="category">Pediatrics</span> <span class="price"></span> 
                 </div>
-              </div>
-              <div class="card">
-                <img src="/img/htasd.jpg"
-                  class="card-img-top"
-                  width="100%"
-                  height="45.6%"
-                />
-                <div class="card-body">
-                  <h5 class="card-title">Pediatrics</h5>
-                  <p class="card-text">
-                    iagnose and treat a broad range of childhood illnesses, from minor health problems to serious diseases.
-                  </p>
-
-                  <div class="">
-                    <a href="#"
-                      ><button type="button" class="btn btn-primary">
-                        Book Now
-                      </button></a
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
+                 <p>Child's physician who provides not only medical care for children who are acutely or chronically ill but also preventive health services for healthy children. A paediatrician manages physical, mental, and emotional well-being of the children under their care at every stage of development, in both sickness and health.</p> 
+                 <div class="buttons d-flex justify-content-center"> <button class="btn btn-outline-primary mr-1">Book Now</button>
+                </div> 
+              </div> 
+            </div> 
           </div>
-        </div>
+         </div>
+</div>
+
+   </main>
+   <hr>
+    
+        
 
 
 
 
-        <!-- FOOTER / TICKET IDEA 
+        <!-- -- FOOTER / TICKET IDEA  
           
           <div class="row my-2">
           <div class="col">
@@ -188,19 +247,22 @@ Assessing and updating patients’ medical history, including keeping a record o
         </div>
       </div>
     </main> -->
-    <!-- <footer class="footer mt-auto py-3 bg-dark">
-      <div class="container">
-        <span class="text-muted"
-          >Copyrights
-          <a href="https://mdbootstrap.com">MDBootstrap.com</a></span
-        >
-      </div>
-   </footer> -->
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"
-    ></script>
-  </body>
+       type='text/javascript' src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js'></script>
+
+        <script type='text/javascript'>var myLink = document.querySelector('a[href="#"]');
+        myLink.addEventListener('click', function(e) {
+          e.preventDefault();
+        });</script>
+    </script>
+
+  
+   
+  <footer>
+  <%- include ('./partials/footer.ejs') %> 
+</footer>
 </html>

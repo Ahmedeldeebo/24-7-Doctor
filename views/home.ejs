@@ -13,9 +13,9 @@
     />
   </head>
   <body>
-    <!--Start Headder-->
+    <!--Start Header-->
     <%- include ('./partials/nav.ejs') %>
-    <!--End Headder-->
+    <!--End Header-->
     <body>
 
     <!-----------------------------------------------Start Slider --------------------------------------------->
@@ -102,6 +102,7 @@
 
     <main class="my-5">
       <div class="container">
+        
         <div class="row">
           <div class="col-md-7">
             <img
@@ -128,9 +129,11 @@
         </div>
         <div class="row my-5">
 <hr />
-        </div>
+        
         <div class="row my-5">
+          </div>
           <div class="col">
+            
             <div class="card-group">
               <div class="card">
                 <img
@@ -156,28 +159,7 @@
                   </div>
                 </div>
               </div>
-              <div class="card">
-                <img
-                 src="/img/derma.png"
-                  class="card-img-top"
-                  width="100%"
-                  height="200%"
-                />
-                <div class="card-body">
-                  <h5 class="card-title">Dermatology</h5>
-                  <p class="card-text">
-                    Assessing patients’ skin diseases, conditions, and ailments to determine appropriate treatment prescribing medication and creating treatment plans, referring patients for surgery where necessary monitoring patient progress assessing and updating patients’ medical history, including keeping a record of patients’ symptoms
-                  </p>
 
-                  <div class="">
-                    <a href="#"
-                      ><button type="button" class="btn btn-primary">
-                        Book Now
-                      </button></a
-                    >
-                  </div>
-                </div>
-              </div>
               <div class="card">
                 <img src="/img/htasd.jpg"
                   class="card-img-top"
@@ -199,8 +181,34 @@
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+              <div class="card">
+                <img src="/img/derma.png"
+                  class="card-img-top"
+                  width="100%"
+                  height="45.6%"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Dermatology</h5>
+                  <p class="card-text">
+                    Assessing patients’ skin diseases, conditions, and ailments to determine appropriate treatment
+Prescribing medication and creating treatment plans, referring patients for surgery where necessary
+Monitoring patient progress
+
+                  </p>
+
+                  <div class="">
+                    <a href="#"
+                      ><button type="button" class="btn btn-primary">
+                        Book Now
+                      </button></a
+                    >
+                  </div>
+                </div>
+              </div>
+            
+          
+        </main>
+
    
 
           <!-- <div class="row my-2">
@@ -265,8 +273,9 @@
 
 
 
-
-
+    <footer>
+      <%- include ('./partials/footer.ejs') %> 
+      </footer>
     
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
