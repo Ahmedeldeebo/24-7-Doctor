@@ -29,7 +29,7 @@ router.post("/Doctor-register", async (req, res) => {
   try {
     const savedUser = await NewUser.save();
     console.log(NewUser);
-    res.render("signIn.ejs", { errorMessage: "aloo" });
+    // res.render("signIn.ejs", { errorMessage: "aloo" });
   } catch (err) {
     console.log(err);
   }
