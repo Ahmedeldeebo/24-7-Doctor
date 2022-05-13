@@ -3,14 +3,13 @@ const User = require("../models/Patient");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
 const { render } = require("ejs");
+const { verifyToken, verifyTokenAndAuthorization } = require("./verifyToken");
 const cors = require("cors");
 const { body } = require("express-validator");
 //--------------------------------------------Register--------------------------------------------
 // router.use(cors({ origin: "*", credentials:true  } ) );
 
 router.post("/register", async (req, res) => {
-  console.log(req.body);
-
   const NewUser = new User({
     Pat_username: req.body.Pat_username,
     pat_FirstName: req.body.pat_FirstName,
@@ -29,7 +28,7 @@ router.post("/register", async (req, res) => {
   try {
     const savedUser = await NewUser.save();
     console.log(NewUser);
-    res.render("signIn.ejs", { errorMessage: "aloo" });
+    res.render("signIn.ejs", { errorMessage: "Error" });
   } catch (err) {
     console.log(err);
   }
@@ -37,7 +36,6 @@ router.post("/register", async (req, res) => {
 //-------------------------------------------- End Register---------------------------------------------
 //-------------------------------------------- Login ---------------------------------------------------
 router.post("/login", async (req, res) => {
-  const userName = req.body.pat_FirstName;
   try {
     const user = await User.findOne({ Pat_username: req.body.Pat_username });
     !user && res.render("signIn.ejs", { errorMessage: "Wrong email" });
@@ -60,14 +58,39 @@ router.post("/login", async (req, res) => {
       {
         expiresIn: "3d",
       }
+      // (err, token) => {
+      //   if (err)
+      //     return res
+      //       .status(400)
+      //       .send({ msg: "Something went wrong. Please try again" });
+      //   return res.json({
+      //     accessToken: token,
+      //     name: user.pat_FirstName,
+      //     role: "user",
+      //   });
+      // }
     );
-
-    const { pat_password, ...others } = user._doc;
-
-    return res.render("test.ejs", { userName: "Ahmed" }); //res.status(200).json({ ...others, accessToken });
+    const name = user.pat_FirstName;
+    // console.log(accessToken);
+    console.log(name);
+    return res.render("test.ejs", { name: name }); //res.status(200).json({ ...others, accessToken });
   } catch (err) {
     return console.log(err);
   }
 });
+// router.get("/login-test", verifyTokenAndAuthorization, (req, res) => {
+//   const userName = User;
+//   userName
+//     .findById(user._id)
+//     .then((result) => {
+//       console.log(result);
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+//   console.log(pat_FirstName, "test");
+
+//   const { pat_password, ...others } = user._doc;
+// });
 
 module.exports = router;

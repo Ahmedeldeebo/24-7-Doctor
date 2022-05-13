@@ -57,16 +57,12 @@ app.get("/doctors", (req, res) => {
 app.get("/booking", (req, res) => {
   res.render("booking.ejs");
 });
-app.get("/patient/login", (req, res) => {
-  res.render("test.ejs");
-});
 app.get("/doctorview", (req, res) => {
   res.render("doctorview.ejs");
 });
 app.get("/team", (req, res) => {
   res.render("team.ejs");
 });
-
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
