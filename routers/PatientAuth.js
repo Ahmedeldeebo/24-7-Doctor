@@ -28,7 +28,7 @@ router.post("/register", async (req, res) => {
   try {
     const savedUser = await NewUser.save();
     console.log(NewUser);
-    res.render("signIn.ejs", { errorMessage: "Error" });
+    res.render("signIn.ejs", { errorMessage: "" });
   } catch (err) {
     console.log(err);
   }
@@ -71,7 +71,7 @@ router.post("/login", async (req, res) => {
       // }
     );
     const name = user.pat_FirstName;
-    // console.log(accessToken);
+     console.log(accessToken);
     console.log(name);
     return res.render("test.ejs", { name: name }); //res.status(200).json({ ...others, accessToken });
   } catch (err) {
@@ -92,5 +92,17 @@ router.post("/login", async (req, res) => {
 
 //   const { pat_password, ...others } = user._doc;
 // });
+router.get("/profile-setting", verifyTokenAndAuthorization,(req, res) => {
+  User.find(req.params.id)
+    .then((result) => {
+      console.log(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  const name = req.body.pat_FirstName;
+
+  res.render("Profile.ejs", { name: name });
+});
 
 module.exports = router;

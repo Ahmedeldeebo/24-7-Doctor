@@ -47,10 +47,6 @@ app.get("/signup", (req, res, next) => {
 app.get("/signin", (req, res) => {
   res.render("signIn.ejs", { errorMessage: "" });
 });
-
-app.get("/profile", (req, res) => {
-  res.render("Profile.ejs");
-});
 app.get("/doctors", (req, res) => {
   res.render("doctors.ejs");
 });
