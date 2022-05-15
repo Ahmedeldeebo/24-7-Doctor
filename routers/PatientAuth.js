@@ -71,7 +71,7 @@ router.post("/login", async (req, res) => {
       // }
     );
     const name = user.pat_FirstName;
-     console.log(accessToken);
+    console.log(accessToken);
     console.log(name);
     return res.render("test.ejs", { name: name }); //res.status(200).json({ ...others, accessToken });
   } catch (err) {
@@ -92,7 +92,7 @@ router.post("/login", async (req, res) => {
 
 //   const { pat_password, ...others } = user._doc;
 // });
-router.get("/profile-setting", verifyTokenAndAuthorization,(req, res) => {
+router.get("/profile-setting", verifyTokenAndAuthorization, (req, res) => {
   User.find(req.params.id)
     .then((result) => {
       console.log(result);
@@ -105,4 +105,10 @@ router.get("/profile-setting", verifyTokenAndAuthorization,(req, res) => {
   res.render("Profile.ejs", { name: name });
 });
 
+router.get("/profile", (req, res) => {
+  const user = User;
+  const name = user.pat_FirstName;
+  console.log(name);
+  res.render("test.ejs", { name: name });
+});
 module.exports = router;
