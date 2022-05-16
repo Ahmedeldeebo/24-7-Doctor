@@ -71,9 +71,10 @@ router.post("/login", async (req, res) => {
       // }
     );
     const name = user.pat_FirstName;
-     console.log(accessToken);
+    console.log(accessToken);
     console.log(name);
-    return res.render("test.ejs", { name: name }); //res.status(200).json({ ...others, accessToken });
+    return res.render("test.ejs", { name: name });
+    //res.status(200).json({ ...others, accessToken });
   } catch (err) {
     return console.log(err);
   }
@@ -92,17 +93,25 @@ router.post("/login", async (req, res) => {
 
 //   const { pat_password, ...others } = user._doc;
 // });
-router.get("/profile-setting", verifyTokenAndAuthorization,(req, res) => {
-  User.find(req.params.id)
-    .then((result) => {
-      console.log(result);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  const name = req.body.pat_FirstName;
-
-  res.render("Profile.ejs", { name: name });
-});
-
+// router.get("/profile-setting/:id", async (req, res) => {
+//   jwt.verify(req.accessToken, process.env.JWT_SEC, async (err, user) => {
+//     if (err) {
+//       return res.status(401).json({ msg: "Unauthorized" });
+//     }
+//     const userName = await User.findById(user.id);
+//     console.log(userName);
+//     res.render("profile-setting.ejs", { userName });
+//   });
+//});
+//-------------------------------------------- End Login ---------------------------------------------------
+router.get(
+  "/profile-setting/:id",
+  verifyTokenAndAuthorization,
+  async (req, res) => {
+    try {
+    } catch (err) {
+      return console.log(err);
+    }
+  }
+);
 module.exports = router;
