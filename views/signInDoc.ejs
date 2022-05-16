@@ -84,15 +84,16 @@
                   </div>
                   <a href="#!">Forgot password?</a>
                 </div>
+                 <div class="alert alert-light text-danger" role="alert">
+                <%- errorMessage %>
+              </div>
 
                 <!-- Submit button -->
                 <button type="submit" class="btn btn-primary btn-lg btn-block">
                   Sign in
                 </button>
               </div>
-              <div class="alert alert-light text-danger" role="alert">
-                <%- errorMessage %>
-              </div>
+             
             </form>
             <!--Start sgin form-->
           </div>
@@ -155,7 +156,7 @@
             >
           </div>
           <div class="alert alert-light text-danger" role="alert">
-            <%- errorMessage %>
+       
           </div>
           <button type="submit" class="btn btn-primary">Login</button>
         </form>

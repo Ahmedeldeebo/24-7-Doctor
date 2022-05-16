@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const User = require("../models/Doctor");
+const User = require("../models/Pharmacy");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
 const { render } = require("ejs");
@@ -8,22 +8,19 @@ const { body } = require("express-validator");
 //--------------------------------------------Register--------------------------------------------
 // router.use(cors({ origin: "*", credentials:true  } ) );
 
-router.post("/Doctor-register", async (req, res) => {
+router.post("/Pharmcy-register", async (req, res) => {
   console.log(req.body);
 
   const NewUser = new User({
-    Doc_username: req.body.Doc_username,
-    Doc_FirstName: req.body.Doc_FirstName,
-    Doc_Lastname: req.body.Doc_Lastname,
-    Doc_Email: req.body.Doc_Email,
-    Doc_Gender: req.body.Doc_Gender,
-    Doc_password: CryptoJS.AES.encrypt(
-      req.body.Doc_password,
+    Phar_userName: req.body.Phar_userName,
+    Phar_name: req.body.Phar_name,
+    Phar_Email: req.body.Phar_Email,
+    Phar_PhoneNumber: req.body.Phar_PhoneNumber,
+    Phar_location: req.body.Phar_location,
+    Phar_Password: CryptoJS.AES.encrypt(
+      req.body.Phar_Password,
       process.env.PASS_SEC
     ).toString(),
-    Specialization_Name: req.body.Specialization_Name,
-    Doc_birtday: req.body.Doc_birtday,
-    Upfornt_fees: req.body.Upfornt_fees,
   });
   const savedUser = await NewUser.save();
   console.log(NewUser);
@@ -31,25 +28,25 @@ router.post("/Doctor-register", async (req, res) => {
     const savedUser = await NewUser.save();
     console.log(NewUser);
 
-    res.render("DocSignup.ejs", { errorMessage: "Something is missing" });
+    res.render("PharmacySignup.ejs", { errorMessage: "" });
   } catch (err) {
     console.log(err);
   }
 });
 //-------------------------------------------- End Register---------------------------------------------
 //-------------------------------------------- Login ---------------------------------------------------
-router.post("/Docter-login", async (req, res) => {
+router.post("/Pharmacy-login", async (req, res) => {
   try {
-    const user = await User.findOne({ Doc_username: req.body.Doc_username });
+    const user = await User.findOne({ Phar_userName: req.body.Phar_userName });
     !user && res.render("signIn.ejs", { errorMessage: "Wrong email" });
     //res.Status(401).json("Wrong credentials!");
     const hashedPassword = CryptoJS.AES.decrypt(
-      user.Doc_password,
+      user.Phar_Password,
       process.env.PASS_SEC
     );
     const Originalpassword = hashedPassword.toString(CryptoJS.enc.Utf8);
 
-    Originalpassword !== req.body.Doc_password &&
+    Originalpassword !== req.body.Phar_Password &&
       res.render("signIn.ejs", { errorMessage: "Wrong password" });
     // res.status(401).json("Wrong credentials!");
 
@@ -64,22 +61,14 @@ router.post("/Docter-login", async (req, res) => {
     );
 
     // const { Doc_password, ...others } = user._doc;
-    const name = user.Doc_FirstName;
+    const name = user.Phar_name;
     console.log(accessToken);
     console.log(name);
 
-    return res.render("test.ejs", { name: "Dr." + name }); //res.status(200).json({ ...others, accessToken });
+    return res.render("test.ejs", { name: name }); //res.status(200).json({ ...others, accessToken });
   } catch (err) {
     return console.log(err);
   }
 });
-//--------------------------------------------Start serc---------------------------------------------------
-router.get("/doctorview", async (req, res) => {
-  const body = req.body;
-  console.log(req.body);
-  const users = await User.find({});
-  console.log(users);
-  res.render("doctorview.ejs", { users: users });
-});
-//-------------------------------------------- End serc ---------------------------------------------------
+
 module.exports = router;

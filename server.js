@@ -6,10 +6,16 @@ const dotenv = require("dotenv");
 const path = require("path");
 const ejs = require("ejs");
 const PatientAuthRouter = require("./routers/PatientAuth");
+const PhamacyAuthRouter = require("./routers/PharmacyAuth");
 const DoctorAuthRouter = require("./routers/DoctorAuth");
 const user = require("./routers/user");
 const cors = require("cors");
+const {
+  verifyToken,
+  verifyTokenAndAuthorization,
+} = require("./routers/verifyToken");
 const User = require("./models/Patient");
+const Pharmacy = require("./models/Pharmacy");
 
 dotenv.config();
 
@@ -33,15 +39,28 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use("/patient", PatientAuthRouter);
 app.use("/doctor", DoctorAuthRouter);
+app.use("/pharmacy", PhamacyAuthRouter);
 app.use("/users", user);
 app.use(cors({ origin: "*", credentials: true }));
+// app.use((req, res, next) => {
+//   console.log(req.url);
+//   if (
+//     req.url === "/profile-setting" ||
+//     req.url == "/signin" ||
+//     req.url === "/signuptest" ||
+//     req.url === "/signup"
+//   ) {
+//     console.log("test");
+//     return next();
+//   } else return verifyToken(req, res, next);
+// });
 
 app.get("/", (req, res) => {
   res.render("home.ejs");
 });
 
 app.get("/signup", (req, res, next) => {
-  res.render("signUp.ejs");
+  res.render("signUp.ejs", { errorMessage: "" });
 });
 
 app.get("/signin", (req, res) => {
@@ -66,17 +85,17 @@ app.get("/booking", (req, res) => {
 app.get("/patient/login", (req, res) => {
   res.render("test.ejs");
 });
-app.get("/doctorview", (req, res) => {
-  res.render("doctorview.ejs");
-});
 app.get("/team", (req, res) => {
   res.render("team.ejs");
 });
 app.get("/Doctorreg", (req, res) => {
-  res.render("DocSignup.ejs");
+  res.render("DocSignup.ejs", { errorMessage: "" });
 });
 app.get("/Pharmacyreg", (req, res) => {
-  res.render("PharmacySignUp.ejs");
+  res.render("PharmacySignUp.ejs", { errorMessage: "" });
+});
+app.get("/doctorview", async (req, res) => {
+  res.render("doctorview.ejs", { users: users });
 });
 app.get("/signuptest", (req, res) => {
   res.render("signUptest");

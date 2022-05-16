@@ -23,12 +23,12 @@ router.post("/register", async (req, res) => {
     pat_birthday: req.body.pat_birthday,
     pat_InsuranceNo: req.body.pat_InsuranceNo,
   });
-  const savedyUser = await NewUser.save();
+  const savedUser = await NewUser.save();
   console.log(NewUser);
   try {
     const savedUser = await NewUser.save();
     console.log(NewUser);
-    res.render("signIn.ejs", { errorMessage: "" });
+    res.render("signIn.ejs", { errorMessage: "Something is missing" });
   } catch (err) {
     console.log(err);
   }

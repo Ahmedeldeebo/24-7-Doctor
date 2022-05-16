@@ -39,7 +39,7 @@
           <h2 class="title pt-5 pb-3">Pharmacy Sign up</h2>
           <form
             class="myform row g-3 needs-validation"
-            action="http://localhost:5000/patient/register"
+            action="http://localhost:5000/pharmacy/Pharmcy-register"
             method="POST"
             novalidate
           >
@@ -50,7 +50,7 @@
                   class="form-control"
                   placeholder="Pharmacy Name"
                   required
-                  name="pat_FirstName"
+                  name="Phar_name"
                 />
               </div>
               <div class="form-group col-md-6 ftwo py-3">
@@ -59,7 +59,7 @@
                   class="form-control"
                   placeholder="Pharmacy Address"
                   required
-                  name="pat_Lastname"
+                  name="Phar_location"
                 />
               </div>
             </div>
@@ -70,7 +70,7 @@
                   class="form-control jk"
                   placeholder="Username"
                   required
-                  name="Pat_username"
+                  name="Phar_userName"
                 />
               </div>
               <div class="form-group col-md-6 ffour py-3">
@@ -79,7 +79,7 @@
                   class="form-control lm"
                   placeholder="....@gmail.com"
                   required
-                  name="pat_Email"
+                  name="Phar_Email"
                 />
               </div>
             </div>
@@ -90,7 +90,7 @@
                   class="form-control"
                   placeholder="Password"
                   required
-                  name="pat_password"
+                  name="Phar_Password"
                 />
               </div>
               <div class="form-group col-md-6 fsix py-3">
@@ -99,7 +99,7 @@
                   class="form-control"
                   placeholder="Tel. No"
                   required
-                  name="pat_InsuranceNo"
+                  name="Phar_PhoneNumber"
                 />
               </div>
             </div>
@@ -123,6 +123,9 @@
                 required name="pat_birthday">
                </div>
             </div> -->
+            <div class="alert alert-light text-danger" role="alert">
+              <%- errorMessage %>
+            </div>
 
             <div class="row rfive">
               <div class="form-group col-md-6 fnine py-3">

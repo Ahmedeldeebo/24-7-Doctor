@@ -123,11 +123,14 @@
                 required name="Doc_birtday">
                </div>
             </div> 
-
+ <div class="alert alert-light text-danger" role="alert">
+                      <%- errorMessage %>
+                    </div>
             <div class="row rfive">
               <div class="form-group col-md-6 fnine py-3">
                 <div class="card-body">
                   <div class="wrapper text-left">
+                   
                       <button class="btn btn-primary" type="submit" onclick="sSuccess('success-message')">Create an account</button>
                   </div>
               </div>

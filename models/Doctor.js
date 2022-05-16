@@ -11,7 +11,6 @@ const DoctorSchema = new mongoose.Schema(
 
     Specialization_Name: { type: String, required: true },
     Doc_birtday: { type: Date, require: true },
-    Specialization_Name: { type: String, required: true },
     Doc_rating: { type: String },
     Pres_id: {
       type: mongoose.Schema.Types.ObjectId,

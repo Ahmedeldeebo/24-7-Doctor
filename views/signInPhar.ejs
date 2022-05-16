@@ -26,14 +26,14 @@
             <img src="/img/login.png" class="img-fluid" alt="Phone image" />
           </div>
           <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-            <form action="/patient/login" method="post">
+            <form action="/pharmacy/Pharmacy-login" method="post">
               <!-- Email input -->
               <div class="form-outline mb-4">
                 <input
                   type="username"
                   id="form1Example13"
                   class="form-control form-control-lg"
-                  name="Pat_username"
+                  name="Phar_userName"
                 />
                 <label class="form-label" for="form1Example13"
                   >Email address</label
@@ -46,7 +46,7 @@
                   type="password"
                   id="form1Example23"
                   class="form-control form-control-lg"
-                  name="pat_password"
+                  name="Phar_Password"
                 />
                 <label class="form-label" for="form1Example23">Password</label>
               </div>
@@ -83,16 +83,16 @@
                     </label>
                   </div>
                   <a href="#!">Forgot password?</a>
-                </div>
+                </div> <div class="alert alert-light text-danger" role="alert">
+                <%- errorMessage %>
+              </div>
 
                 <!-- Submit button -->
                 <button type="submit" class="btn btn-primary btn-lg btn-block">
                   Sign in
                 </button>
               </div>
-              <div class="alert alert-light text-danger" role="alert">
-                <%- errorMessage %>
-              </div>
+             
             </form>
             <!--Start sgin form-->
           </div>
@@ -155,8 +155,7 @@
             >
           </div>
           <div class="alert alert-light text-danger" role="alert">
-            <%- errorMessage %>
-          </div>
+            
           <button type="submit" class="btn btn-primary">Login</button>
         </form>
       </div>
