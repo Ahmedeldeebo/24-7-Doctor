@@ -31,7 +31,7 @@ router.post("/Doctor-register", async (req, res) => {
     const savedUser = await NewUser.save();
     console.log(NewUser);
 
-    res.render("DocSignup.ejs", { errorMessage: "Something is missing" });
+    res.render("DocSignup.ejs", { errorMessage: "" });
   } catch (err) {
     console.log(err);
   }

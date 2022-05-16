@@ -93,7 +93,7 @@ router.post("/login", async (req, res) => {
 
 //   const { pat_password, ...others } = user._doc;
 // });
-router.get("/profile-setting", verifyTokenAndAuthorization, (req, res) => {
+router.get("/profile-setting", (req, res) => {
   User.find(req.params.id)
     .then((result) => {
       console.log(result);
