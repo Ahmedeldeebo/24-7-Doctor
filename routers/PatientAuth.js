@@ -93,25 +93,23 @@ router.post("/login", async (req, res) => {
 
 //   const { pat_password, ...others } = user._doc;
 // });
-// router.get("/profile-setting/:id", async (req, res) => {
-//   jwt.verify(req.accessToken, process.env.JWT_SEC, async (err, user) => {
-//     if (err) {
-//       return res.status(401).json({ msg: "Unauthorized" });
-//     }
-//     const userName = await User.findById(user.id);
-//     console.log(userName);
-//     res.render("profile-setting.ejs", { userName });
-//   });
-//});
-//-------------------------------------------- End Login ---------------------------------------------------
-router.get(
-  "/profile-setting/:id",
-  verifyTokenAndAuthorization,
-  async (req, res) => {
-    try {
-    } catch (err) {
-      return console.log(err);
-    }
-  }
-);
+router.get("/profile-setting", verifyTokenAndAuthorization, (req, res) => {
+  User.find(req.params.id)
+    .then((result) => {
+      console.log(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  const name = req.body.pat_FirstName;
+
+  res.render("Profile.ejs", { name: name });
+});
+
+router.get("/profile", (req, res) => {
+  const user = User;
+  const name = user.pat_FirstName;
+  console.log(name);
+  res.render("test.ejs", { name: name });
+});
 module.exports = router;
