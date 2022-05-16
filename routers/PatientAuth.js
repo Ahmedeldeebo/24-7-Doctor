@@ -73,7 +73,8 @@ router.post("/login", async (req, res) => {
     const name = user.pat_FirstName;
     console.log(accessToken);
     console.log(name);
-    return res.render("test.ejs", { name: name }); //res.status(200).json({ ...others, accessToken });
+    return res.render("test.ejs", { name: name });
+    //res.status(200).json({ ...others, accessToken });
   } catch (err) {
     return console.log(err);
   }

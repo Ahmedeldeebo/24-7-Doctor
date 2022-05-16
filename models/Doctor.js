@@ -8,13 +8,15 @@ const DoctorSchema = new mongoose.Schema(
     Doc_Email: { type: String, required: true },
     Doc_Gender: { type: String, require: true },
     Doc_password: { type: String, require: true },
+
+    Specialization_Name: { type: String, required: true },
     Doc_birtday: { type: Date, require: true },
     Specialization_Name: { type: String, required: true },
     Doc_rating: { type: String },
     Pres_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Prescription",
-      required: true,
+      required: false,
     },
     Upfornt_fees: { type: Number, require: true },
   },

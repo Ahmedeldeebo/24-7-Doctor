@@ -47,6 +47,12 @@ app.get("/signup", (req, res, next) => {
 app.get("/signin", (req, res) => {
   res.render("signIn.ejs", { errorMessage: "" });
 });
+app.get("/signin-Doctor", (req, res) => {
+  res.render("signInDoc.ejs", { errorMessage: "" });
+});
+app.get("/signin-Pharmacy", (req, res) => {
+  res.render("signInPhar.ejs", { errorMessage: "" });
+});
 
 app.get("/profile", (req, res) => {
   res.render("Profile.ejs");

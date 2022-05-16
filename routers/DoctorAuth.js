@@ -21,6 +21,7 @@ router.post("/Doctor-register", async (req, res) => {
       req.body.Doc_password,
       process.env.PASS_SEC
     ).toString(),
+    Specialization_Name: req.body.Specialization_Name,
     Doc_birtday: req.body.Doc_birtday,
     Upfornt_fees: req.body.Upfornt_fees,
   });
@@ -29,8 +30,8 @@ router.post("/Doctor-register", async (req, res) => {
   try {
     const savedUser = await NewUser.save();
     console.log(NewUser);
-    
-     res.render("DocSignup.ejs", { errorMessage: "Etl3 bara" });
+
+    res.render("DocSignup.ejs", { errorMessage: "" });
   } catch (err) {
     console.log(err);
   }
@@ -38,7 +39,6 @@ router.post("/Doctor-register", async (req, res) => {
 //-------------------------------------------- End Register---------------------------------------------
 //-------------------------------------------- Login ---------------------------------------------------
 router.post("/Docter-login", async (req, res) => {
-  const userName = req.body.pat_FirstName;
   try {
     const user = await User.findOne({ Doc_username: req.body.Doc_username });
     !user && res.render("signIn.ejs", { errorMessage: "Wrong email" });
@@ -63,9 +63,12 @@ router.post("/Docter-login", async (req, res) => {
       }
     );
 
-    const { Doc_password, ...others } = user._doc;
+    // const { Doc_password, ...others } = user._doc;
+    const name = user.Doc_FirstName;
+    console.log(accessToken);
+    console.log(name);
 
-    return res.render("test.ejs", { userName: "Ahmed" }); //res.status(200).json({ ...others, accessToken });
+    return res.render("test.ejs", { name: "Dr." + name }); //res.status(200).json({ ...others, accessToken });
   } catch (err) {
     return console.log(err);
   }
