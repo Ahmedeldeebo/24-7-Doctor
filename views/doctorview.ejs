@@ -272,9 +272,6 @@ color: #269bb8
         <div class="row">
 
 <div class="col-md-4">
-
-
-<%- users %> 
 <div class="wrapper center-block hidden-xs">
 <div class="filters-text">
 <span class="filter-span">Sort by: <small>(find doctors using filters below)</small></span>
@@ -341,15 +338,17 @@ color: #269bb8
 </div>
 
 <div class="col-md-8">
-
+  
 <div class="container py-5">
 <div class="row">
 <div class="col-lg-12 mx-auto">
 <ul class="list-group shadow">
 <li class="list-group-item">
 <div class="media align-items-lg-center flex-column flex-lg-row"> <img src="/Doctors/KamariaElBanna.jpg" alt="Generic placeholder image" width="200" height="200" class="order-1 order-lg-1">
-<div class="media-body order-2 order-lg-2 ml-lg-5">
-    <h5 class="mt-0 mb-1">Doctor Kamaria ElBanna</h5>
+    <%users.forEach(users=>{%>
+    <div class="media-body order-2 order-lg-2 ml-lg-5">
+
+    <h5 class="mt-0 mb-1">Doctor <%=users.Doc_FirstName%> </h5>
     <div class="product-rating mb-2"> <span class="badge23"><i class="fa fa-star"></i> 4 Star</span> <span class="rating-review mb-1">4 Ratings &amp; 3 Recommendations</span></div> <span class="doctor-fees price-new">Fees : 150 EGP </span>
     <div class="text-right refine" ><a href="http://localhost:5000/booking" class="btn btn-info" role="button">Book Appointment</a> </div>
       
@@ -357,7 +356,7 @@ color: #269bb8
     <div class="d-flex align-items-center justify-content-between mt-1">
 
         <ul class="list-inline small">
-            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Dermatology, Cosmetology and laser specialist</li>
+            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> <%=users.Specialization_Name%></li>
             <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png">New Cairo : North Tessen Street-CMC Medical Center </li>
             <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Waiting Time : 1 Hour and 8 Minutes </li>
         </ul>
@@ -366,6 +365,7 @@ color: #269bb8
         </ul>
     </div>
 </div>
+<%})%>
 </div>
 <hr class="seperator">
 </li>
