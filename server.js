@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const path = require("path");
 const ejs = require("ejs");
-const cookieParser = require("cookie-parser");
+// const cookieParser = require("cookie-parser");
 const PatientAuthRouter = require("./routers/PatientAuth");
 const PhamacyAuthRouter = require("./routers/PharmacyAuth");
 const DoctorAuthRouter = require("./routers/DoctorAuth");
@@ -37,13 +37,13 @@ app.set("views", path.join(__dirname, "/views"));
 let publicpaht = path.join(__dirname, "/public");
 app.use(express.static(publicpaht));
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser);
 app.use(express.json());
 app.use("/patient", PatientAuthRouter);
 app.use("/doctor", DoctorAuthRouter);
 app.use("/pharmacy", PhamacyAuthRouter);
 app.use("/users", user);
 app.use(cors({ origin: "*", credentials: true }));
+// app.use(cookieParser);
 // app.use((req, res, next) => {
 //   console.log(req.url);
 //   if (

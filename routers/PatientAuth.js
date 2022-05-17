@@ -2,6 +2,7 @@ const router = require("express").Router();
 const User = require("../models/Patient");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
 const { render } = require("ejs");
 const { verifyToken, verifyTokenAndAuthorization } = require("./verifyToken");
 const cors = require("cors");
@@ -70,9 +71,9 @@ router.post("/login", async (req, res) => {
       //   });
       // }
     );
-    res.cookie("accessToken", accessToken, {
-      httpOnly: true,
-    });
+    // res.cookie("accessToken", accessToken, {
+    //   httpOnly: true,
+    // });
     const name = user.pat_FirstName;
     console.log(accessToken);
     console.log(name);
