@@ -70,6 +70,9 @@ router.post("/login", async (req, res) => {
       //   });
       // }
     );
+    res.cookie("accessToken", accessToken, {
+      httpOnly: true,
+    });
     const name = user.pat_FirstName;
     console.log(accessToken);
     console.log(name);
