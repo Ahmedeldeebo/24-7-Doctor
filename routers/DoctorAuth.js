@@ -1,8 +1,14 @@
 const router = require("express").Router();
 const User = require("../models/Doctor");
+const Patient = require("../models/Patient");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
 const { render } = require("ejs");
+const {
+  verifyToken,
+  verifyTokenAndAuthorization,
+  authorization,
+} = require("./verifyToken");
 const cors = require("cors");
 const { body } = require("express-validator");
 //--------------------------------------------Register--------------------------------------------
@@ -68,18 +74,35 @@ router.post("/Docter-login", async (req, res) => {
     console.log(accessToken);
     console.log(name);
 
-    return res.render("test.ejs", { name: "Dr." + name }); //res.status(200).json({ ...others, accessToken });
+    return res
+      .cookie("accessToken", accessToken, {
+        httpOnly: true,
+      })
+      .render("DocHomePage.ejs", { name: "Dr." + name }); //res.status(200).json({ ...others, accessToken });
   } catch (err) {
     return console.log(err);
   }
 });
 //--------------------------------------------Start serc---------------------------------------------------
-router.get("/doctorview", async (req, res) => {
+router.get("/doctorview", authorization, async (req, res) => {
   const body = req.body;
+  const id = res.locals.user.id;
+  const user = await Patient.findById(id);
+  const name = user.pat_FirstName;
   console.log(req.body);
   const users = await User.find({});
   console.log(users);
-  res.render("doctorview.ejs", { users: users });
+  res.render("doctorview.ejs", { users: users, name: name });
 });
-//-------------------------------------------- End serc ---------------------------------------------------
+//-------------------------------------------- Start profile Doc ---------------------------------------------------
+router.get("/Doctor-profile-setting", authorization, async (req, res) => {
+  console.log(res.locals.user.id);
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  console.log(user);
+  const name = user.Doc_FirstName;
+  const email = user.Doc_Email;
+  res.render("DocProfile.ejs", { name: name, email: email });
+});
+//-------------------------------------------- End Profile Doc ---------------------------------------------------
 module.exports = router;

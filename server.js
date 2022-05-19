@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const path = require("path");
 const ejs = require("ejs");
-// const cookieParser = require("cookie-parser");
+const cookieParser = require("cookie-parser");
 const PatientAuthRouter = require("./routers/PatientAuth");
 const PhamacyAuthRouter = require("./routers/PharmacyAuth");
 const DoctorAuthRouter = require("./routers/DoctorAuth");
@@ -17,6 +17,7 @@ const {
 } = require("./routers/verifyToken");
 const User = require("./models/Patient");
 const Pharmacy = require("./models/Pharmacy");
+const { aggregate } = require("./models/Patient");
 
 dotenv.config();
 
@@ -43,7 +44,7 @@ app.use("/doctor", DoctorAuthRouter);
 app.use("/pharmacy", PhamacyAuthRouter);
 app.use("/users", user);
 app.use(cors({ origin: "*", credentials: true }));
-// app.use(cookieParser);
+app.use(cookieParser());
 // app.use((req, res, next) => {
 //   console.log(req.url);
 //   if (
@@ -102,9 +103,7 @@ app.get("/doctorview", async (req, res) => {
 app.get("/signuptest", (req, res) => {
   res.render("signUptest");
 });
-app.get("/patient/Ticket", (req, res) => {
-  res.render("Ticket.ejs");
-});
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });

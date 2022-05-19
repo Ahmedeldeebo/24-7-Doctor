@@ -53,6 +53,9 @@ border: 1px solid rgba(0, 0, 0, .125)
 background: #a2a2efb8
 }
 
+div.c {
+  text-transform: capitalize;
+}
 
 /*Filters */
 
@@ -343,13 +346,15 @@ color: #269bb8
 <div class="row">
 <div class="col-lg-12 mx-auto">
     <div class="d-flex justify-content-between mb-3"> <class="text-right refine ><a href="http://localhost:5000/doctors/" class="btn btn-info add" role="button">View High Rated Doctors</a> </div>
-<ul class="list-group shadow">
+
+    <ul class="list-group shadow">
 <li class="list-group-item">
-<div class="media align-items-lg-center flex-column flex-lg-row"> <img src="/Doctors/KamariaElBanna.jpg" alt="Generic placeholder image" width="200" height="200" class="order-1 order-lg-1">
     <%users.forEach(users=>{%>
+<div class="media align-items-lg-center flex-column flex-lg-row"> <img src="/Doctors/KamariaElBanna.jpg" alt="Generic placeholder image" width="200" height="200" class="order-1 order-lg-1">
+    
     <div class="media-body order-2 order-lg-2 ml-lg-5">
 
-    <h5 class="mt-0 mb-1">Doctor <%=users.Doc_FirstName%> </h5>
+    <h5 class="mt-0 mb-1"> <div class="c"> Doctor <%=users.Doc_FirstName%></div> </h5>
     <div class="product-rating mb-2"> <span class="badge23"><i class="fa fa-star"></i> 4 Star</span> <span class="rating-review mb-1">4 Ratings &amp; 3 Recommendations</span></div> <span class="doctor-fees price-new">Fees : 150 EGP </span>
     <div class="text-right refine" ><a href="http://localhost:5000/booking" class="btn btn-info" role="button">Book Appointment</a> </div>
       
@@ -366,9 +371,11 @@ color: #269bb8
         </ul>
     </div>
 </div>
-<%})%>
+
 </div>
+
 <hr class="seperator">
+<%})%>
 </li>
 <li class="list-group-item">
 <div class="media align-items-lg-center flex-column flex-lg-row"> <img src="/Doctors/ShreifHelal.jpg" alt="Generic placeholder image" height="200" width="200" class="order-1 order-lg-1">

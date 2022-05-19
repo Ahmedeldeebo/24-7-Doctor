@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <title>Home Page</title>
+  </head>
+  <style>::-webkit-scrollbar {
+    width: 8px;
+  }
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+  div.c {
+  text-transform: capitalize;
+}
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  } body {
+background: #0d6efd
+}
+
+.height-100 {
+height: 100vh
+}
+
+.card {
+width: 100%;
+border: none;
+height: 250px;
+max-width: 380px;
+overflow: hidden;
+position: relative;
+display: flex;
+cursor:pointer;
+justify-content: center;
+transition: all ease 0.4s
+}
+
+.card img {
+transition: all ease 0.4s
+}
+
+.card:hover img {
+margin-top: -80px
+}
+
+.card .content {
+width: 100%;
+background: #fff;
+position: absolute;
+bottom: -60%;
+margin-left: -8px;
+transition: all ease 0.5s;
+border-radius: 4px;
+box-shadow: 0px -3px 4px rgba(10, 10, 10, 0.09)
+}
+
+.card .content .category {
+font-size: 17px;
+font-weight: 600
+}
+
+.card .content .price {
+font-size: 17px;
+font-weight: 500;
+color: #0d6efd
+}
+
+.card .content p {
+font-weight: 500;
+font-size: 12px
+}
+
+.card:hover .content {
+bottom: 0%
+}
+
+.buttons button {
+border-radius: 1px;
+margin-bottom: 10px;
+transition: all ease 0.3s
+}
+
+.content {
+padding: 10px
+}</style>
+  <body>
+    <!--Start Header-->
+    <%- include ('./partials/NavDoc.ejs') %>
+    <!--End Header-->
+
+
+   <main class="my-5">
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7">
+            <img
+              src="/img/logo.png"
+              alt=""
+              class="img-fluid"
+            />
+          </div>
+          <div class="col-md-5">
+            <h1 class="mt-5">24/7 Doctors</h1>
+            <p class="mt-4">
+             <div class="c"><h1><%- name %> </h1></div> 
+              Welcome to 24/7 Doctors where you shall find the best available doctors in all specializations, compare between then, choose, and book your appointment right away.
+              <h5> <center>Always there when you need us the most.</center></h5>
+            </p>
+            <button type="button" class="btn btn-primary mt-3">
+              <a
+              type="buttton"
+              class="btn btn-primary"
+              href="http://localhost:5000/doctor/doctorview"
+            > Check our Doctors now
+             </a>
+            </button>
+          </div>
+        </div>
+      <hr>
+        
+        
+        <div class="container mt-5 mb-5"> 
+          <div class="row g-2"> 
+            <div class="col-md-4 d-flex justify-content-center"> 
+              <div class="card p-2"> <div class="text-center"> <img src="https://i.imgur.com/FyK2SAb.png" class="img-fluid" width="200" /> 
+            </div> 
+          <div class="content"> 
+              <div class="d-flex justify-content-between align-items-center"> <span class="category">Dentistry</span> <span class="price"></span> 
+              </div> 
+              <p>Conducting oral screenings to identify diseases and infections</p>
+              <p> Removing tooth decay and plaque</p>
+              <p> Applying prosthetics, sealers and whiteners</p>
+               <div class="buttons d-flex justify-content-center"> <button class="btn btn-outline-primary mr-1">Book Now</button>
+              </div> 
+            </div> 
+          </div> 
+        </div> 
+        <div class="col-md-4 d-flex justify-content-center"> 
+          <div class="card p-2">
+             <div class="text-center"> <img src="https://i.imgur.com/Uu14uwH.png" class="img-fluid" width="600" />
+             </div> 
+             <div class="content"> 
+               <div class="d-flex justify-content-between align-items-center"> <span class="category">Dermatology</span> <span class="price"></span>
+               </div>
+                <p>Assessing patients’ skin diseases, conditions, and ailments to determine appropriate treatment
+                  Prescribing medication and creating treatment plans, referring patients for surgery where necessary
+                  Monitoring patient progress
+                  Assessing and updating patients’ medical history, including keeping a record of patients’ symptoms</p>
+                 <div class="buttons d-flex justify-content-center"> <button class="btn btn-outline-primary mr-1">Book Now</button>
+                </div> 
+              </div> 
+            </div> 
+          </div>
+           <div class="col-md-4 d-flex justify-content-center">
+              <div class="card p-2"> <div class="text-center"> <img src="https://i.imgur.com/ruv783d.png" class="img-fluid" width="200" /> 
+              </div>
+               <div class="content"> 
+                 <div class="d-flex justify-content-between align-items-center"> <span class="category">Pediatrics</span> <span class="price"></span> 
+                </div>
+                 <p>Child's physician who provides not only medical care for children who are acutely or chronically ill but also preventive health services for healthy children. A paediatrician manages physical, mental, and emotional well-being of the children under their care at every stage of development, in both sickness and health.</p> 
+                 <div class="buttons d-flex justify-content-center"> <button class="btn btn-outline-primary mr-1">Book Now</button>
+                </div> 
+              </div> 
+            </div> 
+          </div>
+         </div>
+</div>
+
+   </main>
+   <hr>
+    
+        
+
+
+
+
+        <!-- -- FOOTER / TICKET IDEA  
+          
+          <div class="row my-2">
+          <div class="col">
+            <div class="bg-secondary text-white my-1 py-1 card text-center">
+              <div class="card-body"> For more information:
+              </div>
+            </div>
+          </div>
+        <div class="my-2 text-center">
+          <h2>Get in touch</h2>
+          <p class="lead">Questions? Do not hesitate to contact us.</p>
+        </div>
+        <div class="row justify-content-center my-5">
+          <div class="col-lg-7">
+            <form action="">
+              <label for="email" class="form-label">Email:</label>
+              <input
+                type="email"
+                id="email"
+                placeholder="my@email.com"
+                class="form-control"
+              />
+              <div class="form-floating my-3">
+                <input
+                  type="name"
+                  id="name"
+                  placeholder="e.g. Dawid"
+                  class="form-control"
+                />
+                <label for="name" class="form-label">Name:</label>
+              </div>
+              <label for="subject" class="form=label">Subject</label>
+              <select name="subject" id="subject" class="form-select">
+                <option value="pricing">Pricing</option>
+                <option value="technical" selected>Technical question</option>
+                <option value="other">Other</option>
+              </select>
+
+              <div class="form-floating my-5">
+                <textarea
+                  name="query"
+                  id="query"
+                  style="height: 150px"
+                  class="form-control"
+                  placeholder="Write a message"
+                ></textarea>
+
+                <label for="query">Write a message</label>
+              </div>
+
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary">Send!</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main> -->
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+       type='text/javascript' src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js'></script>
+
+        <script type='text/javascript'>var myLink = document.querySelector('a[href="#"]');
+        myLink.addEventListener('click', function(e) {
+          e.preventDefault();
+        });</script>
+    </script>
+
+  
+   
+  <footer>
+  <%- include ('./partials/footer.ejs') %> 
+</footer>
+</html>

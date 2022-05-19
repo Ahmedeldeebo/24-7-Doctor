@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const { render } = require("ejs");
 const cors = require("cors");
 const { body } = require("express-validator");
+const { authorization } = require("./verifyToken");
 //--------------------------------------------Register--------------------------------------------
 // router.use(cors({ origin: "*", credentials:true  } ) );
 
@@ -65,10 +66,15 @@ router.post("/Pharmacy-login", async (req, res) => {
     console.log(accessToken);
     console.log(name);
 
-    return res.render("test.ejs", { name: name }); //res.status(200).json({ ...others, accessToken });
+    return res
+      .cookie("accessToken", accessToken, {
+        httpOnly: true,
+      })
+      .render("test.ejs", { name: name }); //res.status(200).json({ ...others, accessToken });
   } catch (err) {
     return console.log(err);
   }
 });
+
 
 module.exports = router;

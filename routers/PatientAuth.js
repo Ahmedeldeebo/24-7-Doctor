@@ -1,31 +1,41 @@
 const router = require("express").Router();
 const User = require("../models/Patient");
+const ticket = require("../models/Ticket");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const { render } = require("ejs");
-const { verifyToken, verifyTokenAndAuthorization } = require("./verifyToken");
+const {
+  verifyToken,
+  verifyTokenAndAuthorization,
+  authorization,
+} = require("./verifyToken");
 const cors = require("cors");
 const { body } = require("express-validator");
+const { findById } = require("../models/Patient");
 //--------------------------------------------Register--------------------------------------------
 // router.use(cors({ origin: "*", credentials:true  } ) );
 
 router.post("/register", async (req, res) => {
-  const NewUser = new User({
-    Pat_username: req.body.Pat_username,
-    pat_FirstName: req.body.pat_FirstName,
-    pat_Lastname: req.body.pat_Lastname,
-    pat_Email: req.body.pat_Email,
-    pat_Gender: req.body.pat_Gender,
-    pat_password: CryptoJS.AES.encrypt(
-      req.body.pat_password,
-      process.env.PASS_SEC
-    ).toString(),
-    pat_birthday: req.body.pat_birthday,
-    pat_InsuranceNo: req.body.pat_InsuranceNo,
-  });
-  const savedUser = await NewUser.save();
-  console.log(NewUser);
+  try {
+    const NewUser = new User({
+      Pat_username: req.body.Pat_username,
+      pat_FirstName: req.body.pat_FirstName,
+      pat_Lastname: req.body.pat_Lastname,
+      pat_Email: req.body.pat_Email,
+      pat_Gender: req.body.pat_Gender,
+      pat_password: CryptoJS.AES.encrypt(
+        req.body.pat_password,
+        process.env.PASS_SEC
+      ).toString(),
+      pat_birthday: req.body.pat_birthday,
+      pat_InsuranceNo: req.body.pat_InsuranceNo,
+    });
+    const savedUser = await NewUser.save();
+    console.log(NewUser);
+  } catch (err) {
+    res.render("signUp.ejs", { errorMessage: "Something is missing" });
+  }
   try {
     const savedUser = await NewUser.save();
     console.log(NewUser);
@@ -74,15 +84,21 @@ router.post("/login", async (req, res) => {
     // res.cookie("accessToken", accessToken, {
     //   httpOnly: true,
     // });
+    const token = req.body.token;
     const name = user.pat_FirstName;
     console.log(accessToken);
     console.log(name);
-    return res.render("test.ejs", { name: name });
+    return res
+      .cookie("accessToken", accessToken, {
+        httpOnly: true,
+      })
+      .render("test.ejs", { name: name });
     //res.status(200).json({ ...others, accessToken });
   } catch (err) {
     return console.log(err);
   }
 });
+
 // router.get("/login-test", verifyTokenAndAuthorization, (req, res) => {
 //   const userName = User;
 //   userName
@@ -97,23 +113,52 @@ router.post("/login", async (req, res) => {
 
 //   const { pat_password, ...others } = user._doc;
 // });
-router.get("/profile-setting", (req, res) => {
-  User.find(req.params.id)
-    .then((result) => {
-      console.log(result);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  const name = req.body.pat_FirstName;
-
-  res.render("Profile.ejs", { name: name });
-});
-
-router.get("/profile", (req, res) => {
-  const user = User;
+router.get("/profile-setting", authorization, async (req, res, next) => {
+  console.log(res.locals.user.id);
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  console.log(user);
   const name = user.pat_FirstName;
-  console.log(name);
-  res.render("test.ejs", { name: name });
+  const email = user.pat_Email;
+  res.render("Profile.ejs", { name: name, email: email });
+});
+///------------------------------------logOut start--------------------------------------------------------
+router.get("/logOut", authorization, (req, res) => {
+  return res.clearCookie("accessToken").redirect("/");
+});
+//------------------------------------logOut end--------------------------------------------------------
+router.get("/Ticket", authorization, async (req, res) => {
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  console.log(user);
+  const name = user.pat_FirstName;
+  try {
+    const tickets = new ticket({
+      ticket_details: ticket_details,
+      pat_id: id,
+    });
+    const savedTicket = await tickets.save();
+    console.log(ticket);
+  } catch (err) {
+    res.render("Ticket.ejs", {
+      name: name,
+      errorMessage: "Something is missing1",
+    });
+  }
+  try {
+    const savedTicket = await Newticket.save();
+    console.log(Newticket);
+    res.render("Ticket.ejs", {
+      name: name,
+      errorMessage: "Something is missing2",
+    });
+  } catch (err) {
+    console.log(err);
+  }
+
+  res.render("Ticket.ejs", {
+    name: name,
+    errorMessage: "Something is missing3",
+  });
 });
 module.exports = router;
