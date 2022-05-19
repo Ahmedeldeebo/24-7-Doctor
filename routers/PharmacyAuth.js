@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const { render } = require("ejs");
 const cors = require("cors");
 const { body } = require("express-validator");
+const { authorization } = require("./verifyToken");
 //--------------------------------------------Register--------------------------------------------
 // router.use(cors({ origin: "*", credentials:true  } ) );
 
@@ -74,5 +75,6 @@ router.post("/Pharmacy-login", async (req, res) => {
     return console.log(err);
   }
 });
+
 
 module.exports = router;

@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const User = require("../models/Patient");
+const ticket = require("../models/Ticket");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
@@ -121,8 +122,43 @@ router.get("/profile-setting", authorization, async (req, res, next) => {
   const email = user.pat_Email;
   res.render("Profile.ejs", { name: name, email: email });
 });
-
+///------------------------------------logOut start--------------------------------------------------------
 router.get("/logOut", authorization, (req, res) => {
   return res.clearCookie("accessToken").redirect("/");
+});
+//------------------------------------logOut end--------------------------------------------------------
+router.get("/Ticket", authorization, async (req, res) => {
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  console.log(user);
+  const name = user.pat_FirstName;
+  try {
+    const tickets = new ticket({
+      ticket_details: ticket_details,
+      pat_id: id,
+    });
+    const savedTicket = await tickets.save();
+    console.log(ticket);
+  } catch (err) {
+    res.render("Ticket.ejs", {
+      name: name,
+      errorMessage: "Something is missing1",
+    });
+  }
+  try {
+    const savedTicket = await Newticket.save();
+    console.log(Newticket);
+    res.render("Ticket.ejs", {
+      name: name,
+      errorMessage: "Something is missing2",
+    });
+  } catch (err) {
+    console.log(err);
+  }
+
+  res.render("Ticket.ejs", {
+    name: name,
+    errorMessage: "Something is missing3",
+  });
 });
 module.exports = router;

@@ -103,9 +103,7 @@ app.get("/doctorview", async (req, res) => {
 app.get("/signuptest", (req, res) => {
   res.render("signUptest");
 });
-app.get("/patient/Ticket", (req, res) => {
-  res.render("Ticket.ejs");
-});
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });

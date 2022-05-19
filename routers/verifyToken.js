@@ -43,18 +43,18 @@ const authorization = (req, res, next) => {
   console.log(token);
   if (!token) {
     console.log(token);
-    return res.sendStatus(403);
+    return res.sendStatus(403).redirect("/");
   }
   try {
     const data = jwt.verify(token, process.env.JWT_SEC);
     console.log(data);
-    res.locals.user=data
+    res.locals.user = data;
     // req.user._id = data.id;
     // req.userRole = data.role;
     return next();
   } catch (err) {
     console.log(err);
-    return res.sendStatus(403);
+    return res.sendStatus(403).redirect("/");
   }
 };
 module.exports = { verifyToken, verifyTokenAndAuthorization, authorization };
