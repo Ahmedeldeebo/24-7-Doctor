@@ -38,7 +38,7 @@
             class="myform row g-3 needs-validation"
             action="http://localhost:5000/patient/register"
             method="POST"
-            novalidate
+            validate
           >
             <div class="row rone">
               <div class="form-group col-md-6 fone py-3">
@@ -137,12 +137,13 @@
                     <%- errorMessage %>
                   </div>
                   <div class="wrapper text-left">
-                      <button class="btn btn-primary" type="submit" onclick="sSuccess('success-message')">Create an account</button> 
+                      <button class="btn btn-primary" type="submit">Create an account</button> 
+                      <!-- onclick="sSuccess('success-message')" -->
                   </div>
               </div>
    <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js'></script>
    
-   <script type='text/Javascript'>
+   <!-- <script type='text/Javascript'>
                                               
               (function($) {
               sSuccess = function(type) {
@@ -160,7 +161,7 @@
               }
               
               })(jQuery);
-              </script> 
+              </script>  -->
                 <!-- <button type="submit" class="btn btn-primary">
                   <span>Create account</span>
                 </button> -->
