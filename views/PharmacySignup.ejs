@@ -41,7 +41,7 @@
             class="myform row g-3 needs-validation"
             action="http://localhost:5000/pharmacy/Pharmcy-register"
             method="POST"
-            novalidate
+            validate
           >
             <div class="row rone">
               <div class="form-group col-md-6 fone py-3">
@@ -137,27 +137,28 @@
               <div class="form-group col-md-6 fnine py-3">
                 <div class="card-body">
                   <div class="wrapper text-left">
-                      <button class="btn btn-primary" type="submit" onclick="sSuccess('success-message')">Create an account</button>
+                      <button class="btn btn-primary" type="submit">Create an account</button>
+                      <!-- onclick="sSuccess('success-message')" -->
                   </div>
               </div>
                                               <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js'></script>
                                               <script type='text/Javascript'>(function($) {
-              sSuccess = function(type) {
-              'use strict';
-              if (type == 'success-message') {
-              swal({
-              title: 'Congratulations!',
-              text: 'Account Successfully Created',
-              type: 'success',
-              })
+              // sSuccess = function(type) {
+              // 'use strict';
+              // if (type == 'success-message') {
+              // swal({
+              // title: 'Congratulations!',
+              // text: 'Account Successfully Created',
+              // type: 'success',
+              // })
               
-              }else{
-              swal("Error occured !");
-              }
-              }
+              // }else{
+              // swal("Error occured !");
+              // }
+              // }
               
-              })(jQuery);
-              </script> 
+              // })(jQuery);
+              // </script> 
                 <!-- <button type="submit" class="btn btn-primary">
                   <span>Create account</span>
                 </button> -->
