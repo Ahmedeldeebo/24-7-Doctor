@@ -1,111 +1,816 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-      crossorigin="anonymous"
-    />
+    
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <title>Home Page</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"  rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/ff8698dfe7.js" crossorigin="anonymous"></script>
+
   </head>
-  <style>::-webkit-scrollbar {
-    width: 8px;
+ 
+
+  <style>
+  
+ /*--------------------------------------------------------------
+# General
+--------------------------------------------------------------*/
+html, body {
+  height: 100%;
+}
+
+.floatleft {
+  float: left;
+}
+
+.floatright {
+  float: right;
+}
+
+.alignleft {
+  float: left;
+  margin-right: 15px;
+  margin-bottom: 15px;
+}
+
+.alignright {
+  float: right;
+  margin-left: 15px;
+  margin-bottom: 15px;
+}
+
+.aligncenter {
+  display: block;
+  margin: 0 auto 15px;
+}
+
+a:focus {
+  outline: 0px solid;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.fix {
+  overflow: hidden;
+}
+
+p {
+  margin: 0 0 15px;
+  color: rgb(151, 151, 151);
+}
+
+h1, h4, h5, h6 {
+  font-family: "Raleway", sans-serif;
+  margin: 0 0 15px;
+  color: rgb(0, 0, 0);
+  font-weight: 500;
+}
+
+h1 {
+  font-size: 48px;
+  line-height: 50px;
+}
+
+h2 {
+  font-size: 38px;
+  font-family: 'Lucida Sans';
+  line-height: 40px;
+  color:rgb(0, 0, 0)
+  
+}
+
+h3 {
+  font-size: 30px;
+  font-family: Garamond, serif;
+  color: #3ec1d5;
+  line-height: 32px;
+}
+
+h4 {
+  font-size: 24px;
+  line-height: 26px;
+}
+
+h5 {
+  font-size: 20px;
+  line-height: 22px;
+}
+
+h6 {
+  font-size: 16px;
+  line-height: 20px;
+}
+
+a {
+  transition: all 0.3s ease 0s;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #3EC1D5;
+  text-decoration: none;
+}
+
+a:active, a:hover {
+  outline: 0 none;
+}
+
+body {
+  background: #fff none repeat scroll 0 0;
+  color: #444;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  text-align: left;
+  overflow-x: hidden;
+  line-height: 22px;
+}
+
+    /*--------------------------------------------------------------
+    # Specializations aka Portfolio
+    --------------------------------------------------------------*/
+    .pst-content {
+      padding-left: 10px;
+
+    }
+    
+    #portfolio-flters {
+      padding: 0;
+      margin: 5px 0 35px 0;
+      list-style: none;
+      text-align: center;
+    }
+    #portfolio-flters li {
+      cursor: pointer;
+      margin: 15px 15px 15px 0;
+      display: inline-block;
+      padding: 8px 24px;
+      font-size: 12px;
+      line-height: 20px;
+      color: #555;
+      border-radius: 50px;
+      text-transform: uppercase;
+      background: #fff;
+      margin-bottom: 5px;
+      transition: all 0.3s ease-in-out;
+      border: 1px solid #444;
+    }
+    #portfolio-flters li:hover, #portfolio-flters li.filter-active {
+      border-color: #3EC1D5;
+      background: #3EC1D5;
+      color: #fff;
+    }
+    #portfolio-flters li:last-child {
+      margin-right: 0;
+    }
+    
+    .single-awesome-portfolio {
+      float: left;
+      overflow: hidden;
+      padding: 12px;
+      width: 25%;
+      position: relative;
+    }
+    
+    .single-awesome-project {
+      overflow: hidden;
+      margin-bottom: 30px;
+    }
+    
+    .first-item {
+      margin-bottom: 30px;
+    }
+    
+    .awesome-img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+    
+    .awesome-img > a {
+      display: block;
+      position: relative;
+    }
+    
+    .single-awesome-project:hover .awesome-img > a::after {
+      opacity: 1;
+    }
+    
+    .single-awesome-project:hover .add-actions {
+      opacity: 1;
+      bottom: 0;
+    }
+    
+    .awesome-img > a::after {
+      background: rgba(0, 0, 0, 0.7) none repeat scroll 0 0;
+      content: "";
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      opacity: 0;
+      transition: 0.4s;
+    }
+    
+    .add-actions {
+      background: rgba(0, 0, 0, 0.6) none repeat scroll 0 0;
+      bottom: 30px;
+      display: block;
+      height: 100%;
+      left: 0;
+      opacity: 0;
+      overflow: hidden;
+      padding: 10px 15px;
+      position: absolute;
+      transition: all 0.4s ease 0s;
+      width: 100%;
+    }
+    
+    .project-dec {
+      display: block;
+      height: 100%;
+      width: 100%;
+    }
+    
+    .project-dec a {
+      display: block;
+      height: 100%;
+      width: 100%;
+    }
+    
+    .project-dec h4 {
+      margin-bottom: 5px;
+    }
+    
+    .project-dec h4:hover {
+      color: #fff;
+    }
+    
+    .project-dec h4 {
+      color: #ddd;
+      font-size: 24px;
+      margin-top: -45px;
+      padding-top: 50%;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+    
+    .project-dec span {
+      color: #ddd;
+      font-size: 13px;
+    }
+    
+    .project-action-btn {
+      display: block;
+      height: 100%;
+      text-align: center;
+      transition: all 1s ease 0s;
+      width: 100%;
+    }
+    
+    .project-action-btn li {
+      display: block;
+      height: 100%;
+      width: 100%;
+    }
+    
+    .project-action-btn li a {
+      display: block;
+      height: 100%;
+      width: 100%;
+    }
+    
+    
+  
+    /*--------------------------------------------------------------
+    # Contact
+    --------------------------------------------------------------*/
+    .contact-area {
+      height: auto;
+      width: 100%;
+    }
+    
+    .contact-content {
+      padding: 100px;
+      background: #000 none repeat scroll 0 0;
+    }
+    
+    .contact-content-right {
+      padding: 100px;
+    }
+    
+    .single-icon i {
+      font-size: 32px;
+      width: 50px;
+      height: 50px;
+      line-height: 56px;
+      border-radius: 50%;
+      margin-bottom: 30px;
+      color: #3ec1d5;
+    }
+    
+    .single-icon p {
+      font-size: 16px;
+      line-height: 30px;
+    }
+    
+    .contact-icon {
+      margin-bottom: 40px;
+    }
+    
+    #google-map {
+      height: 370px;
+      margin-bottom: 20px;
+    }
+    
+    .php-email-form .validate {
+      display: none;
+      color: red;
+      margin: 0;
+      font-weight: 400;
+      font-size: 13px;
+    }
+    .php-email-form .error-message {
+      display: none;
+      color: #fff;
+      background: #ed3c0d;
+      text-align: center;
+      padding: 15px;
+      font-weight: 600;
+    }
+    .php-email-form .sent-message {
+      display: none;
+      color: #fff;
+      background: #18d26e;
+      text-align: center;
+      padding: 15px;
+      font-weight: 600;
+    }
+    .php-email-form .loading {
+      display: none;
+      background: #fff;
+      text-align: center;
+      padding: 15px;
+    }
+    .php-email-form .loading:before {
+      content: "";
+      display: inline-block;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      margin: 0 10px -6px 0;
+      border: 3px solid #18d26e;
+      border-top-color: #eee;
+      -webkit-animation: animate-loading 1s linear infinite;
+      animation: animate-loading 1s linear infinite;
+    }
+    .php-email-form input, .php-email-form textarea {
+      border-radius: 0;
+      box-shadow: none;
+      font-size: 14px;
+    }
+    .php-email-form input:focus, .php-email-form textarea:focus {
+      border-color: #3ec1d5;
+    }
+    .php-email-form input {
+      padding: 10px 15px;
+    }
+    .php-email-form textarea {
+      padding: 12px 15px;
+    }
+    .php-email-form button[type=submit] {
+      background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+      border: 1px solid #ccc;
+      color: #444;
+      font-size: 16px;
+      font-weight: 700;
+      padding: 12px 30px;
+      text-transform: uppercase;
+      transition: all 0.3s ease 0s;
+      border-radius: 30px;
+    }
+    
+    /*--------------------------------------------------------------
+# Services
+--------------------------------------------------------------*/
+.services-icon {
+  color: #444;
+  display: inline-block;
+  font-size: 36px;
+  line-height: 36px;
+  margin-bottom: 20px;
+}
+
+.section-headline.services-head > h2 {
+  margin-bottom: 25px;
+}
+
+.services-details {
+  padding-top: 40px;
+  transition: all 0.5s ease 0s;
+}
+
+.services-details:hover h4, .services-details:hover .services-icon {
+  color: #3EC1D5;
+}
+
+.row.second-row {
+
+}
+
+.section-head > h2 {
+  color: #333;
+}
+
+.single-services > h4 {
+  color: #444;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.single-services > p {
+  color: #333;
+  font-size: 14px;
+}
+
+  /*--------------------------------------------------------------
+# Contact
+--------------------------------------------------------------*/
+.contact-area {
+  height: auto;
+  width: 100%;
+}
+
+.contact-content {
+  padding: 100px;
+  background: #000 none repeat scroll 0 0;
+}
+
+.contact-content-right {
+  padding: 100px;
+}
+
+.single-icon i {
+  font-size: 32px;
+  width: 50px;
+  height: 50px;
+  line-height: 56px;
+  border-radius: 50%;
+  margin-bottom: 30px;
+  color: #3ec1d5;
+}
+
+.single-icon p {
+  font-size: 16px;
+  line-height: 30px;
+}
+
+.contact-icon {
+  margin-bottom: 40px;
+}
+
+#google-map {
+  height: 370px;
+  margin-bottom: 20px;
+}
+
+.php-email-form .validate {
+  display: none;
+  color: red;
+  margin: 0;
+  font-weight: 400;
+  font-size: 13px;
+}
+.php-email-form .error-message {
+  display: none;
+  color: #fff;
+  background: #ed3c0d;
+  text-align: center;
+  padding: 15px;
+  font-weight: 600;
+}
+.php-email-form .sent-message {
+  display: none;
+  color: #fff;
+  background: #18d26e;
+  text-align: center;
+  padding: 15px;
+  font-weight: 600;
+}
+.php-email-form .loading {
+  display: none;
+  background: #fff;
+  text-align: center;
+  padding: 15px;
+}
+.php-email-form .loading:before {
+  content: "";
+  display: inline-block;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  margin: 0 10px -6px 0;
+  border: 3px solid #18d26e;
+  border-top-color: #eee;
+  -webkit-animation: animate-loading 1s linear infinite;
+  animation: animate-loading 1s linear infinite;
+}
+.php-email-form input, .php-email-form textarea {
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 14px;
+}
+.php-email-form input:focus, .php-email-form textarea:focus {
+  border-color: #3ec1d5;
+}
+.php-email-form input {
+  padding: 10px 15px;
+}
+.php-email-form textarea {
+  padding: 12px 15px;
+}
+.php-email-form button[type=submit] {
+  background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+  border: 1px solid #ccc;
+  color: #444;
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 8px;
+  padding: 12px 30px;
+  text-transform: uppercase;
+  transition: all 0.3s ease 0s;
+  border-radius: 30px;
+}
+
+@-webkit-keyframes animate-loading {
+  0% {
+    transform: rotate(0deg);
   }
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1; 
+  100% {
+    transform: rotate(360deg);
   }
-  div.c {
+}
+
+@keyframes animate-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} 
+    /*--------------------------------------------------------------
+  # Count bar "between intro and services"
+  --------------------------------------------------------------*/
+  .counts {
+    background: #f1f7fd;
+    padding: 70px 0 60px;
+  }
+  .counts .count-box {
+    padding: 30px 30px 25px 30px;
+    width: 100%;
+    position: relative;
+    text-align: center;
+    background: #fff;
+  }
+  .counts .count-box i {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    background: #1977cc;
+    color: #fff;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+  }
+  .counts .count-box span {
+    font-size: 36px;
+    display: block;
+    font-weight: 600;
+    color: #082744;
+  }
+  .counts .count-box p {
+    padding: 0;
+    margin: 0;
+    font-family: "Raleway", sans-serif;
+    font-size: 14px;
+  }
+  /*--------------------------------------------------------------
+  # Doctors
+  --------------------------------------------------------------*/
+  
+  .doctors {
+        padding-top: 0px;
+      }
+  .doctors {
+    
+    background: #fff;
+  }
+  .doctors .member {
+    position: relative;
+    box-shadow: 0px 2px 15px rgba(44, 73, 100, 0.08);
+    padding: 30px;
+    border-radius: 10px;
+  }
+  .doctors .member .pic {
+    overflow: hidden;
+    width: 180px;
+    border-radius: 50%;
+  }
+  .doctors .member .pic img {
+    transition: ease-in-out 0.3s;
+  }
+  .doctors .member:hover img {
+    transform: scale(1.1);
+  }
+  .doctors .member .member-info {
+    padding-left: 30px;
+  }
+  .doctors .member h4 {
+    font-weight: 700;
+    margin-bottom: 5px;
+    font-size: 20px;
+    color: #2c4964;
+  }
+  .doctors .member span {
+    display: block;
+    font-size: 15px;
+    padding-bottom: 10px;
+    position: relative;
+    font-weight: 500;
+  }
+  .doctors .member span::after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 50px;
+    height: 1px;
+    background: #b2c8dd;
+    bottom: 0;
+    left: 0;
+  }
+  .doctors .member p {
+    margin: 10px 0 0 0;
+    font-size: 14px;
+  }
+  .doctors .member .social {
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .doctors .member .social a {
+    transition: ease-in-out 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    width: 32px;
+    height: 32px;
+    background: #a0bcd5;
+  }
+  .doctors .member .social a i {
+    color: #fff;
+    font-size: 16px;
+    margin: 0 2px;
+  }
+  .doctors .member .social a:hover {
+    background: #1977cc;
+  }
+  .doctors .member .social a + a {
+    margin-left: 8px;
+  }
+  /*--------------------------------------------------------------
+# Back to top button
+--------------------------------------------------------------*/
+.back-to-top {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  right: 15px;
+  bottom: 15px;
+  z-index: 996;
+  background: #3ec1d5;
+  width: 40px;
+  height: 40px;
+  transition: all 0.4s;
+}
+.back-to-top i {
+  font-size: 28px;
+  color: #fff;
+  line-height: 0;
+}
+.back-to-top:hover {
+  background: #60ccdc;
+  color: #fff;
+}
+.back-to-top.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.clear {
+  clear: both;
+}
+
+ul {
+  list-style: outside none none;
+  margin: 0;
+  padding: 0;
+}
+
+input, select, textarea, input[type=text], input[type=date], input[type=url], input[type=email], input[type=password], input[type=tel], button, button[type=submit] {
+  -moz-appearance: none;
+  box-shadow: none !important;
+}
+
+div#preloader {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 99999;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  background: #fff url("../img/preloader.gif") no-repeat center center;
+}
+
+::-moz-selection {
+  background: #3EC1D5;
+  text-shadow: none;
+}
+
+::selection {
+  background: #3EC1D5;
+  text-shadow: none;
+}
+
+.area-padding {
+  padding: 70px 0px 80px;
+}
+
+.area-padding-2 {
+  padding: 70px 0px 50px;
+}
+
+.padding-2 {
+  padding-bottom: 90px;
+}
+
+.section-headline h2 {
+  display: inline-block;
+  font-size: 40px;
+  font-weight: 600;
+  margin-bottom: 70px;
+  position: relative;
   text-transform: capitalize;
 }
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #888; 
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555; 
-  } body {
-background: #0d6efd
+
+.section-headline h2::after {
+  border: 1px solid rgb(255, 255, 255);
+  bottom: -20px;
+  content: "";
+  left: 0;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  width: 40%;
 }
 
-.height-100 {
-height: 100vh
+.sec-head {
+  display: inline-block;
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 0;
+  padding: 0 0 10px;
+  text-transform: uppercase;
+  transition: all 0.4s ease 0s;
 }
 
-.card {
-width: 100%;
-border: none;
-height: 250px;
-max-width: 380px;
-overflow: hidden;
-position: relative;
-display: flex;
-cursor:pointer;
-justify-content: center;
-transition: all ease 0.4s
-}
+  </style>
 
-.card img {
-transition: all ease 0.4s
-}
-
-.card:hover img {
-margin-top: -80px
-}
-
-.card .content {
-width: 100%;
-background: #fff;
-position: absolute;
-bottom: -60%;
-margin-left: -8px;
-transition: all ease 0.5s;
-border-radius: 4px;
-box-shadow: 0px -3px 4px rgba(10, 10, 10, 0.09)
-}
-
-.card .content .category {
-font-size: 17px;
-font-weight: 600
-}
-
-.card .content .price {
-font-size: 17px;
-font-weight: 500;
-color: #0d6efd
-}
-
-.card .content p {
-font-weight: 500;
-font-size: 12px
-}
-
-.card:hover .content {
-bottom: 0%
-}
-
-.buttons button {
-border-radius: 1px;
-margin-bottom: 10px;
-transition: all ease 0.3s
-}
-
-.content {
-padding: 10px
-}</style>
   <body>
-    <!--Start Header-->
-    <%- include ('./partials/navHome.ejs') %>
+     <!--Start Header-->
+     <%- include ('./partials/navHome.ejs') %>
     <!--End Header-->
 
 
-   <main class="my-5">
+   <main>
 
       <div class="container">
         <div class="row">
@@ -133,123 +838,482 @@ padding: 10px
             </button>
           </div>
         </div>
+      </div>
       <hr>
         
-        
-        <div class="container mt-5 mb-5"> 
-          <div class="row g-2"> 
-            <div class="col-md-4 d-flex justify-content-center"> 
-              <div class="card p-2"> <div class="text-center"> <img src="https://i.imgur.com/FyK2SAb.png" class="img-fluid" width="200" /> 
-            </div> 
-          <div class="content"> 
-              <div class="d-flex justify-content-between align-items-center"> <span class="category">Dentistry</span> <span class="price"></span> 
-              </div> 
-              <p>Conducting oral screenings to identify diseases and infections</p>
-              <p> Removing tooth decay and plaque</p>
-              <p> Applying prosthetics, sealers and whiteners</p>
-               <div class="buttons d-flex justify-content-center"> <button class="btn btn-outline-primary mr-1">Book Now</button>
-              </div> 
-            </div> 
-          </div> 
-        </div> 
-        <div class="col-md-4 d-flex justify-content-center"> 
-          <div class="card p-2">
-             <div class="text-center"> <img src="https://i.imgur.com/Uu14uwH.png" class="img-fluid" width="600" />
-             </div> 
-             <div class="content"> 
-               <div class="d-flex justify-content-between align-items-center"> <span class="category">Dermatology</span> <span class="price"></span>
-               </div>
-                <p>Assessing patients’ skin diseases, conditions, and ailments to determine appropriate treatment
-                  Prescribing medication and creating treatment plans, referring patients for surgery where necessary
-                  Monitoring patient progress
-                  Assessing and updating patients’ medical history, including keeping a record of patients’ symptoms</p>
-                 <div class="buttons d-flex justify-content-center"> <button class="btn btn-outline-primary mr-1">Book Now</button>
-                </div> 
-              </div> 
-            </div> 
+
+<!-- ======= Counts Section ======= -->
+<section id="counts" class="counts">
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-lg-3 col-md-6">
+        <div class="count-box">
+          <i class="fas fa-user-md"></i>
+          <!-- <span data-purecounter-start="0" data-purecounter-end="85" data-purecounter-duration="1" class="purecounter"></span> -->
+          <H2>32</H2>
+          <p>Doctors</p>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
+        <div class="count-box">
+          <i class="far fa-hospital"></i>
+          <!-- <span data-purecounter-start="0" data-purecounter-end="18" data-purecounter-duration="1" class="purecounter"></span> -->
+          <H2>15</H2>
+          <p>Departments</p>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+        <div class="count-box">
+          <i class="fas fa-flask"></i>
+          <!-- <span data-purecounter-start="0" data-purecounter-end="12" data-purecounter-duration="1" class="purecounter"></span> -->
+          <H2>2</H2>
+          <p>Research Labs</p>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+        <div class="count-box">
+          <i class="fas fa-award"></i>
+          <!-- <span data-purecounter-start="0" data-purecounter-end="150" data-purecounter-duration="1" class="purecounter"></span> -->
+          <H2>20</H2>
+          <p>Awards</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+ <!-- ======= Services Section ======= -->
+ <div id="services" class="services-area area-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="section-headline services-head text-center">
+          <h2>Our Services</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row text-center">
+      <!-- Start Left services -->
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        <div class="about-move">
+          <div class="services-details">
+            <div class="single-services">
+              <a class="services-icon" href="#">
+                <i class="fa-solid fa-book-medical"></i>
+              </a>
+              <h4>All Specializations</h4>
+              <p>All types of Departments and Specializations are available within our website for your help              </p>
+            </div>
           </div>
-           <div class="col-md-4 d-flex justify-content-center">
-              <div class="card p-2"> <div class="text-center"> <img src="https://i.imgur.com/ruv783d.png" class="img-fluid" width="200" /> 
-              </div>
-               <div class="content"> 
-                 <div class="d-flex justify-content-between align-items-center"> <span class="category">Pediatrics</span> <span class="price"></span> 
-                </div>
-                 <p>Child's physician who provides not only medical care for children who are acutely or chronically ill but also preventive health services for healthy children. A paediatrician manages physical, mental, and emotional well-being of the children under their care at every stage of development, in both sickness and health.</p> 
-                 <div class="buttons d-flex justify-content-center"> <button class="btn btn-outline-primary mr-1">Book Now</button>
-                </div> 
-              </div> 
-            </div> 
+          <!-- end about-details -->
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        <div class="about-move">
+          <div class="services-details">
+            <div class="single-services">
+              <a class="services-icon" href="#">
+                <i class="fa-solid fa-star"></i>
+              </a>
+              <h4>Verified patient reviews</h4>
+              <p>
+                You can choose between doctors using our review system done by other patients and recommendations
+              </p>
+            </div>
           </div>
-         </div>
-</div>
+          <!-- end about-details -->
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        <!-- end col-md-4 -->
+        <div class=" about-move">
+          <div class="services-details">
+            <div class="single-services">
+              <a class="services-icon" href="#">
+                <i class="fa-solid fa-check-double"></i>
+              </a>
+              <h4>Booking Confirmation</h4>
+              <p>
+                Search and schedule an appointment using our website then recieve a confirmation right away after the Doctor recieve
+              </p>
+            </div>
+          </div>
+          <!-- end about-details -->
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        <!-- end col-md-4 -->
+        <div class=" about-move">
+          <div class="services-details">
+            <div class="single-services">
+              <a class="services-icon" href="#">
+                <i class="fa-solid fa-money-bill"></i>
+              </a>
+              <h4>Easy Payment Methods</h4>
+              <p>
+                Choose the most suitable way for you to pay. Either by E-wallet or Paypal or Vodafone cash
+              </p>
+            </div>
+          </div>
+          <!-- end about-details -->
+        </div>
+      </div>
+      <!-- End Left services -->
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        <!-- end col-md-4 -->
+        <div class=" about-move">
+          <div class="services-details">
+            <div class="single-services">
+              <a class="services-icon" href="#">
+                <i class="fa-solid fa-headset"></i>
+              </a>
+              <h4>All Ways of Communication</h4>
+              <p>
+                Doctors are available through different ways of communication, choose what suits you the most. Either by Zoom, WhatsApp or Face to Face
+              </p>
+            </div>
+          </div>
+          <!-- end about-details -->
+        </div>
+      </div>
+      <!-- End Left services -->
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        <!-- end col-md-4 -->
+        <div class=" about-move">
+          <div class="services-details">
+            <div class="single-services">
+              <a class="services-icon" href="#">
+                <i class="fa-solid fa-clock"></i>
+              </a>
+              <h4>24/7 Support</h4>
+              <p>
+                Always there when you need us, either by a ticket if you face a technical error, or if you need to ask the doctor then Query is there for you
+              </p>
+            </div>
+          </div>
+          <!-- end about-details -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- End Services Section -->
+<hr>
+ <!-- ======= Portfolio Section ======= -->
+ <div id="portfolio" class="portfolio-area area-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="section-headline text-center">
+          <h2>Departments & Specializations</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row wesome-project-1 fix">
+      <!-- Start Portfolio -page -->
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <ul id="portfolio-flters">
+          <li data-filter="*">All</li>
+          <li data-filter=".filter-skin">Dentistry</li>
+          <li data-filter=".filter-teeth">Neurology</li>
+          <li data-filter=".filter-web">Dermatology</li>
+          <li data-filter=".filter-web">Pediatrics</li>
+          <li data-filter=".filter-web">Ophthalmology</li>
+          <li data-filter=".filter-web">Diabetes</li>
 
-   </main>
-   <hr>
-    
-        
+        </ul>
+      </div>
+    </div>
 
+    <div class="row awesome-project-content portfolio-container">
 
-
-
-        <!-- -- FOOTER / TICKET IDEA  
-          
-          <div class="row my-2">
-          <div class="col">
-            <div class="bg-secondary text-white my-1 py-1 card text-center">
-              <div class="card-body"> For more information:
+      <!-- portfolio-item start -->
+      <div class="col-md-4 col-sm-4 col-xs-12 portfolio-item filter-app portfolio-item">
+        <div class="single-awesome-project">
+          <div class="awesome-img">
+            <a href="#"><img src="/Departments/Dent.jpg" alt="" /></a>
+            <div class="add-actions text-center">
+              <div class="project-dec">
+                
+                  <h4>Dentistry</h4>
+                  <span>Conducting oral screenings to identify diseases and infections & Removing tooth decay and plaque </span>
+              </a>
               </div>
             </div>
           </div>
-        <div class="my-2 text-center">
-          <h2>Get in touch</h2>
-          <p class="lead">Questions? Do not hesitate to contact us.</p>
         </div>
-        <div class="row justify-content-center my-5">
-          <div class="col-lg-7">
-            <form action="">
-              <label for="email" class="form-label">Email:</label>
-              <input
-                type="email"
-                id="email"
-                placeholder="my@email.com"
-                class="form-control"
-              />
-              <div class="form-floating my-3">
-                <input
-                  type="name"
-                  id="name"
-                  placeholder="e.g. Dawid"
-                  class="form-control"
-                />
-                <label for="name" class="form-label">Name:</label>
-              </div>
-              <label for="subject" class="form=label">Subject</label>
-              <select name="subject" id="subject" class="form-select">
-                <option value="pricing">Pricing</option>
-                <option value="technical" selected>Technical question</option>
-                <option value="other">Other</option>
-              </select>
+      </div>
+      <!-- portfolio-item end -->
 
-              <div class="form-floating my-5">
-                <textarea
-                  name="query"
-                  id="query"
-                  style="height: 150px"
-                  class="form-control"
-                  placeholder="Write a message"
-                ></textarea>
-
-                <label for="query">Write a message</label>
+      <!-- portfolio-item start -->
+      <div class="col-md-4 col-sm-4 col-xs-12 portfolio-item filter-web">
+        <div class="single-awesome-project">
+          <div class="awesome-img">
+            <a href="#"><img src="/Departments/Neuro.jpg" alt="" /></a>
+            <div class="add-actions text-center">
+              <div class="project-dec">
+                
+                  <h4>Neurology</h4>
+                  <span>Concerned with disorders and diseases of the nervous system</span>
+                </a>
               </div>
-
-              <div class="text-center">
-                <button type="submit" class="btn btn-primary">Send!</button>
-              </div>
-            </form>
+            </div>
           </div>
         </div>
       </div>
-    </main> -->
+      <!-- portfolio-item end -->
+
+      <!-- portfolio-item start -->
+      <div class="col-md-4 col-sm-4 col-xs-12 portfolio-item filter-card">
+        <div class="single-awesome-project">
+          <div class="awesome-img">
+            <a href="#"><img src="/Departments/Derma.jpg" alt="" /></a>
+            <div class="add-actions text-center">
+              <div class="project-dec">
+                
+                  <h4>Dermatology</h4>
+                  <span>Assessing patients’ skin diseases, conditions, and ailments to determine appropriate treatment</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- portfolio-item end -->
+
+      <!-- portfolio-item start -->
+      <div class="col-md-4 col-sm-4 col-xs-12 portfolio-item filter-web">
+        <div class="single-awesome-project">
+          <div class="awesome-img">
+            <a href="#"><img src="/Departments/Pediat.jpg" width=1000 hight=100 alt="Pediatrics" /></a>
+            <div class="add-actions text-center">
+              <div class="project-dec">
+                
+                  <h4>Pediatrics</h4>
+                  <span>Povides not only medical care but also preventive health services for healthy children</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- portfolio-item end -->
+
+      <!-- portfolio-item start -->
+      <div class="col-md-4 col-sm-4 col-xs-12 portfolio-item filter-app">
+        <div class="single-awesome-project">
+          <div class="awesome-img">
+            <a href="#"><img src="/Departments/Optha.jpg" height="100%"/></a>
+            <div class="add-actions text-center text-center">
+              <div class="project-dec">
+                
+                  <h4>Ophthalmology</h4>
+                  <span>Deals with the diagnosis and treatment of eye disorders</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- portfolio-item end -->
+
+      <!-- portfolio-item start -->
+      <div class="col-md-4 col-sm-4 col-xs-12 portfolio-item filter-web">
+        <div class="single-awesome-project">
+          <div class="awesome-img">
+            <a href="#"><img src="/Departments/diabetics.png" alt="" /></a>
+            <div class="add-actions text-center">
+              <div class="project-dec">
+                
+                  <h4>Diabetes</h4>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- portfolio-item end -->
+
+    </div>
+  </div>
+</div><!-- End Portfolio Section -->
+
+<hr>
+ <!-- ======= Doctors Section ======= -->
+
+ <div id="doctors" class="doctors-area area-padding fix">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="section-headline text-center">
+          <h2>Our Doctors</h2>
+        </div>
+      </div>
+    </div>
+ <section id="doctors" class="doctors">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="member d-flex align-items-start">
+          <div class="pic"><img src="/Doctors/ShreifHelal.jpg" class="img-fluid" alt=""></div>
+          <div class="member-info">
+            <h4>Doctor Sherif Helal</h4>
+            <span>Consultant ENT and Fellow of Royal College of Surgeon in Ereland</span>
+            <p>ENT Doctor Specialized in Adult Ear, Nose and throat Surgery, Adult Ear, Nose and Throat,</p>
+            <div class="social">
+              <a href=""><i class="fa-brands fa-facebook"></i></a>
+              <a href=""><i class="fa-solid fa-mobile-screen"></i></a>
+              <a href=""><i class="fa-solid fa-at"></i></a>
+              <a href=""> <i class="fa-solid fa-location-dot"></i> </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 mt-4 mt-lg-0">
+        <div class="member d-flex align-items-start">
+          <div class="pic"><img src="/Doctors/EmadIsmail.jpg" class="img-fluid" alt=""></div>
+          <div class="member-info">
+            <h4>Doctor Emad Ismail</h4>
+            <span>Professor and consultant of diabetes endocrinology</span>
+            <p>Endocrinologist Specialized in Adult Internal Medicine and Adult Diabetes</p>
+            <div class="social">
+              <a href=""><i class="fa-brands fa-facebook"></i></a>
+              <a href=""><i class="fa-solid fa-mobile-screen"></i></a>
+              <a href=""><i class="fa-solid fa-at"></i></a>
+              <a href=""> <i class="fa-solid fa-location-dot"></i> </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 mt-4">
+        <div class="member d-flex align-items-start">
+          <div class="pic"><img src="/Doctors/MaleDoctor.jpg" class="img-fluid" width="100px" alt=""></div>
+          <div class="member-info">
+            <h4>Dr. Name</h4>
+            <span>Specialization</span>
+            <p>Qualifications & Certificates</p>
+            <div class="social">
+              <a href=""><i class="fa-brands fa-facebook"></i></a>
+              <a href=""><i class="fa-solid fa-mobile-screen"></i></a>
+              <a href=""><i class="fa-solid fa-at"></i></a>
+              <a href=""> <i class="fa-solid fa-location-dot"></i> </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 mt-4">
+        <div class="member d-flex align-items-start">
+          <div class="pic"><img src="/Doctors/FemaleDoctor.png" class="img-fluid" width="100px" alt=""></div>
+          <div class="member-info">
+            <h4>Dr. Name</h4>
+            <span>Specialization</span>
+            <p>Qualifications & Certificates</p>
+            <div class="social">
+              <a href=""><i class="fa-brands fa-facebook"></i></a>
+              <a href=""><i class="fa-solid fa-mobile-screen"></i></a>
+              <a href=""><i class="fa-solid fa-at"></i></a>
+              <a href=""> <i class="fa-solid fa-location-dot"></i> </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+
+</section><!-- End Doctors Section -->
+  </div>
+  
+<hr>
+
+    <!-- ======= Contact Section ======= -->
+    <div id="contact" class="contact-area">
+      <div class="contact-inner area-padding">
+        <div class="contact-overly"></div>
+        <div class="container ">
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="section-headline text-center">
+                <h2>Contact us</h2>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <!-- Start contact icon column -->
+            <div class="col-md-4"> 
+              <div class="contact-icon text-center">
+                <div class="single-icon">
+                  <i class="fa-solid fa-mobile-screen"></i>
+                  <p>
+                    Call: +20 1559666595<br>
+                    <span>Monday-Friday (9am-5pm)</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- Start contact icon column -->
+            <div class="col-md-4">
+              <div class="contact-icon text-center">
+                <div class="single-icon">
+                  <i class="fa-solid fa-at"></i>
+                  <p>
+                    Email: doctorzoom247@gmail.com<br>
+                    <span>Web: www.24/7doctor.com</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- Start contact icon column -->
+            <div class="col-md-4">
+              <div class="contact-icon text-center">
+                <div class="single-icon">
+                  <i class="fa-solid fa-location-dot"></i>
+                  <p>
+                    Location: S Teseen, New Cairo 1, Cairo<br>
+                    <span>New Cairo 11835, EG
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+          <div class="row">
+            
+              <!-- Start Map -->
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3454.3380354489695!2d31.48953165104377!3d30.02715852625417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x39d27f605898ea20!2sFuture%20University%20in%20Egypt!5e0!3m2!1sen!2seg!4v1653011359490!5m2!1sen!2seg" style="border:0; width: 100%; height: 350px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              <!-- End Map -->
+            </div>
+
+
+            <!-- End Left contact -->
+          </div>
+        </div>
+      </div>
+    
+  </div>
+</div><!-- End Contact Section -->
+
+</main><!-- End #main -->
+   
+   <hr>
+    
+   <footer>
+    <%- include ('./partials/footer.ejs') %> 
+  </footer>       
+
+        
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -257,15 +1321,54 @@ padding: 10px
       crossorigin="anonymous"
        type='text/javascript' src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js'></script>
 
-        <script type='text/javascript'>var myLink = document.querySelector('a[href="#"]');
-        myLink.addEventListener('click', function(e) {
-          e.preventDefault();
-        });</script>
+        
     </script>
+    <script>
+      (function() {
+        "use strict";
 
+        /**
+         * Porfolio isotope and filter
+         */
+        window.addEventListener('load', () => {
+          let portfolioContainer = select('.portfolio-container');
+          if (portfolioContainer) {
+            let portfolioIsotope = new Isotope(portfolioContainer, {
+              itemSelector: '.portfolio-item',
+              layoutMode: 'fitRows'
+            });
+      
+            let portfolioFilters = select('#portfolio-flters li', true);
+      
+            on('click', '#portfolio-flters li', function(e) {
+              e.preventDefault();
+              portfolioFilters.forEach(function(el) {
+                el.classList.remove('filter-active');
+              });
+              this.classList.add('filter-active');
+      
+              portfolioIsotope.arrange({
+                filter: this.getAttribute('data-filter')
+              });
+            }, true);
+          }
+      
+        });
+      
+        /**
+         * Initiate portfolio lightbox 
+         */
+        const portfolioLightbox = GLightbox({
+          selector: '.portfolio-lightbox'
+        });
+      })()
+          </script>
+
+<script
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+></script>
   
-   
-  <footer>
-  <%- include ('./partials/footer.ejs') %> 
-</footer>
+   </body>
+  
+
 </html>

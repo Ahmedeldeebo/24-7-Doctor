@@ -1,286 +1,1428 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Online Doctor</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-      crossorigin="anonymous"
-    />
+
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
+    <title>24/7 Doctor</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"  rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/ff8698dfe7.js" crossorigin="anonymous"></script>
+    
   </head>
+
+
+  <style>
+   
+ 
+  /*--------------------------------------------------------------
+  # Hero Section
+  --------------------------------------------------------------*/
+  #hero {
+    width: 100%;
+    height: 100vh;
+    background: #000;
+    overflow: hidden;
+    position: relative;
+  }
+  @media (max-height: 500px) {
+    #hero {
+      height: 150vh;
+    }
+  }
+  #hero .carousel, #hero .carousel-inner, #hero .carousel-item, #hero .carousel-item::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+  }
+  #hero .carousel-item {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  #hero .carousel-item::before {
+    content: "";
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+  #hero .carousel-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    top: 70px;
+    left: 50px;
+    right: 50px;
+  }
+  #hero .container {
+    text-align: center;
+  }
+  #hero h1 {
+    color: rgb(46, 189, 177);
+    margin-bottom: 20px;
+    font-size: 50px;
+    font-weight: 700;
+  }
+  @media (max-width: 7268px) {
+    #hero h1 {
+      font-size: 50px;
+      line-height: 1.2;
+    }
+  }
+  #hero p {
+    width: 80%;
+    font-size: 38px;
+    line-height: 1.2;
+    margin: 0 auto 30px auto;
+    color: #fff;
+  }
+  @media (min-width: 10242px) {
+    #hero p {
+      width: 60%;
+    }
+  }
+  @media (max-width: 7628px) {
+    #hero p {
+      font-size: 28px;
+      line-height: 1.2;
+    }
+  }
+  #hero .carousel-fade {
+    overflow: hidden;
+  }
+  #hero .carousel-fade .carousel-inner .carousel-item {
+    transition-property: opacity;
+  }
+  #hero .carousel-fade .carousel-inner .carousel-item,
+  #hero .carousel-fade .carousel-inner .active.carousel-item-start,
+  #hero .carousel-fade .carousel-inner .active.carousel-item-end {
+    opacity: 0;
+  }
+  #hero .carousel-fade .carousel-inner .active,
+  #hero .carousel-fade .carousel-inner .carousel-item-next.carousel-item-start,
+  #hero .carousel-fade .carousel-inner .carousel-item-prev.carousel-item-end {
+    opacity: 1;
+    transition: 0.5s;
+  }
+  #hero .carousel-fade .carousel-inner .carousel-item-next,
+  #hero .carousel-fade .carousel-inner .carousel-item-prev,
+  #hero .carousel-fade .carousel-inner .active.carousel-item-start,
+  #hero .carousel-fade .carousel-inner .active.carousel-item-end {
+    left: 0;
+    transform: translate3d(0, 0, 0);
+  }
+  #hero .carousel-control-prev, #hero .carousel-control-next {
+    width: 10%;
+  }
+  @media (min-width: 10224px) {
+    #hero .carousel-control-prev, #hero .carousel-control-next {
+      width: 5%;
+    }
+  }
+  #hero .carousel-control-next-icon, #hero .carousel-control-prev-icon {
+    background: none;
+    font-size: 32px;
+    line-height: 1;
+  }
+  #hero .carousel-indicators li {
+    cursor: pointer;
+  }
+  #hero .btn-get-started {
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 8px 32px;
+    border-radius: 50px;
+    transition: 0.5s;
+    margin: 10px;
+    color: #fff;
+    background: #3ec1d5;
+  }
+  #hero .btn-get-started:hover {
+    background: #fff;
+    color: #3ec1d5;
+  }
+  
+  /*--------------------------------------------------------------
+  # About
+  --------------------------------------------------------------*/
+  .about-area {
+    background-color: #f9f9f9;
+  }
+  
+  .single-well > a {
+    display: block;
+  }
+  
+  .single-well ul li {
+    color: #444;
+    display: block;
+    padding: 5px 0;
+  }
+  
+  .single-well ul li i {
+    color: #3EC1D5;
+    margin-right: 5px;
+    font-size: 18px;
+  }
+  
+  .single-well p {
+    color: #444;
+  }
+  
+  /*--------------------------------------------------------------
+  # Introduction
+  --------------------------------------------------------------*/
+  .services-icon {
+    color: #444;
+    display: inline-block;
+    font-size: 36px;
+    line-height: 36px;
+    margin-bottom: 20px;
+  }
+  
+  .section-headline.services-head > h2 {
+    margin-bottom: 25px;
+  }
+  
+  .services-details {
+    padding-top: 40px;
+    transition: all 0.5s ease 0s;
+  }
+  
+  .services-details:hover h4, .services-details:hover .services-icon {
+    color: #3EC1D5;
+  }
+  
+  .row.second-row {
+    margin-top: 40px;
+  }
+  
+  .section-head > h2 {
+    color: rgb(255, 255, 255);
+  }
+  
+  .single-services > h4 {
+    color: rgb(255, 255, 255);
+    font-size: 24px;
+    font-weight: 500;
+  }
+  
+  .single-services > p {
+    color: #333;
+    font-size: 14px;
+  }
+  
+  
+  /*--------------------------------------------------------------
+  # Specializations aka Portfolio
+  --------------------------------------------------------------*/
+  .pst-content {
+    padding-left: 10px;
+  }
+  
+  #portfolio-flters {
+    padding: 0;
+    margin: 5px 0 35px 0;
+    list-style: none;
+    text-align: center;
+  }
+  #portfolio-flters li {
+    cursor: pointer;
+    margin: 15px 15px 15px 0;
+    display: inline-block;
+    padding: 8px 24px;
+    font-size: 12px;
+    line-height: 20px;
+    color: #555;
+    border-radius: 50px;
+    text-transform: uppercase;
+    background: #fff;
+    margin-bottom: 5px;
+    transition: all 0.3s ease-in-out;
+    border: 1px solid #444;
+  }
+  #portfolio-flters li:hover, #portfolio-flters li.filter-active {
+    border-color: #3EC1D5;
+    background: #3EC1D5;
+    color: #fff;
+  }
+  #portfolio-flters li:last-child {
+    margin-right: 0;
+  }
+  
+  .single-awesome-portfolio {
+    float: left;
+    overflow: hidden;
+    padding: 12px;
+    width: 25%;
+    position: relative;
+  }
+  
+  .single-awesome-project {
+    overflow: hidden;
+    margin-bottom: 30px;
+  }
+  
+  .first-item {
+    margin-bottom: 30px;
+  }
+  
+  .awesome-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  
+  .awesome-img > a {
+    display: block;
+    position: relative;
+  }
+  
+  .single-awesome-project:hover .awesome-img > a::after {
+    opacity: 1;
+  }
+  
+  .single-awesome-project:hover .add-actions {
+    opacity: 1;
+    bottom: 0;
+  }
+  
+  .awesome-img > a::after {
+    background: rgba(0, 0, 0, 0.7) none repeat scroll 0 0;
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    opacity: 0;
+    transition: 0.4s;
+  }
+  
+  .add-actions {
+    background: rgba(0, 0, 0, 0.6) none repeat scroll 0 0;
+    bottom: 30px;
+    display: block;
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    overflow: hidden;
+    padding: 10px 15px;
+    position: absolute;
+    transition: all 0.4s ease 0s;
+    width: 100%;
+  }
+  
+  .project-dec {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .project-dec a {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .project-dec h4 {
+    margin-bottom: 5px;
+  }
+  
+  .project-dec h4:hover {
+    color: #fff;
+  }
+  
+  .project-dec h4 {
+    color: #ddd;
+    font-size: 24px;
+    margin-top: -45px;
+    padding-top: 50%;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 800;
+  }
+  
+  .project-dec span {
+    color: #ddd;
+    font-size: 13px;
+  }
+  
+  .project-action-btn {
+    display: block;
+    height: 100%;
+    text-align: center;
+    transition: all 1s ease 0s;
+    width: 100%;
+  }
+  
+  .project-action-btn li {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .project-action-btn li a {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+  
+  
+
+  /*--------------------------------------------------------------
+  # Contact
+  --------------------------------------------------------------*/
+  .contact-area {
+    height: auto;
+    width: 100%;
+  }
+  
+  .contact-content {
+    padding: 100px;
+    background: #000 none repeat scroll 0 0;
+  }
+  
+  .contact-content-right {
+    padding: 100px;
+  }
+  
+  .single-icon i {
+    font-size: 32px;
+    width: 50px;
+    height: 50px;
+    line-height: 56px;
+    border-radius: 50%;
+    margin-bottom: 30px;
+    color: #3ec1d5;
+  }
+  
+  .single-icon p {
+    font-size: 16px;
+    line-height: 30px;
+  }
+  
+  .contact-icon {
+    margin-bottom: 40px;
+  }
+  
+  #google-map {
+    height: 370px;
+    margin-bottom: 20px;
+  }
+  
+  .php-email-form .validate {
+    display: none;
+    color: red;
+    margin: 0;
+    font-weight: 400;
+    font-size: 13px;
+  }
+  .php-email-form .error-message {
+    display: none;
+    color: #fff;
+    background: #ed3c0d;
+    text-align: center;
+    padding: 15px;
+    font-weight: 600;
+  }
+  .php-email-form .sent-message {
+    display: none;
+    color: #fff;
+    background: #18d26e;
+    text-align: center;
+    padding: 15px;
+    font-weight: 600;
+  }
+  .php-email-form .loading {
+    display: none;
+    background: #fff;
+    text-align: center;
+    padding: 15px;
+  }
+  .php-email-form .loading:before {
+    content: "";
+    display: inline-block;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    margin: 0 10px -6px 0;
+    border: 3px solid #18d26e;
+    border-top-color: #eee;
+    -webkit-animation: animate-loading 1s linear infinite;
+    animation: animate-loading 1s linear infinite;
+  }
+  .php-email-form input, .php-email-form textarea {
+    border-radius: 0;
+    box-shadow: none;
+    font-size: 14px;
+  }
+  .php-email-form input:focus, .php-email-form textarea:focus {
+    border-color: #3ec1d5;
+  }
+  .php-email-form input {
+    padding: 10px 15px;
+  }
+  .php-email-form textarea {
+    padding: 12px 15px;
+  }
+  .php-email-form button[type=submit] {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    border: 1px solid #ccc;
+    color: #444;
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 8px;
+    padding: 12px 30px;
+    text-transform: uppercase;
+    transition: all 0.3s ease 0s;
+    border-radius: 30px;
+  }
+  
+  
+ 
+  /*--------------------------------------------------------------
+# Count bar "between intro and services"
+--------------------------------------------------------------*/
+.counts {
+  background: #f1f7fd;
+  padding: 70px 0 60px;
+}
+.counts .count-box {
+  padding: 30px 30px 25px 30px;
+  width: 100%;
+  position: relative;
+  text-align: center;
+  background: #fff;
+}
+.counts .count-box i {
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20px;
+  background: #1977cc;
+  color: #fff;
+  border-radius: 50px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+}
+.counts .count-box span {
+  font-size: 36px;
+  display: block;
+  font-weight: 600;
+  color: #082744;
+}
+.counts .count-box p {
+  padding: 0;
+  margin: 0;
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+}
+/*--------------------------------------------------------------
+# Doctors
+--------------------------------------------------------------*/
+
+.doctors {
+      padding-top: 0px;
+    }
+.doctors {
+  background: #fff;
+}
+.doctors .member {
+  position: relative;
+  box-shadow: 0px 2px 15px rgba(44, 73, 100, 0.08);
+  padding: 30px;
+  border-radius: 10px;
+}
+.doctors .member .pic {
+  overflow: hidden;
+  width: 180px;
+  border-radius: 50%;
+}
+.doctors .member .pic img {
+  transition: ease-in-out 0.3s;
+}
+.doctors .member:hover img {
+  transform: scale(1.1);
+}
+.doctors .member .member-info {
+  padding-left: 30px;
+}
+.doctors .member h4 {
+  font-weight: 700;
+  margin-bottom: 5px;
+  font-size: 20px;
+  color: #2c4964;
+}
+.doctors .member span {
+  display: block;
+  font-size: 15px;
+  padding-bottom: 10px;
+  position: relative;
+  font-weight: 500;
+}
+.doctors .member span::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 50px;
+  height: 1px;
+  background: #b2c8dd;
+  bottom: 0;
+  left: 0;
+}
+.doctors .member p {
+  margin: 10px 0 0 0;
+  font-size: 14px;
+}
+.doctors .member .social {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.doctors .member .social a {
+  transition: ease-in-out 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  width: 32px;
+  height: 32px;
+  background: #a0bcd5;
+}
+.doctors .member .social a i {
+  color: #fff;
+  font-size: 16px;
+  margin: 0 2px;
+}
+.doctors .member .social a:hover {
+  background: #1977cc;
+}
+.doctors .member .social a + a {
+  margin-left: 8px;
+}
+
+</style>
+
+  
   <body>
     <!--Start Header-->
     <%- include ('./partials/nav.ejs') %>
     <!--End Header-->
-    <body>
+    
 
-    <!-----------------------------------------------Start Slider --------------------------------------------->
+    
 
-    <div
-      id="carouselExampleDark"
-      class="carousel carousel-dark slide"
-      data-bs-ride="carousel"
-    >
-      <div class="carousel-indicators">
-        <button
-          type="button"
-          data-bs-target="#carouselExampleDark"
-          data-bs-slide-to="0"
-          class="active"
-          aria-current="true"
-          aria-label="Slide 1"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#carouselExampleDark"
-          data-bs-slide-to="1"
-          aria-label="Slide 2"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#carouselExampleDark"
-          data-bs-slide-to="2"
-          aria-label="Slide 3"
-        ></button>
+    
+      <!-- ======= hero Section ======= -->
+      <section id="hero">
+        <div class="hero-container">
+          <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+    
+            <ol id="hero-carousel-indicators" class="carousel-indicators"></ol>
+    
+            <div class="carousel-inner" role="listbox">
+    
+              <div class="carousel-item active" style="background-image: url(/img/Home1.jpg)">
+                <div class="carousel-container">
+                  <div class="container">
+                    <h3 class="animate__animated animate__fadeInDown">24/7 Doctor </h3>
+                    <h3 class="animate__animated animate__fadeInUp">Always there when you need us the most!</h3>
+                    <a href="http://localhost:5000/signuptest" class="btn-get-started scrollto animate__animated animate__fadeInUp">Join Us</a>
+                  </div>
+                </div>
+              </div>
+    
+              <div class="carousel-item" style="background-image: url(/img/doctor-6701410.jpg)">
+                <div class="carousel-container">
+                  <div class="container">
+                    <h3 class="animate__animated animate__fadeInDown">Best doctors you will ever find</h3>
+                    <p class="animate__animated animate__fadeInUp">Helping everyone all the time no matter where and when</p>
+                    <a href="http://localhost:5000/signuptest" class="btn-get-started scrollto animate__animated animate__fadeInUp">Join Us</a>
+                  </div>
+                </div>
+              </div>
+    
+              <div class="carousel-item" style="background-image: url(/img/stethoscope-6497490.jpg)">
+                <div class="carousel-container">
+                  <div class="container">
+                    <h3 class="animate__animated animate__fadeInDown">Choose how you prefer to join us and start right away</h3>
+                    <p class="animate__animated animate__fadeInUp">Join as a Doctor, or with your Pharmacy or as a Patient</p>
+                    <a href="http://localhost:5000/signuptest" class="btn-get-started scrollto animate__animated animate__fadeInUp">Join Us</a>
+                  </div>
+                </div>
+              </div>
+    
+            </div>
+    
+            <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+            </a>
+    
+            <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+              <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+            </a>
+    
+          </div>
+        </div>
+      </section><!-- End Hero Section -->
+
+      <main id="main">
+
+        <!-- ======= About Section ======= -->
+        <div id="about" class="about-area area-padding">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="section-headline text-center">
+                  <h2>About 24/7 Doctor</h2>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <!-- single-well start-->
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="well-left">
+                  <div class="single-well">
+                    <a href="#">
+                      <img src="img/aboutme.png" alt="" height="500" width="500">
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <!-- single-well end-->
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="well-middle">
+                  <div class="single-well">
+                    <a href="#">
+                      <h4 class="sec-head">Intorduction</h4>
+                    </a>
+                    <p>
+                      Our website 24/7 Doctor is created for the main purpose of making the process of contacting and asking a doctor for anything to be easy, faster and user-friendly.
+                    </p>
+                    <ul>
+                      <li>
+                        <i class="fa-solid fa-user-check"></i> Easy to Use
+                      </li>
+                      <li>
+                        <i class="fa-solid fa-user-check"></i> Eye-Friendly
+                      </li>
+                      <li>
+                        <i class="fa-solid fa-user-check"></i> User-Friendly
+                      </li>
+                      <li>
+                        <i class="fa-solid fa-user-check"></i> No Errors/Crashes
+                      </li>
+                      <li>
+                        <i class="fa-solid fa-user-check"></i> Always available
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- End col-->
+            </div>
+          </div>
+        </div><!-- End About Section -->
+
+<!-- ======= Counts Section ======= -->
+<section id="counts" class="counts">
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-lg-3 col-md-6">
+        <div class="count-box">
+          <i class="fas fa-user-md"></i>
+          <!-- <span data-purecounter-start="0" data-purecounter-end="85" data-purecounter-duration="1" class="purecounter"></span> -->
+          <H2>32</H2>
+          <p>Doctors</p>
+        </div>
       </div>
-      <div class="carousel-inner">
-        <div class="carousel-item active" data-bs-interval="10000">
-          <a
-            type="buttton"
-            class="btn btn-success position-absolute top-50 start-50 translate-middle"
-            href="http://localhost:5000/signuptest"
-          >
-            Join Us
-          </a>
-          <img
-            src="/img/bermix-studio-b8mwvvFs8Ak-unsplash.jpg"
-            class="d-block w-100 img-fluid"
-            alt="Doctor pic1"
-          />
 
-        </div>
-        <div class="carousel-item" data-bs-interval="2000">
-          <img
-            src="/img/doctor-6701410.jpg"
-            class="d-block w-100 img-fluid"
-            alt="Doctor pic2"
-          />
-        </div>
-        <div class="carousel-item">
-          <img
-            src="/img/stethoscope-6497490.jpg"
-            class="d-block w-100 img-fluid"
-            alt="Doctor pic3"
-          />
-
+      <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
+        <div class="count-box">
+          <i class="far fa-hospital"></i>
+          <!-- <span data-purecounter-start="0" data-purecounter-end="18" data-purecounter-duration="1" class="purecounter"></span> -->
+          <H2>15</H2>
+          <p>Departments</p>
         </div>
       </div>
-      <button
-        class="carousel-control-prev"
-        type="button"
-        data-bs-target="#carouselExampleDark"
-        data-bs-slide="prev"
-      >
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button
-        class="carousel-control-next"
-        type="button"
-        data-bs-target="#carouselExampleDark"
-        data-bs-slide="next"
-      >
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
+
+      <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+        <div class="count-box">
+          <i class="fas fa-flask"></i>
+          <!-- <span data-purecounter-start="0" data-purecounter-end="12" data-purecounter-duration="1" class="purecounter"></span> -->
+          <H2>2</H2>
+          <p>Research Labs</p>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+        <div class="count-box">
+          <i class="fas fa-award"></i>
+          <!-- <span data-purecounter-start="0" data-purecounter-end="150" data-purecounter-duration="1" class="purecounter"></span> -->
+          <H2>20</H2>
+          <p>Awards</p>
+        </div>
+      </div>
+
     </div>
-    <!-----------------------------------------------End  Slider --------------------------------------------->
 
-    <main class="my-5">
-      <div class="container">
-        
-        <div class="row">
-          <div class="col-md-7">
-            <img
-              src="/img/logo.png"
-              alt=""
-              class="img-fluid"
-            />
-          </div>
-          <div class="col-md-5">
-            <h1 class="mt-5">24/7 Doctors</h1>
-            <p class="mt-4">
-              Welcome to 24/7 Doctors where you shall find the best available doctors in all specializations, compare between then, choose, and book your appointment right away.
-              <h5> <center>Always there when you need us the most.</center></h5>
-            </p>
-            <button type="button" class="btn btn-primary mt-3">
-              <a
-              type="buttton"
-              class="btn btn-primary"
-              href="http://localhost:5000/doctor/doctorview"
-            > Check our Doctors now
-             </a>
-            </button>
-          </div>
+  </div>
+</section>
+
+
+ <!-- ======= Services Section ======= -->
+ <div id="services" class="services-area area-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="section-headline services-head text-center">
+          <h2>Our Services</h2>
         </div>
-        <div class="row my-5">
-<hr />
-        
-        <div class="row my-5">
+      </div>
+    </div>
+    <div class="row text-center">
+      <!-- Start Left services -->
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        <div class="about-move">
+          <div class="services-details">
+            <div class="single-services">
+              <a class="services-icon" href="#">
+                <i class="fa-solid fa-book-medical"></i>
+              </a>
+              <h4>All Specializations</h4>
+              <p>All types of Departments and Specializations are available within our website for your help              </p>
+            </div>
           </div>
-          <div class="col">
-            
-            <div class="card-group">
-              <div class="card">
-                <img
-                src="/img/unknown.png"
-                class="card-img-top"
-                width="100%"
-                height="45.7%"
-                />
-                <div class="card-body">
-                  <h5 class="card-title">Dentistry</h5>
-                  <p class="card-text">
-                    Conducting oral screenings to identify diseases and infections
-                    Removing tooth decay and plaque 
-                    Applying prosthetics, sealers and whiteners
-                  </p>
+          <!-- end about-details -->
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        <div class="about-move">
+          <div class="services-details">
+            <div class="single-services">
+              <a class="services-icon" href="#">
+                <i class="fa-solid fa-star"></i>
+              </a>
+              <h4>Verified patient reviews</h4>
+              <p>
+                You can choose between doctors using our review system done by other patients and recommendations
+              </p>
+            </div>
+          </div>
+          <!-- end about-details -->
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        <!-- end col-md-4 -->
+        <div class=" about-move">
+          <div class="services-details">
+            <div class="single-services">
+              <a class="services-icon" href="#">
+                <i class="fa-solid fa-check-double"></i>
+              </a>
+              <h4>Booking Confirmation</h4>
+              <p>
+                Search and schedule an appointment using our website then recieve a confirmation right away after the Doctor recieve
+              </p>
+            </div>
+          </div>
+          <!-- end about-details -->
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        <!-- end col-md-4 -->
+        <div class=" about-move">
+          <div class="services-details">
+            <div class="single-services">
+              <a class="services-icon" href="#">
+                <i class="fa-solid fa-money-bill"></i>
+              </a>
+              <h4>Easy Payment Methods</h4>
+              <p>
+                Choose the most suitable way for you to pay. Either by E-wallet or Paypal or Vodafone cash
+              </p>
+            </div>
+          </div>
+          <!-- end about-details -->
+        </div>
+      </div>
+      <!-- End Left services -->
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        <!-- end col-md-4 -->
+        <div class=" about-move">
+          <div class="services-details">
+            <div class="single-services">
+              <a class="services-icon" href="#">
+                <i class="fa-solid fa-headset"></i>
+              </a>
+              <h4>All Ways of Communication</h4>
+              <p>
+                Doctors are available through different ways of communication, choose what suits you the most. Either by Zoom, WhatsApp or Face to Face
+              </p>
+            </div>
+          </div>
+          <!-- end about-details -->
+        </div>
+      </div>
+      <!-- End Left services -->
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        <!-- end col-md-4 -->
+        <div class=" about-move">
+          <div class="services-details">
+            <div class="single-services">
+              <a class="services-icon" href="#">
+                <i class="fa-solid fa-clock"></i>
+              </a>
+              <h4>24/7 Support</h4>
+              <p>
+                Always there when you need us, either by a ticket if you face a technical error, or if you need to ask the doctor then Query is there for you
+              </p>
+            </div>
+          </div>
+          <!-- end about-details -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- End Services Section -->
 
-                  <div class="">
-                    <a href="#"
-                      ><button type="button" class="btn btn-primary">
-                        Book Now
-                      </button></a
-                    >
-                  </div>
-                </div>
-              </div>
+ <!-- ======= Portfolio Section ======= -->
+ <div id="portfolio" class="portfolio-area area-padding fix">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="section-headline text-center">
+          <h2>Departments & Specializations</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row wesome-project-1 fix">
+      <!-- Start Portfolio -page -->
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <ul id="portfolio-flters">
+          <li data-filter="*">All</li>
+          <li data-filter=".filter-skin">Dentistry</li>
+          <li data-filter=".filter-teeth">Neurology</li>
+          <li data-filter=".filter-web">Dermatology</li>
+          <li data-filter=".filter-web">Pediatrics</li>
+          <li data-filter=".filter-web">Ophthalmology</li>
+          <li data-filter=".filter-web">Diabetes</li>
 
-              <div class="card">
-                <img src="/img/htasd.jpg"
-                  class="card-img-top"
-                  width="100%"
-                  height="45.6%"
-                />
-                <div class="card-body">
-                  <h5 class="card-title">Pediatrics</h5>
-                  <p class="card-text">
-                    iagnose and treat a broad range of childhood illnesses, from minor health problems to serious diseases.
-                  </p>
+        </ul>
+      </div>
+    </div>
 
-                  <div class="">
-                    <a href="#"
-                      ><button type="button" class="btn btn-primary">
-                        Book Now
-                      </button></a
-                    >
-                  </div>
-                </div>
-              </div>
-              <div class="card">
-                <img src="/img/derma.png"
-                  class="card-img-top"
-                  width="100%"
-                  height="45.6%"
-                />
-                <div class="card-body">
-                  <h5 class="card-title">Dermatology</h5>
-                  <p class="card-text">
-                    Assessing patients’ skin diseases, conditions, and ailments to determine appropriate treatment
-Prescribing medication and creating treatment plans, referring patients for surgery where necessary
-Monitoring patient progress
+    <div class="row awesome-project-content portfolio-container">
 
-                  </p>
-
-                  <div class="">
-                    <a href="#"
-                      ><button type="button" class="btn btn-primary">
-                        Book Now
-                      </button></a
-                    >
-                  </div>
-                </div>
-              </div>
-            
-          
-        </main>
-
-   
-
-          <!-- <div class="row my-2">
-          <div class="col">
-            <div class="bg-secondary text-white my-1 py-1 card text-center">
-              <div class="card-body"> For more information:
+      <!-- portfolio-item start -->
+      <div class="col-md-4 col-sm-4 col-xs-12 portfolio-item filter-app portfolio-item">
+        <div class="single-awesome-project">
+          <div class="awesome-img">
+            <a href="#"><img src="/Departments/Dent.jpg" alt="" /></a>
+            <div class="add-actions text-center">
+              <div class="project-dec">
+                
+                  <h4>Dentistry</h4>
+                  <span>Conducting oral screenings to identify diseases and infections & Removing tooth decay and plaque </span>
+              </a>
               </div>
             </div>
           </div>
-        <div class="my-2 text-center">
-          <h2>Get in touch</h2>
-          <p class="lead">Questions? Do not hesitate to contact us.</p>
         </div>
-        <div class="row justify-content-center my-5">
-          <div class="col-lg-7">
-            <form action="">
-              <label for="email" class="form-label">Email:</label>
-              <input
-                type="email"
-                id="email"
-                placeholder="my@email.com"
-                class="form-control"
-              />
-              <div class="form-floating my-3">
-                <input
-                  type="name"
-                  id="name"
-                  placeholder="e.g. Dawid"
-                  class="form-control"
-                />
-                <label for="name" class="form-label">Name:</label>
-              </div>
-              <label for="subject" class="form=label">Subject</label>
-              <select name="subject" id="subject" class="form-select">
-                <option value="pricing">Pricing</option>
-                <option value="technical" selected>Technical question</option>
-                <option value="other">Other</option>
-              </select>
+      </div>
+      <!-- portfolio-item end -->
 
-              <div class="form-floating my-5">
-                <textarea
-                  name="query"
-                  id="query"
-                  style="height: 150px"
-                  class="form-control"
-                  placeholder="Write a message"
-                ></textarea>
-
-                <label for="query">Write a message</label>
+      <!-- portfolio-item start -->
+      <div class="col-md-4 col-sm-4 col-xs-12 portfolio-item filter-web">
+        <div class="single-awesome-project">
+          <div class="awesome-img">
+            <a href="#"><img src="/Departments/Neuro.jpg" alt="" /></a>
+            <div class="add-actions text-center">
+              <div class="project-dec">
+                
+                  <h4>Neurology</h4>
+                  <span>Concerned with disorders and diseases of the nervous system</span>
+                </a>
               </div>
-
-              <div class="text-center">
-                <button type="submit" class="btn btn-primary">Send!</button>
-              </div>
-            </form>
+            </div>
           </div>
         </div>
       </div>
-    </main> -->
+      <!-- portfolio-item end -->
+
+      <!-- portfolio-item start -->
+      <div class="col-md-4 col-sm-4 col-xs-12 portfolio-item filter-card">
+        <div class="single-awesome-project">
+          <div class="awesome-img">
+            <a href="#"><img src="/Departments/Derma.jpg" alt="" /></a>
+            <div class="add-actions text-center">
+              <div class="project-dec">
+                
+                  <h4>Dermatology</h4>
+                  <span>Assessing patients’ skin diseases, conditions, and ailments to determine appropriate treatment</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- portfolio-item end -->
+
+      <!-- portfolio-item start -->
+      <div class="col-md-4 col-sm-4 col-xs-12 portfolio-item filter-web">
+        <div class="single-awesome-project">
+          <div class="awesome-img">
+            <a href="#"><img src="/Departments/Pediat.jpg" width=1000 hight=100 alt="Pediatrics" /></a>
+            <div class="add-actions text-center">
+              <div class="project-dec">
+                
+                  <h4>Pediatrics</h4>
+                  <span>Povides not only medical care but also preventive health services for healthy children</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- portfolio-item end -->
+
+      <!-- portfolio-item start -->
+      <div class="col-md-4 col-sm-4 col-xs-12 portfolio-item filter-app">
+        <div class="single-awesome-project">
+          <div class="awesome-img">
+            <a href="#"><img src="/Departments/Optha.jpg" height="100%"/></a>
+            <div class="add-actions text-center text-center">
+              <div class="project-dec">
+                
+                  <h4>Ophthalmology</h4>
+                  <span>Deals with the diagnosis and treatment of eye disorders</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- portfolio-item end -->
+
+      <!-- portfolio-item start -->
+      <div class="col-md-4 col-sm-4 col-xs-12 portfolio-item filter-web">
+        <div class="single-awesome-project">
+          <div class="awesome-img">
+            <a href="#"><img src="/Departments/diabetics.png" alt="" /></a>
+            <div class="add-actions text-center">
+              <div class="project-dec">
+                
+                  <h4>Diabetes</h4>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- portfolio-item end -->
+
+    </div>
+  </div>
+</div><!-- End Portfolio Section -->
+
+ <!-- ======= Doctors Section ======= -->
+
+ <div id="doctors" class="doctors-area area-padding fix">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="section-headline text-center">
+          <h2>Our Doctors</h2>
+        </div>
+      </div>
+    </div>
+ <section id="doctors" class="doctors">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="member d-flex align-items-start">
+          <div class="pic"><img src="/Doctors/ShreifHelal.jpg" class="img-fluid" alt=""></div>
+          <div class="member-info">
+            <h4>Doctor Sherif Helal</h4>
+            <span>Consultant ENT and Fellow of Royal College of Surgeon in Ereland</span>
+            <p>ENT Doctor Specialized in Adult Ear, Nose and throat Surgery, Adult Ear, Nose and Throat,</p>
+            <div class="social">
+              <a href=""><i class="fa-brands fa-facebook"></i></a>
+              <a href=""><i class="fa-solid fa-mobile-screen"></i></a>
+              <a href=""><i class="fa-solid fa-at"></i></a>
+              <a href=""> <i class="fa-solid fa-location-dot"></i> </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 mt-4 mt-lg-0">
+        <div class="member d-flex align-items-start">
+          <div class="pic"><img src="/Doctors/EmadIsmail.jpg" class="img-fluid" alt=""></div>
+          <div class="member-info">
+            <h4>Doctor Emad Ismail</h4>
+            <span>Professor and consultant of diabetes endocrinology</span>
+            <p>Endocrinologist Specialized in Adult Internal Medicine and Adult Diabetes</p>
+            <div class="social">
+              <a href=""><i class="fa-brands fa-facebook"></i></a>
+              <a href=""><i class="fa-solid fa-mobile-screen"></i></a>
+              <a href=""><i class="fa-solid fa-at"></i></a>
+              <a href=""> <i class="fa-solid fa-location-dot"></i> </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 mt-4">
+        <div class="member d-flex align-items-start">
+          <div class="pic"><img src="/Doctors/MaleDoctor.jpg" class="img-fluid" width="100px" alt=""></div>
+          <div class="member-info">
+            <h4>Dr. Name</h4>
+            <span>Specialization</span>
+            <p>Qualifications & Certificates</p>
+            <div class="social">
+              <a href=""><i class="fa-brands fa-facebook"></i></a>
+              <a href=""><i class="fa-solid fa-mobile-screen"></i></a>
+              <a href=""><i class="fa-solid fa-at"></i></a>
+              <a href=""> <i class="fa-solid fa-location-dot"></i> </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 mt-4">
+        <div class="member d-flex align-items-start">
+          <div class="pic"><img src="/Doctors/FemaleDoctor.png" class="img-fluid" width="100px" alt=""></div>
+          <div class="member-info">
+            <h4>Dr. Name</h4>
+            <span>Specialization</span>
+            <p>Qualifications & Certificates</p>
+            <div class="social">
+              <a href=""><i class="fa-brands fa-facebook"></i></a>
+              <a href=""><i class="fa-solid fa-mobile-screen"></i></a>
+              <a href=""><i class="fa-solid fa-at"></i></a>
+              <a href=""> <i class="fa-solid fa-location-dot"></i> </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+
+</section><!-- End Doctors Section -->
 
 
 
+    <!-- ======= Contact Section ======= -->
+    <div id="contact" class="contact-area">
+      <div class="contact-inner area-padding">
+        <div class="contact-overly"></div>
+        <div class="container ">
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="section-headline text-center">
+                <h2>Contact us</h2>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <!-- Start contact icon column -->
+            <div class="col-md-4"> 
+              <div class="contact-icon text-center">
+                <div class="single-icon">
+                  <i class="fa-solid fa-mobile-screen"></i>
+                  <p>
+                    Call: +20 1559666595<br>
+                    <span>Monday-Friday (9am-5pm)</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- Start contact icon column -->
+            <div class="col-md-4">
+              <div class="contact-icon text-center">
+                <div class="single-icon">
+                  <i class="fa-solid fa-at"></i>
+                  <p>
+                    Email: doctorzoom247@gmail.com<br>
+                    <span>Web: www.24/7doctor.com</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- Start contact icon column -->
+            <div class="col-md-4">
+              <div class="contact-icon text-center">
+                <div class="single-icon">
+                  <i class="fa-solid fa-location-dot"></i>
+                  <p>
+                    Location: S Teseen, New Cairo 1, Cairo<br>
+                    <span>New Cairo 11835, EG
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            
+              <!-- Start Map -->
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3454.3380354489695!2d31.48953165104377!3d30.02715852625417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x39d27f605898ea20!2sFuture%20University%20in%20Egypt!5e0!3m2!1sen!2seg!4v1653011359490!5m2!1sen!2seg" style="border:0; width: 100%; height: 350px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              <!-- End Map -->
+            </div>
 
+
+            <!-- End Left contact -->
+          </div>
+        </div>
+      </div>
+    
+  </div>
+</div><!-- End Contact Section -->
+
+</main><!-- End #main -->
 
     <footer>
       <%- include ('./partials/footer.ejs') %> 
       </footer>
     
     <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-      crossorigin="anonymous"
-    ></script>
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+
+(function() {
+  "use strict";
+
+  /**
+   * Easy selector helper function
+   */
+  const select = (el, all = false) => {
+    el = el.trim()
+    if (all) {
+      return [...document.querySelectorAll(el)]
+    } else {
+      return document.querySelector(el)
+    }
+  }
+
+  /**
+   * Easy event listener function
+   */
+  const on = (type, el, listener, all = false) => {
+    let selectEl = select(el, all)
+    if (selectEl) {
+      if (all) {
+        selectEl.forEach(e => e.addEventListener(type, listener))
+      } else {
+        selectEl.addEventListener(type, listener)
+      }
+    }
+  }
+
+  /**
+   * Easy on scroll event listener 
+   */
+  const onscroll = (el, listener) => {
+    el.addEventListener('scroll', listener)
+  }
+
+  /**
+   * Navbar links active state on scroll
+   */
+  let navbarlinks = select('#navbar .scrollto', true)
+  const navbarlinksActive = () => {
+    let position = window.scrollY + 200
+    navbarlinks.forEach(navbarlink => {
+      if (!navbarlink.hash) return
+      let section = select(navbarlink.hash)
+      if (!section) return
+      if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
+        navbarlink.classList.add('active')
+      } else {
+        navbarlink.classList.remove('active')
+      }
+    })
+  }
+  window.addEventListener('load', navbarlinksActive)
+  onscroll(document, navbarlinksActive)
+
+  /**
+   * Scrolls to an element with header offset
+   */
+  const scrollto = (el) => {
+    let header = select('#header')
+    let offset = header.offsetHeight
+
+    if (!header.classList.contains('header-scrolled')) {
+      offset -= 16
+    }
+
+    let elementPos = select(el).offsetTop
+    window.scrollTo({
+      top: elementPos - offset,
+      behavior: 'smooth'
+    })
+  }
+
+  /**
+   * Toggle .header-scrolled class to #header when page is scrolled
+   */
+  let selectHeader = select('#header')
+  if (selectHeader) {
+    const headerScrolled = () => {
+      if (window.scrollY > 100) {
+        selectHeader.classList.add('header-scrolled')
+      } else {
+        selectHeader.classList.remove('header-scrolled')
+      }
+    }
+    window.addEventListener('load', headerScrolled)
+    onscroll(document, headerScrolled)
+  }
+
+  /**
+   * Back to top button
+   */
+  let backtotop = select('.back-to-top')
+  if (backtotop) {
+    const toggleBacktotop = () => {
+      if (window.scrollY > 100) {
+        backtotop.classList.add('active')
+      } else {
+        backtotop.classList.remove('active')
+      }
+    }
+    window.addEventListener('load', toggleBacktotop)
+    onscroll(document, toggleBacktotop)
+  }
+
+  /**
+   * Mobile nav toggle
+   */
+  on('click', '.mobile-nav-toggle', function(e) {
+    select('#navbar').classList.toggle('navbar-mobile')
+    this.classList.toggle('bi-list')
+    this.classList.toggle('bi-x')
+  })
+
+  /**
+   * Mobile nav dropdowns activate
+   */
+  on('click', '.navbar .dropdown > a', function(e) {
+    if (select('#navbar').classList.contains('navbar-mobile')) {
+      e.preventDefault()
+      this.nextElementSibling.classList.toggle('dropdown-active')
+    }
+  }, true)
+
+  /**
+   * Scrool with ofset on links with a class name .scrollto
+   */
+  on('click', '.scrollto', function(e) {
+    if (select(this.hash)) {
+      e.preventDefault()
+
+      let navbar = select('#navbar')
+      if (navbar.classList.contains('navbar-mobile')) {
+        navbar.classList.remove('navbar-mobile')
+        let navbarToggle = select('.mobile-nav-toggle')
+        navbarToggle.classList.toggle('bi-list')
+        navbarToggle.classList.toggle('bi-x')
+      }
+      scrollto(this.hash)
+    }
+  }, true)
+
+  /**
+   * Scroll with ofset on page load with hash links in the url
+   */
+  window.addEventListener('load', () => {
+    if (window.location.hash) {
+      if (select(window.location.hash)) {
+        scrollto(window.location.hash)
+      }
+    }
+  });
+
+  /**
+   * Preloader
+   */
+  let preloader = select('#preloader');
+  if (preloader) {
+    window.addEventListener('load', () => {
+      preloader.remove()
+    });
+  }
+
+  /**
+   * Hero carousel indicators
+   */
+  let heroCarouselIndicators = select("#hero-carousel-indicators")
+  let heroCarouselItems = select('#heroCarousel .carousel-item', true)
+
+  heroCarouselItems.forEach((item, index) => {
+    (index === 0) ?
+    heroCarouselIndicators.innerHTML += "<li data-bs-target='#heroCarousel' data-bs-slide-to='" + index + "' class='active'></li>":
+      heroCarouselIndicators.innerHTML += "<li data-bs-target='#heroCarousel' data-bs-slide-to='" + index + "'></li>"
+  });
+
+  /**
+   * Porfolio isotope and filter
+   */
+  window.addEventListener('load', () => {
+    let portfolioContainer = select('.portfolio-container');
+    if (portfolioContainer) {
+      let portfolioIsotope = new Isotope(portfolioContainer, {
+        itemSelector: '.portfolio-item',
+        layoutMode: 'fitRows'
+      });
+
+      let portfolioFilters = select('#portfolio-flters li', true);
+
+      on('click', '#portfolio-flters li', function(e) {
+        e.preventDefault();
+        portfolioFilters.forEach(function(el) {
+          el.classList.remove('filter-active');
+        });
+        this.classList.add('filter-active');
+
+        portfolioIsotope.arrange({
+          filter: this.getAttribute('data-filter')
+        });
+      }, true);
+    }
+
+  });
+
+  /**
+   * Initiate portfolio lightbox 
+   */
+  const portfolioLightbox = GLightbox({
+    selector: '.portfolio-lightbox'
+  });
+})()
+    </script>
+    <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+  ></script>
   </body>
 </html>
