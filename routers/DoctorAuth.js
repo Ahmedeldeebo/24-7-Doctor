@@ -118,4 +118,13 @@ router.get("/Doctor-profile-setting", authorization, async (req, res) => {
   res.render("DocProfile.ejs", { name: name, email: email });
 });
 //-------------------------------------------- End Profile Doc ---------------------------------------------------
+router.get("/profile-home-doc", authorization, async (req, res, next) => {
+  console.log(res.locals.user.id);
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  console.log(user);
+  const name = user.Doc_FirstName;
+  const email = user.Doc_Email;
+  res.render("DocHomePage.ejs", { name: name, email: email });
+});
 module.exports = router;
