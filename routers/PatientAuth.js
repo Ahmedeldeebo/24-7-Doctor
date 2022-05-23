@@ -161,4 +161,13 @@ router.get("/Ticket", authorization, async (req, res) => {
     errorMessage: "Something is missing3",
   });
 });
+router.get("/profile-home", authorization, async (req, res, next) => {
+  console.log(res.locals.user.id);
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  console.log(user);
+  const name = user.pat_FirstName;
+  const email = user.pat_Email;
+  res.render("patienthome.ejs", { name: name, email: email });
+});
 module.exports = router;
