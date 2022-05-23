@@ -4,7 +4,7 @@ const AappointmentSchema = new mongoose.Schema({
   Zoom_address: { type: String, required: true },
   App_visit_date: { type: Date, required: true },
   App_visit_status: { type: String, required: true },
-  App_RegVisit_time: { type: String, required: true },
+  App_RegVisit_time: { timestamps: true },
   Dco_Id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Doctor",
