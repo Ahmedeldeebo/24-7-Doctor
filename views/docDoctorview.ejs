@@ -1,0 +1,502 @@
+
+<!doctype html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
+        <title>24/7 Doctors</title>
+        <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
+        <link href='https://use.fontawesome.com/releases/v5.7.2/css/all.css' rel='stylesheet'>
+        <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+        <style>
+ 
+        
+
+.badge23 {
+display: inline-block;
+padding: 0.40em .4em;
+font-size: 75%;
+font-weight: 300;
+line-height: 1;
+text-align: center;
+white-space: nowrap;
+vertical-align: baseline;
+border-radius: .25rem;
+color: #fff;
+background-color: #28a745
+}
+
+.rating-review {
+color: #5b5b5b;
+font-size: 12px
+}
+
+.doctor-fees {
+display: inline;
+font-size: 30px;
+font-weight: 400;
+margin-top: -11px;
+margin-bottom: 0px;
+color: #080808;
+clear: left
+}
+
+.list-group-item {
+position: relative;
+display: block;
+margin-bottom: -1px;
+background-color: #fff;
+border: 1px solid rgba(0, 0, 0, .125)
+}
+
+.seperator {
+background: #a2a2efb8
+}
+
+div.c {
+  text-transform: capitalize;
+}
+
+/*Filters */
+
+
+
+.wrapper {
+width: 70%;
+margin-top: 48px;
+margin-left: 16px;
+}
+
+@media(max-width:992px) {
+.wrapper {
+width: 100%
+}
+}
+
+.panel{
+
+margin-bottom: 5px;
+}
+
+.panel-title{
+
+margin-bottom: .0rem;
+}
+
+.panel-collapse{
+background: #fff;
+border-bottom: 1px solid #d5d5d5;
+}
+
+.panel-heading {
+padding: 0;
+border: 0;
+padding: 9px 3px !important;
+}
+
+.panel-body{
+padding: 13px;
+}
+
+.panel-title>a,
+.panel-title>a:active {
+display: block;
+padding: 10px;
+color: #555;
+font-size: 11px;
+text-transform: uppercase;
+letter-spacing: 1px;
+word-spacing: 3px;
+text-decoration: none;
+
+}
+
+.panel-heading a:before {
+font-family: 'Font Awesome 5 Free';
+content: "\f111";
+float: right;
+transition: all 0.5s
+}
+
+.panel-heading.active a:before {
+-webkit-transform: rotate(180deg);
+-moz-transform: rotate(180deg);
+transform: rotate(180deg)
+}
+
+.panel-default>.panel-heading {
+color: #282b2f;
+background-color: #ffffff !important;
+border-bottom: 1px solid #d5d5d5;
+}
+
+@keyframes click-wave {
+0% {
+height: 40px;
+width: 40px;
+opacity: 0.15;
+position: relative
+}
+
+100% {
+height: 200px;
+width: 200px;
+margin-left: -80px;
+margin-top: -80px;
+opacity: 0
+}
+}
+
+.option-input {
+-webkit-appearance: none;
+-moz-appearance: none;
+-ms-appearance: none;
+-o-appearance: none;
+appearance: none;
+position: relative;
+top: -8.66667px;
+right: 0;
+bottom: 0;
+left: 0;
+height: 24px;
+width: 24px;
+transition: all 0.15s ease-out 0s;
+background: #cbd1d8;
+border: none;
+color: #fff;
+cursor: pointer;
+display: inline-block;
+margin-right: 0.5rem;
+outline: none;
+position: relative;
+z-index: 1000
+}
+
+.option-input:hover {
+background: #9faab7
+}
+
+.option-input:checked {
+background: #2874ef
+}
+
+.option-input:checked::before {
+height: 24px;
+width: 24px;
+position: absolute;
+content: "\f111";
+font-family: "Font Awesome 5 Free";
+display: inline-block;
+font-size: 14.66667px;
+text-align: center;
+line-height: 26px
+}
+
+.option-input:checked::after {
+-webkit-animation: click-wave 0.15s;
+-moz-animation: click-wave 0.15s;
+animation: click-wave 0.15s;
+background: #E91E63;
+content: '';
+display: block;
+position: relative;
+z-index: 100
+}
+
+.option-input.radio {
+border-radius: 50%
+}
+
+.option-input.radio::after {
+border-radius: 50%
+}
+
+.checkbox input[type="checkbox"],
+.checkbox-inline input[type="checkbox"] {
+float: left;
+margin-left: -4px !important;
+margin-top: 9px
+}
+
+input[type="checkbox"]:focus {
+outline: thin dotted #333;
+outline: 0px auto -webkit-focus-ring-color;
+outline-offset: 0px
+}
+
+.ml-10 {
+margin-left: 10px;
+font-size: 12px;
+color: #080808
+}
+
+.btn.btn-out {
+outline: 1px solid #fff;
+outline-offset: -5px
+}
+
+.btn {
+border-radius: 2px;
+text-transform: capitalize;
+font-size: 11px;
+padding: 10px 19px;
+cursor: pointer;
+color: #fff
+}
+
+.fa {
+font-size: 12px;
+color: rgb(0, 0, 0)
+}
+
+.refine {
+padding: 0px 0px !important
+}
+
+.filters-text {
+background: #fff;
+border: 1px solid #d5d5d5;
+margin-bottom: 15px;
+padding: 12px 
+}
+
+.filter-span {
+font-size: 17px;
+color: #269bb8
+}
+
+
+</style>
+        </head>
+        <body className='snippet-body'>
+             <!--Start Hader-->
+    <%- include ('./partials/NavDoc.ejs') %>
+    <!--End Hader-->
+        <div class="row">
+
+<div class="col-md-4">
+<div class="wrapper center-block hidden-xs">
+<div class="filters-text">
+<span class="filter-span">Sort by: <small>(find doctors using filters below)</small></span>
+<span style="float:right;"><i class="fa fa-filter"></i></span>
+</div>
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+<div class="panel panel-default">
+<div class="panel-heading" role="tab" id="heading1">
+<h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="false" aria-controls="collapse1"> Specialization </a> </h4>
+</div>
+<div id="collapse1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading1">
+<div class="panel-body">
+<div class="checkbox"> <label> <input type="checkbox" class="option-input checkbox" name="filter[]" value="12" /> <span class="ml-10">Dentistry</span> </label> </div>
+<div class="checkbox"> <label> <input type="checkbox" class="option-input checkbox" name="filter[]" value="12" /> <span class="ml-10">Dermatology</span> </label> </div>
+<div class="checkbox"> <label> <input type="checkbox" class="option-input checkbox" name="filter[]" value="12" /> <span class="ml-10">Pediatrics</span> </label> </div>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading" role="tab" id="heading2">
+<h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="false" aria-controls="collapse2"> Communication Type </a> </h4>
+</div>
+<div id="collapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2">
+<div class="panel-body">
+<div class="checkbox"> <label> <input type="checkbox" class="option-input checkbox" name="filter[]" value="12" /> <span class="ml-10">Zoom Meeting</span> </label> </div>
+<div class="checkbox"> <label> <input type="checkbox" class="option-input checkbox" name="filter[]" value="12" /> <span class="ml-10">Face to Face</span> </label> </div>
+<div class="checkbox"> <label> <input type="checkbox" class="option-input checkbox" name="filter[]" value="12" /> <span class="ml-10">WhatsApp</span> </label> </div>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading" role="tab" id="heading3">
+<h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="false" aria-controls="collapse3"> Date & Time </a> </h4>
+</div>
+<div id="collapse3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading3">
+<div class="panel-body">
+<div class="checkbox"> <label> <input type="checkbox" class="option-input checkbox" name="filter[]" value="12" /> <span class="ml-10">Available Today</span> </label> </div>
+<div class="checkbox"> <label> <input type="checkbox" class="option-input checkbox" name="filter[]" value="12" /> <span class="ml-10">Available This Week</span> </label> </div>
+<div class="checkbox"> <label> <input type="checkbox" class="option-input checkbox" name="filter[]" value="12" /> <span class="ml-10">Available This Month</span> </label> </div>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading" role="tab" id="heading4">
+<h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="false" aria-controls="collapse4"> Ratings & Recommendations </a> </h4>
+</div>
+<div id="collapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading4">
+<div class="panel-body">
+<div class="checkbox"> <label> <input type="checkbox" class="option-input checkbox" name="filter[]" value="12" /> <span class="ml-10">⭐⭐⭐⭐⭐</span> </label> </div>
+<div class="checkbox"> <label> <input type="checkbox" class="option-input checkbox" name="filter[]" value="12" /> <span class="ml-10">⭐⭐⭐⭐</span> </label> </div>
+<div class="checkbox"> <label> <input type="checkbox" class="option-input checkbox" name="filter[]" value="12" /> <span class="ml-10">⭐⭐⭐</span> </label> </div>
+<div class="checkbox"> <label> <input type="checkbox" class="option-input checkbox" name="filter[]" value="12" /> <span class="ml-10">⭐⭐</span> </label> </div>
+<div class="checkbox"> <label> <input type="checkbox" class="option-input checkbox" name="filter[]" value="12" /> <span class="ml-10">⭐</span> </label> </div>
+</div>
+</div>
+</div>
+</div>
+<div class="text-right refine"> <button class="btn btn-in btn-info btn-square" id="button-filter">Refine Search</button> </div>
+</div>
+
+
+
+
+</div>
+
+<div class="col-md-8">
+    
+<div class="container py-5">
+<div class="row">
+<div class="col-lg-12 mx-auto">
+    <div class="d-flex justify-content-between mb-3"> <class="text-right refine ><a href="http://localhost:5000/doctors/" class="btn btn-info add" role="button">View High Rated Doctors</a> </div>
+
+    <ul class="list-group shadow">
+<li class="list-group-item">
+    <%users.forEach(users=>{%>
+<div class="media align-items-lg-center flex-column flex-lg-row"> <img src="/Doctors/MaleDoctor.jpg" alt="Generic placeholder image" width="200" height="200" class="order-1 order-lg-1">
+    
+    <div class="media-body order-2 order-lg-2 ml-lg-5">
+
+    <h5 class="mt-0 mb-1"> <div class="c"> Doctor <%=users.Doc_FirstName%></div> </h5>
+    <div class="product-rating mb-2"> <span class="badge23"><i class="fa fa-star"></i> 4 Star</span> <span class="rating-review mb-1">4 Ratings &amp; 3 Recommendations</span></div> <span class="doctor-fees price-new">Fees : 150 EGP </span>
+    <!-- <div class="text-right refine" ><a href="http://localhost:5000/booking" class="btn btn-info" role="button">Book Appointment</a> </div> -->
+    <div class="text-right refine" ><a href="http://localhost:5000/DocSche" class="btn btn-info" role="button">Doctor Schedule</a> </div>
+      
+    <hr class="mb-2 mt-1 seperator">
+    <div class="d-flex align-items-center justify-content-between mt-1">
+
+        <ul class="list-inline small">
+            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> <%=users.Specialization_Name%></li>
+            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png">New Cairo : North Tessen Street-CMC Medical Center </li>
+            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Waiting Time : 1 Hour and 8 Minutes </li>
+        </ul>
+        <ul class="list-inline small">
+            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Available Zoom/WhatsApp/FacetoFace</li>
+        </ul>
+    </div>
+</div>
+
+</div>
+
+<hr class="seperator">
+<%})%>
+</li>
+<li class="list-group-item">
+<div class="media align-items-lg-center flex-column flex-lg-row"> <img src="/Doctors/ShreifHelal.jpg" alt="Generic placeholder image" height="200" width="200" class="order-1 order-lg-1">
+<div class="media-body order-2 order-lg-2 ml-lg-5">
+    <h5 class="mt-0 mb-1">Doctor Sherif Helal</h5>
+    <div class="product-rating mb-2"> <span class="badge23"><i class="fa fa-star"></i> 5 Star</span> <span class="rating-review mb-1">4 Ratings &amp; 6 Recommendations</span> </div> <span class="doctor-fees price-new">Fees : 250 EGP </span>
+    <!-- <div class="text-right refine" ><a href="http://localhost:5000/booking" class="btn btn-info" role="button">Book Appointment</a> </div> -->
+    <hr class="mb-2 mt-1 seperator">
+    <div class="d-flex align-items-center justify-content-between mt-1">
+        <ul class="list-inline small">
+            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png">Consultant ENT and Fellow of Royal College of Surgeon in Ereland</li>
+            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png">Waiting Time : 5 Minutes</li>
+            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> ENT Doctor Specialized in Adult Ear, Nose and throat Surgery, Adult Ear, Nose and Throat, Pediatric Ear, Nose and throat Surgery and Pediatric Ear, Nose and Throat</li>
+            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Available Zoom/FacetoFace</li>
+        </ul>
+    </div>
+</div>
+</div>
+<hr class="seperator">
+</li>
+<li class="list-group-item">
+<div class="media align-items-lg-center flex-column flex-lg-row"> <img src="/Doctors/EmadIsmail.jpg" alt="Generic placeholder image" height="200" width="200" class="order-1 order-lg-1">
+<div class="media-body order-2 order-lg-2 ml-lg-5">
+    <h5 class="mt-0 mb-1">Doctor Emad Ismail</h5>
+    <div class="product-rating mb-2"> <span class="badge23"><i class="fa fa-star"></i> 4 Star</span> <span class="rating-review mb-1">3.5 Ratings &amp; 8 Recommendations</span> </div> <span class="doctor-fees price-new">Fees : 300 EGP</span>
+    <!-- <div class="text-right refine" ><a href="http://localhost:5000/booking" class="btn btn-info" role="button">Book Appointment</a> </div> -->
+    <hr class="mb-2 mt-1 seperator">
+    <div class="d-flex align-items-center justify-content-between mt-1">
+        <ul class="list-inline small">
+            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png">Professor and consultant of diabetes endocrinology</li>
+            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png">Endocrinologist Specialized in Adult Internal Medicine and Adult Diabetes</li>
+            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png">Waiting Time : 34 Minutes</li>
+        </ul>
+        <ul class="list-inline small">
+            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png">Available Zoom/WhatsApp/FacetoFace</li>
+        </ul>
+    </div>
+</div>
+</div>
+<hr class="seperator">
+</li>
+<!-- <li class="list-group-item">
+<div class="media align-items-lg-center flex-column flex-lg-row"> <img src="/Doctors/FemaleDoctor.png" alt="Generic placeholder image" width="200" height="200" class="order-1 order-lg-1">
+<div class="media-body order-2 order-lg-2 ml-lg-5">
+    <h5 class="mt-0 mb-1">Doctor N/A</h5>
+    <div class="product-rating mb-2"> <span class="badge23"><i class="fa fa-star"></i> - Stars</span> <span class="rating-review mb-1">- Ratings &amp;  Recommendations</span> </div> <span class="doctor-fees price-new">Fees: - </span>
+     <div class="text-right refine" ><a href="http://localhost:5000/booking" class="btn btn-info" role="button">Book Appointment</a> </div> 
+    <hr class="mb-2 mt-1 seperator">
+    <div class="d-flex align-items-center justify-content-between mt-1">
+        <ul class="list-inline small">
+            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Doctor Info</li>
+            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Doctor Info</li>
+            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Doctor Info</li>
+        </ul>
+        <ul class="list-inline small">
+            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Doctor Info</li>
+            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Doctor Info</li>
+            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Doctor Info</li>
+        </ul>
+    </div>
+</div>
+</div>
+<hr class="seperator">
+</li>
+<li class="list-group-item">
+<div class="media align-items-lg-center flex-column flex-lg-row"> <img src="/Doctors/MaleDoctor.jpg" alt="Generic placeholder image" width="200" height="200" class="order-1 order-lg-1">
+<div class="media-body order-2 order-lg-2 ml-lg-5">
+    <h5 class="mt-0 mb-1">Doctor N/A</h5>
+    <div class="product-rating mb-2"> <span class="badge23"><i class="fa fa-star"></i> - Star</span> <span class="rating-review mb-1">- Ratings &amp; 3 Recommendations</span> </div> <span class="doctor-fees price-new">Fees: -</span>
+     <div class="text-right refine" ><a href="http://localhost:5000/booking" class="btn btn-info" role="button">Book Appointment</a> </div> 
+    
+    
+    <hr class="mb-2 mt-1 seperator">
+    <div class="d-flex align-items-center justify-content-between mt-1">
+        <ul class="list-inline small">
+            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Doctor Info</li>
+            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Doctor Info</li>
+            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Doctor Info</li>
+        </ul>
+        <ul class="list-inline small">
+            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Doctor Info</li>
+            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Doctor Info</li>
+            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Doctor Info</li>
+        </ul>
+    </div>
+</div>
+</div> -->
+<hr class="seperator">
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- <div class="container">
+    <div class="row">
+        <div class="col-xs-12" 
+
+            <div class="dropdown">
+            <button class="btn btn-defeault dropdown-toggle" type="button" id="dropdownmenu" data-toggle="dropdown">
+            dropdown
+            <span class="caret"></span>
+            </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdown-menu">
+            <li><a href="#"> Some test </a></li>
+            </ul>
+    </div>
+</div>
+</div> -->
+        <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
+        <script type='text/javascript'>var myLink = document.querySelector('a[href="#"]');
+        myLink.addEventListener('click', function(e) {
+          e.preventDefault();
+        });</script>
+    
+    <!--Start Footer-->
+<footer>
+    <%- include ('./partials/footer.ejs') %>
+    </footer>
+     </html>

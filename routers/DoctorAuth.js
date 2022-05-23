@@ -81,7 +81,7 @@ router.post("/Docter-login", async (req, res) => {
       .cookie("accessToken", accessToken, {
         httpOnly: true,
       })
-      .render("DocHomePage.ejs", { name: "Dr." + name }); //res.status(200).json({ ...others, accessToken });
+      .render("DocHomePage.ejs", { name: name }); //res.status(200).json({ ...others, accessToken });
   } catch (err) {
     return console.log(err);
   }
@@ -105,7 +105,7 @@ router.get("/doctorview-doc", authorization, async (req, res) => {
   console.log(req.body);
   const users = await User.find({});
   console.log(users);
-  res.render("doctorview.ejs", { users: users, name: name });
+  res.render("docDoctorview.ejs", { users: users, name: name });
 });
 //-------------------------------------------- Start profile Doc ---------------------------------------------------
 router.get("/Doctor-profile-setting", authorization, async (req, res) => {
