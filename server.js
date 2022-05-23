@@ -95,14 +95,17 @@ app.get("/Doctorreg", (req, res) => {
 app.get("/Pharmacyreg", (req, res) => {
   res.render("PharmacySignUp.ejs", { errorMessage: "" });
 });
-// app.get("/doctorview", async (req, res) => {
-//   res.render("doctorview.ejs", { users: users });
-// });
+ app.get("/doctorview", async (req, res) => {
+   res.render("doctorview.ejs", { users: users });
+ });
 app.get("/signuptest", (req, res) => {
   res.render("signUptest");
 });
 app.get("/home",authorization, (req, res) => {
   res.render("Patienthome.ejs");
+});
+app.get("/DocSche",authorization, (req, res) => {
+  res.render("DocSche.ejs");
 });
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

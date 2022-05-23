@@ -34,7 +34,7 @@ router.post("/register", async (req, res) => {
     const savedUser = await NewUser.save();
     console.log(NewUser);
   } catch (err) {
-    res.render("signUp.ejs", { errorMessage: "Something is missing" });
+    res.render("signUp.ejs", { errorMessage: "Credentials already in use" });
   }
   try {
     const savedUser = await NewUser.save();
