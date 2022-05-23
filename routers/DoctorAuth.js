@@ -16,21 +16,24 @@ const { body } = require("express-validator");
 
 router.post("/Doctor-register", async (req, res) => {
   console.log(req.body);
-
-  const NewUser = new User({
-    Doc_username: req.body.Doc_username,
-    Doc_FirstName: req.body.Doc_FirstName,
-    Doc_Lastname: req.body.Doc_Lastname,
-    Doc_Email: req.body.Doc_Email,
-    Doc_Gender: req.body.Doc_Gender,
-    Doc_password: CryptoJS.AES.encrypt(
-      req.body.Doc_password,
-      process.env.PASS_SEC
-    ).toString(),
-    Specialization_Name: req.body.Specialization_Name,
-    Doc_birtday: req.body.Doc_birtday,
-    Upfornt_fees: req.body.Upfornt_fees,
-  });
+  try {
+    const NewUser = new User({
+      Doc_username: req.body.Doc_username,
+      Doc_FirstName: req.body.Doc_FirstName,
+      Doc_Lastname: req.body.Doc_Lastname,
+      Doc_Email: req.body.Doc_Email,
+      Doc_Gender: req.body.Doc_Gender,
+      Doc_password: CryptoJS.AES.encrypt(
+        req.body.Doc_password,
+        process.env.PASS_SEC
+      ).toString(),
+      Specialization_Name: req.body.Specialization_Name,
+      Doc_birtday: req.body.Doc_birtday,
+      Upfornt_fees: req.body.Upfornt_fees,
+    });
+  } catch (err) {
+    res.render("signUp.ejs", { errorMessage: "Something is missing" });
+  }
   const savedUser = await NewUser.save();
   console.log(NewUser);
   try {
@@ -89,6 +92,16 @@ router.get("/doctorview", authorization, async (req, res) => {
   const id = res.locals.user.id;
   const user = await Patient.findById(id);
   const name = user.pat_FirstName;
+  console.log(req.body);
+  const users = await User.find({});
+  console.log(users);
+  res.render("doctorview.ejs", { users: users, name: name });
+});
+router.get("/doctorview-doc", authorization, async (req, res) => {
+  const body = req.body;
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  const name = user.Doc_FirstName;
   console.log(req.body);
   const users = await User.find({});
   console.log(users);

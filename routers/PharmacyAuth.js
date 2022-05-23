@@ -11,18 +11,21 @@ const { authorization } = require("./verifyToken");
 
 router.post("/Pharmcy-register", async (req, res) => {
   console.log(req.body);
-
-  const NewUser = new User({
-    Phar_userName: req.body.Phar_userName,
-    Phar_name: req.body.Phar_name,
-    Phar_Email: req.body.Phar_Email,
-    Phar_PhoneNumber: req.body.Phar_PhoneNumber,
-    Phar_location: req.body.Phar_location,
-    Phar_Password: CryptoJS.AES.encrypt(
-      req.body.Phar_Password,
-      process.env.PASS_SEC
-    ).toString(),
-  });
+  try {
+    const NewUser = new User({
+      Phar_userName: req.body.Phar_userName,
+      Phar_name: req.body.Phar_name,
+      Phar_Email: req.body.Phar_Email,
+      Phar_PhoneNumber: req.body.Phar_PhoneNumber,
+      Phar_location: req.body.Phar_location,
+      Phar_Password: CryptoJS.AES.encrypt(
+        req.body.Phar_Password,
+        process.env.PASS_SEC
+      ).toString(),
+    });
+  } catch (err) {
+    res.render("signUp.ejs", { errorMessage: "Something is missing" });
+  }
   const savedUser = await NewUser.save();
   console.log(NewUser);
   try {
@@ -75,6 +78,5 @@ router.post("/Pharmacy-login", async (req, res) => {
     return console.log(err);
   }
 });
-
 
 module.exports = router;
