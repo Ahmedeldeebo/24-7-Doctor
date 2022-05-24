@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const User = require("../models/Patient");
+const Doctor = require("../models/Doctor");
 const ticket = require("../models/Ticket");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
@@ -169,5 +170,14 @@ router.get("/profile-home", authorization, async (req, res, next) => {
   const name = user.pat_FirstName;
   const email = user.pat_Email;
   res.render("patienthome.ejs", { name: name, email: email });
+});
+//---------------------------------v
+router.get("/viewdocschedule", authorization, async (req, res) => {
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  console.log(user);
+  const name = user.pat_FirstName;
+  const email = user.pat_Email;
+  res.render("viewDocSche.ejs", { name: name, email: email });
 });
 module.exports = router;

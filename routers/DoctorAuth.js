@@ -1,6 +1,7 @@
 const router = require("express").Router();
-const User = require("../models/Doctor");
 const Patient = require("../models/Patient");
+const User = require("../models/Doctor");
+const DocSche = require("../models/Doc_Schedule");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
 const { render } = require("ejs");
@@ -29,7 +30,6 @@ router.post("/Doctor-register", async (req, res) => {
       ).toString(),
       Specialization_Name: req.body.Specialization_Name,
       Doc_birtday: req.body.Doc_birtday,
-      Upfornt_fees: req.body.Upfornt_fees,
     });
   } catch (err) {
     res.render("signUp.ejs", { errorMessage: "Something is missing" });
@@ -92,20 +92,40 @@ router.get("/doctorview", authorization, async (req, res) => {
   const id = res.locals.user.id;
   const user = await Patient.findById(id);
   const name = user.pat_FirstName;
+  // const shce = await DocSche.find({ Doctor_id });
+  // const fees = shce.Upfront_fees;
+  // const time = shce.AveWating_Time;
+  // const methods = shce.Available_methods;
   console.log(req.body);
   const users = await User.find({});
   console.log(users);
-  res.render("doctorview.ejs", { users: users, name: name });
+  res.render("doctorview.ejs", {
+    users: users,
+    name: name,
+    // fees: fees,
+    // time: time,
+    // methods: methods,
+  });
 });
 router.get("/doctorview-doc", authorization, async (req, res) => {
-  const body = req.body;
   const id = res.locals.user.id;
   const user = await User.findById(id);
   const name = user.Doc_FirstName;
+  // const shce = await DocSche.findById({ idSch: req.body.Doctor_id });
+  // const test = await DocSche.findById(shce);
+  // const fees = test.Upfront_fees;
+  // const time = test.AveWating_Time;
+  // const methods = test.Available_methods;
   console.log(req.body);
   const users = await User.find({});
   console.log(users);
-  res.render("docDoctorview.ejs", { users: users, name: name });
+  res.render("docDoctorview.ejs", {
+    users: users,
+    name: name,
+    // fees: fees,
+    // time: time,
+    // methods: methods,
+  });
 });
 //-------------------------------------------- Start profile Doc ---------------------------------------------------
 router.get("/Doctor-profile-setting", authorization, async (req, res) => {
@@ -126,5 +146,40 @@ router.get("/profile-home-doc", authorization, async (req, res, next) => {
   const name = user.Doc_FirstName;
   const email = user.Doc_Email;
   res.render("DocHomePage.ejs", { name: name, email: email });
+});
+router.get("/updataShcdeule", authorization, async (req, res) => {
+  console.log(res.locals.user.id);
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  console.log(user);
+  const name = user.Doc_FirstName;
+  const email = user.Doc_Email;
+  res.render("DocSche.ejs", { name: name, email: email });
+});
+router.post("/UpdateSchedule-add", authorization, async (req, res) => {
+  console.log(res.locals.user.id);
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  console.log(user);
+  const name = user.Doc_FirstName;
+  const email = user.Doc_Email;
+  try {
+    const UpdateDoc = new DocSche({
+      Meeting_Maximum_Patient: req.body.Meeting_Maximum_Patient,
+      Start_Time: req.body.Start_Time,
+      AveWating_Time: req.body.AveWating_Time,
+      Available_Days: req.body.Available_Days,
+      Doctor_Date: req.body.Doctor_Date,
+      Upfront_fees: req.body.Upfront_fees,
+      Available_methods: req.body.Available_methods,
+      Doctor_id: id,
+    });
+    const SavadUpdateDoc = await UpdateDoc.save();
+    console.log(UpdateDoc);
+  } catch (err) {
+    console.log(err);
+  }
+
+  res.render("DocSche.ejs", { name: name, email: email });
 });
 module.exports = router;

@@ -17,7 +17,6 @@ const DoctorSchema = new mongoose.Schema(
       ref: "Prescription",
       required: false,
     },
-    Upfornt_fees: { type: Number, require: true },
   },
   { timestamps: true }
 );

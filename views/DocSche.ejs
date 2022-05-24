@@ -16,6 +16,10 @@
   <body>
 
 
+  <!--Start Hader-->
+  <%- include ('./partials/NavDoc.ejs') %>
+  <!--End Hader-->
+
     <!-----------------------------------------------Start Schedule Form --------------------------------------------->
 
 
@@ -23,17 +27,19 @@
             <div class="container rounded bg-white mt-5 mb-5">
                 <div class="row">
                        <div class="col-md-3 border-right">
-                        <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold"><div class="c"> name </div> </span><span class="text-black-50"> email </span><span> </span></div>
+                        <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold"><div class="c"> <%- name %></div> </span><span class="text-black-50"> <%- email %> </span><span> </span></div>
                     </div>
                      <div class="col-md-5 border-right">
                         <div class="p-3 py-5">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <h4 class="text-right">Schedule Settings</h4>
                            </div>
-
+<form action="http://localhost:5000/doctor/UpdateSchedule-add" method="POST" >
 <div class="row mt-3">
+  
    <label for="exampleDataList" class="form-label">Available Days</label>
-   <input class="form-control" list="availabledays" id="exampleDataList" placeholder="Type to search...">
+   <input class="form-control" list="availabledays" id="exampleDataList" placeholder="Type to search..."
+   name="Available_Days">
    <datalist id="availabledays">
      <option value="All week">
      <option value="From Sunday till Thursday">
@@ -46,7 +52,7 @@
    <br>
 
    <label for="exampleDataList" class="form-label">Time-Period</label>
-    <input class="form-control" list="Time-Period" id="exampleDataList" placeholder="Type to search...">
+    <input class="form-control" list="Time-Period" id="exampleDataList" placeholder="Type to search..."name="Start_Time">
     <datalist id="Time-Period">
       <option value="All day">
       <option value="From 9:00am till 5:00pm">
@@ -58,7 +64,7 @@
     <br>
 
     <label for="exampleDataList" class="form-label">Patients per-day</label>
-    <input class="form-control" list="Patients per-day" id="exampleDataList" placeholder="Type to search...">
+    <input class="form-control" list="Patients per-day" id="exampleDataList" placeholder="Type to search..." name="Meeting_Maximum_Patient">
     <datalist id="Patients per-day">
       <option value="10">
       <option value="20">
@@ -70,7 +76,7 @@
     <br>
 
     <label for="exampleDataList" class="form-label">Available methods</label>
-    <input class="form-control" list="Available methods" id="exampleDataList" placeholder="Type to search...">
+    <input class="form-control" list="Available methods" id="exampleDataList" placeholder="Type to search..." name="Available_methods">
     <datalist id="Available methods">
       <option value="Zoom meeting">
       <option value="WhatsApp">
@@ -81,7 +87,7 @@
     <br>
 
     <label for="exampleDataList" class="form-label">Average Waiting-Time</label>
-    <input class="form-control" list="Average Waiting-Time" id="exampleDataList" placeholder="Type to search...">
+    <input class="form-control" list="Average Waiting-Time" id="exampleDataList" placeholder="Type to search..." name="AveWating_Time">
     <datalist id="Average Waiting-Time">
       <option value="1 Hour">
       <option value="2 Hours">
@@ -94,7 +100,7 @@
     <br>
 
     <label for="exampleDataList" class="form-label">Upfront Fees</label>
-    <input class="form-control" list="Upfront Fees" id="exampleDataList" placeholder="Type to search...">
+    <input class="form-control" list="Upfront Fees" id="exampleDataList" placeholder="Type to search..." name="Upfront_fees">
     <datalist id="Upfront Fees">
       <option value="150 EGP">
       <option value="200 EGP">
@@ -103,8 +109,10 @@
       <option value="Enter your own">
     </datalist>
 </div>
-                             <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Update Schedule</button></div>  
+                             <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Update Schedule</button></div>  
+
                            </div> 
+                          </form>
                     </div>
                 
       
