@@ -50,7 +50,7 @@ router.post("/Doctor-register", async (req, res) => {
 router.post("/Docter-login", async (req, res) => {
   try {
     const user = await User.findOne({ Doc_username: req.body.Doc_username });
-    !user && res.render("signIn.ejs", { errorMessage: "Wrong email" });
+    !user && res.render("signInDoc.ejs", { errorMessage: "Wrong email" });
     //res.Status(401).json("Wrong credentials!");
     const hashedPassword = CryptoJS.AES.decrypt(
       user.Doc_password,
@@ -59,7 +59,7 @@ router.post("/Docter-login", async (req, res) => {
     const Originalpassword = hashedPassword.toString(CryptoJS.enc.Utf8);
 
     Originalpassword !== req.body.Doc_password &&
-      res.render("signIn.ejs", { errorMessage: "Wrong password" });
+      res.render("signInDoc.ejs", { errorMessage: "Wrong password" });
     // res.status(401).json("Wrong credentials!");
 
     const accessToken = jwt.sign(
