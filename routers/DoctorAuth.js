@@ -92,17 +92,20 @@ router.get("/doctorview", authorization, async (req, res) => {
   const id = res.locals.user.id;
   const user = await Patient.findById(id);
   const name = user.pat_FirstName;
-  // const shce = await DocSche.find({ Doctor_id });
-  // const fees = shce.Upfront_fees;
-  // const time = shce.AveWating_Time;
-  // const methods = shce.Available_methods;
-  console.log(req.body);
+  const Doc_Schedule = await DocSche.find({});
+  const shce = await DocSche.find({});
+  const fees = shce.Upfront_fees;
+  const time = shce.AveWating_Time;
+  const methods = shce.Available_methods;
+  console.log(Doc_Schedule);
   const users = await User.find({});
+  const Doc_Id = users._id;
+  console.log(Doc_Id);
   console.log(users);
   res.render("doctorview.ejs", {
     users: users,
     name: name,
-    // fees: fees,
+    fees: fees,
     // time: time,
     // methods: methods,
   });

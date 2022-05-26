@@ -114,6 +114,35 @@ router.post("/login", async (req, res) => {
 
 //   const { pat_password, ...others } = user._doc;
 // });
+router.put("/profile-setting-Update", authorization, async (req, res, next) => {
+  console.log(res.locals.user.id);
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  console.log(user);
+  const name = user.pat_FirstName;
+  const email = user.pat_Email;
+  const lastName = user.pat_Lastname;
+  const Ins = user.pat_InsuranceNo;
+  try {
+    const upadateUser = await User.findByIdAndUpdate(
+      id,
+      {
+        $set: req.body,
+      },
+      { new: true }
+    );
+    res.status(200);
+  } catch (err) {
+    console.log(err);
+    res.satuts(500);
+  }
+  res.render("Profile.ejs", {
+    name: name,
+    email: email,
+    lastName: lastName,
+    Ins: Ins,
+  });
+});
 router.get("/profile-setting", authorization, async (req, res, next) => {
   console.log(res.locals.user.id);
   const id = res.locals.user.id;
@@ -121,7 +150,14 @@ router.get("/profile-setting", authorization, async (req, res, next) => {
   console.log(user);
   const name = user.pat_FirstName;
   const email = user.pat_Email;
-  res.render("Profile.ejs", { name: name, email: email });
+  const lastName = user.pat_Lastname;
+  const Ins = user.pat_InsuranceNo;
+  res.render("Profile.ejs", {
+    name: name,
+    email: email,
+    lastName: lastName,
+    Ins: Ins,
+  });
 });
 ///------------------------------------logOut start--------------------------------------------------------
 router.get("/logOut", authorization, (req, res) => {
