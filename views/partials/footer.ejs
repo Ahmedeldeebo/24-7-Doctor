@@ -8,9 +8,13 @@
         <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' rel='stylesheet'>
         <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
         <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+        
         <style>::-webkit-scrollbar {
-          width: 8px;
+                  position:absolute;
+   bottom:0;
+   width:100%;
         }
+
         /* Track */
         ::-webkit-scrollbar-track {
           background: #f1f1f1; 
@@ -112,9 +116,23 @@ padding-top: 5px;
 opacity: 0.3;
 font-size: 13px;
 margin-bottom: 0;
+}
+#btn-back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none;
 }</style>
         </head>
-        <body className='snippet-body'>
+        
+        <body>
+          <button
+        type="button"
+        class="btn btn-dark btn-floating btn-lg"
+        id="btn-back-to-top"
+        >
+  <i class="fas fa-arrow-up"></i>
+</button>
         <div class="footer-dark">
 <footer>
 <div class="container">
@@ -148,7 +166,10 @@ margin-bottom: 0;
 <br>
 <div class="col item social"><a href="https://www.facebook.com"><i class="fa fa-facebook"></i></a><a href="https://twitter.com/home"><i class="fa fa-twitter"></i></a><a href="https://www.youtube.com/?hl=ar"><i class="fa fa-youtube"></i></a><a href="https://www.instagram.com"><i class="fa fa-instagram"></i></a><a href="https://github.com/Ahmedeldeebo/24-7-Doctor"><i class="fa fa-github"></i></a></div>
 </div>
-<p class="copyright">24/7 Doctors 2022©</p>
+<p class="copyright">24/7 Doctors 2022©</a></p>
+<!-- <a href="#" title="To Top">
+  <span class="fa-solid fa-angles-up"></span>
+</a> -->
 </div>
 </div>
 </footer>
@@ -158,4 +179,31 @@ margin-bottom: 0;
 
     
         </body>
+        <script>
+          //Get the button
+let mybutton = document.getElementById("btn-back-to-top");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function () {
+  scrollFunction();
+};
+
+function scrollFunction() {
+  if (
+    document.body.scrollTop > 20 ||
+    document.documentElement.scrollTop > 20
+  ) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+// When the user clicks on the button, scroll to the top of the document
+mybutton.addEventListener("click", backToTop);
+
+function backToTop() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+        </script>
     </html>

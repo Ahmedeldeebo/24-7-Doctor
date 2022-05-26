@@ -31,16 +31,15 @@ router.post("/Doctor-register", async (req, res) => {
       Specialization_Name: req.body.Specialization_Name,
       Doc_birtday: req.body.Doc_birtday,
     });
-  } catch (err) {
-    res.render("signUp.ejs", { errorMessage: "Something is missing" });
-  }
-  const savedUser = await NewUser.save();
-  console.log(NewUser);
-  try {
     const savedUser = await NewUser.save();
     console.log(NewUser);
-
-    res.render("DocSignup.ejs", { errorMessage: "" });
+  } catch (err) {
+    res.render("signUp.ejs", { errorMessage: "Credentials already in use" });
+  }
+  try {
+    // const savedUser = await NewUser.save();
+    // console.log(NewUser);
+    res.render("signInDoc.ejs", { errorMessage: "Account Created Successfully" });
   } catch (err) {
     console.log(err);
   }
@@ -50,7 +49,7 @@ router.post("/Doctor-register", async (req, res) => {
 router.post("/Docter-login", async (req, res) => {
   try {
     const user = await User.findOne({ Doc_username: req.body.Doc_username });
-    !user && res.render("signIn.ejs", { errorMessage: "Wrong email" });
+    !user && res.render("signInDoc.ejs", { errorMessage: "Wrong email" });
     //res.Status(401).json("Wrong credentials!");
     const hashedPassword = CryptoJS.AES.decrypt(
       user.Doc_password,
@@ -59,7 +58,7 @@ router.post("/Docter-login", async (req, res) => {
     const Originalpassword = hashedPassword.toString(CryptoJS.enc.Utf8);
 
     Originalpassword !== req.body.Doc_password &&
-      res.render("signIn.ejs", { errorMessage: "Wrong password" });
+      res.render("signInDoc.ejs", { errorMessage: "Wrong password" });
     // res.status(401).json("Wrong credentials!");
 
     const accessToken = jwt.sign(
@@ -138,7 +137,8 @@ router.get("/Doctor-profile-setting", authorization, async (req, res) => {
   console.log(user);
   const name = user.Doc_FirstName;
   const email = user.Doc_Email;
-  res.render("DocProfile.ejs", { name: name, email: email });
+  const Lname = user.Doc_Lastname
+  res.render("DocProfile.ejs", { name: name, email: email, Lname: Lname });
 });
 //-------------------------------------------- End Profile Doc ---------------------------------------------------
 router.get("/profile-home-doc", authorization, async (req, res, next) => {

@@ -18,6 +18,7 @@ const { findById } = require("../models/Patient");
 // router.use(cors({ origin: "*", credentials:true  } ) );
 
 router.post("/register", async (req, res) => {
+  console.log(req.body);
   try {
     const NewUser = new User({
       Pat_username: req.body.Pat_username,
@@ -38,9 +39,10 @@ router.post("/register", async (req, res) => {
     res.render("signUp.ejs", { errorMessage: "Credentials already in use" });
   }
   try {
-    const savedUser = await NewUser.save();
-    console.log(NewUser);
-    res.render("signIn.ejs", { errorMessage: "Something is missing" });
+    //  const savedUser = await NewUser.save();
+    //  console.log(NewUser);
+    
+    res.render("signIn.ejs", { errorMessage: "Account Created Successfully" });
   } catch (err) {
     console.log(err);
   }
@@ -93,7 +95,8 @@ router.post("/login", async (req, res) => {
       .cookie("accessToken", accessToken, {
         httpOnly: true,
       })
-      .render("test.ejs", { name: name });
+      .render("Patienthome.ejs", { name: name });
+     
     //res.status(200).json({ ...others, accessToken });
   } catch (err) {
     return console.log(err);
@@ -149,6 +152,7 @@ router.get("/profile-setting", authorization, async (req, res, next) => {
   const user = await User.findById(id);
   console.log(user);
   const name = user.pat_FirstName;
+  const Lname = user.pat_Lastname;
   const email = user.pat_Email;
   const lastName = user.pat_Lastname;
   const Ins = user.pat_InsuranceNo;
@@ -215,5 +219,13 @@ router.get("/viewdocschedule", authorization, async (req, res) => {
   const name = user.pat_FirstName;
   const email = user.pat_Email;
   res.render("viewDocSche.ejs", { name: name, email: email });
+});
+router.get("/viewappoint", authorization, async (req, res) => {
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  console.log(user);
+  const name = user.pat_FirstName;
+  const email = user.pat_Email;
+  res.render("viewAppoint.ejs", { name: name, email: email });
 });
 module.exports = router;

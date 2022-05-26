@@ -270,169 +270,151 @@ padding-top: 8px;
 margin-top: 7px;
 } */
 
-.get-bonus {
-margin-top: 40px !important;
-margin-left: 75px;
-}
-
 #progressbar {
 left: -25px;
 }
 }
+.wrapper {
+    height: 70vh;
+    background: #000;
+    background: url("https://i.imgur.com/DWu2SHz.jpg");
+    background-size: cover;
+    width: 100%
+}
+
+.overlay {
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8)
+}
+
+.contact-us {
+    margin-top: 50px;
+    margin-bottom: 50px
+}
+
+.contact-us h3,
+p {
+    color: #fff
+}
+
+.address {
+    margin-top: 14px !important;
+    margin-left: 10px
+}
+
+.address span {
+    color: #1b9e9e
+}
+
+.icons {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #fff;
+    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.icons i {
+    font-size: 20px
+}
+
+.inputs input {
+    margin-bottom: 13px;
+    border: none;
+    border-bottom: 2px solid #eee
+}
+
+.inputs input:focus {
+    margin-bottom: 13px;
+    border: none;
+    border-bottom: 2px solid #1f83a2;
+    box-shadow: none
+}
+
+.inputs textarea {
+    margin-bottom: 13px;
+    border: none;
+    border-bottom: 2px solid #eee;
+    width: 100%;
+    resize: none
+}
+
+.inputs textarea:focus {
+    margin-bottom: 13px;
+    border: none;
+    border-bottom: 2px solid #2c87bb;
+    box-shadow: none;
+    resize: none
+}
+
 </style>
 
         </head>
-        <!--Start Hader-->
+        <!--Start Header-->
     <%- include ('./partials/navHome.ejs') %>
-    <!--End Hader-->
+    <!--End Header-->
     
-        <div class="container-fluid px-1 px-md-4 py-5 mx-auto">
-<div class="row d-flex justify-content-center">
-<div class="col-12 col-md-11 col-lg-10 col-xl-9">
-    
-<div class="card card0 border-0">
-<div class="row">
-<div class="col-12">
-<div class="card card00 m-2 border-0">
-    <div class="row text-center justify-content-center px-3">
-        <p class="prev text-danger"><span class="fa fa-long-arrow-left"> Go Back</span></p id="back">
-        
-        
-    </div>
-    <div class="mx-auto" style="width: 200px;">
-        <img class="pic ml-auto mr-3" src="/img/ticket.png">
-    </div>
-    <br>
-    <hr>
-        <br>
-    <div class="d-flex flex-md-row px-3 mt-4 flex-column-reverse">
-        <div class="col-md-6">
-            <div class="card1">
+    <div class="wrapper"> 
+        <div class="overlay"> 
+            <div class="row d-flex justify-content-center align-items-center"> 
+                <div class="col-md-9"> 
 
-                <ul id="progressbar" class="text-center">
-                    <li class="active step0" ></li>
-                    <li class="step0"></li>
-                    <li class="step0"></li>
-                    <li class="step0"></li>
-                </ul>
+       <div class="contact-us text-center"> 
+        <h3>Contact Us</h3> 
+        <p class="mb-5">Incase you face a technical error, general question or a problem of anytype. Please make sure to let us know filling the ticket below with the required information</p> 
+        <div class="row"> 
 
-                <h6 class="mb-5">Enter your Email</h6>
-                <h6 class="mb-5">Suggested Fixes</h6>
-                <h6 class="mb-5">Ticket Submission</h6>
-                
-            </div>
-        </div>
-        <div class="col-md-6">
-            
-            <div class="card2 first-screen show ml-2">
-                <!-- <div class="row text-center px-3 mr-2">
-                    <div class="mb-2 col-2">
-                        <span class="fa fa-reddit social"></span>
-                    </div>
-                    <div class="mb-2 col-2">
-                        <span class="fa fa-facebook social"></span>
-                    </div>
-                    <div class="mb-2 col-2">
-                        <span class="fa fa-linkedin social"></span>
-                    </div>
-                    <div class="mb-2 col-2">
-                        <span class="fa fa-google-plus social"></span>
-                    </div>
-                    <div class="mb-2 col-2">
-                        <span class="fa fa-twitter social"></span>
-                    </div>
-                    <div class="mb-2 col-2">
-                        <span class="fa fa-dropbox social"></span>
-                    </div>
-                </div> -->
-            
-                <div class="row px-3 mt-4">
-                    <div class="form-group mt-1 mb-1">
-                        <input type="text" id="email" class="form-control" required>
-                        <label class="ml-3 form-control-placeholder" for="email">   Email</label>
-                    </div>
-                    <div class="next-button text-center mt-1 ml-2">
-                        <span class="fa fa-arrow-right"></span>
-                    </div>
+                <div class="col-md-6">
+                <div class="mt-5 text-center px-3"> 
+
+                <div class="d-flex flex-row align-items-center"> 
+                    <span class="icons"><i class="fa fa-map-marker"></i></span> 
+                    <div class="address text-left"> 
+                        <span>Address</span> <p>S Teseen, New Cairo 1, Cairo</p>
+                    </div> 
+                </div> 
+
+                <div class="d-flex flex-row align-items-center mt-3"> 
+                    <span class="icons"><i class="fa fa-phone"></i></span> 
+                    <div class="address text-left"> 
+                        <span>Phone</span> <p>+20 1559666595</p> 
+                    </div> 
                 </div>
-                <div class="row px-3 mt-1 mb-5">
-                    <div class="custom-control custom-checkbox">
-                        <input checked id="customCheck1" type="checkbox" class="custom-control-input">
-                        <label for="customCheck1" class="custom-control-label">I want to receive promo emails and Doctor updates</label>
+
+                <div class="d-flex flex-row align-items-center mt-3"> 
+                    <span class="icons"><i class="fa fa-envelope-o"></i></span> 
+                     <div class="address text-left"> 
+                        <span>Email</span> <p>doctorzoom247@gmail.com</p>
                     </div>
-                </div>
-            </div>
+                 </div>
 
-            <div class="card2 ml-2">
-                <div class="row px-3 mt-3">
-                    <div class="form-group mt-1 mb-1">
-                        <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-                    </div>
-                    <div class="next-button text-center mt-1 ml-2">
-                        <span class="fa fa-arrow-right"></span>
-                    </div>
-                </div>
-                <div class="row mt-3 mb-5">
-                    <div class="col-12">
-                        <p class="mb-1">Please make sure you tried the following:</p>
-                        <div class="row">
-                            <div class="col-6"><span class="fa fa-circle text-danger"></span> Refreshing</div>
-                            <div class="col-6"><span class="fa fa-circle text-danger"></span> Restarting Browser</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6"><span class="fa fa-circle text-danger"></span> Accepting Cookies</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-           
+                </div> 
+                </div> 
 
-            <div class="card2 ml-2">
-                    <p class="mb-0">Enter your question</p>
-                    <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label"></label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
-                      </div>
-                      <div class="row px-3 mt-3">
-                    <!-- <div class="form-group mt-3 mb-4">
-                        <div class="select mb-3">
-                            <select name="account" class="form-control">
-                                <option>India</option>
-                                <option>USA</option>
-                                <option>Germany</option>
-                                <option>Mexico</option>
-                            </select>
-                        </div>
-                    </div> -->
-                    <div class="next-button text-center mt-3 ml-2">
-                        <span class="fa fa-arrow-right"></span>
-                    </div>
-            
-                </div>
-            </div>
-
-            <div class="card2 ml-2">
-                <!-- <div class="row px-3 mt-2 mb-4 text-center"> <h2 class="col-12 text-danger"><strong>Ticket Created</strong></h2> -->
-                    <div class="col-12 text-center"><img class="tick" src="https://i.imgur.com/YMpfTaA.gif"></div>
-                    <h6 class="col-12 mt-2"><i>Thank you for your time, we will respond as soon as possible</i></h6>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+        <div class="col-md-6"> 
+            <div class="text-center px-1"> 
+                <div class="forms p-4 py-5 bg-white"> 
+                    <h5>Submit a Ticket</h5> 
+                    <div class="mt-4 inputs"> 
+                        <input type="text" class="form-control" placeholder="Name"> 
+                        <input type="text" class="form-control" placeholder="Email"> <textarea class="form-control" placeholder="Type your message"></textarea> 
+                    </div> 
+                    <div class="button mt-4 text-left"> <button class="btn btn-dark">Send</button> </div> 
+                </div> 
+            </div> 
+        </div> 
+</div> 
+</div> 
+</div> 
+</div> 
 </div>
 </div>
 
-   
 
-</div>
         <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
         <script type='text/javascript'>$(document).ready(function(){
 
@@ -515,5 +497,9 @@ previous_fs.css({
     <footer>
         <%- include ('./partials/footer.ejs') %> 
         </footer>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         </body>
     </html>
