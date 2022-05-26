@@ -13,50 +13,131 @@
       crossorigin="anonymous"
     />
   </head>
+  <style>
+
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    h1{
+      font-family: sans-serif;
+      text-align: center;
+      font-size: 30px;
+    }
+    .profile-pic-div{
+      height: 200px;
+      width: 200px;
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      border-radius: 50%;
+      overflow: hidden;
+      }
+      #photo{
+        height: 100%;
+        width: 100%;
+      }
+      #file{
+        display: none;
+      }
+      #uploadBtn{
+        height: 20%;
+        width: 100%;
+        position: absolute;
+        bottom: -5%;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        background: black;
+        color: rgb(47, 133, 190);
+        line-height: 30px;
+        font-family: sans-serif;
+        font-size: 15px;
+        font-weight: 500;
+        cursor: pointer;
+      }
+
+  </style>
   <body>
     <!--Start Hader-->
     <%- include ('./partials/NavDoc.ejs') %>
     <!--End Hader-->
 
-    <!-----------------------------------------------Start SignIn Form --------------------------------------------->
+    <body>
 
 
-
-            <div class="container rounded bg-white mt-5 mb-5">
-                <div class="row">
-                       <div class="col-md-3 border-right">
-                        <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold"><div class="c"><%- name %></div> </span><span class="text-black-50"><%- email %> </span><span> </span></div>
+      <div class="container rounded bg-white mt-5 mb-5">
+          <div class="row">
+              <div class="col-md-4 border-right">
+                  <div class="d-flex flex-column align-items-center text-center py-5 py-6">
+                    <div class="profile-pic-div">
+                      <img src="/img/Profile.jpg" id="photo">
+                      <input type="file" id="file">
+                      <label for="file" id="uploadBtn">Update Photo</label>
+                      <!-- <span class="font-weight-bold">
+                      <div class="c"><%- name %></div> </span>
+                      <span class="text-black-50"><%- email %> </span> -->
                     </div>
-                    <div class="col-md-5 border-right">
-                        <div class="p-3 py-5">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h4 class="text-right">Profile Settings</h4>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="First name" value=""></div>
-                                <div class="col-md-6"><label class="labels">Last name</label><input type="text" class="form-control" value="" placeholder="Last name"></div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control" placeholder="Enter phone number" value=""></div>
-                                <div class="col-md-12"><label class="labels">Address Line 1</label><input type="text" class="form-control" placeholder="Enter address line 1" value=""></div>
-                                <div class="col-md-12"><label class="labels">Address Line 2</label><input type="text" class="form-control" placeholder="Enter address line 2" value=""></div>
-                                <!-- <div class="col-md-12"><label class="labels">Postcode</label><input type="text" class="form-control" placeholder="Enter postcard" value=""></div>
-                                <div class="col-md-12"><label class="labels">State</label><input type="text" class="form-control" placeholder="Enter state" value=""></div> -->
-                                <div class="col-md-12"><label class="labels">Area</label><input type="text" class="form-control" placeholder="Enter area" value=""></div>
-                                <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" placeholder="Enter email" value=""></div>
-                                <div class="col-md-12"><label class="labels">Insurance Number</label><input type="text" class="form-control" placeholder="Insurance no" value=""></div>
-                            </div>
-                            <!-- <div class="row mt-3">
-                                <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control" placeholder="country" value=""></div>
-                                <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" value="" placeholder="state"></div>
-                            </div> -->
-                            <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
-                           </div>
-                    </div>
-      
-            </div>
-            </div>
-            </div>
+                  </div>
+              </div>
+              <div class="col-md-5 border-right">
+                  <div class="p-3 py-5">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                          <h4 class="text-right">Profile Settings</h4>
+                      </div>
+                      <div class="row mt-2">
+                          <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="<%- name %>" disabled value=""></div>
+
+                          <div class="col-md-6"><label class="labels">Last name</label><input type="text" class="form-control" value="" placeholder="<%- Lname %>" disabled></div>
+                      </div>
+
+                      <div class="row mt-3">
+                        <!-- <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" placeholder="<%- email %>" value=""></div> -->
+                          <label for="exampleDataList" class="form-label col-md-12">Email</label>
+                          <input class="form-control col-md-12" list="" id="exampleDataList" placeholder="<%- email %>" disabled>
+
+                          <br></br>
+
+                          <!-- <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control" placeholder="Enter phone number" value=""></div> -->
+                          <label for="exampleDataList" class="form-label col-md-12">Mobile Number</label>
+                          <input class="form-control col-md-12" list="" id="exampleDataList" placeholder="+20">
+
+                          <br></br>
+
+                          <!-- <div class="col-md-12"><label class="labels">Address Line 1</label><input type="text" class="form-control" placeholder="Enter address line 1" value=""></div> -->
+                          <!-- <label for="exampleDataList" class="form-label col-md-12">Address</label>
+                          <input class="form-control col-md-12" list="" id="exampleDataList" placeholder="Enter your Address"> -->
+
+                          <!-- <div class="col-md-12"><label class="labels">Area</label><input type="text" class="form-control" placeholder="Enter area" value=""></div> -->
+                          <label for="exampleDataList" class="form-label col-md-12">Area</label>
+                        <input class="form-control col-md-12" list="Areas" id="exampleDataList" placeholder="Enter your Area">
+                        <datalist id="Areas">
+                          <option value="New Cairo" false>
+                          <option value="Nasr City">
+                          <option value="El-Maadi">
+                          <option value="Heliopolis">
+                          <option value="El-Rehab">
+                          <option value="Type your Area">
+                          </option>
+                        </datalist>
+
+                        <!-- <br></br>
+
+                        <label for="exampleDataList" class="form-label col-md-12">Insurance</label>
+                        <input class="form-control col-md-12" list="" id="exampleDataList" placeholder="Add Insurance Number"> -->
+
+                          <!-- <div class="col-md-12"><label class="labels">Insurance Number</label><input type="text" class="form-control" placeholder="Insurance no" value=""></div> -->
+                      </div>
+                      <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
+                  </div>
+              </div>
+              
+      </div>
+      </div>
+      </div>
+
 
 <!--Start Footer-->
 <footer>
@@ -64,18 +145,43 @@
 </footer>
 <!--End Footer-->
 <script
-
-
-
-
-
-
-
-
-
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"
     ></script>
+
+    <script>
+const imgDiv = document.querySelector('.profile-pic-div');
+const img = document.querySelector('#photo');
+const file = document.querySelector('#file');
+const uploadBtn = document.querySelector('#uploadBtn');
+
+imgDiv.addEventListener('mouseenter', function(){
+    uploadBtn.style.display = "block";
+});
+
+imgDiv.addEventListener('mouseleave', function(){
+    uploadBtn.style.display = "none";
+});
+
+file.addEventListener('change', function(){
+
+    const choosedFile = this.files[0];
+
+    if (choosedFile) {
+
+        const reader = new FileReader();
+
+        reader.addEventListener('load', function(){
+            img.setAttribute('src', reader.result);
+        });
+
+        reader.readAsDataURL(choosedFile);
+    }
+});
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
 </html>

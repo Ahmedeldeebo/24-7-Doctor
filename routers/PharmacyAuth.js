@@ -23,16 +23,16 @@ router.post("/Pharmcy-register", async (req, res) => {
         process.env.PASS_SEC
       ).toString(),
     });
-  } catch (err) {
-    res.render("signUp.ejs", { errorMessage: "Something is missing" });
-  }
-  const savedUser = await NewUser.save();
-  console.log(NewUser);
-  try {
     const savedUser = await NewUser.save();
     console.log(NewUser);
+  } catch (err) {
+    res.render("PharmacySignUp.ejs", { errorMessage: "Something is missing" });
+  }
+  try {
+    // const savedUser = await NewUser.save();
+    // console.log(NewUser);
 
-    res.render("PharmacySignup.ejs", { errorMessage: "" });
+    res.render("signInPhar.ejs", { errorMessage: "Account Created Successfully" });
   } catch (err) {
     console.log(err);
   }
@@ -73,7 +73,7 @@ router.post("/Pharmacy-login", async (req, res) => {
       .cookie("accessToken", accessToken, {
         httpOnly: true,
       })
-      .render("test.ejs", { name: name }); //res.status(200).json({ ...others, accessToken });
+      .render("PhaHome.ejs", { name: name }); //res.status(200).json({ ...others, accessToken });
   } catch (err) {
     return console.log(err);
   }

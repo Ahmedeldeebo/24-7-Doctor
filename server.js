@@ -104,6 +104,9 @@ app.get("/signuptest", (req, res) => {
 app.get("/home", authorization, (req, res) => {
   res.render("Patienthome.ejs");
 });
+app.get("/ManageAppointments", (req, res) => {
+  res.render("DocMangApp.ejs");
+});
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

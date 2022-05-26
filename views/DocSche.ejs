@@ -6,15 +6,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <title>Update Schedule</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-      crossorigin="anonymous"
-    />
+
+    <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+
   </head>
   <body>
+<style>
 
+label {
+  font-size: 18px;
+}
+
+input {
+    padding: 10px 15px !important;
+    border: 1px solid #CFD8DC !important;
+    border-radius: 4px !important;
+    box-sizing: border-box;
+    background-color: #fff !important;
+    color: #000 !important;
+    font-size: 16px !important;
+    letter-spacing: 1px;
+    position: relative;
+    width: 100%;
+}
+
+input:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: 1px solid #FFA000 !important;
+    outline-width: 0;
+}
+
+.daterangepicker {
+  background-color: #fff;
+  border-radius: 0 !important;
+  align-content: center !important;
+  padding: 0 !important;
+}
+
+/*Weekday Heading*/
+thead tr:nth-child(2) {
+  color: #BDBDBD !important;
+}
+
+tbody tr td {
+  padding: 5px 7px !important;
+}
+
+.month {
+  font-size: 16px !important;
+  padding-bottom: 10px !important;
+  padding-top: 10px !important;
+}
+
+.start-date, .end-date {
+  border-radius: 0px !important;
+}
+
+.available:hover {
+  border-radius: 0px !important;
+}
+
+.off {
+  color: #EEEEEE !important;
+}
+
+.off:hover {
+  background-color: #EEEEEE !important;
+  color: #fff !important;
+}
+
+.drp-buttons {
+  display: none !important;
+}
+</style>
 
   <!--Start Hader-->
   <%- include ('./partials/NavDoc.ejs') %>
@@ -37,21 +105,15 @@
 <form action="http://localhost:5000/doctor/UpdateSchedule-add" method="POST" >
 <div class="row mt-3">
   
-   <label for="exampleDataList" class="form-label">Available Days</label>
-   <input class="form-control" list="availabledays" id="exampleDataList" placeholder="Type to search..."
-   name="Available_Days">
-   <datalist id="availabledays">
-     <option value="All week">
-     <option value="From Sunday till Thursday">
-     <option value="Sunday-Monday-Tuesday">
-     <option value="Thursday-Friday">
-     <option value="Enter your own">  
-   </datalist>
+ <label class="">Available Days</label>
+ <input type="text" name="daterange" value="01/01/2022 - 01/15/2022" name="Available_Days" readonly />
+
+
 
    <br>
    <br>
 
-   <label for="exampleDataList" class="form-label">Time-Period</label>
+   <label for="exampleDataList" class="form-label" >Time-Period</label>
     <input class="form-control" list="Time-Period" id="exampleDataList" placeholder="Type to search..."name="Start_Time">
     <datalist id="Time-Period">
       <option value="All day">
@@ -118,7 +180,9 @@
       
             </div>
             </div>
-            </div>
+            </div>  
+
+
   
 
 <!--Start Footer-->
@@ -127,8 +191,28 @@
 </footer>
 <!--End Footer-->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"></link>
-  </body>
+</body>
+
+
+
+<script>
+$(document).ready(function(){
+  $(function() {
+    $('input[name="daterange"]').daterangepicker({
+      "startDate": moment().startOf('hour'),
+      "endDate": moment().startOf('hour').add(32, 'hour'),
+      opens: 'center',
+      locale: {
+      format: 'DD/MM/YYYY'
+      }
+    });
+  });
+});
+</script>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
 </html>
