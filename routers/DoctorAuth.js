@@ -31,15 +31,16 @@ router.post("/Doctor-register", async (req, res) => {
       Specialization_Name: req.body.Specialization_Name,
       Doc_birtday: req.body.Doc_birtday,
     });
+  } catch (err) {
+    res.render("signUp.ejs", { errorMessage: "Something is missing" });
+  }
+  const savedUser = await NewUser.save();
+  console.log(NewUser);
+  try {
     const savedUser = await NewUser.save();
     console.log(NewUser);
-  } catch (err) {
-    res.render("signUp.ejs", { errorMessage: "Credentials already in use" });
-  }
-  try {
-    // const savedUser = await NewUser.save();
-    // console.log(NewUser);
-    res.render("signInDoc.ejs", { errorMessage: "Account Created Successfully" });
+
+    res.render("DocSignup.ejs", { errorMessage: "" });
   } catch (err) {
     console.log(err);
   }
@@ -49,7 +50,7 @@ router.post("/Doctor-register", async (req, res) => {
 router.post("/Docter-login", async (req, res) => {
   try {
     const user = await User.findOne({ Doc_username: req.body.Doc_username });
-    !user && res.render("signInDoc.ejs", { errorMessage: "Wrong email" });
+    !user && res.render("signIn.ejs", { errorMessage: "Wrong email" });
     //res.Status(401).json("Wrong credentials!");
     const hashedPassword = CryptoJS.AES.decrypt(
       user.Doc_password,
@@ -58,7 +59,7 @@ router.post("/Docter-login", async (req, res) => {
     const Originalpassword = hashedPassword.toString(CryptoJS.enc.Utf8);
 
     Originalpassword !== req.body.Doc_password &&
-      res.render("signInDoc.ejs", { errorMessage: "Wrong password" });
+      res.render("signIn.ejs", { errorMessage: "Wrong password" });
     // res.status(401).json("Wrong credentials!");
 
     const accessToken = jwt.sign(
@@ -91,20 +92,17 @@ router.get("/doctorview", authorization, async (req, res) => {
   const id = res.locals.user.id;
   const user = await Patient.findById(id);
   const name = user.pat_FirstName;
-  const Doc_Schedule = await DocSche.find({});
-  const shce = await DocSche.find({});
-  const fees = shce.Upfront_fees;
-  const time = shce.AveWating_Time;
-  const methods = shce.Available_methods;
-  console.log(Doc_Schedule);
+  // const shce = await DocSche.find({ Doctor_id });
+  // const fees = shce.Upfront_fees;
+  // const time = shce.AveWating_Time;
+  // const methods = shce.Available_methods;
+  console.log(req.body);
   const users = await User.find({});
-  const Doc_Id = users._id;
-  console.log(Doc_Id);
   console.log(users);
   res.render("doctorview.ejs", {
     users: users,
     name: name,
-    fees: fees,
+    // fees: fees,
     // time: time,
     // methods: methods,
   });
@@ -137,8 +135,7 @@ router.get("/Doctor-profile-setting", authorization, async (req, res) => {
   console.log(user);
   const name = user.Doc_FirstName;
   const email = user.Doc_Email;
-  const Lname = user.Doc_Lastname
-  res.render("DocProfile.ejs", { name: name, email: email, Lname: Lname });
+  res.render("DocProfile.ejs", { name: name, email: email });
 });
 //-------------------------------------------- End Profile Doc ---------------------------------------------------
 router.get("/profile-home-doc", authorization, async (req, res, next) => {

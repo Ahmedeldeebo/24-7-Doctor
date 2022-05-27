@@ -94,13 +94,10 @@
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <h4 class="text-right">Profile Settings</h4>
                             </div>
-                            <form action="http://localhost:5000/patient/profile-setting-Update" method="post"></form>
+                          <form action="http://localhost:5000/patient/profile-setting-update" method="post">  
                             <div class="row mt-2">
                                 <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="First Name" value="<%- name%>" name="pat_FirstName"></div>
                                 <div class="col-md-6"><label class="labels">Last name</label><input type="text" class="form-control" value="<%-lastName%>" placeholder="Last name" name="pat_Lastname"></div>
-                                <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="<%- name %>" disabled value=""></div>
-
-                                <div class="col-md-6"><label class="labels">Last name</label><input type="text" class="form-control" value="" placeholder="<%- Lname %>" disabled></div>
                             </div>
 
                             <div class="row mt-3">
@@ -118,8 +115,13 @@
                             </div> -->
                             <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Save Changes</button></div>
                         </div>
-                    </div>
-                  </form>
+                      </div>
+                      <div class="alert alert-light text-success" role="alert">
+                        <%- Message %>
+                      </div>
+                      <div class="alert alert-light text-danger" role="alert">
+                        <%- errorMessage %>
+                      </div></form>
                     
             </div>
             </div>

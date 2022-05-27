@@ -41,7 +41,7 @@ router.post("/register", async (req, res) => {
   try {
     //  const savedUser = await NewUser.save();
     //  console.log(NewUser);
-    
+
     res.render("signIn.ejs", { errorMessage: "Account Created Successfully" });
   } catch (err) {
     console.log(err);
@@ -96,7 +96,7 @@ router.post("/login", async (req, res) => {
         httpOnly: true,
       })
       .render("Patienthome.ejs", { name: name });
-     
+
     //res.status(200).json({ ...others, accessToken });
   } catch (err) {
     return console.log(err);
@@ -117,52 +117,109 @@ router.post("/login", async (req, res) => {
 
 //   const { pat_password, ...others } = user._doc;
 // });
-router.put("/profile-setting-Update", authorization, async (req, res, next) => {
-  console.log(res.locals.user.id);
-  const id = res.locals.user.id;
-  const user = await User.findById(id);
-  console.log(user);
-  const name = user.pat_FirstName;
-  const email = user.pat_Email;
-  const lastName = user.pat_Lastname;
-  const Ins = user.pat_InsuranceNo;
-  try {
-    const upadateUser = await User.findByIdAndUpdate(
-      id,
-      {
-        $set: req.body,
-      },
-      { new: true }
-    );
-    res.status(200);
-  } catch (err) {
-    console.log(err);
-    res.satuts(500);
-  }
-  res.render("Profile.ejs", {
-    name: name,
-    email: email,
-    lastName: lastName,
-    Ins: Ins,
-  });
-});
+// router.put("/profile-setting-Update", authorization, async (req, res, next) => {
+//   console.log(res.locals.user.id);
+//   const id = res.locals.user.id;
+//   const user = await User.findById(id);
+//   console.log(user);
+//   const name = user.pat_FirstName;
+//   const email = user.pat_Email;
+//   const lastName = user.pat_Lastname;
+//   const Ins = user.pat_InsuranceNo;
+//   try {
+//     const upadateUser = await User.findByIdAndUpdate(
+//       id,
+//       {
+//         $set: req.body,
+//       },
+//       { new: true }
+//     );
+//     res.render("Profile.ejs");
+//   } catch (err) {
+//     console.log(err);
+//     res.render("Profile.ejs");
+//   }
+//   res.render("Profile.ejs", {
+//     name: name,
+//     email: email,
+//     lastName: lastName,
+//     Ins: Ins,
+//   });
+// });
 router.get("/profile-setting", authorization, async (req, res, next) => {
   console.log(res.locals.user.id);
   const id = res.locals.user.id;
   const user = await User.findById(id);
   console.log(user);
   const name = user.pat_FirstName;
-  const Lname = user.pat_Lastname;
   const email = user.pat_Email;
   const lastName = user.pat_Lastname;
   const Ins = user.pat_InsuranceNo;
   res.render("Profile.ejs", {
+    Message: "",
+    errorMessage: "",
     name: name,
     email: email,
     lastName: lastName,
     Ins: Ins,
   });
 });
+router.post(
+  "/profile-setting-update",
+  authorization,
+  async (req, res, next) => {
+    console.log(res.locals.user.id);
+    const id = res.locals.user.id;
+    const user = await User.findById(id);
+    console.log(user);
+    const name = user.pat_FirstName;
+    const email = user.pat_Email;
+    const lastName = user.pat_Lastname;
+    const Ins = user.pat_InsuranceNo;
+    try {
+      const updateUser = await User.findByIdAndUpdate(
+        id,
+        {
+          $set: req.body,
+        },
+        { new: true }
+      );
+      res.render("Profile.ejs", {
+        Message: "Update Succ",
+        errorMessage: "",
+        name: name,
+        email: email,
+        lastName: lastName,
+        Ins: Ins,
+      });
+    } catch (err) {
+      res.render("Profile.ejs", {
+        Message: "",
+        errorMessage: "Falid to update",
+        name: name,
+        email: email,
+        lastName: lastName,
+        Ins: Ins,
+      });
+    }
+
+    console.log("Upadet scc");
+    // const user = await User.findById(id);
+    // console.log(user);
+    // const name = user.pat_FirstName;
+    // const email = user.pat_Email;
+    // const lastName = user.pat_Lastname;
+    // const Ins = user.pat_InsuranceNo;
+    res.render("Profile.ejs", {
+      Message: "",
+      errorMessage: "",
+      name: name,
+      email: email,
+      lastName: lastName,
+      Ins: Ins,
+    });
+  }
+);
 ///------------------------------------logOut start--------------------------------------------------------
 router.get("/logOut", authorization, (req, res) => {
   return res.clearCookie("accessToken").redirect("/");
@@ -174,29 +231,8 @@ router.get("/Ticket", authorization, async (req, res) => {
   console.log(user);
   const name = user.pat_FirstName;
   try {
-    const tickets = new ticket({
-      ticket_details: ticket_details,
-      pat_id: id,
-    });
-    const savedTicket = await tickets.save();
-    console.log(ticket);
-  } catch (err) {
-    res.render("Ticket.ejs", {
-      name: name,
-      errorMessage: "Something is missing1",
-    });
-  }
-  try {
-    const savedTicket = await Newticket.save();
-    console.log(Newticket);
-    res.render("Ticket.ejs", {
-      name: name,
-      errorMessage: "Something is missing2",
-    });
-  } catch (err) {
-    console.log(err);
-  }
-
+    const savedTicket = new ticket({});
+  } catch (err) {}
   res.render("Ticket.ejs", {
     name: name,
     errorMessage: "Something is missing3",
