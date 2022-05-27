@@ -15,125 +15,226 @@
     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
 </body>
 </head>
-    <style>@import url('https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap');
-
-body {
-    font-family: 'Maven Pro', sans-serif
-}
-
-body {
-    background-color: rgb(238, 238, 238)
-}
-
-.add {
-    border-radius: 20px
-}
-
-.card {
-    border: none;
-    border-radius: 10px;
-    transition: all 1s;
-    cursor: pointer
-}
-
-.card:hover {
-    -webkit-box-shadow: 3px 5px 17px -4px #777777;
-    box-shadow: 3px 5px 17px -4px #777777
-}
-
-.ratings i {
-    color: green
-}
-
-.apointment button {
-    border-radius: 20px;
-    background-color: #eee;
-    color: #000;
-    border-color: #eee;
-    font-size: 13px
-}
-</style>
-
-
-
-<div class="container mt-5 mb-5">
-
-    <div class="d-flex justify-content-between mb-3"> <span>Highly Rated Doctors</span> <span> <class="text-right refine ><a href="http://localhost:5000/doctor/doctorview" class="btn btn-info add" role="button">View All Doctors</a> </div>
-    <div class="row g-2">
-        <div class="col-md-3">
-            <div class="card p-2 py-3 text-center">
-                <div class="img mb-2"> <img src="/img/doctoricon.png" width="100" class="rounded-circle"> </div>
-                <h5 class="mb-0">Doctor Name</h5> <small>Specialization</small>
-                <div class="ratings mt-2"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
-                <div class="mt-4 apointment"> <button class="btn btn-success text-uppercase">Book Appointment</button> </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card p-2 py-3 text-center">
-                <div class="img mb-2"> <img src="/img/doctoricon.png" width="100" class="rounded-circle"> </div>
-                <h5 class="mb-0">Doctor Name</h5> <small>Specialization</small>
-                <div class="ratings mt-2"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
-                <div class="mt-4 apointment"> <button class="btn btn-success text-uppercase">Book Appointment</button> </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card p-2 py-3 text-center">
-                <div class="img mb-2"> <img src="/img/doctoricon.png" width="100" class="rounded-circle"> </div>
-                <h5 class="mb-0">Doctor Name</h5> <small>Specialization</small>
-                <div class="ratings mt-2"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
-                <div class="mt-4 apointment"> <button class="btn btn-success text-uppercase">Book Appointment</button> </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card p-2 py-3 text-center">
-                <div class="img mb-2"> <img src="/img/doctoricon.png" width="100" class="rounded-circle"> </div>
-                <h5 class="mb-0">Doctor Name</h5> <small>Specialization</small>
-                <div class="ratings mt-2"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
-                <div class="mt-4 apointment"> <button class="btn btn-success text-uppercase">Book Appointment</button> </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card p-2 py-3 text-center">
-                <div class="img mb-2"> <img src="/img/doctoricon.png" width="100" class="rounded-circle"> </div>
-                <h5 class="mb-0">Doctor Name</h5> <small>Specialization</small>
-                <div class="ratings mt-2"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
-                <div class="mt-4 apointment"> <button class="btn btn-success text-uppercase">Book Appointment</button> </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card p-2 py-3 text-center">
-                <div class="img mb-2"> <img src="/img/doctoricon.png" width="100" class="rounded-circle"> </div>
-                <h5 class="mb-0">Doctor Name</h5> <small>Specialization</small>
-                <div class="ratings mt-2"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
-                <div class="mt-4 apointment"> <button class="btn btn-success text-uppercase">Book Appointment</button> </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card p-2 py-3 text-center">
-                <div class="img mb-2"> <img src="/img/doctoricon.png" width="100" class="rounded-circle"> </div>
-                <h5 class="mb-0">Doctor Name</h5> <small>Specialization</small>
-                <div class="ratings mt-2"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
-                <div class="mt-4 apointment"> <button class="btn btn-success text-uppercase">Book Appointment</button> </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card p-2 py-3 text-center">
-                <div class="img mb-2"> <img src="/img/doctoricon.png" width="100" class="rounded-circle"> </div>
-                <h5 class="mb-0">Doctor Name</h5> <small>Specialization</small>
-                <div class="ratings mt-2"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
-                <div class="mt-4 apointment"> <button class="btn btn-success text-uppercase">Book Appointment</button> </div>
-            </div>
-        </div>
+<style>
         
-    </div>
-</div>
+    .card{
+        background-color: rgb(255, 255, 255);
+        border: none;
+        border-radius: 5px;
+        box-shadow: 5px 6px 6px 2px #4e7caa
+    }
+    .allergy{
+        position: relative;
+        bottom: 10px;
+        color: grey
+    }
+    .head{
+        color: #97989a;
+        font-size: 17px;
+        font-weight: bold;
+    }
+    .bottom{    
+        color: grey;
+        font-size: 15px
+    }
+    
+    body {
+        height: 100vh;
+        background: #000;
+        background: url("https://i.imgur.com/acoSJ9c.jpg");
+        width: 100%;
+        height: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 170%;
+    }
+    #footer {
+position:absolute;
+bottom:0;
+width:100%;
+background:#6cf;
+
+}
+body {
+overflow-y:hidden;
+}</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container mt-5">
+    <div class="row d-flex justify-content-center">
+    <div class="row d-flex justify-content-center" >
+
+<!-------------------------------------------START HEADERS -------------------------------------------------->
+
+<form action="controller" method="get" class="d-md-flex d-sm-block justify-content-between" >
+     <input type="hidden" name="command" value="select-orders"> 
+     <h1 class="h5 align-self-center col-3">Appointments Histroy</h1> 
+</form> 
+
+<div class="d-md-flex d-none justify-content-md-between justify-content-sm-center align-content-center border-bottom border-2 my-2 bg-dark text-light p-3 rounded-3"> 
+<!-- <div class="col-2 text-sm-center text-md-start align-self-center"> 
+    <h1 class="h5 fw-bold">Appointment ID</h1> 
+</div>  -->
+<div class="col-2 align-self-center"> 
+    <h1 class="h5 fw-bold">Date Created</h1> 
+</div> 
+<div class="col-3 align-self-center"> 
+    <h1 class="h5 fw-bold">Communication Type</h1>
+ </div> 
+ <div class="col-2 align-self-center"> 
+     <h1 class="h5 fw-bold">Show details</h1> </div> 
+     <div class="col-2 align-self-center"> 
+         <h1 class="h5 fw-bold">Payment Status</h1> 
+        </div> 
+        <div class="col-2 align-self-center"> 
+            <h1 class="h5 fw-bold">Confirmation</h1> 
+           </div> 
+        
+</div> 
+<!-------------------------------------------END HEADERS -------------------------------------------------->
+
+
+<!-------------------------------------------START FIRST ROW  -------------------------------------------------->
+
+    <div class="d-md-flex d-sm-block justify-content-md-between justify-content-sm-center text-center border-bottom border-2 my-2 bg-light p-2 rounded-3"> 
+
+        <!-- <div class="col-md-2 text-sm-center text-md-start align-self-center my-2"> 
+            <h1 class="h6">2F456DA</h1> 
+        </div>  -->
+
+        <div class="col-md-2 text-sm-center text-md-start align-self-center my-2"> 
+            <h1 class="h6">04/12/2022</h1> 
+        </div> 
+
+        <div class="col-md-3 text-sm-center text-md-start align-self-center my-2"> 
+            <h1 class="h6">Zoom Meeting</h1> 
+        </div>
+
+         <div class="col-md-2 text-sm-center text-md-start align-self-center my-2"> 
+             <a class="btn btn-outline-dark w-100">Details</a> 
+        </div> 
+
+        <div class="col-md-2 text-sm-center text-md-start align-self-center my-2"> 
+            <form method="get" action="controller" class="d-flex btn-group"> 
+                <h1 class="h6">Payment Paid</h1> 
+                <!-- <input type="hidden" name="command" value="refresh-order-status">
+                 <select name="status" class="btn btn-outline-dark">   
+                </select>  -->
+             </form> 
+        </div> 
+        <div class="col-md-2 text-sm-center text-md-start align-self-center my-2"> 
+            <form method="get" action="controller" class="d-flex btn-group"> 
+                <a class="btn btn-outline-success w-100" href="#">Accept</a>
+             </form>   
+        </div>
+        <div class="col-md-1 text-sm-center text-md-start align-self-center my-2"> 
+            <form method="get" action="controller" class="d-flex btn-group"> 
+                <a class="btn btn-outline-danger w-100" href="#">X</a>
+             </form> 
+        </div> 
+
+        </div>
+<!-------------------------------------------END FIRST ROW  -------------------------------------------------->
+
+
+
+<!-------------------------------------------START SECOND ROW  -------------------------------------------------->
+
+         <div class="d-md-flex d-sm-block justify-content-md-between justify-content-sm-center text-center border-bottom border-2 my-2 bg-light p-2 rounded-3"> 
+             <!-- <div class="col-md-2 text-sm-center text-md-start align-self-center my-2">
+                 <h1 class="h6">D2903WE</h1>
+             </div>  -->
+
+             <div class="col-md-2 text-sm-center text-md-start align-self-center my-2">
+                  <h1 class="h6">03/09/2022</h1> 
+            </div> 
+
+            <div class="col-md-3 text-sm-center text-md-start align-self-center my-2"> 
+                <h1 class="h6">Face to Face</h1> 
+            </div>
+
+             <div class="col-md-2 text-sm-center text-md-start align-self-center my-2">
+                 <a class="btn btn-outline-dark w-100" href="#">Details</a> 
+            </div> 
+
+            <div class="col-md-2 text-sm-center text-md-start align-self-center my-2"> 
+                <form method="get" action="controller" class="d-flex btn-group"> <input type="hidden" name="command" value="refresh-order-status">
+                    <h1 class="h6">Pending</h1> 
+                    <!-- <select name="status" class="btn btn-outline-dark"> 
+                     </select> -->
+                </form> 
+            </div> 
+            <div class="col-md-2 text-sm-center text-md-start align-self-center my-2"> 
+                <form method="get" action="controller" class="d-flex btn-group"> 
+                    <a class="btn btn-outline-success w-100" href="#">Accept</a>
+                 </form> 
+                 </div>
+                 <div class="col-md-1 text-sm-center text-md-start align-self-center my-2"> 
+                    <form method="get" action="controller" class="d-flex btn-group"> 
+                        <a class="btn btn-outline-danger w-100" href="#">X</a>
+                     </form> 
+                </div>
+        </div> 
+<!-------------------------------------------END SECOND ROW  -------------------------------------------------->
+
+
+<!-------------------------------------------START THIRD ROW  -------------------------------------------------->
+
+
+                <div class="d-md-flex d-sm-block justify-content-md-between justify-content-sm-center text-center border-bottom border my-2 bg-light p-2 rounded-3"> 
+                    <!-- <div class="col-md-2 text-sm-center text-md-start align-self-center my-2"> 
+                        <h1 class="h6">5463783D</h1> 
+                    </div>  -->
+
+                    <div class="col-md-2 text-sm-center text-md-start align-self-center my-2"> 
+                        <h1 class="h6">19/10/2022</h1> 
+                    </div> 
+
+                    <div class="col-md-3 text-sm-center text-md-start align-self-center my-2"> 
+                        <h1 class="h6">Zoom Meeting</h1> 
+                    </div> 
+
+                    <div class="col-md-2 text-sm-center text-md-start align-self-center my-2"> 
+                        <a class="btn btn-outline-dark w-100" href="#">Details</a> 
+                    </div> 
+
+                    <div class="col-md-2 text-sm-center text-md-start align-self-center my-2"> 
+                        <form method="get" action="controller" class="d-flex btn-group"> <input type="hidden" name="command" value="refresh-order-status"> 
+                            <h1 class="h6">Payment Paid</h1> 
+                            <!-- <select name="status" class="btn btn-outline-dark">
+                             </select> -->
+                        </form> 
+                      </div> 
+                      <div class="col-md-2 text-sm-center text-md-start align-self-center my-2"> 
+                        <form method="get" action="controller" class="d-flex btn-group"> 
+                            <a class="btn btn-outline-success w-100" href="#">Accept</a>
+                         </form> 
+                    </div>
+                    <div class="col-md-1 text-sm-center text-md-start align-self-center my-2"> 
+                        <form method="get" action="controller" class="d-flex btn-group"> 
+                            <a class="btn btn-outline-danger w-100" href="#">X</a>
+                         </form> 
+                    </div>
+                    
+                </div> 
+<!-------------------------------------------END THIRD ROW  -------------------------------------------------->
+
+                
+                </div>
+                </div>
+            </div>
 
 
 
 
 
 
-<footer>
+<footer id="footer">
      <%- include ('../partials/footer.ejs') %>
 </footer>
 <script
