@@ -71,29 +71,29 @@ app.get("/signin", (req, res) => {
   res.render("signIn.ejs", { errorMessage: "" });
 });
 app.get("/signin-Doctor", (req, res) => {
-  res.render("signInDoc.ejs", { errorMessage: "" });
+  res.render("./Doc/signInDoc.ejs", { errorMessage: "" });
 });
 app.get("/signin-Pharmacy", (req, res) => {
-  res.render("signInPhar.ejs", { errorMessage: "" });
+  res.render("./Pharmacy/signInPhar.ejs", { errorMessage: "" });
 });
 
 app.get("/profile", (req, res) => {
-  res.render("Profile.ejs");
+  res.render("./Patient/Profile.ejs");
 });
 app.get("/doctors", (req, res) => {
   res.render("doctors.ejs");
 });
 app.get("/booking", (req, res) => {
-  res.render("booking.ejs");
+  res.render("./Patient/booking.ejs");
 });
 app.get("/team", (req, res) => {
   res.render("team.ejs");
 });
 app.get("/Doctorreg", (req, res) => {
-  res.render("DocSignup.ejs", { errorMessage: "" });
+  res.render("./Doc/DocSignup.ejs", { errorMessage: "" });
 });
 app.get("/Pharmacyreg", (req, res) => {
-  res.render("PharmacySignUp.ejs", { errorMessage: "" });
+  res.render("./Pharmacy/PharmacySignUp.ejs", { errorMessage: "" });
 });
 app.get("/doctorview", async (req, res) => {
   res.render("doctorview.ejs", { users: users });
@@ -102,10 +102,13 @@ app.get("/signuptest", (req, res) => {
   res.render("signUptest");
 });
 app.get("/home", authorization, (req, res) => {
-  res.render("Patienthome.ejs");
+  res.render("./Patient/Patienthome.ejs");
 });
-app.get("/ManageAppointments", (req, res) => {
-  res.render("DocMangApp.ejs");
+// app.get("/ManageAppointments", (req, res) => {
+//   res.render("./Doc/DocMangApp.ejs");
+// });
+app.get("/PublicTicket", (req, res) => {
+  res.render("PublicTicket.ejs");
 });
 
 app.listen(port, () => {

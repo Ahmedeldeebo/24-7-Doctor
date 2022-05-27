@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
-    <title>Pharmacy Signin</title>
+    <title>Doctor Signin</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -20,7 +20,7 @@
   </head>
   <body>
     <!--Start Hader-->
-    <%- include ('./partials/nav.ejs') %>
+    <%- include ('../partials/nav.ejs') %>
     <!--End Hader-->
 
     <!--Start sgin form-->
@@ -31,7 +31,7 @@
             <img src="/img/login.png" class="img-fluid" alt="Phone image" />
           </div>
           <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-            <form action="/pharmacy/Pharmacy-login" method="post">
+            <form action="/doctor/Docter-login" method="post">
               <!-- Email input -->
               <div class="form-outline mb-4" style="margin-top:80px">
                 <input
@@ -40,7 +40,7 @@
                   class="form-control form-control-lg"
                   autocomplete="off"
                   required =""
-                  name="Phar_userName"
+                  name="Doc_username"
                 />
                 <label class="form-label" for="form1Example13"
                   >Username</label
@@ -55,7 +55,7 @@
                   class="form-control form-control-lg"
                   autocomplete="off"
                   required =""
-                  name="Phar_Password"
+                  name="Doc_password"
                 />
                 <label class="form-label" for="form1Example23">Password</label>
               </div>
@@ -65,8 +65,8 @@
                 <option value="3"><a href="#">Pharmacy</a></option>
              </select> -->
              <div class="dropdown">
-              <a class="btn btn-secondary dropdown-toggle mb-2" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" >
-                Pharmacy
+              <a class="btn btn-secondary dropdown-toggle mb-2" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                Doctor
               </a>
             
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -92,7 +92,8 @@
                     </label>
                   </div>
                   <a href="#!">Forgot password?</a>
-                </div> <div class="alert alert-light text-danger" role="alert">
+                </div>
+                 <div class="alert alert-light text-danger" role="alert">
                 <%- errorMessage %>
               </div>
 
@@ -111,8 +112,8 @@
       </div>
     </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"></link>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"></link>
   </body>
 </html>
 
@@ -164,7 +165,8 @@
             >
           </div>
           <div class="alert alert-light text-danger" role="alert">
-            
+       
+          </div>
           <button type="submit" class="btn btn-primary">Login</button>
         </form>
       </div>

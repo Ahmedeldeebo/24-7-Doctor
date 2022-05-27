@@ -95,7 +95,7 @@ router.post("/login", async (req, res) => {
       .cookie("accessToken", accessToken, {
         httpOnly: true,
       })
-      .render("Patienthome.ejs", { name: name });
+      .render("./Patient/Patienthome.ejs", { name: name });
 
     //res.status(200).json({ ...others, accessToken });
   } catch (err) {
@@ -155,7 +155,7 @@ router.get("/profile-setting", authorization, async (req, res, next) => {
   const email = user.pat_Email;
   const lastName = user.pat_Lastname;
   const Ins = user.pat_InsuranceNo;
-  res.render("Profile.ejs", {
+  res.render("./Patient/Profile.ejs", {
     Message: "",
     errorMessage: "",
     name: name,
@@ -184,7 +184,7 @@ router.post(
         },
         { new: true }
       );
-      res.render("Profile.ejs", {
+      res.render("./Patient/Profile.ejs", {
         Message: "Update Succ",
         errorMessage: "",
         name: name,
@@ -193,7 +193,7 @@ router.post(
         Ins: Ins,
       });
     } catch (err) {
-      res.render("Profile.ejs", {
+      res.render("./Patient/Profile.ejs", {
         Message: "",
         errorMessage: "Falid to update",
         name: name,
@@ -210,7 +210,7 @@ router.post(
     // const email = user.pat_Email;
     // const lastName = user.pat_Lastname;
     // const Ins = user.pat_InsuranceNo;
-    res.render("Profile.ejs", {
+    res.render("./Patient/Profile.ejs", {
       Message: "",
       errorMessage: "",
       name: name,
@@ -245,7 +245,7 @@ router.get("/profile-home", authorization, async (req, res, next) => {
   console.log(user);
   const name = user.pat_FirstName;
   const email = user.pat_Email;
-  res.render("patienthome.ejs", { name: name, email: email });
+  res.render("./Patient/Patienthome.ejs", { name: name, email: email });
 });
 //---------------------------------v
 router.get("/viewdocschedule", authorization, async (req, res) => {
@@ -254,7 +254,7 @@ router.get("/viewdocschedule", authorization, async (req, res) => {
   console.log(user);
   const name = user.pat_FirstName;
   const email = user.pat_Email;
-  res.render("viewDocSche.ejs", { name: name, email: email });
+  res.render("./Patient/viewDocSche.ejs", { name: name, email: email });
 });
 router.get("/viewappoint", authorization, async (req, res) => {
   const id = res.locals.user.id;
@@ -262,6 +262,6 @@ router.get("/viewappoint", authorization, async (req, res) => {
   console.log(user);
   const name = user.pat_FirstName;
   const email = user.pat_Email;
-  res.render("viewAppoint.ejs", { name: name, email: email });
+  res.render("./Patient/viewAppoint.ejs", { name: name, email: email });
 });
 module.exports = router;

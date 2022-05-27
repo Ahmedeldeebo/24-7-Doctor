@@ -1,23 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <title>Home Page</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"  rel="stylesheet" />
-    <script src="https://kit.fontawesome.com/ff8698dfe7.js" crossorigin="anonymous"></script>
-
   </head>
- 
-
   <style>
-  
- /*--------------------------------------------------------------
+  /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
 html, body {
@@ -798,15 +795,102 @@ div#preloader {
   transition: all 0.4s ease 0s;
 }
 
-  </style>
+  
+  
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+  div.c {
+  text-transform: capitalize;
+}
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  } body {
+background: #0d6efd
+}
 
+.height-100 {
+height: 100vh
+}
+
+.card {
+width: 100%;
+border: none;
+height: 250px;
+max-width: 380px;
+overflow: hidden;
+position: relative;
+display: flex;
+cursor:pointer;
+justify-content: center;
+transition: all ease 0.4s
+}
+
+.card img {
+transition: all ease 0.4s
+}
+
+.card:hover img {
+margin-top: -80px
+}
+
+.card .content {
+width: 100%;
+background: #fff;
+position: absolute;
+bottom: -60%;
+margin-left: -8px;
+transition: all ease 0.5s;
+border-radius: 4px;
+box-shadow: 0px -3px 4px rgba(10, 10, 10, 0.09)
+}
+
+.card .content .category {
+font-size: 17px;
+font-weight: 600
+}
+
+.card .content .price {
+font-size: 17px;
+font-weight: 500;
+color: #0d6efd
+}
+
+.card .content p {
+font-weight: 500;
+font-size: 12px
+}
+
+.card:hover .content {
+bottom: 0%
+}
+
+.buttons button {
+border-radius: 1px;
+margin-bottom: 10px;
+transition: all ease 0.3s
+}
+
+.content {
+padding: 10px
+}</style>
   <body>
-     <!--Start Header-->
-     <%- include ('./partials/navPha.ejs') %>
+    <!--Start Header-->
+    <%- include ('../partials/NavDoc.ejs') %>
     <!--End Header-->
 
 
-   <main>
+   <main class="my-5">
 
       <div class="container">
         <div class="row">
@@ -820,7 +904,7 @@ div#preloader {
           <div class="col-md-5">
             <h1 class="mt-5">24/7 Doctors</h1>
             <p class="mt-4">
-             <div class="c"><h1><%- name %> </h1></div> 
+             <div class="c"><h1>Dr.<%- name %> </h1></div> 
               Welcome to 24/7 Doctors where you shall find the best available doctors in all specializations, compare between then, choose, and book your appointment right away.
               <h5> <center>Always there when you need us the most.</center></h5>
             </p>
@@ -828,17 +912,18 @@ div#preloader {
               <a
               type="buttton"
               class="btn btn-primary"
-              href="http://localhost:5000/doctor/doctorview"
+              href="http://localhost:5000/doctor/doctorview-doc"
             > Check our Doctors now
              </a>
             </button>
           </div>
         </div>
       </div>
+      
       <hr>
         
-
-<!-- ======= Counts Section ======= -->
+        
+        <!-- ======= Counts Section ======= -->
 <section id="counts" class="counts">
   <div class="container">
 
@@ -1302,14 +1387,72 @@ div#preloader {
 </div><!-- End Contact Section -->
 
 </main><!-- End #main -->
-   
-   <hr>
+<hr>
     
-   <footer>
-    <%- include ('./partials/footer.ejs') %> 
-  </footer>       
-
         
+
+
+
+
+        <!-- -- FOOTER / TICKET IDEA  
+          
+          <div class="row my-2">
+          <div class="col">
+            <div class="bg-secondary text-white my-1 py-1 card text-center">
+              <div class="card-body"> For more information:
+              </div>
+            </div>
+          </div>
+        <div class="my-2 text-center">
+          <h2>Get in touch</h2>
+          <p class="lead">Questions? Do not hesitate to contact us.</p>
+        </div>
+        <div class="row justify-content-center my-5">
+          <div class="col-lg-7">
+            <form action="">
+              <label for="email" class="form-label">Email:</label>
+              <input
+                type="email"
+                id="email"
+                placeholder="my@email.com"
+                class="form-control"
+              />
+              <div class="form-floating my-3">
+                <input
+                  type="name"
+                  id="name"
+                  placeholder="e.g. Dawid"
+                  class="form-control"
+                />
+                <label for="name" class="form-label">Name:</label>
+              </div>
+              <label for="subject" class="form=label">Subject</label>
+              <select name="subject" id="subject" class="form-select">
+                <option value="pricing">Pricing</option>
+                <option value="technical" selected>Technical question</option>
+                <option value="other">Other</option>
+              </select>
+
+              <div class="form-floating my-5">
+                <textarea
+                  name="query"
+                  id="query"
+                  style="height: 150px"
+                  class="form-control"
+                  placeholder="Write a message"
+                ></textarea>
+
+                <label for="query">Write a message</label>
+              </div>
+
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary">Send!</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main> -->
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -1317,7 +1460,10 @@ div#preloader {
       crossorigin="anonymous"
        type='text/javascript' src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js'></script>
 
-        
+        <script type='text/javascript'>var myLink = document.querySelector('a[href="#"]');
+        myLink.addEventListener('click', function(e) {
+          e.preventDefault();
+        });</script>
     </script>
     <script>
       (function() {
@@ -1360,13 +1506,12 @@ div#preloader {
       })()
           </script>
 
-<script
-src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-   </body>
   
-
+   
+  <footer>
+  <%- include ('../partials/footer.ejs') %> 
+</footer>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
 </html>

@@ -62,7 +62,7 @@
   </style>
   <body>
     <!--Start Hader-->
-    <%- include ('./partials/NavDoc.ejs') %>
+    <%- include ('../partials/NavDoc.ejs') %>
     <!--End Hader-->
 
     <body>
@@ -88,15 +88,15 @@
                           <h4 class="text-right">Profile Settings</h4>
                       </div>
                       <div class="row mt-2">
-                          <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="<%- name %>" disabled value=""></div>
+                          <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="<%- name %>" value=""></div>
 
-                          <div class="col-md-6"><label class="labels">Last name</label><input type="text" class="form-control" value="" placeholder="<%- Lname %>" disabled></div>
+                          <div class="col-md-6"><label class="labels">Last name</label><input type="text" class="form-control" value="" placeholder="<%- Lname %>"></div>
                       </div>
 
                       <div class="row mt-3">
                         <!-- <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" placeholder="<%- email %>" value=""></div> -->
                           <label for="exampleDataList" class="form-label col-md-12">Email</label>
-                          <input class="form-control col-md-12" list="" id="exampleDataList" placeholder="<%- email %>" disabled>
+                          <input class="form-control col-md-12" list="" id="exampleDataList" placeholder="<%- email %>">
 
                           <br></br>
 
@@ -141,7 +141,7 @@
 
 <!--Start Footer-->
 <footer>
-<%- include ('./partials/footer.ejs') %>
+<%- include ('../partials/footer.ejs') %>
 </footer>
 <!--End Footer-->
 <script

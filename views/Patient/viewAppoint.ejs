@@ -58,15 +58,13 @@
 }
 body {
     overflow-y:hidden;
-  }
- 
-    </style>
+  }</style>
 
 </head>
 
 
 <body>
-    <%- include ('./partials/navHome.ejs') %>  
+    <%- include ('../partials/navHome.ejs') %>  
 
 
     <div class="container mt-5">
@@ -116,7 +114,7 @@ body {
             </div>
 
              <div class="col-md-2 text-sm-center text-md-start align-self-center my-2"> 
-                 <a class="btn btn-outline-dark w-100" href="#">Details</a> 
+                 <a class="btn btn-outline-dark w-100">Details</a> 
             </div> 
 
             <div class="col-md-2 text-sm-center text-md-start align-self-center my-2"> 
@@ -154,7 +152,7 @@ body {
 
                 <div class="col-md-2 text-sm-center text-md-start align-self-center my-2"> 
                     <form method="get" action="controller" class="d-flex btn-group"> <input type="hidden" name="command" value="refresh-order-status">
-                        <h1 class="h6">Payment Not Paid</h1> 
+                        <h1 class="h6">Pending</h1> 
                         <!-- <select name="status" class="btn btn-outline-dark"> 
                          </select> -->
                     </form> 
@@ -200,11 +198,11 @@ body {
 
         </body>
         <div id="footer">
-            <%- include ('./partials/footer.ejs') %>   
+            <%- include ('../partials/footer.ejs') %>   
         </div>
 
 
             <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
             <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    </html>
+            </html>

@@ -39,8 +39,13 @@ router.post("/Doctor-register", async (req, res) => {
   try {
     const savedUser = await NewUser.save();
     console.log(NewUser);
-
-    res.render("DocSignup.ejs", { errorMessage: "" });
+  } catch (err) {
+    res.render("./Doc/signUp.ejs", { errorMessage: "Credentials already in use" });
+  }
+  try {
+    // const savedUser = await NewUser.save();
+    // console.log(NewUser);
+    res.render("./Doc/signInDoc.ejs", { errorMessage: "Account Created Successfully" });
   } catch (err) {
     console.log(err);
   }
@@ -50,7 +55,7 @@ router.post("/Doctor-register", async (req, res) => {
 router.post("/Docter-login", async (req, res) => {
   try {
     const user = await User.findOne({ Doc_username: req.body.Doc_username });
-    !user && res.render("signIn.ejs", { errorMessage: "Wrong email" });
+    !user && res.render("./Doc/signInDoc.ejs", { errorMessage: "Wrong email" });
     //res.Status(401).json("Wrong credentials!");
     const hashedPassword = CryptoJS.AES.decrypt(
       user.Doc_password,
@@ -59,7 +64,7 @@ router.post("/Docter-login", async (req, res) => {
     const Originalpassword = hashedPassword.toString(CryptoJS.enc.Utf8);
 
     Originalpassword !== req.body.Doc_password &&
-      res.render("signIn.ejs", { errorMessage: "Wrong password" });
+      res.render("./Doc/signInDoc.ejs", { errorMessage: "Wrong password" });
     // res.status(401).json("Wrong credentials!");
 
     const accessToken = jwt.sign(
@@ -81,7 +86,7 @@ router.post("/Docter-login", async (req, res) => {
       .cookie("accessToken", accessToken, {
         httpOnly: true,
       })
-      .render("DocHomePage.ejs", { name: name }); //res.status(200).json({ ...others, accessToken });
+      .render("./Doc/DocHomePage.ejs", { name: name }); //res.status(200).json({ ...others, accessToken });
   } catch (err) {
     return console.log(err);
   }
@@ -119,7 +124,7 @@ router.get("/doctorview-doc", authorization, async (req, res) => {
   console.log(req.body);
   const users = await User.find({});
   console.log(users);
-  res.render("docDoctorview.ejs", {
+  res.render("./Doc/docDoctorview.ejs", {
     users: users,
     name: name,
     // fees: fees,
@@ -135,9 +140,28 @@ router.get("/Doctor-profile-setting", authorization, async (req, res) => {
   console.log(user);
   const name = user.Doc_FirstName;
   const email = user.Doc_Email;
-  res.render("DocProfile.ejs", { name: name, email: email });
+  const Lname = user.Doc_Lastname
+  res.render("./Doc/DocProfile.ejs", { name: name, email: email, Lname: Lname });
 });
 //-------------------------------------------- End Profile Doc ---------------------------------------------------
+router.get("/ManageAppointments", authorization, async (req, res, next) => {
+  console.log(res.locals.user.id);
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  console.log(user);
+  const name = user.Doc_FirstName;
+  const email = user.Doc_Email;
+  res.render("./Doc/DocMangApp.ejs", { name: name, email: email });
+});
+router.get("/DocTicket", authorization, async (req, res, next) => {
+  console.log(res.locals.user.id);
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  console.log(user);
+  const name = user.Doc_FirstName;
+  const email = user.Doc_Email;
+  res.render("./Doc/DocTicket.ejs", { name: name, email: email });
+});
 router.get("/profile-home-doc", authorization, async (req, res, next) => {
   console.log(res.locals.user.id);
   const id = res.locals.user.id;
@@ -145,7 +169,7 @@ router.get("/profile-home-doc", authorization, async (req, res, next) => {
   console.log(user);
   const name = user.Doc_FirstName;
   const email = user.Doc_Email;
-  res.render("DocHomePage.ejs", { name: name, email: email });
+  res.render("./Doc/DocHomePage.ejs", { name: name, email: email });
 });
 router.get("/updataShcdeule", authorization, async (req, res) => {
   console.log(res.locals.user.id);
@@ -154,7 +178,7 @@ router.get("/updataShcdeule", authorization, async (req, res) => {
   console.log(user);
   const name = user.Doc_FirstName;
   const email = user.Doc_Email;
-  res.render("DocSche.ejs", { name: name, email: email });
+  res.render("./Doc/DocSche.ejs", { name: name, email: email });
 });
 router.post("/UpdateSchedule-add", authorization, async (req, res) => {
   console.log(res.locals.user.id);
@@ -182,4 +206,5 @@ router.post("/UpdateSchedule-add", authorization, async (req, res) => {
 
   res.render("DocSche.ejs", { name: name, email: email });
 });
+//-------------------------------------------- End Profile Doc ---------------------------------------------------
 module.exports = router;
