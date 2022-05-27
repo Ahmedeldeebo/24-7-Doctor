@@ -233,7 +233,7 @@ router.get("/Ticket", authorization, async (req, res) => {
   try {
     const savedTicket = new ticket({});
   } catch (err) {}
-  res.render("Ticket.ejs", {
+  res.render("./Patient/Ticket.ejs", {
     name: name,
     errorMessage: "Something is missing3",
   });
