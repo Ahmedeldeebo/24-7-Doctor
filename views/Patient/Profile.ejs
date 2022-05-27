@@ -15,17 +15,11 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
-    <style>
-      div.c {
-  text-transform: capitalize;
-}
-    </style>
   </head>
       <!--Start Header-->
-      <%- include ('./partials/navHome.ejs') %>
+      <%- include ('../partials/navHome.ejs') %>
       <!--End Header-->
   <style>
-
     *{
       margin: 0;
       padding: 0;
@@ -69,7 +63,6 @@
         font-weight: 500;
         cursor: pointer;
       }
-
   </style>
 
   <body>
@@ -94,32 +87,54 @@
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <h4 class="text-right">Profile Settings</h4>
                             </div>
-                            <form action="http://localhost:5000/patient/profile-setting-Update" method="post"></form>
                             <div class="row mt-2">
-                                <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="First Name" value="<%- name%>" name="pat_FirstName"></div>
-                                <div class="col-md-6"><label class="labels">Last name</label><input type="text" class="form-control" value="<%-lastName%>" placeholder="Last name" name="pat_Lastname"></div>
-                                <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="<%- name %>" disabled value=""></div>
+                                <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="<%- name %>"  value=""></div>
 
-                                <div class="col-md-6"><label class="labels">Last name</label><input type="text" class="form-control" value="" placeholder="<%- Lname %>" disabled></div>
+                                <div class="col-md-6"><label class="labels">Last name</label><input type="text" class="form-control" value="" placeholder="<%- lastName %>"></div>
                             </div>
 
                             <div class="row mt-3">
-                                <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control " placeholder="Enter phone number" value=""></div>
-                                <div class="col-md-12"><label class="labels">Address Line 1</label><input type="text" class="form-control" placeholder="Enter address line 1" value=""></div>
-                                <div class="col-md-12"><label class="labels">Address Line 2</label><input type="text" class="form-control" placeholder="Enter address line 2" value=""></div>
-                                <div class="col-md-12"><label class="labels">State</label><input type="text" class="form-control" placeholder="Enter state" value=""></div>
-                                <div class="col-md-12"><label class="labels">Area</label><input type="text" class="form-control" placeholder="Enter area" value=""></div>
-                                <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" placeholder="Enter email" value="<%- email%>" name="pat_Email"></div>
-                                <div class="col-md-12"><label class="labels">Insurance Number</label><input type="text" class="form-control" placeholder="Insurance no" value="<%= Ins%>" name="pat_InsuranceNo"></div>
+                              <!-- <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" placeholder="<%- email %>" value=""></div> -->
+                                <label for="exampleDataList" class="form-label col-md-12">Email</label>
+                                <input class="form-control col-md-12" list="" id="exampleDataList" placeholder="<%- email %>">
+
+                                <br></br>
+
+                                <!-- <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control" placeholder="Enter phone number" value=""></div> -->
+                                <label for="exampleDataList" class="form-label col-md-12">Mobile Number</label>
+                                <input class="form-control col-md-12" list="" id="exampleDataList" placeholder="+20">
+
+                                <br></br>
+
+                                <!-- <div class="col-md-12"><label class="labels">Address Line 1</label><input type="text" class="form-control" placeholder="Enter address line 1" value=""></div> -->
+                                <label for="exampleDataList" class="form-label col-md-12">Address</label>
+                                <input class="form-control col-md-12" list="" id="exampleDataList" placeholder="Enter your Address">
+
+                                <br></br>
+
+                                <!-- <div class="col-md-12"><label class="labels">Area</label><input type="text" class="form-control" placeholder="Enter area" value=""></div> -->
+                                <label for="exampleDataList" class="form-label col-md-12">Area</label>
+                              <input class="form-control col-md-12" list="Areas" id="exampleDataList" placeholder="Enter your Area">
+                              <datalist id="Areas">
+                                <option value="New Cairo" false>
+                                <option value="Nasr City">
+                                <option value="El-Maadi">
+                                <option value="Heliopolis">
+                                <option value="El-Rehab">
+                                <option value="Type your Area">
+                                </option>
+                              </datalist>
+
+                              <br></br>
+
+                              <label for="exampleDataList" class="form-label col-md-12">Insurance</label>
+                              <input class="form-control col-md-12" list="" id="exampleDataList" placeholder="Add Insurance Number">
+
+                                <!-- <div class="col-md-12"><label class="labels">Insurance Number</label><input type="text" class="form-control" placeholder="Insurance no" value=""></div> -->
                             </div>
-                            <!-- <div class="row mt-3">
-                                <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control" placeholder="country" value=""></div>
-                                <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" value="" placeholder="state"></div>
-                            </div> -->
-                            <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Save Changes</button></div>
+                            <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
                         </div>
                     </div>
-                  </form>
                     
             </div>
             </div>
@@ -127,7 +142,7 @@
 
 <!--Start Footer-->
 <footer>
-<%- include ('./partials/footer.ejs') %>
+<%- include ('../partials/footer.ejs') %>
 </footer>
 <!--End Footer-->
 
@@ -142,27 +157,19 @@ const imgDiv = document.querySelector('.profile-pic-div');
 const img = document.querySelector('#photo');
 const file = document.querySelector('#file');
 const uploadBtn = document.querySelector('#uploadBtn');
-
 imgDiv.addEventListener('mouseenter', function(){
     uploadBtn.style.display = "block";
 });
-
 imgDiv.addEventListener('mouseleave', function(){
     uploadBtn.style.display = "none";
 });
-
 file.addEventListener('change', function(){
-
     const choosedFile = this.files[0];
-
     if (choosedFile) {
-
         const reader = new FileReader();
-
         reader.addEventListener('load', function(){
             img.setAttribute('src', reader.result);
         });
-
         reader.readAsDataURL(choosedFile);
     }
 });
