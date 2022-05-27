@@ -110,7 +110,6 @@ app.get("/home", authorization, (req, res) => {
 app.get("/PublicTicket", (req, res) => {
   res.render("PublicTicket.ejs");
 });
-
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });

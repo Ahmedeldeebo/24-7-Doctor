@@ -40,12 +40,16 @@ router.post("/Doctor-register", async (req, res) => {
     const savedUser = await NewUser.save();
     console.log(NewUser);
   } catch (err) {
-    res.render("./Doc/signUp.ejs", { errorMessage: "Credentials already in use" });
+    res.render("./Doc/signUp.ejs", {
+      errorMessage: "Credentials already in use",
+    });
   }
   try {
     // const savedUser = await NewUser.save();
     // console.log(NewUser);
-    res.render("./Doc/signInDoc.ejs", { errorMessage: "Account Created Successfully" });
+    res.render("./Doc/signInDoc.ejs", {
+      errorMessage: "Account Created Successfully",
+    });
   } catch (err) {
     console.log(err);
   }
@@ -97,8 +101,8 @@ router.get("/doctorview", authorization, async (req, res) => {
   const id = res.locals.user.id;
   const user = await Patient.findById(id);
   const name = user.pat_FirstName;
-  // const shce = await DocSche.find({ Doctor_id });
-  // const fees = shce.Upfront_fees;
+  const shce = await DocSche.findOne({});
+  const fees = shce.Upfront_fees;
   // const time = shce.AveWating_Time;
   // const methods = shce.Available_methods;
   console.log(req.body);
@@ -107,7 +111,7 @@ router.get("/doctorview", authorization, async (req, res) => {
   res.render("doctorview.ejs", {
     users: users,
     name: name,
-    // fees: fees,
+    fees: fees,
     // time: time,
     // methods: methods,
   });
@@ -140,8 +144,12 @@ router.get("/Doctor-profile-setting", authorization, async (req, res) => {
   console.log(user);
   const name = user.Doc_FirstName;
   const email = user.Doc_Email;
-  const Lname = user.Doc_Lastname
-  res.render("./Doc/DocProfile.ejs", { name: name, email: email, Lname: Lname });
+  const Lname = user.Doc_Lastname;
+  res.render("./Doc/DocProfile.ejs", {
+    name: name,
+    email: email,
+    Lname: Lname,
+  });
 });
 //-------------------------------------------- End Profile Doc ---------------------------------------------------
 router.get("/ManageAppointments", authorization, async (req, res, next) => {
@@ -204,7 +212,7 @@ router.post("/UpdateSchedule-add", authorization, async (req, res) => {
     console.log(err);
   }
 
-  res.render("DocSche.ejs", { name: name, email: email });
+  res.render("./Doc/DocSche.ejs", { name: name, email: email });
 });
 //-------------------------------------------- End Profile Doc ---------------------------------------------------
 module.exports = router;

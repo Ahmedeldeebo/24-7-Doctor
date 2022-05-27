@@ -10,6 +10,12 @@ const patientSchema = new mongoose.Schema(
     pat_password: { type: String, required: true },
     pat_birthday: { type: String, required: true },
     pat_InsuranceNo: { type: String, required: false, unique: true },
+    img:
+    {
+        data: Buffer,
+        contentType: String,
+        
+    }
   },
   { timestamps: true }
 );

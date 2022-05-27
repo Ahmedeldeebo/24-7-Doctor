@@ -74,8 +74,13 @@
                         <div class="d-flex flex-column align-items-center text-center py-5 py-6">
                           <div class="profile-pic-div">
                             <img src="/img/Profile.jpg" id="photo">
-                            <input type="file" id="file">
+                            <form action="http://localhost:5000/patient/img" method="post">    
+                              <input type="file" id="image" name="img">
                             <label for="file" id="uploadBtn">Update Photo</label>
+                            
+                          </form>
+                        
+                          
                             <!-- <span class="font-weight-bold">
                             <div class="c"><%- name %></div> </span>
                             <span class="text-black-50"><%- email %> </span> -->

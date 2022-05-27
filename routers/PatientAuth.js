@@ -4,6 +4,7 @@ const Doctor = require("../models/Doctor");
 const ticket = require("../models/Ticket");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
+const multer = require("multer");
 const cookieParser = require("cookie-parser");
 const { render } = require("ejs");
 const {
@@ -184,23 +185,25 @@ router.post(
         },
         { new: true }
       );
-      res.render("./Patient/Profile.ejs", {
-        Message: "Update Succ",
-        errorMessage: "",
-        name: name,
-        email: email,
-        lastName: lastName,
-        Ins: Ins,
-      });
+      // res.render("./Patient/Profile.ejs", {
+      //   Message: "Update Succ",
+      //   errorMessage: "",
+      //   name: name,
+      //   email: email,
+      //   lastName: lastName,
+      //   Ins: Ins,
+      // });
+      res.redirect("/patient/profile-setting");
     } catch (err) {
-      res.render("./Patient/Profile.ejs", {
-        Message: "",
-        errorMessage: "Falid to update",
-        name: name,
-        email: email,
-        lastName: lastName,
-        Ins: Ins,
-      });
+      // res.render("./Patient/Profile.ejs", {
+      //   Message: "",
+      //   errorMessage: "Falid to update",
+      //   name: name,
+      //   email: email,
+      //   lastName: lastName,
+      //   Ins: Ins,
+      // });
+      res.redirect("/patient/profile-setting");
     }
 
     console.log("Upadet scc");
@@ -230,12 +233,34 @@ router.get("/Ticket", authorization, async (req, res) => {
   const user = await User.findById(id);
   console.log(user);
   const name = user.pat_FirstName;
-  try {
-    const savedTicket = new ticket({});
-  } catch (err) {}
   res.render("./Patient/Ticket.ejs", {
     name: name,
-    errorMessage: "Something is missing3",
+    errorMessage: "Something is missing",
+  });
+});
+router.post("/Ticket", authorization, async (req, res) => {
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  console.log(user);
+  const name = user.pat_FirstName;
+  try {
+    const NewTicket = new ticket({
+      ticket_Name: req.body.ticket_Name,
+      ticket_Email: req.body.ticket_Email,
+      ticket_details: req.body.ticket_details,
+      pat_id: id,
+    });
+    const savedTikcet = await NewTicket.save();
+    console.log(NewTicket);
+  } catch (err) {
+    res.render("./Patient/Ticket.ejs", {
+      name: name,
+      errorMessage: "Submite Scc",
+    });
+  }
+  res.render("./Patient/Ticket.ejs", {
+    name: name,
+    errorMessage: "Something is missing",
   });
 });
 router.get("/profile-home", authorization, async (req, res, next) => {
