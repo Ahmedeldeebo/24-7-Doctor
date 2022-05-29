@@ -273,14 +273,14 @@ router.get("/profile-home", authorization, async (req, res, next) => {
   res.render("./Patient/Patienthome.ejs", { name: name, email: email });
 });
 //---------------------------------v
-router.get("/viewdocschedule", authorization, async (req, res) => {
-  const id = res.locals.user.id;
-  const user = await User.findById(id);
-  console.log(user);
-  const name = user.pat_FirstName;
-  const email = user.pat_Email;
-  res.render("./Patient/viewDocSche.ejs", { name: name, email: email });
-});
+// router.get("/viewdocschedule", authorization, async (req, res) => {
+//   const id = res.locals.user.id;
+//   const user = await User.findById(id);
+//   console.log(user);
+//   const name = user.pat_FirstName;
+//   const email = user.pat_Email;
+//   res.render("./Patient/viewDocSche.ejs", { name: name, email: email });
+// });
 router.get("/viewappoint", authorization, async (req, res) => {
   const id = res.locals.user.id;
   const user = await User.findById(id);

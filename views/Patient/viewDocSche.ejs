@@ -29,6 +29,9 @@
             bottom: 10px;
             color: grey
         }
+        .c {
+  text-transform: capitalize;
+}
         .head{
             color: #97989a;
             font-size: 17px;
@@ -67,14 +70,14 @@
                     <div class="row">
                         <div class="col-md-7 border-right no-gutters">
                             <div class="py-3"><img src="/Doctors/MaleDoctor.jpg" width="150" height="150" class="rounded-circle">
-                                <h4 class="text-secondary">Doctor Name</h4>
-                                <div class="allergy"><span>Specialization</span></div>
+                            <h4 class="text-secondary c"><%=DocUser.Doc_FirstName%> </h4>
+                                <div class="allergy"><span><%=DocUser.Specialization_Name%></span></div>
                                 <div class="stats">
                                     <table class="table table-borderless">
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                    <div class="d-flex flex-column"> <span class="text-left head">Available Days</span> <span class="text-left bottom">Days</span> </div>
+                                                    <div class="d-flex flex-column"> <span class="text-left head">Available Days</span> <span class="text-left bottom"><%=shce.Start_Time%></span> </div>
                                                 </td>
                                                 <!-- Leave it empty -->
                                                 <td>
@@ -85,7 +88,7 @@
                                             <tr>
                                                 <td>
                                                     <div class="d-flex flex-column"> <span class="text-left head">Time-Period
-                                                    </span> <span class="text-left bottom">Time</span> </div>
+                                                    </span> <span class="text-left bottom"><%=shce.AveWating_Time%></span> </div>
                                                 </td>
                                                 <!-- Leave it empty -->
                                                 <td>
@@ -95,7 +98,7 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <div class="d-flex flex-column"> <span class="text-left head">Patients per-day</span> <span class="text-left bottom">Patients</span> </div>
+                                                    <div class="d-flex flex-column"> <span class="text-left head">Patients per-day</span> <span class="text-left bottom"><%=shce.Meeting_Maximum_Patient%></span> </div>
                                                 </td>
                                                 <!-- Leave it empty -->
                                                 <td>
@@ -105,7 +108,7 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <div class="d-flex flex-column"> <span class="text-left head">Available methods</span> <span class="text-left bottom">Method</span> </div>
+                                                    <div class="d-flex flex-column"> <span class="text-left head">Available methods</span> <span class="text-left bottom"><%=shce.Available_methods%></span> </div>
                                                 </td>
                                                 <!-- Leave it empty -->
                                                 <td>
@@ -115,7 +118,7 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <div class="d-flex flex-column"> <span class="text-left head">Average Waiting-Time</span> <span class="text-left bottom">Waiting-Time</span> </div>
+                                                    <div class="d-flex flex-column"> <span class="text-left head">Average Waiting-Time</span> <span class="text-left bottom"><%=shce.AveWating_Time%></span> </div>
                                                 </td>
                                                 <!-- Leave it empty -->
                                                 <td>
@@ -125,7 +128,7 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <div class="d-flex flex-column"> <span class="text-left head">Upfront Fees</span> <span class="text-left bottom">Fees</span> </div>
+                                                    <div class="d-flex flex-column"> <span class="text-left head">Upfront Fees</span> <span class="text-left bottom"><%=shce.Upfront_fees%></span> </div>
                                                 </td>
                                                 <!-- Leave it empty -->
                                                 <td>
@@ -145,7 +148,7 @@
                                 <div> <span class="d-block head">Address</span> <span class="bottom">Doctor Address</span> </div>
                                 <div class="mt-4"> <span class="d-block head">Mobile Phone#</span> <span class="bottom">Doctor Phone</span> </div>
                                 <div class="mt-4"> <span class="d-block head">WhatsApp#</span> <span class="bottom">WhatsApp</span> </div>
-                                <div class="mt-4"> <span class="d-block head">Email</span> <span class="bottom">doc@gmail.com</span> </div>
+                                <div class="mt-4"> <span class="d-block head">Email</span> <span class="bottom"><%=DocUser.Doc_Email%></span> </div>
                             </div>
                         </div>
                     </div>
@@ -153,6 +156,7 @@
             </div>
         </div>
     </div>
+   
 </form>
 
 

@@ -101,12 +101,14 @@ router.get("/doctorview", authorization, async (req, res) => {
   const id = res.locals.user.id;
   const user = await Patient.findById(id);
   const name = user.pat_FirstName;
+  const users = await User.find({});
+  const Doc_Id = users._id;
   const shce = await DocSche.findOne({});
   const fees = shce.Upfront_fees;
   // const time = shce.AveWating_Time;
   // const methods = shce.Available_methods;
   console.log(req.body);
-  const users = await User.find({});
+
   console.log(users);
   res.render("doctorview.ejs", {
     users: users,
@@ -188,7 +190,7 @@ router.get("/updataShcdeule", authorization, async (req, res) => {
   const email = user.Doc_Email;
   res.render("./Doc/DocSche.ejs", { name: name, email: email });
 });
-router.post("/UpdateSchedule-add", authorization, async (req, res) => {
+router.post("/UpdateSchedule", authorization, async (req, res) => {
   console.log(res.locals.user.id);
   const id = res.locals.user.id;
   const user = await User.findById(id);
@@ -215,4 +217,24 @@ router.post("/UpdateSchedule-add", authorization, async (req, res) => {
   res.render("./Doc/DocSche.ejs", { name: name, email: email });
 });
 //-------------------------------------------- End Profile Doc ---------------------------------------------------
+//-------------------------------------------- Start view Doc ---------------------------------------------------
+router.post("/viewDocSch", authorization, async (req, res) => {
+  const id = res.locals.user.id;
+  const DocID = req.body.Doc_Id;
+  const user = await Patient.findById(id);
+  const name = user.pat_FirstName;
+  const shce = await DocSche.findOne({ Doctor_id: DocID });
+  const DocUser = await User.findById(DocID);
+  console.log(shce);
+  console.log(DocUser);
+  console.log(req.body.Doc_Id);
+  console.log(DocID);
+  console.log(id);
+  res.render("./Patient/viewDocSche.ejs", {
+    DocUser: DocUser,
+    shce: shce,
+    name: name,
+  });
+});
+//-------------------------------------------- End view Doc ---------------------------------------------------
 module.exports = router;

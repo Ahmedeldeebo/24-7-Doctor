@@ -5,10 +5,12 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const path = require("path");
 const ejs = require("ejs");
+const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const PatientAuthRouter = require("./routers/PatientAuth");
 const PhamacyAuthRouter = require("./routers/PharmacyAuth");
 const DoctorAuthRouter = require("./routers/DoctorAuth");
+
 const user = require("./routers/user");
 const cors = require("cors");
 const {
@@ -39,6 +41,7 @@ app.set("views", path.join(__dirname, "/views"));
 let publicpaht = path.join(__dirname, "/public");
 app.use(express.static(publicpaht));
 app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
 app.use("/patient", PatientAuthRouter);
 app.use("/doctor", DoctorAuthRouter);
