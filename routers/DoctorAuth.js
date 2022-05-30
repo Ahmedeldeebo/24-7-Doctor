@@ -31,24 +31,25 @@ router.post("/Doctor-register", async (req, res) => {
       Specialization_Name: req.body.Specialization_Name,
       Doc_birtday: req.body.Doc_birtday,
     });
+    const savedUser = await NewUser.save();
+    console.log(NewUser);
   } catch (err) {
-    res.render("signUp.ejs", { errorMessage: "Something is missing" });
+    res.render("./Doc/DocSignup.ejs", { errorMessage: "Something is missing" });
   }
-  const savedUser = await NewUser.save();
-  console.log(NewUser);
+
   try {
     const savedUser = await NewUser.save();
     console.log(NewUser);
   } catch (err) {
-    res.render("./Doc/signUp.ejs", {
-      errorMessage: "Credentials already in use",
+    res.render("./Doc/signInDoc.ejs", {
+      errorMessage: "Account Created Successfully",
     });
   }
   try {
     // const savedUser = await NewUser.save();
     // console.log(NewUser);
-    res.render("./Doc/signInDoc.ejs", {
-      errorMessage: "Account Created Successfully",
+    res.render("signIn.ejs", {
+      errorMessage: "Credentials already in use",
     });
   } catch (err) {
     console.log(err);

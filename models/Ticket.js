@@ -8,7 +8,12 @@ const ticketSchema = new mongoose.Schema(
     pat_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Patient",
-      required: true,
+      required: false,
+    },
+    Doc_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Doctor",
+      required: false,
     },
   },
   { timestamps: true }

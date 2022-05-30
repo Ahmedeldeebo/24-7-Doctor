@@ -36,16 +36,19 @@ router.post("/register", async (req, res) => {
     });
     const savedUser = await NewUser.save();
     console.log(NewUser);
-  } catch (err) {
-    res.render("signUp.ejs", { errorMessage: "Credentials already in use" });
+  } catch (e) {
+    console.log(e.message);
+    res.render("signUp.ejs", {
+      errorMessage: "Credentials already in use",
+    });
   }
   try {
     //  const savedUser = await NewUser.save();
     //  console.log(NewUser);
 
     res.render("signIn.ejs", { errorMessage: "Account Created Successfully" });
-  } catch (err) {
-    console.log(err);
+  } catch (e) {
+    console.log(e.message);
   }
 });
 //-------------------------------------------- End Register---------------------------------------------
@@ -195,6 +198,7 @@ router.post(
       // });
       res.redirect("/patient/profile-setting");
     } catch (err) {
+      console.log(err);
       // res.render("./Patient/Profile.ejs", {
       //   Message: "",
       //   errorMessage: "Falid to update",
