@@ -196,6 +196,7 @@ router.post(
       //   lastName: lastName,
       //   Ins: Ins,
       // });
+      console.log("Upadet scc");
       res.redirect("/patient/profile-setting");
     } catch (err) {
       console.log(err);
