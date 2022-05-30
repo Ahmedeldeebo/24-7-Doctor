@@ -276,6 +276,17 @@ router.get("/profile-home", authorization, async (req, res, next) => {
   const email = user.pat_Email;
   res.render("./Patient/Patienthome.ejs", { name: name, email: email });
 });
+// Patient Profile Updating
+router.get("/Profile-Edit", authorization, async (req, res, next) => {
+  console.log(res.locals.user.id);
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  console.log(user);
+  const name = user.pat_FirstName;
+  const email = user.pat_Email;
+  const lastName = user.pat_Lastname;
+  res.render("./Patient/ProfileEdit.ejs", { name: name, email: email, lastName: lastName});
+});
 //---------------------------------v
 // router.get("/viewdocschedule", authorization, async (req, res) => {
 //   const id = res.locals.user.id;

@@ -114,9 +114,15 @@ app.get("/home", authorization, (req, res) => {
 app.get("/PublicTicket", (req, res) => {
   res.render("PublicTicket.ejs");
 });
-app.use((req, res, next) => {
-  res.status(404).send({ error: "Nor Found" });
-});
+// app.use((req, res, next) => {
+//   res.status(404).send({ error: "Not Found" });
+// });
+
+app.get("*",(req,res) =>{
+  res.render("404.ejs", {title:"404"})
+
+})
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
