@@ -6,10 +6,10 @@ const DoctorSchema = new mongoose.Schema(
     Doc_FirstName: { type: String, required: true },
     Doc_Lastname: { type: String, required: true },
     Doc_Email: { type: String, required: true, unique: true },
-    Doc_Gender: { type: String, require: true },
-    Doc_password: { type: String, require: true },
+    Doc_Gender: { type: String, required: true },
+    Doc_password: { type: String, required: true },
     Specialization_Name: { type: String, required: true },
-    Doc_birtday: { type: Date, require: true },
+    Doc_birtday: { type: Date, required: true },
     Doc_rating: { type: String },
     Pres_id: {
       type: mongoose.Schema.Types.ObjectId,
