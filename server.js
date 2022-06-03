@@ -72,7 +72,7 @@ app.get("/signup", (req, res, next) => {
 });
 
 app.get("/signin", (req, res) => {
-  res.render("signIn.ejs", { errorMessage: "" });
+  res.render("signIn.ejs", { Message: "", errorMessage: "" });
 });
 app.get("/signin-Doctor", (req, res) => {
   res.render("./Doc/signInDoc.ejs", { errorMessage: "" });
@@ -118,10 +118,9 @@ app.get("/PublicTicket", (req, res) => {
 //   res.status(404).send({ error: "Not Found" });
 // });
 
-app.get("*",(req,res) =>{
-  res.render("404.ejs", {title:"404"})
-
-})
+app.get("*", (req, res) => {
+  res.render("404.ejs", { title: "404" });
+});
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

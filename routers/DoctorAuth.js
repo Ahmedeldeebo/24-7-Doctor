@@ -2,6 +2,7 @@ const router = require("express").Router();
 const Patient = require("../models/Patient");
 const User = require("../models/Doctor");
 const DocSche = require("../models/Doc_Schedule");
+const ticket = require("../models/Ticket");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
 const { render } = require("ejs");
@@ -102,21 +103,11 @@ router.get("/doctorview", authorization, async (req, res) => {
   const id = res.locals.user.id;
   const user = await Patient.findById(id);
   const name = user.pat_FirstName;
-  const users = await User.find({});
-  const Doc_Id = users._id;
-  const shce = await DocSche.findOne({});
-  const fees = shce.Upfront_fees;
-  // const time = shce.AveWating_Time;
-  // const methods = shce.Available_methods;
-  console.log(req.body);
-
-  console.log(users);
+  const Sch = await DocSche.find({}).populate("Doctor_id");
+  console.log(Sch);
   res.render("doctorview.ejs", {
-    users: users,
+    Sch: Sch,
     name: name,
-    fees: fees,
-    // time: time,
-    // methods: methods,
   });
 });
 router.get("/doctorview-doc", authorization, async (req, res) => {
@@ -155,6 +146,48 @@ router.get("/Doctor-profile-setting", authorization, async (req, res) => {
   });
 });
 //-------------------------------------------- End Profile Doc ---------------------------------------------------
+//------------------------------------Start Tikcet --------------------------------------------------------
+router.get("/DocTicket", authorization, async (req, res, next) => {
+  console.log(res.locals.user.id);
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  console.log(user);
+  const name = user.Doc_FirstName;
+  const email = user.Doc_Email;
+  res.render("./Doc/DocTicket.ejs", {
+    name: name,
+    email: email,
+    errorMessage: "",
+  });
+});
+router.post("/DocTicket", authorization, async (req, res) => {
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  console.log(user);
+  const name = user.Doc_FirstName;
+  try {
+    const NewTicket = new ticket({
+      ticket_Name: req.body.ticket_Name,
+      ticket_Email: req.body.ticket_Email,
+      ticket_details: req.body.ticket_details,
+      Doc_id: id,
+    });
+    const savedTikcet = await NewTicket.save();
+    console.log(NewTicket);
+  } catch (e) {
+    console.log(e.masssage);
+    res.render("./Doc/DocTicket.ejs", {
+      name: name,
+      errorMessage: "Something is missing",
+    });
+  }
+  res.render("./Doc/DocTicket.ejs", {
+    name: name,
+    errorMessage: "Submite",
+  });
+});
+//------------------------------------End Tikcet --------------------------------------------------------
+
 router.get("/ManageAppointments", authorization, async (req, res, next) => {
   console.log(res.locals.user.id);
   const id = res.locals.user.id;
@@ -163,15 +196,6 @@ router.get("/ManageAppointments", authorization, async (req, res, next) => {
   const name = user.Doc_FirstName;
   const email = user.Doc_Email;
   res.render("./Doc/DocMangApp.ejs", { name: name, email: email });
-});
-router.get("/DocTicket", authorization, async (req, res, next) => {
-  console.log(res.locals.user.id);
-  const id = res.locals.user.id;
-  const user = await User.findById(id);
-  console.log(user);
-  const name = user.Doc_FirstName;
-  const email = user.Doc_Email;
-  res.render("./Doc/DocTicket.ejs", { name: name, email: email });
 });
 router.get("/profile-home-doc", authorization, async (req, res, next) => {
   console.log(res.locals.user.id);

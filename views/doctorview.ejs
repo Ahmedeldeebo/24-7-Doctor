@@ -360,17 +360,17 @@ color: #269bb8
 
     <ul class="list-group shadow">
 <li class="list-group-item">
-    <%users.forEach(users=>{%>
+    <%Sch.forEach(Sch=>{%>
 <div class="media align-items-lg-center flex-column flex-lg-row"> <img src="/Doctors/MaleDoctor.jpg" alt="Generic placeholder image" width="200" height="200" class="order-1 order-lg-1">
     
     <div class="media-body order-2 order-lg-2 ml-lg-5">
 
-    <h5 class="mt-0 mb-1"> <div class="c"> Doctor <%=users.Doc_FirstName%></div> </h5>
-    <div class="product-rating mb-2"> <span class="badge23"><i class="fa fa-star"></i> 4 Star</span> <span class="rating-review mb-1">4 Ratings &amp; 3 Recommendations</span></div> <span class="doctor-fees price-new">Fees :<%- fees %> </span>
+    <h5 class="mt-0 mb-1"> <div class="c"> Doctor <%=Sch.Doctor_id.Doc_FirstName%></div> </h5>
+    <div class="product-rating mb-2"> <span class="badge23"><i class="fa fa-star"></i> 4 Star</span> <span class="rating-review mb-1">4 Ratings &amp; 3 Recommendations</span></div> <span class="doctor-fees price-new">Fees : <%=Sch.Upfront_fees%> </span>
     <!-- <div class="text-right refine" ><a href="http://localhost:5000/booking" class="btn btn-info" role="button">Book Appointment</a> </div> -->
 <form action="http://localhost:5000/doctor/viewDocSch" method="post">
     <div class="text-right refine" >
-    <input hidden value="<%=users._id %>" name="Doc_Id">
+    <input hidden value="<%=Sch.Doctor_id._id %>" name="Doc_Id">
    <button  class="btn btn-info" type="submit">Doctor Schedule</button> 
     <a href="http://localhost:5000/patient/viewdocschedule" role="button" ></a> </div>
 </form>
@@ -382,12 +382,12 @@ color: #269bb8
     <div class="d-flex align-items-center justify-content-between mt-1">
 
         <ul class="list-inline small">
-            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> <%=users.Specialization_Name%></li>
+            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> <%=Sch.Doctor_id.Specialization_Name%></li>
             <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png">New Cairo : North Tessen Street-CMC Medical Center </li>
-            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Waiting Time : 1 Hour and 8 Minutes </li>
+            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Waiting Time : <%=Sch.AveWating_Time%> </li>
         </ul>
         <ul class="list-inline small">
-            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Available Zoom/WhatsApp/FacetoFace</li>
+            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Available <%=Sch.Available_methods%></li>
         </ul>
     </div>
 </div>

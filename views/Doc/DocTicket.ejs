@@ -399,14 +399,17 @@ p {
             <div class="text-center px-1"> 
                 <div class="forms p-4 py-5 bg-white"> 
                     <h5>Submit a Ticket</h5> 
-                    <div class="mt-4 inputs"> 
-                        <input type="text" class="form-control" placeholder="Name"> 
-                        <input type="text" class="form-control" placeholder="Email"> <textarea class="form-control" placeholder="Type your message"></textarea> 
-                    </div> 
-                    <div class="button mt-4 text-left"> <button class="btn btn-dark">Send</button> </div> 
-                </div> 
-            </div> 
-        </div> 
+                    <form action="http://localhost:5000/doctor/DocTicket" method="post">           
+                        <div class="mt-4 inputs"> 
+                       <input type="text" class="form-control" placeholder="Name" name="ticket_Name"> 
+                       <input type="text" class="form-control" placeholder="Email" name="ticket_Email"> <textarea class="form-control" placeholder="Type your message" name="ticket_details"></textarea> 
+                   </div> 
+                   <div class="button mt-4 text-left"> <button class="btn btn-dark" type="submit">Send</button> 
+                   </div>
+                </form>
+                <div class="alert alert-light text-danger" role="alert">
+                   <%- errorMessage %> 
+                 </div>
 </div> 
 </div> 
 </div> 
