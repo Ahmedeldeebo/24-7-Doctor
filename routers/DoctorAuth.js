@@ -97,9 +97,8 @@ router.post("/Docter-login", async (req, res) => {
     return console.log(err);
   }
 });
-//--------------------------------------------Start serc---------------------------------------------------
+//--------------------------------------------Start view---------------------------------------------------
 router.get("/doctorview", authorization, async (req, res) => {
-  const body = req.body;
   const id = res.locals.user.id;
   const user = await Patient.findById(id);
   const name = user.pat_FirstName;
@@ -130,6 +129,7 @@ router.get("/doctorview-doc", authorization, async (req, res) => {
     // methods: methods,
   });
 });
+//--------------------------------------------End view---------------------------------------------------
 //-------------------------------------------- Start profile Doc ---------------------------------------------------
 router.get("/Doctor-profile-setting", authorization, async (req, res) => {
   console.log(res.locals.user.id);
@@ -206,6 +206,7 @@ router.get("/profile-home-doc", authorization, async (req, res, next) => {
   const email = user.Doc_Email;
   res.render("./Doc/DocHomePage.ejs", { name: name, email: email });
 });
+//------------------------Start Doc Shcdeule--------------------------------------------------------------
 router.get("/updataShcdeule", authorization, async (req, res) => {
   console.log(res.locals.user.id);
   const id = res.locals.user.id;
@@ -235,13 +236,13 @@ router.post("/UpdateSchedule", authorization, async (req, res) => {
     });
     const SavadUpdateDoc = await UpdateDoc.save();
     console.log(UpdateDoc);
-  } catch (err) {
-    console.log(err);
+  } catch (e) {
+    console.log(e.masssage);
   }
 
   res.render("./Doc/DocSche.ejs", { name: name, email: email });
 });
-//-------------------------------------------- End Profile Doc ---------------------------------------------------
+//-------------------------------------------End Doc Shcdeule--------------------------------------------------------------
 //-------------------------------------------- Start view Doc ---------------------------------------------------
 router.post("/viewDocSch", authorization, async (req, res) => {
   const id = res.locals.user.id;
@@ -262,4 +263,16 @@ router.post("/viewDocSch", authorization, async (req, res) => {
   });
 });
 //-------------------------------------------- End view Doc ---------------------------------------------------
+//-------------------------------------------- Start Doc Search ---------------------------------------------------
+router.post("/DocSearch", authorization, async (req, res) => {
+  const id = res.locals.user.id;
+  const user = await Patient.findById(id);
+  const name = user.pat_FirstName;
+  const DocName = req.body.DocName;
+  const doc = await User.find({ Doc_FirstName: DocName });
+  console.log(DocName);
+  console.log(doc);
+  res.send(doc);
+});
+//-------------------------------------------- End Doc Search ---------------------------------------------------
 module.exports = router;

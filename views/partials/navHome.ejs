@@ -114,9 +114,9 @@ div.c {
           Home
         </a>
         </div>
-    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-        <div class="input-group"> <input type="text" class="form-control bg-light border-0 small" placeholder="Search for...">
-            <div class="input-group-append"> <button class="btn btn-primary" type="button"> <i class="fa fa-search fa-sm"></i> </button> </div>
+    <form action="http://localhost:5000/doctor/DocSearch" method="post"  class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" >
+        <div class="input-group"> <input type="text" name="DocName" class="form-control bg-light border-0 small" placeholder="Search for...">
+            <div class="input-group-append"> <button class="btn btn-primary" type="submit"> <i class="fa fa-search fa-sm"></i> </button> </div>
         </div>
     </form>
         <ul class="navbar-nav ml-auto">
