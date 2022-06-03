@@ -73,7 +73,7 @@
                     <div class="profile-pic-div">
                       <img src="/img/Profile.jpg" id="photo">
                       <input type="file" id="file" name="img">
-                      <!-- <label for="file" id="uploadBtn">Update Photo</label> -->
+                      <label for="file" id="uploadBtn">Update Photo</label>
                       <!-- <span class="font-weight-bold">
                       <div class="c"><%- name %></div> </span>
                       <span class="text-black-50"><%- email %> </span> -->
@@ -83,24 +83,24 @@
               <div class="col-md-5 border-right">
                   <div class="p-3 py-5">
                       <div class="d-flex justify-content-between align-items-center mb-3">
-                          <h4 class="text-right">Doctor Profile</h4>
+                          <h4 class="text-right">Profile Settings</h4>
                       </div>
                       <div class="row mt-2">
-                          <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="<%- name %>" value="" disabled></div>
+                          <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="<%- name %>" value=""></div>
 
-                          <div class="col-md-6"><label class="labels">Last name</label><input type="text" class="form-control" value="" placeholder="<%- Lname %>" disabled></div>
+                          <div class="col-md-6"><label class="labels">Last name</label><input type="text" class="form-control" value="" placeholder="<%- Lname %>"></div>
                       </div>
 
                       <div class="row mt-3">
                         <!-- <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" placeholder="<%- email %>" value=""></div> -->
                           <label for="exampleDataList" class="form-label col-md-12">Email</label>
-                          <input class="form-control col-md-12" list="" id="exampleDataList" placeholder="<%- email %>" disabled>
+                          <input class="form-control col-md-12" list="" id="exampleDataList" placeholder="<%- email %>">
 
                           <br></br>
 
                           <!-- <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control" placeholder="Enter phone number" value=""></div> -->
                           <label for="exampleDataList" class="form-label col-md-12">Mobile Number</label>
-                          <input class="form-control col-md-12" list="" id="exampleDataList" placeholder="+20" disabled>
+                          <input class="form-control col-md-12" list="" id="exampleDataList" placeholder="+20">
 
                           <br></br>
 
@@ -110,7 +110,7 @@
 
                           <!-- <div class="col-md-12"><label class="labels">Area</label><input type="text" class="form-control" placeholder="Enter area" value=""></div> -->
                           <label for="exampleDataList" class="form-label col-md-12">Area</label>
-                        <input class="form-control col-md-12" list="Areas" id="exampleDataList" placeholder="Enter your Area" disabled>
+                        <input class="form-control col-md-12" list="Areas" id="exampleDataList" placeholder="Enter your Area">
                         <datalist id="Areas">
                           <option value="New Cairo" false>
                           <option value="Nasr City">
@@ -128,8 +128,10 @@
 
                           <!-- <div class="col-md-12"><label class="labels">Insurance Number</label><input type="text" class="form-control" placeholder="Insurance no" value=""></div> -->
                       </div>
+                      <!-- <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div> -->
+
                       <div class="mt-5 text-center">
-                        <a href="http://localhost:5000/doctor/DocProfileEdit" class="btn btn-primary btn-small active" role="button" aria-pressed="true">Edit Profile</a>
+                        <a href="http://localhost:5000/doctor/Doctor-profile-setting" class="btn btn-success btn-small active profile-button" role="button" aria-pressed="true">Save Profile</a>
                       </div>
                   </div>
               </div>
