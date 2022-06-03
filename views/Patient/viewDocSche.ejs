@@ -61,7 +61,7 @@
 
 <body>
     <%- include ('../partials/navHome.ejs') %>  
-<form>
+
 
     <div class="container mt-5">
         <div class="row d-flex justify-content-center">
@@ -128,7 +128,7 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <div class="d-flex flex-column"> <span class="text-left head">Upfront Fees</span> <span class="text-left bottom"><%=shce.Upfront_fees%></span> </div>
+                                                    <div class="d-flex flex-column"> <span class="text-left head">Upfront Feess</span> <span class="text-left bottom"><%=shce.Upfront_fees%></span> </div>
                                                 </td>
                                                 <!-- Leave it empty -->
                                                 <td>
@@ -139,9 +139,18 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <div class="px-3" ><a href="http://localhost:5000/booking" class="btn btn-info" role="button">Book Now</a> </div>
-                                 <!-- <div class="px-3"><button type="button" class="btn btn-primary btn-block" href="http://localhost:5000/booking">Send Message</button></div>  -->
+                                
+                                 <form action="/patient/booking" method="post"> <div>
+                                    <input type="hidden" value="<%=DocUser._id%>" name="Doc_Id">
+                             <button class="px-3 btn btn-info" type="submit">Book Now</button>
+                                     </div></form>
+                                  
+                            
+                            
+                                
+                                        
                             </div>
+
                         </div>
                         <div class="col-md-5">
                             <div class="py-3">

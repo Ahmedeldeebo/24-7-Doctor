@@ -2,6 +2,7 @@ const router = require("express").Router();
 const User = require("../models/Patient");
 const Doctor = require("../models/Doctor");
 const ticket = require("../models/Ticket");
+const Appo = require("../models/Aappointment");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
@@ -231,6 +232,7 @@ router.post(
 );
 ///------------------------------------logOut start--------------------------------------------------------
 router.get("/logOut", authorization, (req, res) => {
+  console.log("LogOut Successful");
   return res.clearCookie("accessToken").redirect("/");
 });
 //------------------------------------logOut end--------------------------------------------------------
@@ -314,4 +316,37 @@ router.get("/viewappoint", authorization, async (req, res) => {
   const email = user.pat_Email;
   res.render("./Patient/viewAppoint.ejs", { name: name, email: email });
 });
+//-----------------------------Start Booking Appoint---------------------------------------------------------
+router.post("/booking", authorization, async (req, res) => {
+  const DocId = req.body.Doc_Id;
+  const body = req.body;
+  console.log(DocId, "DocId");
+  const id = res.locals.user.id;
+  console.log(id);
+  const user = await User.findById(id);
+  const name = user.pat_FirstName;
+
+  try {
+    const NewAppoinemt = new Appo({
+      App_visit_date: body.App_visit_date,
+      App_visit_day: body.App_visit_day,
+      App_RegVisit_time: body.App_RegVisit_time,
+      Methed_of_comm: body.Methed_of_comm,
+      Doc_Id: DocId,
+      Pat_Id: id,
+    });
+    const SavdAppoinemt = await NewAppoinemt.save();
+    console.log(Appo, "Create successfully");
+  } catch (e) {
+    console.log(e.message);
+  }
+  res.render("./Patient/booking.ejs", { user: user, name: name });
+});
+// router.get("/booking", authorization, async (req, res) => {
+//   const id = res.locals.user.id;
+//   console.log(id);
+//   const user = await User.findById(id);
+//   res.render("./Patient/booking.ejs", { user: user });
+// });
+//-----------------------------End Booking Appoint--------------------------------------------------------------
 module.exports = router;

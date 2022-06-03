@@ -26,13 +26,17 @@ router.post("/Pharmcy-register", async (req, res) => {
     const savedUser = await NewUser.save();
     console.log(NewUser);
   } catch (err) {
-    res.render("./Pharmacy/PharmacySignUp.ejs", { errorMessage: "Something is missing" });
+    res.render("./Pharmacy/PharmacySignUp.ejs", {
+      errorMessage: "Something is missing",
+    });
   }
   try {
     // const savedUser = await NewUser.save();
     // console.log(NewUser);
 
-    res.render("./Pharmacy/signInPhar.ejs", { errorMessage: "Account Created Successfully" });
+    res.render("./Pharmacy/signInPhar.ejs", {
+      errorMessage: "Account Created Successfully",
+    });
   } catch (err) {
     console.log(err);
   }
@@ -42,7 +46,8 @@ router.post("/Pharmcy-register", async (req, res) => {
 router.post("/Pharmacy-login", async (req, res) => {
   try {
     const user = await User.findOne({ Phar_userName: req.body.Phar_userName });
-    !user && res.render("./Pharmacy/signInPhar.ejs", { errorMessage: "Wrong email" });
+    !user &&
+      res.render("./Pharmacy/signInPhar.ejs", { errorMessage: "Wrong email" });
     //res.Status(401).json("Wrong credentials!");
     const hashedPassword = CryptoJS.AES.decrypt(
       user.Phar_Password,
@@ -51,7 +56,9 @@ router.post("/Pharmacy-login", async (req, res) => {
     const Originalpassword = hashedPassword.toString(CryptoJS.enc.Utf8);
 
     Originalpassword !== req.body.Phar_Password &&
-      res.render("./Pharmacy/signInPhar.ejs", { errorMessage: "Wrong password" });
+      res.render("./Pharmacy/signInPhar.ejs", {
+        errorMessage: "Wrong password",
+      });
     // res.status(401).json("Wrong credentials!");
 
     const accessToken = jwt.sign(
@@ -74,8 +81,8 @@ router.post("/Pharmacy-login", async (req, res) => {
         httpOnly: true,
       })
       .render("./Pharmacy/PhaHome.ejs", { name: name }); //res.status(200).json({ ...others, accessToken });
-  } catch (err) {
-    return console.log(err);
+  } catch (e) {
+    return console.log(e.message);
   }
 });
 

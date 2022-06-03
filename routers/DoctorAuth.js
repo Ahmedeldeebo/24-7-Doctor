@@ -251,11 +251,11 @@ router.post("/viewDocSch", authorization, async (req, res) => {
   const name = user.pat_FirstName;
   const shce = await DocSche.findOne({ Doctor_id: DocID });
   const DocUser = await User.findById(DocID);
-  console.log(shce);
-  console.log(DocUser);
-  console.log(req.body.Doc_Id);
-  console.log(DocID);
-  console.log(id);
+  // console.log(shce);
+  // console.log(DocUser);
+  // console.log(req.body.Doc_Id);
+  // console.log(DocID);
+  // console.log(id);
   res.render("./Patient/viewDocSche.ejs", {
     DocUser: DocUser,
     shce: shce,

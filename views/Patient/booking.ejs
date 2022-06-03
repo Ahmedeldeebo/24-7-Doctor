@@ -22,6 +22,10 @@
     list-style: none;
     font-family: 'Montserrat', sans-serif;
 }
+.c {
+  text-transform: capitalize;
+}
+
 
 body {
     background-image: url("https://ngarp5kyrr3cbssa6oxan1aa-wpengine.netdna-ssl.com/wp-content/uploads/2019/03/doctor.jpg");
@@ -123,7 +127,9 @@ p {
         
         
         <body>
-
+         <!--Start Hader-->
+         <%- include ('../partials/navHome.ejs') %>
+         <!--End Hader-->
 
             <div class="container">
               <div class="callback d-flex flex-column align-items-center justify-content-center">
@@ -134,8 +140,8 @@ p {
                   </div>
                   <div class="d-md-flex">
                       <div class="row">
-                          <div class="col-md-5 col-12 me-md-4">
-                              <input class="form-control" type="text" placeholder="Your Name">
+                          <div class="col-md-5 col-12 me-md-4 ">
+                              <input class="form-control c" type="text" placeholder="Your Name" value="<%=user.pat_FirstName %> ">
                           </div>
                           <div class="col-md-5 col-12 ms-md-1">
                               <input class="form-control" type="text" placeholder="Phone No.">
@@ -143,12 +149,13 @@ p {
                       </div>
                       <div class="row">
                         <div class="col-md-5 col-12 me-md-4">
-                            <input class="form-control" type="text" placeholder="Your Email">
+                            <input class="form-control" type="text" value="<%=user.pat_Email %> "placeholder="Your Email" >
                         </div>
                     </div>
 
                       <div class="row">
-                        <input class="form-control col-md-12" list="Methods" id="DataList" placeholder="Method of Comm.">
+                          <form action="http://localhost:5000/patient/booking" method="post">
+                        <input class="form-control col-md-12" list="Methods" id="DataList" placeholder="Method of Comm." name="Methed_of_comm">
                         <datalist id="Methods">
                           <option value="Zoom Meeting" false>
                           <option value="WhatsApp">
@@ -156,7 +163,7 @@ p {
                           </option>
                         </datalist>
                         <div class="col-md-5 col-12 me-md-4">
-                            <input class="form-control col-md-12" list="Days" id="DataList" placeholder="Chosen Day">
+                            <input class="form-control col-md-12" list="Days" id="DataList" placeholder="Chosen Day" name="App_visit_day">
                         <datalist id="Days">
                             <option value="Sunday" false>
                             <option value="Monday">
@@ -172,7 +179,7 @@ p {
                         
                     </div>
                     <div class="row ">
-                        <input class="form-control col-12 me-md-4" list="Hours" id="DataList" placeholder="Chosen Hour">
+                        <input class="form-control col-12 me-md-4" list="Hours" id="DataList" placeholder="Chosen Hour" name="App_RegVisit_time">
                         <datalist id="Hours">
                             <option value="11:00 AM" false>
                             <option value="12:00 AM">
@@ -191,8 +198,8 @@ p {
                         </datalist>
                     </div>
                   </div>
-                      <div class="btn btn-danger mt-5" onclick="showSwal('success-message')">Book Now</div>
-                  
+                      <div onclick="showSwal('success-message')"><button class="btn btn-danger mt-5" type="submit">Book Now</button></div>
+                    </form>
               </div>
           </div>
 

@@ -87,9 +87,7 @@ app.get("/profile", (req, res) => {
 app.get("/doctors", (req, res) => {
   res.render("doctors.ejs");
 });
-app.get("/booking", (req, res) => {
-  res.render("./Patient/booking.ejs");
-});
+
 app.get("/team", (req, res) => {
   res.render("team.ejs");
 });
@@ -114,9 +112,7 @@ app.get("/home", authorization, (req, res) => {
 app.get("/PublicTicket", (req, res) => {
   res.render("PublicTicket.ejs");
 });
-// app.use((req, res, next) => {
-//   res.status(404).send({ error: "Not Found" });
-// });
+
 
 app.get("*", (req, res) => {
   res.render("404.ejs", { title: "404" });
