@@ -7,6 +7,8 @@
      <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <script src="https://kit.fontawesome.com/ff8698dfe7.js" crossorigin="anonymous"></script>
+    
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <title>Patient Signup</title>
     <link
@@ -16,6 +18,7 @@
       body {
     overflow-y:hidden;
   }
+  
     </style>
   </head>
   <body>
@@ -92,16 +95,56 @@
               </div>
             </div>
             <div class="row rthree">
-              <div class="form-group col-md-6 ffive py-3">
-                <input
-                  type="password"
-                  class="form-control"
+              <div class="form-group col-md-6 ffive py-3 needs-validation" novalidate action="#" method="#" onsubmit="return false">
+                
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <button class="input-group-text btn btn-default reveal" type="button"><i class="fa-solid fa-eye"></i></button>
+                  </div>
+                  <input   input type="password"
+                  label for="validationPassword"
+                  class="form-control pwd"
+                  id="validationPassword"
+                  minlength="8"
                   placeholder="Password"
                   autocomplete="off"
-                  required =""
+                  value="" required
+                  name="pat_password"> 
+                  <small id="passwordHelpBlock" class="form-text text-muted">
+                        Your password must be 8-20 characters long,  must contain special characters "!@#$%&*_?", numbers, lower and upper letters only.
+                  </small>
+              
+                      <!-- <div id="feedbackin" class="valid-feedback">
+                        Strong Password!
+                      </div> -->
+                      <div id="feedbackirn" class="invalid-feedback">
+                        Atlead 8 characters,
+                        Number, Special Character 
+                        Caplital Letter and Small letters
+                      </div>
+                </div>
+                <!-- <input
+                  input type="password"
+                  label for="validationPassword"
+                  class="form-control pwd"
+                  id="validationPassword"
+                  minlength="8"
+                  placeholder="Password"
+                  autocomplete="off"
+                  value="" required
                   name="pat_password"
-                />
+
+                /> -->
+   
+                <div  class="progress" style="height: 5px;">
+                  <div id="progressbar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 10%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                    
+                  </div>
+                  </div>
+
+                  
               </div>
+
               <div class="form-group col-md-6 fsix py-3">
                 <input
                   type="text"
@@ -146,34 +189,11 @@
                   </div>
                   <div class="wrapper text-left">
                       <button class="btn btn-primary" type="submit">Create an account</button> 
-                      <!-- onclick="sSuccess('success-message')" -->
+
                   </div>
               </div>
-   <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js'></script>
-   
-   <!-- <script type='text/Javascript'>
-                                              
-              (function($) {
-              sSuccess = function(type) {
-              'use strict';
-              if (type == 'success-message') {
-              swal({
-              title: 'Congratulations!',
-              text: 'Account Successfully Created',
-              type: 'success',
-              })
-              
-              }else{
-              swal("Error occured !");
-              }
-              }
-              
-              })(jQuery);
-              </script>  -->
-                <!-- <button type="submit" class="btn btn-primary">
-                  <span>Create account</span>
-                </button> -->
               </div>
+              
               <div class="form-group col-md-6 ften py-3">
                 <p class="text-muted">
                   Already have an account?<br /><a
@@ -187,9 +207,180 @@
         </div>
         </div>
         </div>
-        </div>
+<script>
+  $(".reveal").on('click',function() {
+    var $pwd = $(".pwd");
+    if ($pwd.attr('type') === 'password') {
+        $pwd.attr('type', 'text');
+    } else {
+        $pwd.attr('type', 'password');
+    }
+});
+  (function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      // making sure password enters the right characters
+		form.validationPassword.addEventListener('keypress', function(event){
+			console.log("keypress");
+			console.log("event.which: " + event.which);
+			var checkx = true;
+			var chr = String.fromCharCode(event.which);
+			console.log("char: " + chr);
+			  
+
+			var matchedCase = new Array();
+			matchedCase.push("[!@#$%&*_?]"); // Special Character
+			matchedCase.push("[A-Z]");      // Uppercase Alpabates
+			matchedCase.push("[0-9]");      // Numbers
+			matchedCase.push("[a-z]");
+
+			for (var i = 0; i < matchedCase.length; i++) {
+				if (new RegExp(matchedCase[i]).test(chr)) {
+					console.log("checkx: is true");					
+					checkx = false;
+				}
+			}	
+      
+      if(form.validationPassword.value.length >= 20)
+        checkx = true;
+			
+			if ( checkx ) {
+                event.preventDefault();
+              	event.stopPropagation();	  
+          	}
+
+		});
+    
+    //Validate Password to have more than 8 Characters and A capital Letter, small letter, number and special character
+		// Create an array and push all possible values that you want in password
+		var matchedCase = new Array();
+		matchedCase.push("[$@$$!%*#?&]"); // Special Character
+		matchedCase.push("[A-Z]");      // Uppercase Alpabates
+		matchedCase.push("[0-9]");      // Numbers
+		matchedCase.push("[a-z]");     // Lowercase Alphabates
+		
+
+		form.validationPassword.addEventListener('keyup', function(){
+		
+		var messageCase = new Array();
+		messageCase.push(" Special Character"); // Special Character
+		messageCase.push(" Upper Case");      // Uppercase Alpabates
+		messageCase.push(" Numbers");      // Numbers
+		messageCase.push(" Lower Case");     // Lowercase Alphabates
+
+		var ctr = 0;
+		var rti = "";
+		for (var i = 0; i < matchedCase.length; i++) {
+			if (new RegExp(matchedCase[i]).test(form.validationPassword.value)) {
+				if(i == 0) messageCase.splice(messageCase.indexOf(" Special Character"), 1);
+				if(i == 1) messageCase.splice(messageCase.indexOf(" Upper Case"), 1);
+				if(i == 2) messageCase.splice(messageCase.indexOf(" Numbers"), 1);
+				if(i == 3) messageCase.splice(messageCase.indexOf(" Lower Case"), 1);
+				ctr++;
+				//console.log(ctr);
+				//console.log(rti);
+			}
+		}		
+		
+		
+		//console.log(rti);
+		// Display it
+		var progressbar = 0;
+		var strength = "";
+		var bClass = "";
+		switch (ctr) {
+		case 0:
+		case 1: 
+			strength = "Way too Weak";
+			progressbar = 15;
+			bClass = "bg-danger";
+			break;
+		case 2:
+			strength = "Very Weak";
+			progressbar = 25;
+			bClass = "bg-danger";
+			break;
+		case 3:
+			strength = "Weak";	
+			progressbar = 34;
+			bClass = "bg-warning";			
+			break;
+		case 4:
+			strength = "Medium";
+			progressbar = 65;
+			bClass = "bg-warning";						
+			break;
+		}
+		
+		if (strength == "Medium" && form.validationPassword.value.length >= 8 ) {
+			strength = "Strong";
+			bClass = "bg-success";			
+			form.validationPassword.setCustomValidity("");			
+		} else {
+			form.validationPassword.setCustomValidity(strength);
+		}
+
+		var sometext = "";
+
+		if(form.validationPassword.value.length < 8 ){
+      var lengthI = 8 - form.validationPassword.value.length;
+			sometext += ` ${lengthI} more Characters, `;
+		} 
+
+		sometext += messageCase;
+		console.log(sometext);
+		
+		console.log(sometext);
+
+		if(sometext){
+			sometext = " You Need" + sometext;
+		}
 
 
+		$("#feedbackin, #feedbackirn").text(strength + sometext);
+		$("#progressbar").removeClass( "bg-danger bg-warning bg-success" ).addClass(bClass);
+		var plength = form.validationPassword.value.length ;
+		if(plength > 0) progressbar += ((plength - 0) * 1.75) ;
+		//console.log("plength: " + plength);
+		var  percentage = progressbar + "%";
+		form.validationPassword.parentNode.classList.add('was-validated');
+		//console.log("pacentage: " + percentage);
+		$("#progressbar").width( percentage );
+
+				if(form.validationPassword.checkValidity() === true){
+					form.verifyPassword.disabled = false;
+				} else {
+					form.verifyPassword.disabled = true;
+				}
+          		 
+      
+    }); 
+      
+
+      
+    });
+  }, false);
+})();
+$(document).ready(function() {
+    $("#show_hide_password a").on('click', function(event) {
+        event.preventDefault();
+        if($('#show_hide_password input').attr("type") == "text"){
+            $('#show_hide_password input').attr('type', 'password');
+            $('#show_hide_password i').addClass( "fa-eye-slash" );
+            $('#show_hide_password i').removeClass( "fa-eye" );
+        }else if($('#show_hide_password input').attr("type") == "password"){
+            $('#show_hide_password input').attr('type', 'text');
+            $('#show_hide_password i').removeClass( "fa-eye-slash" );
+            $('#show_hide_password i').addClass( "fa-eye" );
+        }
+    });
+});
+
+</script>
     <!-- <div class="container">
       <div class="text-center">
         <h2 class="my-5">Signup Now</h2>
