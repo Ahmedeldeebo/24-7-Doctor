@@ -35,9 +35,9 @@ router.post("/register", async (req, res) => {
       pat_InsuranceNo: req.body.pat_InsuranceNo,
     });
     const savedUser = await NewUser.save();
-    console.log(NewUser);
+    console.log(NewUser, "savedUser");
   } catch (e) {
-    console.log(e.message);
+    console.log(e.message, "error");
     res.render("signUp.ejs", {
       errorMessage: "Credentials already in use",
     });
@@ -46,7 +46,7 @@ router.post("/register", async (req, res) => {
     //  const savedUser = await NewUser.save();
     //  console.log(NewUser);
 
-    res.render("signIn.ejs", { errorMessage: "Account Created Successfully" });
+    res.render("signIn.ejs", { Message: "Account Created Successfully" });
   } catch (e) {
     console.log(e.message);
   }
@@ -56,7 +56,8 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ Pat_username: req.body.Pat_username });
-    !user && res.render("signIn.ejs", { errorMessage: "Wrong email" });
+    !user &&
+      res.render("signIn.ejs", { Message: "", errorMessage: "Wrong email" });
     //res.Status(401).json("Wrong credentials!");
     const hashedPassword = CryptoJS.AES.decrypt(
       user.pat_password,
@@ -65,7 +66,7 @@ router.post("/login", async (req, res) => {
     const Originalpassword = hashedPassword.toString(CryptoJS.enc.Utf8);
 
     Originalpassword !== req.body.pat_password &&
-      res.render("signIn.ejs", { errorMessage: "Wrong password" });
+      res.render("signIn.ejs", { Message: "", errorMessage: "Wrong password" });
     // res.status(401).json("Wrong credentials!");
 
     const accessToken = jwt.sign(
@@ -99,7 +100,7 @@ router.post("/login", async (req, res) => {
       .cookie("accessToken", accessToken, {
         httpOnly: true,
       })
-      .render("./Patient/Patienthome.ejs", { name: name });
+      .render("./Patient/Patienthome.ejs", { Message: "", name: name });
 
     //res.status(200).json({ ...others, accessToken });
   } catch (err) {
@@ -233,6 +234,7 @@ router.get("/logOut", authorization, (req, res) => {
   return res.clearCookie("accessToken").redirect("/");
 });
 //------------------------------------logOut end--------------------------------------------------------
+//------------------------------------Start Tikcet --------------------------------------------------------
 router.get("/Ticket", authorization, async (req, res) => {
   const id = res.locals.user.id;
   const user = await User.findById(id);
@@ -240,7 +242,7 @@ router.get("/Ticket", authorization, async (req, res) => {
   const name = user.pat_FirstName;
   res.render("./Patient/Ticket.ejs", {
     name: name,
-    errorMessage: "Something is missing",
+    errorMessage: "",
   });
 });
 router.post("/Ticket", authorization, async (req, res) => {
@@ -257,17 +259,20 @@ router.post("/Ticket", authorization, async (req, res) => {
     });
     const savedTikcet = await NewTicket.save();
     console.log(NewTicket);
-  } catch (err) {
+  } catch (e) {
+    console.log(e.masssage);
     res.render("./Patient/Ticket.ejs", {
       name: name,
-      errorMessage: "Submite Scc",
+      errorMessage: "Something is missing",
     });
   }
   res.render("./Patient/Ticket.ejs", {
     name: name,
-    errorMessage: "Something is missing",
+    errorMessage: "Submite",
   });
 });
+//------------------------------------End Tikcet --------------------------------------------------------
+
 router.get("/profile-home", authorization, async (req, res, next) => {
   console.log(res.locals.user.id);
   const id = res.locals.user.id;
@@ -286,7 +291,11 @@ router.get("/Profile-Edit", authorization, async (req, res, next) => {
   const name = user.pat_FirstName;
   const email = user.pat_Email;
   const lastName = user.pat_Lastname;
-  res.render("./Patient/ProfileEdit.ejs", { name: name, email: email, lastName: lastName});
+  res.render("./Patient/ProfileEdit.ejs", {
+    name: name,
+    email: email,
+    lastName: lastName,
+  });
 });
 //---------------------------------v
 // router.get("/viewdocschedule", authorization, async (req, res) => {
