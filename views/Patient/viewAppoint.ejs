@@ -9,17 +9,13 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
+    
     <script
       src="https://kit.fontawesome.com/ff8698dfe7.js"
       crossorigin="anonymous"
     ></script>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-      crossorigin="anonymous"
-    />
+
 
     <title>Doctor Schedule</title>
 
@@ -55,15 +51,20 @@
         background-repeat: no-repeat;
         background-size: 100% 170%;
       }
-      #footer {
+      .demo {
+        width: 100%;
+        height: 100%;
+        height: 100vh;
+        background: #000;
+      }
+
+      /* #footer {
         position: absolute;
         bottom: 0;
         width: 100%;
         background: #6cf;
-      }
-      body {
-        /* overflow-y: hidden; */
-      }
+      } */
+
     </style>
   </head>
 
@@ -122,7 +123,33 @@
             <div
               class="col-md-2 text-sm-center text-md-start align-self-center my-2"
             >
-              <a class="btn btn-outline-dark w-100">Details</a>
+              <!--  NORMAL DETAILS BUTTON <a href="#demo" class="btn btn-outline-dark w-100" type="button" data-toggle="collapse">Details</a>  --> 
+
+              <!--  POP OVER - WORKING FINE  -->
+              <button 
+              type="button" 
+              id="firstButton" 
+              class="btn btn-outline-dark w-100" 
+              rel="popover" 
+              data-bs-container="body" 
+              data-bs-toggle="popover" 
+              data-bs-placement="bottom" 
+              data-bs-content="Bottom popover" 
+              data-message="Doctor Name - Specialization - Chosen Day - Chosen Hour">
+                Details
+              </button>
+              <!-- POPOVER END -->
+
+              <!-- COLLAPSE - Not working fine, opens all Details on the page not one by one  -->
+              <!-- <button type="button" class="btn btn-outline-dark w-100" data-toggle="collapse" data-target="#demo">Details</button>
+              <div id="demo" class="collapse">
+                <p> Doctor Name </p>
+                <p> Doctor Specialization </p>
+                <p> Chosen Day </p>
+                <p> Chosen Hour</p>
+              </div> -->
+              <!-- END COLLAPSE  -->
+
             </div>
 
             <div
@@ -137,9 +164,10 @@
             </div>
           </div>
           <%})%>
+
           <!-------------------------------------------END FIRST ROW  -------------------------------------------------->
 
-          <!-------------------------------------------START SECOND ROW  -------------------------------------------------->
+          <!-- -----------------------------------------START SECOND ROW  ----------------------------------------------
 
           <div
             class="d-md-flex d-sm-block justify-content-md-between justify-content-sm-center text-center border-bottom border-2 my-2 bg-light p-2 rounded-3"
@@ -172,14 +200,14 @@
                   value="refresh-order-status"
                 />
                 <h1 class="h6">Pending</h1>
-                <!-- <select name="status" class="btn btn-outline-dark"> 
-                         </select> -->
+                <select name="status" class="btn btn-outline-dark"> 
+                         </select> 
               </form>
             </div>
           </div>
-          <!-------------------------------------------END SECOND ROW  -------------------------------------------------->
+          -----------------------------------------END SECOND ROW  -------------------------------------------------->
 
-          <!-------------------------------------------START THIRD ROW  -------------------------------------------------->
+          <!-------------------------------------------START THIRD ROW  ---------------------------------------------
 
           <div
             class="d-md-flex d-sm-block justify-content-md-between justify-content-sm-center text-center border-bottom border-2 my-2 bg-light p-2 rounded-3"
@@ -212,31 +240,37 @@
                   value="refresh-order-status"
                 />
                 <h1 class="h6">Payment Paid</h1>
-                <!-- <select name="status" class="btn btn-outline-dark">
-                                 </select> -->
+                 <select name="status" class="btn btn-outline-dark">
+                                 </select> 
               </form>
             </div>
           </div>
-          <!-------------------------------------------END THIRD ROW  -------------------------------------------------->
+          -----------------------------------------END THIRD ROW  ------------------------------------------------ -->
         </div>
       </div>
     </div>
   </body>
-  <div id="footer"><%- include ('../partials/footer.ejs') %></div>
+  <div class="mt-5"><%- include ('../partials/footer.ejs') %></div>
 
-  <script
-    src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"
-  ></script>
-  <script
-    src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"
-  ></script>
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"
-  ></script>
+  <script>
+$(function () {
+    $('#firstButton').popover({
+      container: "body",
+      html: true,
+      content: function () {
+        return '<div class="popover-message">' + $(this).data("message") + '</div>';
+      }
+    });
+    $('#secondButton').popover(); // <-- The first initializer does this, which causes the next one to fail on the next line.
+    $('#secondButton').popover({
+      container: "body",
+      html: true,
+      content: function () {
+        return '<div class="popover-message">' + $(this).data("message") + '</div>';
+      }
+    });
+});  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"></link>
 </html>
