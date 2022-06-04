@@ -5,7 +5,7 @@ const Doc_scheduleSchema = new mongoose.Schema({
   Available_methods: { type: String, required: true },
   AveWating_Time: { type: String, required: true },
   Start_Time: { type: String, required: true },
-  Available_Days: { type: String, required: true },
+  Available_Days: { type: Date, required: true },
   Upfront_fees: { type: String, required: true },
   Doctor_id: {
     type: mongoose.Schema.Types.ObjectId,

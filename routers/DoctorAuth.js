@@ -205,7 +205,11 @@ router.get("/DocProfileEdit", authorization, async (req, res, next) => {
   const name = user.Doc_FirstName;
   const email = user.Doc_Email;
   const Lname = user.Doc_Lastname;
-  res.render("./Doc/DocProfileEdit.ejs", { name: name, email: email, Lname: Lname });
+  res.render("./Doc/DocProfileEdit.ejs", {
+    name: name,
+    email: email,
+    Lname: Lname,
+  });
 });
 router.get("/profile-home-doc", authorization, async (req, res, next) => {
   console.log(res.locals.user.id);
