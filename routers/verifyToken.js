@@ -52,8 +52,8 @@ const authorization = (req, res, next) => {
     // req.user._id = data.id;
     // req.userRole = data.role;
     return next();
-  } catch (err) {
-    console.log(err);
+  } catch (e) {
+    console.log(e.massage);
     return res.sendStatus(403).redirect("/");
   }
 };

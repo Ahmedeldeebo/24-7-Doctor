@@ -154,7 +154,7 @@ p {
                     </div>
 
                       <div class="row">
-                          <form action="http://localhost:5000/patient/booking" method="post">
+                          <form action="http://localhost:5000/patient/booking-Create" method="post">
                         <input class="form-control col-md-12" list="Methods" id="DataList" placeholder="Method of Comm." name="Methed_of_comm">
                         <datalist id="Methods">
                           <option value="Zoom Meeting" false>
@@ -198,6 +198,7 @@ p {
                         </datalist>
                     </div>
                   </div>
+                  <input hidden value="<%=Doc._id%>" name="Doc_Id">
                       <div onclick="showSwal('success-message')"><button class="btn btn-danger mt-5" type="submit">Book Now</button></div>
                     </form>
               </div>

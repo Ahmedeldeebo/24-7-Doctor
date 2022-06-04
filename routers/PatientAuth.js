@@ -104,8 +104,8 @@ router.post("/login", async (req, res) => {
       .render("./Patient/Patienthome.ejs", { Message: "", name: name });
 
     //res.status(200).json({ ...others, accessToken });
-  } catch (err) {
-    return console.log(err);
+  } catch (e) {
+    return console.log(e.masssage);
   }
 });
 
@@ -199,7 +199,7 @@ router.post(
       //   Ins: Ins,
       // });
       console.log("Upadet scc");
-      res.redirect("/patient/profile-setting");
+      res.redirect("redirect/profile-setting");
     } catch (err) {
       console.log(err);
       // res.render("./Patient/Profile.ejs", {
@@ -311,21 +311,33 @@ router.get("/Profile-Edit", authorization, async (req, res, next) => {
 router.get("/viewappoint", authorization, async (req, res) => {
   const id = res.locals.user.id;
   const user = await User.findById(id);
+  const appo = await Appo.find({ Pat_Id: id }).populate("Pat_Id");
   console.log(user);
+  console.log(appo);
   const name = user.pat_FirstName;
-  const email = user.pat_Email;
-  res.render("./Patient/viewAppoint.ejs", { name: name, email: email });
+
+  res.render("./Patient/viewAppoint.ejs", { name: name, appo: appo });
 });
 //-----------------------------Start Booking Appoint---------------------------------------------------------
 router.post("/booking", authorization, async (req, res) => {
   const DocId = req.body.Doc_Id;
+  console.log(DocId);
+  const id = res.locals.user.id;
+  console.log(id);
+  const user = await User.findById(id);
+  const Doc = await Doctor.findById(DocId);
+  console.log(Doc, "Doc Table");
+  const name = user.pat_FirstName;
+  res.render("./Patient/booking.ejs", { user: user, name: name, Doc: Doc });
+});
+router.post("/booking-Create", authorization, async (req, res) => {
   const body = req.body;
-  console.log(DocId, "DocId");
+  const DocId = req.body.Doc_Id;
+  console.log(DocId);
   const id = res.locals.user.id;
   console.log(id);
   const user = await User.findById(id);
   const name = user.pat_FirstName;
-
   try {
     const NewAppoinemt = new Appo({
       App_visit_date: body.App_visit_date,
@@ -336,17 +348,11 @@ router.post("/booking", authorization, async (req, res) => {
       Pat_Id: id,
     });
     const SavdAppoinemt = await NewAppoinemt.save();
-    console.log(Appo, "Create successfully");
+    console.log(Appo, SavdAppoinemt, "Create successfully");
   } catch (e) {
     console.log(e.message);
   }
-  res.render("./Patient/booking.ejs", { user: user, name: name });
+  res.redirect("/patient/viewappoint");
 });
-// router.get("/booking", authorization, async (req, res) => {
-//   const id = res.locals.user.id;
-//   console.log(id);
-//   const user = await User.findById(id);
-//   res.render("./Patient/booking.ejs", { user: user });
-// });
 //-----------------------------End Booking Appoint--------------------------------------------------------------
 module.exports = router;
