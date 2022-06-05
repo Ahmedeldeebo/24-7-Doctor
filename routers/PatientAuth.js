@@ -108,128 +108,60 @@ router.post("/login", async (req, res) => {
     return console.log(e.masssage);
   }
 });
-
-// router.get("/login-test", verifyTokenAndAuthorization, (req, res) => {
-//   const userName = User;
-//   userName
-//     .findById(user._id)
-//     .then((result) => {
-//       console.log(result);
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-//   console.log(pat_FirstName, "test");
-
-//   const { pat_password, ...others } = user._doc;
-// });
-// router.put("/profile-setting-Update", authorization, async (req, res, next) => {
-//   console.log(res.locals.user.id);
-//   const id = res.locals.user.id;
-//   const user = await User.findById(id);
-//   console.log(user);
-//   const name = user.pat_FirstName;
-//   const email = user.pat_Email;
-//   const lastName = user.pat_Lastname;
-//   const Ins = user.pat_InsuranceNo;
-//   try {
-//     const upadateUser = await User.findByIdAndUpdate(
-//       id,
-//       {
-//         $set: req.body,
-//       },
-//       { new: true }
-//     );
-//     res.render("Profile.ejs");
-//   } catch (err) {
-//     console.log(err);
-//     res.render("Profile.ejs");
-//   }
-//   res.render("Profile.ejs", {
-//     name: name,
-//     email: email,
-//     lastName: lastName,
-//     Ins: Ins,
-//   });
-// });
+//-------------------------------------------- End Login ---------------------------------------------------
+//-------------------------------------------- Start  profile ---------------------------------------------------
 router.get("/profile-setting", authorization, async (req, res, next) => {
+  console.log(res.locals.user.id);
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  const name = user.pat_FirstName;
+  console.log(user);
+  res.render("./Patient/Profile.ejs", { user: user, name: name });
+});
+router.post("/Profile-Edit", authorization, async (req, res, next) => {
+  console.log(res.locals.user.id);
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  const name = user.pat_FirstName;
+
+  console.log(user);
+  try {
+    const updateUser = await User.findByIdAndUpdate(
+      id,
+      {
+        $set: req.body,
+      },
+      { new: true }
+    );
+    res.redirect("/patient/profile-setting");
+  } catch (e) {
+    console.log(e.message);
+
+    res.redirect("/patient/profile-setting");
+  }
+  res.render("./Patient/Profile.ejs", { name: name, user: user });
+});
+// Patient Profile Updating
+router.get("/Profile-Edit", authorization, async (req, res, next) => {
+  console.log(res.locals.user.id);
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  console.log(user);
+  const name = user.pat_FirstName;
+  res.render("./Patient/ProfileEdit.ejs", { name: name, user: user });
+});
+/// home page
+router.get("/profile-home", authorization, async (req, res, next) => {
   console.log(res.locals.user.id);
   const id = res.locals.user.id;
   const user = await User.findById(id);
   console.log(user);
   const name = user.pat_FirstName;
   const email = user.pat_Email;
-  const lastName = user.pat_Lastname;
-  const Ins = user.pat_InsuranceNo;
-  res.render("./Patient/Profile.ejs", {
-    Message: "",
-    errorMessage: "",
-    name: name,
-    email: email,
-    lastName: lastName,
-    Ins: Ins,
-  });
+  res.render("./Patient/Patienthome.ejs", { name: name, email: email });
 });
-router.post(
-  "/profile-setting-update",
-  authorization,
-  async (req, res, next) => {
-    console.log(res.locals.user.id);
-    const id = res.locals.user.id;
-    const user = await User.findById(id);
-    console.log(user);
-    const name = user.pat_FirstName;
-    const email = user.pat_Email;
-    const lastName = user.pat_Lastname;
-    const Ins = user.pat_InsuranceNo;
-    try {
-      const updateUser = await User.findByIdAndUpdate(
-        id,
-        {
-          $set: req.body,
-        },
-        { new: true }
-      );
-      // res.render("./Patient/Profile.ejs", {
-      //   Message: "Update Succ",
-      //   errorMessage: "",
-      //   name: name,
-      //   email: email,
-      //   lastName: lastName,
-      //   Ins: Ins,
-      // });
-      console.log("Upadet scc");
-      res.redirect("redirect/profile-setting");
-    } catch (err) {
-      console.log(err);
-      // res.render("./Patient/Profile.ejs", {
-      //   Message: "",
-      //   errorMessage: "Falid to update",
-      //   name: name,
-      //   email: email,
-      //   lastName: lastName,
-      //   Ins: Ins,
-      // });
-      res.redirect("/patient/profile-setting");
-    }
 
-    console.log("Upadet scc");
-    // const user = await User.findById(id);
-    // console.log(user);
-    // const name = user.pat_FirstName;
-    // const email = user.pat_Email;
-    // const lastName = user.pat_Lastname;
-    // const Ins = user.pat_InsuranceNo;
-    res.render("./Patient/Profile.ejs", {
-      Message: "",
-      errorMessage: "",
-      name: name,
-      email: email,
-      lastName: lastName,
-      Ins: Ins,
-    });
-  }
-);
+///------------------------------------End fo profile--------------------------------------------------------
 ///------------------------------------logOut start--------------------------------------------------------
 router.get("/logOut", authorization, (req, res) => {
   console.log("LogOut Successful");
@@ -274,40 +206,6 @@ router.post("/Ticket", authorization, async (req, res) => {
   });
 });
 //------------------------------------End Tikcet --------------------------------------------------------
-
-router.get("/profile-home", authorization, async (req, res, next) => {
-  console.log(res.locals.user.id);
-  const id = res.locals.user.id;
-  const user = await User.findById(id);
-  console.log(user);
-  const name = user.pat_FirstName;
-  const email = user.pat_Email;
-  res.render("./Patient/Patienthome.ejs", { name: name, email: email });
-});
-// Patient Profile Updating
-router.get("/Profile-Edit", authorization, async (req, res, next) => {
-  console.log(res.locals.user.id);
-  const id = res.locals.user.id;
-  const user = await User.findById(id);
-  console.log(user);
-  const name = user.pat_FirstName;
-  const email = user.pat_Email;
-  const lastName = user.pat_Lastname;
-  res.render("./Patient/ProfileEdit.ejs", {
-    name: name,
-    email: email,
-    lastName: lastName,
-  });
-});
-//---------------------------------v
-// router.get("/viewdocschedule", authorization, async (req, res) => {
-//   const id = res.locals.user.id;
-//   const user = await User.findById(id);
-//   console.log(user);
-//   const name = user.pat_FirstName;
-//   const email = user.pat_Email;
-//   res.render("./Patient/viewDocSche.ejs", { name: name, email: email });
-// });
 router.get("/viewappoint", authorization, async (req, res) => {
   const id = res.locals.user.id;
   const user = await User.findById(id);

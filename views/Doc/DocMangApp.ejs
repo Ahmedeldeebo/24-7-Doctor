@@ -106,7 +106,7 @@
 
 
 <!-------------------------------------------START FIRST ROW  -------------------------------------------------->
-
+<%appo.forEach(appo=>{%>
     <div class="d-md-flex d-sm-block justify-content-md-between justify-content-sm-center text-center border-bottom border-2 my-2 bg-light p-2 rounded-3"> 
 
         <!-- <div class="col-md-2 text-sm-center text-md-start align-self-center my-2"> 
@@ -114,11 +114,11 @@
         </div>  -->
 
         <div class="col-md-2 text-sm-center text-md-start align-self-center my-2"> 
-            <h1 class="h6">04/12/2022</h1> 
+            <h1 class="h6"><%= appo.createdAt %></h1> 
         </div> 
 
         <div class="col-md-3 text-sm-center text-md-start align-self-center my-2"> 
-            <h1 class="h6">Zoom Meeting</h1> 
+            <h1 class="h6"><%=appo.Methed_of_comm %></h1> 
         </div>
 
          <div class="col-md-2 text-sm-center text-md-start align-self-center my-2"> 
@@ -127,7 +127,7 @@
 
         <div class="col-md-2 text-sm-center text-md-start align-self-center my-2"> 
             <form method="get" action="controller" class="d-flex btn-group"> 
-                <h1 class="h6">Payment Paid</h1> 
+                <h1 class="h6"><%=appo.App_visit_status%></h1> 
                 <!-- <input type="hidden" name="command" value="refresh-order-status">
                  <select name="status" class="btn btn-outline-dark">   
                 </select>  -->
@@ -145,6 +145,7 @@
         </div> 
 
         </div>
+        <%})%>
 <!-------------------------------------------END FIRST ROW  -------------------------------------------------->
 
 

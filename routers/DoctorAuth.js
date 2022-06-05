@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const Patient = require("../models/Patient");
 const User = require("../models/Doctor");
+const Appo = require("../models/Aappointment");
 const DocSche = require("../models/Doc_Schedule");
 const ticket = require("../models/Ticket");
 const CryptoJS = require("crypto-js");
@@ -195,7 +196,11 @@ router.get("/ManageAppointments", authorization, async (req, res, next) => {
   console.log(user);
   const name = user.Doc_FirstName;
   const email = user.Doc_Email;
-  res.render("./Doc/DocMangApp.ejs", { name: name, email: email });
+  const appo = await Appo.find({ Doc_Id: id }).populate("Doc_Id");
+  console.log(user);
+  console.log(appo);
+
+  res.render("./Doc/DocMangApp.ejs", { name: name, appo: appo });
 });
 router.get("/DocProfileEdit", authorization, async (req, res, next) => {
   console.log(res.locals.user.id);

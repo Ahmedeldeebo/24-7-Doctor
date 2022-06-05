@@ -7,14 +7,26 @@ const patientSchema = new mongoose.Schema(
     pat_Lastname: { type: String, required: true },
     pat_Email: { type: String, required: true, unique: true },
     pat_Gender: { type: String, required: true },
-    pat_password: { type: String, required: true},
+    pat_password: { type: String, required: true },
     pat_birthday: { type: String, required: true },
-    pat_InsuranceNo: { type: String, required: false, unique: true },
-    Pat_TelNo: { type: Number, required: false },
-    Pat_WhatsAppNo: { type: Number, required: false },
-    city: { type: String, required: false },
-    district: { type: String, required: false },
-    addres_details: { type: String, required: false },
+    pat_InsuranceNo: {
+      type: String,
+      required: false,
+      unique: true,
+      default: "N/A",
+    },
+    Pat_TelNo: {
+      type: String,
+      required: false,
+      default: "Enter your Phone Number",
+    },
+    city: { type: String, required: false, default: "Enter your city" },
+    district: { type: String, required: false, default: "Enter your District" },
+    addres_details: {
+      type: String,
+      required: false,
+      default: "Enter your Addres",
+    },
   },
   { timestamps: true }
 );
