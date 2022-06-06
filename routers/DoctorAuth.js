@@ -14,6 +14,7 @@ const {
 } = require("./verifyToken");
 const cors = require("cors");
 const { body } = require("express-validator");
+const { exists } = require("../models/Patient");
 //--------------------------------------------Register--------------------------------------------
 // router.use(cors({ origin: "*", credentials:true  } ) );
 
@@ -115,18 +116,21 @@ router.post("/doctorview-filter", authorization, async (req, res) => {
   const user = await Patient.findById(id);
   const name = user.pat_FirstName;
   const SpecName = req.body.SpecName;
-  const Sch = await DocSche.find({}).populate({
-    path: "Doctor_id",
-    match: { Specialization_Name: SpecName },
-  });
 
-  console.log(Sch);
+    const Sch = await DocSche.find()
+      .populate({
+        path: "Doctor_id",
+        options: { retainNullValues: true },
+        match: { Specialization_Name: SpecName },
+      })
+      .exec();
+    console.log(Sch);
   console.log(SpecName);
-  // res.send(Sch);
-  res.render("doctorview.ejs", {
-    Sch: Sch,
-    name: name,
-  });
+  res.send(Sch);
+  // res.render("doctorview.ejs", {
+  //   Sch: Sch,
+  //   name: name,
+  // });
 });
 router.get("/doctorview-doc", authorization, async (req, res) => {
   const id = res.locals.user.id;
