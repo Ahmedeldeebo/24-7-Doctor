@@ -68,9 +68,9 @@ app.get("/", (req, res) => {
   res.render("home.ejs");
 });
 
-// app.get("/signup", (req, res, next) => {
-//   res.render("signUp.ejs", { errorMessage: "" });
-// });
+app.get("/signup", (req, res, next) => {
+  res.render("signUp.ejs", { errorMessage: "" });
+});
 
 app.get("/signin", (req, res) => {
   res.render("signIn.ejs", { Message: "", errorMessage: "" });
@@ -129,6 +129,9 @@ app.post("/PublicTicket", async (req, res) => {
 
 app.get("*", (req, res) => {
   res.render("404.ejs", { title: "404" });
+});
+app.get("/DoctorSearch", (req, res) => {
+  res.render("DocSearch.ejs", { title: "404" });
 });
 
 app.listen(port, () => {
