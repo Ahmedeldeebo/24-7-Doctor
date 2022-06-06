@@ -21,7 +21,6 @@ const patientSchema = new mongoose.Schema(
       default: "Enter your Phone Number",
     },
     city: { type: String, required: false, default: "Enter your city" },
-    district: { type: String, required: false, default: "Enter your District" },
     addres_details: {
       type: String,
       required: false,

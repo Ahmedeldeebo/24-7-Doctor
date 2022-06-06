@@ -110,6 +110,24 @@ router.get("/doctorview", authorization, async (req, res) => {
     name: name,
   });
 });
+router.post("/doctorview-filter", authorization, async (req, res) => {
+  const id = res.locals.user.id;
+  const user = await Patient.findById(id);
+  const name = user.pat_FirstName;
+  const SpecName = req.body.SpecName;
+  const Sch = await DocSche.find({}).populate({
+    path: "Doctor_id",
+    match: { Specialization_Name: SpecName },
+  });
+
+  console.log(Sch);
+  console.log(SpecName);
+  // res.send(Sch);
+  res.render("doctorview.ejs", {
+    Sch: Sch,
+    name: name,
+  });
+});
 router.get("/doctorview-doc", authorization, async (req, res) => {
   const id = res.locals.user.id;
   const user = await User.findById(id);
@@ -285,8 +303,6 @@ router.post("/viewDocSch", authorization, async (req, res) => {
 //-------------------------------------------- Start Doc Search ---------------------------------------------------
 router.post("/DocSearch", authorization, async (req, res) => {
   const id = res.locals.user.id;
-  const user = await Patient.findById(id);
-  const name = user.pat_FirstName;
   const DocName = req.body.DocName;
   const doc = await User.find({ Doc_FirstName: DocName });
   console.log(DocName);

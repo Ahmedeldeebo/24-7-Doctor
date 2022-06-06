@@ -10,6 +10,7 @@ const cookieParser = require("cookie-parser");
 const PatientAuthRouter = require("./routers/PatientAuth");
 const PhamacyAuthRouter = require("./routers/PharmacyAuth");
 const DoctorAuthRouter = require("./routers/DoctorAuth");
+const ticket = require("./models/Ticket");
 
 const user = require("./routers/user");
 const cors = require("cors");
@@ -67,9 +68,9 @@ app.get("/", (req, res) => {
   res.render("home.ejs");
 });
 
-app.get("/signup", (req, res, next) => {
-  res.render("signUp.ejs", { errorMessage: "" });
-});
+// app.get("/signup", (req, res, next) => {
+//   res.render("signUp.ejs", { errorMessage: "" });
+// });
 
 app.get("/signin", (req, res) => {
   res.render("signIn.ejs", { Message: "", errorMessage: "" });
@@ -81,12 +82,12 @@ app.get("/signin-Pharmacy", (req, res) => {
   res.render("./Pharmacy/signInPhar.ejs", { errorMessage: "" });
 });
 
-app.get("/profile", (req, res) => {
-  res.render("./Patient/Profile.ejs");
-});
-app.get("/doctors", (req, res) => {
-  res.render("doctors.ejs");
-});
+// app.get("/profile", (req, res) => {
+//   res.render("./Patient/Profile.ejs");
+// });
+// app.get("/doctors", (req, res) => {
+//   res.render("doctors.ejs");
+// });
 
 app.get("/team", (req, res) => {
   res.render("team.ejs");
@@ -97,21 +98,34 @@ app.get("/Doctorreg", (req, res) => {
 app.get("/Pharmacyreg", (req, res) => {
   res.render("./Pharmacy/PharmacySignUp.ejs", { errorMessage: "" });
 });
-app.get("/doctorview", async (req, res) => {
-  res.render("doctorview.ejs", { users: users });
-});
+// app.get("/doctorview", async (req, res) => {
+//   res.render("doctorview.ejs", { users: users });
+// });
 app.get("/signuptest", (req, res) => {
   res.render("signUptest");
 });
-app.get("/home", authorization, (req, res) => {
-  res.render("./Patient/Patienthome.ejs");
-});
-// app.get("/ManageAppointments", (req, res) => {
-//   res.render("./Doc/DocMangApp.ejs");
+// app.get("/home", authorization, (req, res) => {
+//   res.render("./Patient/Patienthome.ejs");
 // });
+///--------------------------------------Start public ticket--------------------------------------------
 app.get("/PublicTicket", (req, res) => {
-  res.render("PublicTicket.ejs");
+  res.render("PublicTicket.ejs", { errorMessage: "" });
 });
+app.post("/PublicTicket", async (req, res) => {
+  try {
+    const NewTicket = new ticket({
+      ticket_Name: req.body.ticket_Name,
+      ticket_Email: req.body.ticket_Email,
+      ticket_details: req.body.ticket_details,
+    });
+    const savedTikcet = await NewTicket.save();
+    console.log(NewTicket);
+  } catch (e) {
+    console.log(e.masssage);
+  }
+  res.render("PublicTicket.ejs", { errorMessage: "Send Successfully" });
+});
+///--------------------------------------End public ticket--------------------------------------------
 
 app.get("*", (req, res) => {
   res.render("404.ejs", { title: "404" });

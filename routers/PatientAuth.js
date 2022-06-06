@@ -205,7 +205,9 @@ router.post("/Ticket", authorization, async (req, res) => {
     errorMessage: "Submite",
   });
 });
+
 //------------------------------------End Tikcet --------------------------------------------------------
+//------------------------------------Start view Appo --------------------------------------------------------
 router.get("/viewappoint", authorization, async (req, res) => {
   const id = res.locals.user.id;
   const user = await User.findById(id);
@@ -216,7 +218,8 @@ router.get("/viewappoint", authorization, async (req, res) => {
 
   res.render("./Patient/viewAppoint.ejs", { name: name, appo: appo });
 });
-//-----------------------------Start Booking Appoint---------------------------------------------------------
+//-----------------------------End view Appo---------------------------------------------------------
+//-----------------------------Start Booking Appo---------------------------------------------------------
 router.post("/booking", authorization, async (req, res) => {
   const DocId = req.body.Doc_Id;
   console.log(DocId);
@@ -252,5 +255,5 @@ router.post("/booking-Create", authorization, async (req, res) => {
   }
   res.redirect("/patient/viewappoint");
 });
-//-----------------------------End Booking Appoint--------------------------------------------------------------
+//-----------------------------End Booking Appo--------------------------------------------------------------
 module.exports = router;
