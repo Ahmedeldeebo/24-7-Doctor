@@ -440,6 +440,30 @@ router.post("/booking-Create", authorization, async (req, res) => {
   });
 });
 //-----------------------------End Booking Appo--------------------------------------------------------------
+//-----------------------------Start AppDetails--------------------------------------------------------------
+router.get("/AppDetails", authorization, async (req, res) => {
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  console.log(user);
+  const name = user.pat_FirstName;
+  res.render("./Patient/PatAppDetails.ejs", {
+    name: name,
+    errorMessage: "",
+  });
+});
+//-----------------------------End AppDetails--------------------------------------------------------------
+//-----------------------------Start AppDetails--------------------------------------------------------------
+router.get("/ViewPrescription", authorization, async (req, res) => {
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  console.log(user);
+  const name = user.pat_FirstName;
+  res.render("./Patient/ViewPres.ejs", {
+    name: name,
+    errorMessage: "",
+  });
+});
+//-----------------------------End AppDetails--------------------------------------------------------------
 //----------------------------- Start Notification--------------------------------------------------------------
 router.get("/noificationSeystem", authorization, async (req, res) => {
   const id = res.locals.user.id;

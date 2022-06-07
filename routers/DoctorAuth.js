@@ -401,4 +401,35 @@ router.post("/DocSearch", authorization, async (req, res) => {
 });
 
 //-------------------------------------------- End Doc Search ---------------------------------------------------
+//-------------------------------------------- Start Doctor AppDetails---------------------------------------------------
+router.get("/AppDetails", authorization, async (req, res, next) => {
+  console.log(res.locals.user.id);
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  console.log(user);
+  const name = user.Doc_FirstName;
+  const email = user.Doc_Email;
+  res.render("./Doc/DocAppDetails.ejs", {
+    name: name,
+    email: email,
+    errorMessage: "",
+  });
+});
+//-------------------------------------------- End Doctor AppDetails---------------------------------------------------
+//-------------------------------------------- Start Doctor Write Prescription---------------------------------------------------
+router.get("/WritePrescription", authorization, async (req, res, next) => {
+  console.log(res.locals.user.id);
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  console.log(user);
+  const name = user.Doc_FirstName;
+  const email = user.Doc_Email;
+  res.render("./Doc/WritePres.ejs", {
+    name: name,
+    email: email,
+    errorMessage: "",
+  });
+});
+//-------------------------------------------- End Doctor Write Prescription---------------------------------------------------
+
 module.exports = router;
