@@ -315,10 +315,12 @@ router.get("/viewappoint", authorization, async (req, res) => {
   const user = await User.findById(id);
   const appoo = await Appo.find({ Pat_Id: id })
     .populate("Pat_Id")
+    .populate("Doc_Id")
     .sort({ _id: -1 });
   console.log(user);
   console.log(appoo);
   const name = user.pat_FirstName;
+  //--Notification
   const appo = await Appo.find({ Pat_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
