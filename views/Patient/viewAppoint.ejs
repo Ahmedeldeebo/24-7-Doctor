@@ -68,6 +68,13 @@
   background-color: #efefef;
   text-align: center;
 }
+.text {
+  display: block;
+  width: 100px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 
     </style>
   </head>
@@ -108,20 +115,20 @@
           <!-------------------------------------------END HEADERS -------------------------------------------------->
 
           <!-------------------------------------------START FIRST ROW  -------------------------------------------------->
-          <%appo.forEach(appo=>{%>
+          <%appoo.forEach(appoo=>{%>
           <div
             class="d-md-flex d-sm-block justify-content-md-between justify-content-sm-center text-center border-bottom border-2 my-2 bg-light p-2 rounded-3"
           >
             <div
-              class="col-md-2 text-sm-center text-md-start align-self-center my-2"
+              class="col-md-2 text-sm-center text-md-start align-self-center my-2 text"
             >
-              <h1 class="h6"><%=appo.createdAt %></h1>
+              <h1 class="h6 text  "><%=appoo.createdAt %></h1>
             </div>
 
             <div
               class="col-md-3 text-sm-center text-md-start align-self-center my-2"
             >
-              <h1 class="h6"><%=appo.Methed_of_comm %></h1>
+              <h1 class="h6"><%=appoo.Methed_of_comm %></h1>
             </div>
 
             <div
@@ -140,8 +147,7 @@
               data-bs-toggle="popover" 
               data-bs-placement="bottom" 
               data-bs-content="Bottom popover" 
-              data-message="Doctor Name - Specialization - Chosen Day - Chosen Hour">
-              
+              data-message="<%=appoo.Doc_Id.Doc_FirstName%> - <%=appoo.Doc_Id.Specialization_Name%> - <%=appoo.App_visit_day%> - <%=appoo.App_RegVisit_time%>">
                 Details
               </button> -->
               <!-- POPOVER END -->
@@ -162,7 +168,7 @@
               class="col-md-2 text-sm-center text-md-start align-self-center my-2"
             >
               <form method="get" action="controller" class="d-flex btn-group">
-                <h1 class="h6"><%=appo.App_visit_status%></h1>
+                <h1 class="h6"><%=appoo.App_visit_status%></h1>
                 <!-- <input type="hidden" name="command" value="refresh-order-status">
                      <select name="status" class="btn btn-outline-dark">   
                     </select>  -->

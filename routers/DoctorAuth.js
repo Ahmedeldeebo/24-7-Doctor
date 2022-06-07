@@ -14,7 +14,6 @@ const {
 } = require("./verifyToken");
 const cors = require("cors");
 const { body } = require("express-validator");
-const { exists } = require("../models/Patient");
 //--------------------------------------------Register--------------------------------------------
 // router.use(cors({ origin: "*", credentials:true  } ) );
 
@@ -106,9 +105,26 @@ router.get("/doctorview", authorization, async (req, res) => {
   const name = user.pat_FirstName;
   const Sch = await DocSche.find({}).populate("Doctor_id");
   console.log(Sch);
-  res.render("doctorview.ejs", {
-    Sch: Sch,
-    name: name,
+  const appo = await Appo.find({ Pat_Id: id })
+    .populate("Pat_Id")
+    .populate("Doc_Id")
+    .sort({ _id: -1 })
+    .limit(5);
+  const query = Appo.find({ Pat_Id: id });
+  query.count(function (err, count) {
+    if (err) console.log(err);
+    else console.log("Count is", count);
+    const number = count;
+    console.log(number);
+    console.log(user);
+    console.log(appo);
+
+    res.render("doctorview.ejs", {
+      Sch: Sch,
+      name: name,
+      appo: appo,
+      number: number,
+    });
   });
 });
 router.post("/doctorview-filter", authorization, async (req, res) => {
@@ -117,14 +133,14 @@ router.post("/doctorview-filter", authorization, async (req, res) => {
   const name = user.pat_FirstName;
   const SpecName = req.body.SpecName;
 
-    const Sch = await DocSche.find()
-      .populate({
-        path: "Doctor_id",
-        options: { retainNullValues: true },
-        match: { Specialization_Name: SpecName },
-      })
-      .exec();
-    console.log(Sch);
+  const Sch = await DocSche.find()
+    .populate({
+      path: "Doctor_id",
+      options: { retainNullValues: true },
+      match: { Specialization_Name: SpecName },
+    })
+    .exec();
+  console.log(Sch);
   console.log(SpecName);
   res.send(Sch);
   // res.render("doctorview.ejs", {
@@ -218,7 +234,9 @@ router.get("/ManageAppointments", authorization, async (req, res, next) => {
   console.log(user);
   const name = user.Doc_FirstName;
   const email = user.Doc_Email;
-  const appo = await Appo.find({ Doc_Id: id }).populate("Doc_Id");
+  const appo = await Appo.find({ Doc_Id: id })
+    .populate("Doc_Id")
+    .sort({ _id: -1 });
   console.log(user);
   console.log(appo);
 
@@ -297,22 +315,79 @@ router.post("/viewDocSch", authorization, async (req, res) => {
   // console.log(req.body.Doc_Id);
   // console.log(DocID);
   // console.log(id);
-  res.render("./Patient/viewDocSche.ejs", {
-    DocUser: DocUser,
-    shce: shce,
-    name: name,
+  const appo = await Appo.find({ Pat_Id: id })
+    .populate("Pat_Id")
+    .populate("Doc_Id")
+    .sort({ _id: -1 })
+    .limit(5);
+  const query = Appo.find({ Pat_Id: id });
+  query.count(function (err, count) {
+    if (err) console.log(err);
+    else console.log("Count is", count);
+    const number = count;
+    console.log(number);
+    console.log(user);
+    console.log(appo);
+
+    res.render("./Patient/viewDocSche.ejs", {
+      DocUser: DocUser,
+      shce: shce,
+      name: name,
+      number: number,
+      appo: appo,
+    });
   });
 });
 //-------------------------------------------- End view Doc ---------------------------------------------------
 //-------------------------------------------- Start Doc Search ---------------------------------------------------
+router.post("/DocSearch-patient", authorization, async (req, res) => {
+  const id = res.locals.user.id;
+  const DocName = req.body.DocName;
+  const user = await Patient.findById(id);
+  const name = user.pat_FirstName;
+  try {
+    const docName = await User.findOne({ Doc_FirstName: DocName });
+    const docId = docName._id;
+    const Doc = await User.findById(docId);
+    const shce = await DocSche.findOne({ Doctor_id: docId }).populate(
+      "Doctor_id"
+    );
+    console.log(shce);
+    console.log(docName);
+    console.log(docId);
+    res.render("./Patient/DocSearch.ejs", {
+      Doc: Doc,
+      name: name,
+      shce: shce,
+    });
+  } catch (e) {
+    console.log(e.masssage);
+  }
+  res.render("search.ejs");
+});
+
 router.post("/DocSearch", authorization, async (req, res) => {
   const id = res.locals.user.id;
   const DocName = req.body.DocName;
-  const doc = await User.find({ Doc_FirstName: DocName });
-  console.log(DocName);
-  console.log(doc);
-  res.send(doc);
+  const user = await User.findById(id);
+  const name = user.Doc_FirstName;
+  try {
+    const docName = await User.findOne({ Doc_FirstName: DocName });
+    const docId = docName._id;
+    const Doc = await User.findById(docId);
+    const shce = await DocSche.findOne({ Doctor_id: docId }).populate(
+      "Doctor_id"
+    );
+    console.log(shce);
+    console.log(docName);
+    console.log(docId);
+    res.render("./Patient/DocSearch.ejs", { Doc: Doc, name: name, shce: shce });
+  } catch (e) {
+    console.log(e.masssage);
+    res.render("search.ejs");
+  }
 });
+
 //-------------------------------------------- End Doc Search ---------------------------------------------------
 //-------------------------------------------- Start Doctor AppDetails---------------------------------------------------
 router.get("/AppDetails", authorization, async (req, res, next) => {

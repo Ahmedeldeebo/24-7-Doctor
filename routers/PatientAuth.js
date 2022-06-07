@@ -93,15 +93,17 @@ router.post("/login", async (req, res) => {
     // res.cookie("accessToken", accessToken, {
     //   httpOnly: true,
     // });
+
     const token = req.body.token;
     const name = user.pat_FirstName;
     console.log(accessToken);
     console.log(name);
+
     return res
       .cookie("accessToken", accessToken, {
         httpOnly: true,
       })
-      .render("./Patient/Patienthome.ejs", { Message: "", name: name });
+      .redirect("/patient/profile-home");
 
     //res.status(200).json({ ...others, accessToken });
   } catch (e) {
@@ -116,7 +118,28 @@ router.get("/profile-setting", authorization, async (req, res, next) => {
   const user = await User.findById(id);
   const name = user.pat_FirstName;
   console.log(user);
-  res.render("./Patient/Profile.ejs", { user: user, name: name });
+  //--Notification
+  const appo = await Appo.find({ Pat_Id: id })
+    .populate("Pat_Id")
+    .populate("Doc_Id")
+    .sort({ _id: -1 })
+    .limit(5);
+  const query = Appo.find({ Pat_Id: id });
+  query.count(function (err, count) {
+    if (err) console.log(err);
+    else console.log("Count is", count);
+    // const number = count;
+    // console.log(number);
+    // console.log(user);
+    // console.log(appo);
+
+    res.render("./Patient/Profile.ejs", {
+      user: user,
+      name: name,
+      appo: appo,
+      number: number,
+    });
+  });
 });
 router.post("/Profile-Edit", authorization, async (req, res, next) => {
   console.log(res.locals.user.id);
@@ -139,7 +162,25 @@ router.post("/Profile-Edit", authorization, async (req, res, next) => {
 
     res.redirect("/patient/profile-setting");
   }
-  res.render("./Patient/Profile.ejs", { name: name, user: user });
+  //--Notification
+  const appo = await Appo.find({ Pat_Id: id })
+    .populate("Pat_Id")
+    .populate("Doc_Id")
+    .sort({ _id: -1 })
+    .limit(5);
+  const query = Appo.find({ Pat_Id: id });
+  query.count(function (err, count) {
+    if (err) console.log(err);
+    else console.log("Count is", count);
+    const number = count;
+
+    res.render("./Patient/Profile.ejs", {
+      name: name,
+      user: user,
+      appo: appo,
+      number: number,
+    });
+  });
 });
 // Patient Profile Updating
 router.get("/Profile-Edit", authorization, async (req, res, next) => {
@@ -148,7 +189,25 @@ router.get("/Profile-Edit", authorization, async (req, res, next) => {
   const user = await User.findById(id);
   console.log(user);
   const name = user.pat_FirstName;
-  res.render("./Patient/ProfileEdit.ejs", { name: name, user: user });
+  //--Notification
+  const appo = await Appo.find({ Pat_Id: id })
+    .populate("Pat_Id")
+    .populate("Doc_Id")
+    .sort({ _id: -1 })
+    .limit(5);
+  const query = Appo.find({ Pat_Id: id });
+  query.count(function (err, count) {
+    if (err) console.log(err);
+    else console.log("Count is", count);
+    const number = count;
+
+    res.render("./Patient/ProfileEdit.ejs", {
+      name: name,
+      user: user,
+      appo: appo,
+      number: number,
+    });
+  });
 });
 /// home page
 router.get("/profile-home", authorization, async (req, res, next) => {
@@ -158,7 +217,24 @@ router.get("/profile-home", authorization, async (req, res, next) => {
   console.log(user);
   const name = user.pat_FirstName;
   const email = user.pat_Email;
-  res.render("./Patient/Patienthome.ejs", { name: name, email: email });
+  //--Notification
+  const appo = await Appo.find({ Pat_Id: id })
+    .populate("Pat_Id")
+    .populate("Doc_Id")
+    .sort({ _id: -1 })
+    .limit(5);
+  const query = Appo.find({ Pat_Id: id });
+  query.count(function (err, count) {
+    if (err) console.log(err);
+    else console.log("Count is", count);
+    const number = count;
+    res.render("./Patient/Patienthome.ejs", {
+      name: name,
+      email: email,
+      number: number,
+      appo: appo,
+    });
+  });
 });
 
 ///------------------------------------End fo profile--------------------------------------------------------
@@ -174,9 +250,24 @@ router.get("/Ticket", authorization, async (req, res) => {
   const user = await User.findById(id);
   console.log(user);
   const name = user.pat_FirstName;
-  res.render("./Patient/Ticket.ejs", {
-    name: name,
-    errorMessage: "",
+  //--Notification
+  const appo = await Appo.find({ Pat_Id: id })
+    .populate("Pat_Id")
+    .populate("Doc_Id")
+    .sort({ _id: -1 })
+    .limit(5);
+  const query = Appo.find({ Pat_Id: id });
+  query.count(function (err, count) {
+    if (err) console.log(err);
+    else console.log("Count is", count);
+    const number = count;
+
+    res.render("./Patient/Ticket.ejs", {
+      name: name,
+      errorMessage: "",
+      number: number,
+      appo: appo,
+    });
   });
 });
 router.post("/Ticket", authorization, async (req, res) => {
@@ -198,11 +289,28 @@ router.post("/Ticket", authorization, async (req, res) => {
     res.render("./Patient/Ticket.ejs", {
       name: name,
       errorMessage: "Something is missing",
+      number: number,
+      appo: appo,
     });
   }
-  res.render("./Patient/Ticket.ejs", {
-    name: name,
-    errorMessage: "Submite",
+  //--Notification
+  const appo = await Appo.find({ Pat_Id: id })
+    .populate("Pat_Id")
+    .populate("Doc_Id")
+    .sort({ _id: -1 })
+    .limit(5);
+  const query = Appo.find({ Pat_Id: id });
+  query.count(function (err, count) {
+    if (err) console.log(err);
+    else console.log("Count is", count);
+    const number = count;
+
+    res.render("./Patient/Ticket.ejs", {
+      name: name,
+      errorMessage: "Submite",
+      number: number,
+      appo: appo,
+    });
   });
 });
 
@@ -211,12 +319,32 @@ router.post("/Ticket", authorization, async (req, res) => {
 router.get("/viewappoint", authorization, async (req, res) => {
   const id = res.locals.user.id;
   const user = await User.findById(id);
-  const appo = await Appo.find({ Pat_Id: id }).populate("Pat_Id");
+  const appoo = await Appo.find({ Pat_Id: id })
+    .populate("Pat_Id")
+    .populate("Doc_Id")
+    .sort({ _id: -1 });
   console.log(user);
-  console.log(appo);
+  console.log(appoo);
   const name = user.pat_FirstName;
+  //--Notification
+  const appo = await Appo.find({ Pat_Id: id })
+    .populate("Pat_Id")
+    .populate("Doc_Id")
+    .sort({ _id: -1 })
+    .limit(5);
+  const query = Appo.find({ Pat_Id: id });
+  query.count(function (err, count) {
+    if (err) console.log(err);
+    else console.log("Count is", count);
+    const number = count;
 
-  res.render("./Patient/viewAppoint.ejs", { name: name, appo: appo });
+    res.render("./Patient/viewAppoint.ejs", {
+      name: name,
+      appoo: appoo,
+      appo: appo,
+      number: number,
+    });
+  });
 });
 //-----------------------------End view Appo---------------------------------------------------------
 //-----------------------------Start Booking Appo---------------------------------------------------------
@@ -228,8 +356,27 @@ router.post("/booking", authorization, async (req, res) => {
   const user = await User.findById(id);
   const Doc = await Doctor.findById(DocId);
   console.log(Doc, "Doc Table");
-  const name = user.pat_FirstName;
-  res.render("./Patient/booking.ejs", { user: user, name: name, Doc: Doc });
+  //--Notification
+  const appo = await Appo.find({ Pat_Id: id })
+    .populate("Pat_Id")
+    .populate("Doc_Id")
+    .sort({ _id: -1 })
+    .limit(5);
+  const query = Appo.find({ Pat_Id: id });
+  query.count(function (err, count) {
+    if (err) console.log(err);
+    else console.log("Count is", count);
+    const number = count;
+
+    const name = user.pat_FirstName;
+    res.render("./Patient/booking.ejs", {
+      user: user,
+      name: name,
+      Doc: Doc,
+      number: number,
+      appo: appo,
+    });
+  });
 });
 router.post("/booking-Create", authorization, async (req, res) => {
   const body = req.body;
@@ -239,6 +386,7 @@ router.post("/booking-Create", authorization, async (req, res) => {
   console.log(id);
   const user = await User.findById(id);
   const name = user.pat_FirstName;
+
   try {
     const NewAppoinemt = new Appo({
       App_visit_date: body.App_visit_date,
@@ -253,7 +401,20 @@ router.post("/booking-Create", authorization, async (req, res) => {
   } catch (e) {
     console.log(e.message);
   }
-  res.redirect("/patient/viewappoint");
+  //--Notification
+  const appo = await Appo.find({ Pat_Id: id })
+    .populate("Pat_Id")
+    .populate("Doc_Id")
+    .sort({ _id: -1 })
+    .limit(5);
+  const query = Appo.find({ Pat_Id: id });
+  query.count(function (err, count) {
+    if (err) console.log(err);
+    else console.log("Count is", count);
+    const number = count;
+
+    res.redirect("/patient/viewappoint");
+  });
 });
 //-----------------------------End Booking Appo--------------------------------------------------------------
 //-----------------------------Start AppDetails--------------------------------------------------------------
@@ -280,4 +441,24 @@ router.get("/ViewPrescription", authorization, async (req, res) => {
   });
 });
 //-----------------------------End AppDetails--------------------------------------------------------------
+//----------------------------- Start Notification--------------------------------------------------------------
+router.get("/noificationSeystem", authorization, async (req, res) => {
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  const name = user.pat_FirstName;
+  const appo = await Appo.find({ Pat_Id: id })
+    .populate("Pat_Id")
+    .populate("Doc_Id")
+    .sort({ _id: -1 })
+    .limit(5);
+  const query = Appo.find({ Pat_Id: id });
+  query.count(function (err, count) {
+    if (err) console.log(err);
+    else console.log("Count is", count);
+    const number = count;
+  });
+  res.render("./partials/navHome.ejs", { number: number, name: name });
+});
+//----------------------------- End Notification--------------------------------------------------------------
+
 module.exports = router;
