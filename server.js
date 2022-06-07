@@ -172,9 +172,6 @@ app.post("/PublicTicket", async (req, res) => {
 app.get("*", (req, res) => {
   res.render("404.ejs", { title: "404" });
 });
-app.get("/DoctorSearch", (req, res) => {
-  res.render("DocSearch.ejs", { title: "404" });
-});
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

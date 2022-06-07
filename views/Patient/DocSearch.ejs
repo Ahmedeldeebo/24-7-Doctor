@@ -70,8 +70,8 @@
                     <div class="row">
                         <div class="col-md-7 border-right no-gutters">
                             <div class="py-3"><img src="/Doctors/MaleDoctor.jpg" width="150" height="150" class="rounded-circle">
-                            <h4 class="text-secondary c"><%=DocUser.Doc_FirstName%> </h4>
-                                <div class="allergy"><span><%=DocUser.Specialization_Name%></span></div>
+                            <h4 class="text-secondary c"><%=Doc.Doc_FirstName%> </h4>
+                                <div class="allergy"><span><%=Doc.Specialization_Name%></span></div>
                                 <div class="stats">
                                     <table class="table table-borderless">
                                         <tbody>
@@ -141,7 +141,7 @@
                                 </div>
                                 
                                  <form action="/patient/booking" method="post"> <div>
-                                    <input type="hidden" value="<%=DocUser._id%>" name="Doc_Id">
+                                    <input type="hidden" value="<%=Doc._id%>" name="Doc_Id">
                              <button class="px-3 btn btn-info" type="submit">Book Now</button>
                                      </div></form>
                                   
@@ -157,7 +157,7 @@
                                 <div> <span class="d-block head">Address</span> <span class="bottom">Doctor Address</span> </div>
                                 <div class="mt-4"> <span class="d-block head">Mobile Phone#</span> <span class="bottom">Doctor Phone</span> </div>
                                 <div class="mt-4"> <span class="d-block head">WhatsApp#</span> <span class="bottom">WhatsApp</span> </div>
-                                <div class="mt-4"> <span class="d-block head">Email</span> <span class="bottom"><%=DocUser.Doc_Email%></span> </div>
+                                <div class="mt-4"> <span class="d-block head">Email</span> <span class="bottom"><%=Doc.Doc_Email%></span> </div>
                             </div>
                         </div>
                     </div>
