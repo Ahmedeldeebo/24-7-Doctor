@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const User = require("../models/Patient");
 const Doctor = require("../models/Doctor");
+const shcdeule = require("../models/Doc_Schedule");
 const ticket = require("../models/Ticket");
 const Appo = require("../models/Aappointment");
 const CryptoJS = require("crypto-js");
@@ -128,7 +129,7 @@ router.get("/profile-setting", authorization, async (req, res, next) => {
   query.count(function (err, count) {
     if (err) console.log(err);
     else console.log("Count is", count);
-    // const number = count;
+    const number = count;
     // console.log(number);
     // console.log(user);
     // console.log(appo);
@@ -355,7 +356,27 @@ router.post("/booking", authorization, async (req, res) => {
   console.log(id);
   const user = await User.findById(id);
   const Doc = await Doctor.findById(DocId);
+  const docSchedule = await shcdeule.find({ Doctor_id: DocId });
   console.log(Doc, "Doc Table");
+  const name = user.pat_FirstName;
+  //let d = new Date('01-06-2022')
+  // day = ""
+  // for (item in list){
+  //     if(item === 1)
+  //       day = "Sunday"
+  //     else
+  //         day = "Monday"
+
+//   let Available_Days = [ a , a , a , a ]
+// let availableStringDays = []
+// for (day in available_days){
+//    dateObject = new Date(day)
+//    day = dateObject.getDay()
+//    if( day === 0)
+//        availableStringDays.push( "Sunday" )
+//     else
+//        availableStringDays.push("Monday")
+// }
   //--Notification
   const appo = await Appo.find({ Pat_Id: id })
     .populate("Pat_Id")
@@ -367,8 +388,6 @@ router.post("/booking", authorization, async (req, res) => {
     if (err) console.log(err);
     else console.log("Count is", count);
     const number = count;
-
-    const name = user.pat_FirstName;
     res.render("./Patient/booking.ejs", {
       user: user,
       name: name,
@@ -386,7 +405,6 @@ router.post("/booking-Create", authorization, async (req, res) => {
   console.log(id);
   const user = await User.findById(id);
   const name = user.pat_FirstName;
-
   try {
     const NewAppoinemt = new Appo({
       App_visit_date: body.App_visit_date,
@@ -397,6 +415,11 @@ router.post("/booking-Create", authorization, async (req, res) => {
       Pat_Id: id,
     });
     const SavdAppoinemt = await NewAppoinemt.save();
+    const pat_perDay = await shcdeule.findOne({ Doctor_id: DocId });
+    console.log(pat_perDay.Meeting_Maximum_Patient + " old");
+    const update = await shcdeule.findByIdAndUpdate(pat_perDay._id, {
+      Meeting_Maximum_Patient: pat_perDay.Meeting_Maximum_Patient - 1,
+    });
     console.log(Appo, SavdAppoinemt, "Create successfully");
   } catch (e) {
     console.log(e.message);
@@ -413,7 +436,7 @@ router.post("/booking-Create", authorization, async (req, res) => {
     else console.log("Count is", count);
     const number = count;
 
-    res.redirect("/patient/viewappoint");
+    res.redirect("/patient/viewappoint", {});
   });
 });
 //-----------------------------End Booking Appo--------------------------------------------------------------

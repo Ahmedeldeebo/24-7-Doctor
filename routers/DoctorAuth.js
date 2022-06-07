@@ -133,20 +133,32 @@ router.post("/doctorview-filter", authorization, async (req, res) => {
   const name = user.pat_FirstName;
   const SpecName = req.body.SpecName;
 
-  const Sch = await DocSche.find()
-    .populate({
-      path: "Doctor_id",
-      options: { retainNullValues: true },
-      match: { Specialization_Name: SpecName },
-    })
-    .exec();
-  console.log(Sch);
-  console.log(SpecName);
-  res.send(Sch);
-  // res.render("doctorview.ejs", {
-  //   Sch: Sch,
-  //   name: name,
-  // });
+  let scheduleList = await DocSche.find().populate("Doctor_id");
+  const result = scheduleList.filter(
+    (schedule) => schedule.Doctor_id.Specialization_Name === SpecName
+    //&& schedule.Meeting_Maximum_Patient > 0
+  );
+  const appo = await Appo.find({ Pat_Id: id })
+    .populate("Pat_Id")
+    .populate("Doc_Id")
+    .sort({ _id: -1 })
+    .limit(5);
+  const query = Appo.find({ Pat_Id: id });
+  query.count(function (err, count) {
+    if (err) console.log(err);
+    else console.log("Count is", count);
+    const number = count;
+
+    console.log(result);
+    console.log(SpecName);
+    // res.send(result);
+    res.render("doctorview.ejs", {
+      Sch: result,
+      name: name,
+      appo: appo,
+      number: number,
+    });
+  });
 });
 router.get("/doctorview-doc", authorization, async (req, res) => {
   const id = res.locals.user.id;
