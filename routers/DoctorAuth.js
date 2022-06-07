@@ -355,30 +355,15 @@ router.post("/DocSearch-patient", authorization, async (req, res) => {
     console.log(shce);
     console.log(docName);
     console.log(docId);
-  } catch (e) {
-    console.log(e.masssage);
-  }
-  res.render("search.ejs");
-
-  const appo = await Appo.find({ Pat_Id: id })
-    .populate("Pat_Id")
-    .populate("Doc_Id")
-    .sort({ _id: -1 })
-    .limit(5);
-  const query = Appo.find({ Pat_Id: id });
-  query.count(function (err, count) {
-    if (err) console.log(err);
-    else console.log("Count is", count);
-    const number = count;
-
     res.render("./Patient/DocSearch.ejs", {
       Doc: Doc,
       name: name,
       shce: shce,
-      appo: appo,
-      number: number,
     });
-  });
+  } catch (e) {
+    console.log(e.masssage);
+  }
+  res.render("search.ejs");
 });
 
 router.post("/DocSearch", authorization, async (req, res) => {

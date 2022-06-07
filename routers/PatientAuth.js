@@ -118,6 +118,7 @@ router.get("/profile-setting", authorization, async (req, res, next) => {
   const user = await User.findById(id);
   const name = user.pat_FirstName;
   console.log(user);
+  //--Notification
   const appo = await Appo.find({ Pat_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
@@ -127,10 +128,10 @@ router.get("/profile-setting", authorization, async (req, res, next) => {
   query.count(function (err, count) {
     if (err) console.log(err);
     else console.log("Count is", count);
-    const number = count;
-    console.log(number);
-    console.log(user);
-    console.log(appo);
+    // const number = count;
+    // console.log(number);
+    // console.log(user);
+    // console.log(appo);
 
     res.render("./Patient/Profile.ejs", {
       user: user,
@@ -161,6 +162,7 @@ router.post("/Profile-Edit", authorization, async (req, res, next) => {
 
     res.redirect("/patient/profile-setting");
   }
+  //--Notification
   const appo = await Appo.find({ Pat_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
@@ -187,6 +189,7 @@ router.get("/Profile-Edit", authorization, async (req, res, next) => {
   const user = await User.findById(id);
   console.log(user);
   const name = user.pat_FirstName;
+  //--Notification
   const appo = await Appo.find({ Pat_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
@@ -214,6 +217,7 @@ router.get("/profile-home", authorization, async (req, res, next) => {
   console.log(user);
   const name = user.pat_FirstName;
   const email = user.pat_Email;
+  //--Notification
   const appo = await Appo.find({ Pat_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
@@ -246,6 +250,7 @@ router.get("/Ticket", authorization, async (req, res) => {
   const user = await User.findById(id);
   console.log(user);
   const name = user.pat_FirstName;
+  //--Notification
   const appo = await Appo.find({ Pat_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
@@ -288,6 +293,7 @@ router.post("/Ticket", authorization, async (req, res) => {
       appo: appo,
     });
   }
+  //--Notification
   const appo = await Appo.find({ Pat_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
@@ -350,6 +356,7 @@ router.post("/booking", authorization, async (req, res) => {
   const user = await User.findById(id);
   const Doc = await Doctor.findById(DocId);
   console.log(Doc, "Doc Table");
+  //--Notification
   const appo = await Appo.find({ Pat_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
@@ -394,6 +401,7 @@ router.post("/booking-Create", authorization, async (req, res) => {
   } catch (e) {
     console.log(e.message);
   }
+  //--Notification
   const appo = await Appo.find({ Pat_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
