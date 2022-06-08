@@ -545,4 +545,16 @@ router.get("/noificationSeystem", authorization, async (req, res) => {
 });
 //----------------------------- End Notification--------------------------------------------------------------
 
+//-----------------------------Start View bills--------------------------------------------------------------
+router.get("/ViewBill", authorization, async (req, res) => {
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  console.log(user);
+  const name = user.pat_FirstName;
+  res.render("./Patient/ViewBill.ejs", {
+    name: name,
+    errorMessage: "",
+  });
+});
+//-----------------------------End view bills--------------------------------------------------------------
 module.exports = router;
