@@ -9,6 +9,7 @@
         <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
         <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
         <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+        <script src="https://kit.fontawesome.com/ff8698dfe7.js" crossorigin="anonymous"></script>
         <style>::-webkit-scrollbar {
           width: 8px;
         }
@@ -355,7 +356,7 @@ p {
 
         </head>
         <!--Start Header-->
-    <%- include ('../partials/navHome.ejs') %>
+
     <!--End Header-->
     
     <div class="wrapper"> 
@@ -416,11 +417,15 @@ p {
                             <h5>Prescription</h5> 
                             <form action="" method="">           
                                 <div class="form-outline mt-4"> 
-                               <input type="text" class="form-control mt-3" placeholder="%PatientName" name=""> 
-                               <textarea class="form-control mt-3" placeholder="Prescription Details" name=""></textarea> 
+                               <input type="text" class="form-control mt-3" placeholder="%PatientName" name="" disabled> 
+                               <textarea class="form-control mt-3" placeholder="%Prescription Details" name="" disabled></textarea> 
                            </div> 
-                           <div class="button mt-5 text-center"> <button class="btn btn-dark" type="submit">I want the Prescription</button> 
+                           <div class="button mt-5 text-center"> 
+                               <button class="btn btn-success d-print-none" onclick="myFunction()"><span class="fa-solid fa-print" aria-hidden="true"></span> Print Prescription</button>
+                               <button class="btn btn-dark d-print-none" type="submit">Send Prescription to nearby Pharmacy</button>
                            </div>
+                            
+                        </div>
                         </form>
                         <div class="alert alert-light text-danger" role="alert">
                            <%- errorMessage %> 
@@ -507,7 +512,10 @@ previous_fs.css({
 });
 });
 
-});</script>
+});
+function myFunction() {
+    window.print();
+}</script>
         <script type='text/javascript'>var myLink = document.querySelector('a[href="#"]');
         myLink.addEventListener('click', function(e) {
           e.preventDefault();
@@ -516,7 +524,7 @@ previous_fs.css({
     <br>
     <br>
     <br>
-    <footer>
+    <footer class="d-print-none">
         <%- include ('../partials/footer.ejs') %> 
         </footer>
 
