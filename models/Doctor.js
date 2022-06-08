@@ -11,6 +11,17 @@ const DoctorSchema = new mongoose.Schema(
     Specialization_Name: { type: String, required: true },
     Doc_birtday: { type: Date, required: true },
     Doc_rating: { type: String },
+    Doc_TelNo: {
+      type: String,
+      required: false,
+      default: "Enter your Phone Number",
+    },
+    city: { type: String, required: false, default: "Enter your city" },
+    addres_details: {
+      type: String,
+      required: false,
+      default: "Enter your Addres",
+    },
     Pres_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Prescription",

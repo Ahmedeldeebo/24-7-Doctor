@@ -75,8 +75,8 @@
                       <input type="file" id="file" name="img">
                       <label for="file" id="uploadBtn">Update Photo</label>
                       <!-- <span class="font-weight-bold">
-                      <div class="c"><%- name %></div> </span>
-                      <span class="text-black-50"><%- email %> </span> -->
+                      <div class="c"> name %></div> </span>
+                      <span class="text-black-50"> email %> </span> -->
                     </div>
                   </div>
               </div>
@@ -85,22 +85,23 @@
                       <div class="d-flex justify-content-between align-items-center mb-3">
                           <h4 class="text-right">Profile Settings</h4>
                       </div>
+                      <form action="http://localhost:5000/doctor/DocProfileEdit" method="post">
                       <div class="row mt-2">
-                          <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="<%- name %>" value=""></div>
+                          <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="" value="<%- name %>" name= "Doc_FirstName"></div>
 
-                          <div class="col-md-6"><label class="labels">Last name</label><input type="text" class="form-control" value="" placeholder="<%- Lname %>"></div>
+                          <div class="col-md-6"><label class="labels">Last name</label><input type="text" class="form-control" placeholder="" value="<%=user.Doc_Lastname%>" name="Doc_Lastname"></div>
                       </div>
 
                       <div class="row mt-3">
-                        <!-- <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" placeholder="<%- email %>" value=""></div> -->
+                        <!-- <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" placeholder="user.Doc_Email%>" value=""></div> -->
                           <label for="exampleDataList" class="form-label col-md-12">Email</label>
-                          <input class="form-control col-md-12" list="" id="exampleDataList" placeholder="<%- email %>">
+                          <input class="form-control col-md-12" list="" id="exampleDataList" value="<%=user.Doc_Email%>" name="Doc_Email">
 
                           <br></br>
 
                           <!-- <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control" placeholder="Enter phone number" value=""></div> -->
                           <label for="exampleDataList" class="form-label col-md-12">Mobile Number</label>
-                          <input class="form-control col-md-12" list="" id="exampleDataList" placeholder="+20">
+                          <input class="form-control col-md-12" list="" id="exampleDataList" value="<%=user.Doc_TelNo%>" name="Doc_TelNo">
 
                           <br></br>
 
@@ -110,7 +111,7 @@
 
                           <!-- <div class="col-md-12"><label class="labels">Area</label><input type="text" class="form-control" placeholder="Enter area" value=""></div> -->
                           <label for="exampleDataList" class="form-label col-md-12">Area</label>
-                        <input class="form-control col-md-12" list="Areas" id="exampleDataList" placeholder="Enter your Area">
+                        <input class="form-control col-md-12" list="Areas" id="exampleDataList" value="<%=user.city%>" name="city">
                         <datalist id="Areas">
                           <option value="New Cairo" false>
                           <option value="Nasr City">
@@ -131,8 +132,10 @@
                       <!-- <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div> -->
 
                       <div class="mt-5 text-center">
-                        <a href="http://localhost:5000/doctor/Doctor-profile-setting" class="btn btn-success btn-small active profile-button" role="button" aria-pressed="true">Save Profile</a>
+                        <button class="btn btn-success btn-small active profile-button" type="submit">Save Profile</button>
+                        <!-- <a href="http://localhost:5000/doctor/Doctor-profile-setting" class="btn btn-success btn-small active profile-button" role="button" aria-pressed="true">Save Profile</a> -->
                       </div>
+                    </form>
                   </div>
               </div>
               

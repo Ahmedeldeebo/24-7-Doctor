@@ -4,6 +4,7 @@ const User = require("../models/Doctor");
 const Appo = require("../models/Aappointment");
 const DocSche = require("../models/Doc_Schedule");
 const ticket = require("../models/Ticket");
+const Prescription = require("../models/Prescription");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
 const { render } = require("ejs");
@@ -103,8 +104,11 @@ router.get("/doctorview", authorization, async (req, res) => {
   const id = res.locals.user.id;
   const user = await Patient.findById(id);
   const name = user.pat_FirstName;
-  const Sch = await DocSche.find({}).populate("Doctor_id");
-  console.log(Sch);
+  const scheduleList = await DocSche.find({}).populate("Doctor_id");
+  const result = scheduleList.filter(
+    (schedule) => schedule.Meeting_Maximum_Patient > 0
+  );
+  //--Notification
   const appo = await Appo.find({ Pat_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
@@ -120,14 +124,14 @@ router.get("/doctorview", authorization, async (req, res) => {
     console.log(appo);
 
     res.render("doctorview.ejs", {
-      Sch: Sch,
+      Sch: result,
       name: name,
       appo: appo,
       number: number,
     });
   });
 });
-router.post("/doctorview-filter", authorization, async (req, res) => {
+router.post("/doctorview", authorization, async (req, res) => {
   const id = res.locals.user.id;
   const user = await Patient.findById(id);
   const name = user.pat_FirstName;
@@ -164,20 +168,12 @@ router.get("/doctorview-doc", authorization, async (req, res) => {
   const id = res.locals.user.id;
   const user = await User.findById(id);
   const name = user.Doc_FirstName;
-  // const shce = await DocSche.findById({ idSch: req.body.Doctor_id });
-  // const test = await DocSche.findById(shce);
-  // const fees = test.Upfront_fees;
-  // const time = test.AveWating_Time;
-  // const methods = test.Available_methods;
   console.log(req.body);
   const users = await User.find({});
   console.log(users);
   res.render("./Doc/docDoctorview.ejs", {
     users: users,
     name: name,
-    // fees: fees,
-    // time: time,
-    // methods: methods,
   });
 });
 //--------------------------------------------End view---------------------------------------------------
@@ -188,12 +184,48 @@ router.get("/Doctor-profile-setting", authorization, async (req, res) => {
   const user = await User.findById(id);
   console.log(user);
   const name = user.Doc_FirstName;
-  const email = user.Doc_Email;
-  const Lname = user.Doc_Lastname;
   res.render("./Doc/DocProfile.ejs", {
     name: name,
-    email: email,
-    Lname: Lname,
+    user: user,
+  });
+});
+//edit
+router.get("/DocProfileEdit", authorization, async (req, res, next) => {
+  console.log(res.locals.user.id);
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  console.log(user);
+  const name = user.Doc_FirstName;
+  const email = user.Doc_Email;
+  const Lname = user.Doc_Lastname;
+  res.render("./Doc/DocProfileEdit.ejs", {
+    name: name,
+    user: user,
+  });
+});
+router.post("/DocProfileEdit", authorization, async (req, res, next) => {
+  console.log(res.locals.user.id);
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  console.log(user);
+  const name = user.Doc_FirstName;
+  try {
+    const updateUser = await User.findByIdAndUpdate(
+      id,
+      {
+        $set: req.body,
+      },
+      { new: true }
+    );
+    res.redirect("/doctor/Doctor-profile-setting");
+  } catch (e) {
+    console.log(e.message);
+
+    res.redirect("/doctor/Doctor-profile-setting");
+  }
+  res.render("./Doc/DocProfile.ejs", {
+    name: name,
+    user: user,
   });
 });
 //-------------------------------------------- End Profile Doc ---------------------------------------------------
@@ -254,20 +286,7 @@ router.get("/ManageAppointments", authorization, async (req, res, next) => {
 
   res.render("./Doc/DocMangApp.ejs", { name: name, appo: appo });
 });
-router.get("/DocProfileEdit", authorization, async (req, res, next) => {
-  console.log(res.locals.user.id);
-  const id = res.locals.user.id;
-  const user = await User.findById(id);
-  console.log(user);
-  const name = user.Doc_FirstName;
-  const email = user.Doc_Email;
-  const Lname = user.Doc_Lastname;
-  res.render("./Doc/DocProfileEdit.ejs", {
-    name: name,
-    email: email,
-    Lname: Lname,
-  });
-});
+
 router.get("/profile-home-doc", authorization, async (req, res, next) => {
   console.log(res.locals.user.id);
   const id = res.locals.user.id;
@@ -287,7 +306,7 @@ router.get("/updataShcdeule", authorization, async (req, res) => {
   const email = user.Doc_Email;
   res.render("./Doc/DocSche.ejs", { name: name, email: email });
 });
-router.post("/UpdateSchedule", authorization, async (req, res) => {
+router.post("/UpdateSchedule", authorization, async (req, res, next) => {
   console.log(res.locals.user.id);
   const id = res.locals.user.id;
   const user = await User.findById(id);
@@ -305,12 +324,25 @@ router.post("/UpdateSchedule", authorization, async (req, res) => {
       Available_methods: req.body.Available_methods,
       Doctor_id: id,
     });
+
     const SavadUpdateDoc = await UpdateDoc.save();
     console.log(UpdateDoc);
   } catch (e) {
-    console.log(e.masssage);
+    console.log(e.masssage + " not working ");
   }
+  // try {
+  //   const updateDocSche = await DocSche.findOneAndUpdate(
+  //     { Doctor_id: id },
+  //     {
+  //       $set: req.body,
+  //     },
+  //     { new: true }
+  //   );
+  // } catch (e) {
+  //   console.log(e.message);
 
+  //   res.redirect("/doctor/UpdateSchedule");
+  // }
   res.render("./Doc/DocSche.ejs", { name: name, email: email });
 });
 //-------------------------------------------End Doc Shcdeule--------------------------------------------------------------
@@ -408,28 +440,79 @@ router.get("/AppDetails", authorization, async (req, res, next) => {
   const user = await User.findById(id);
   console.log(user);
   const name = user.Doc_FirstName;
-  const email = user.Doc_Email;
   res.render("./Doc/DocAppDetails.ejs", {
     name: name,
-    email: email,
-    errorMessage: "",
+  });
+});
+router.post("/AppDetails", authorization, async (req, res, next) => {
+  console.log(res.locals.user.id);
+  const id = res.locals.user.id;
+  const pat_id = req.body.Pat_Id;
+  console.log(pat_id);
+  const user = await User.findById(id);
+  const viewAppoint = await Appo.findOne({ Pat_Id: pat_id }).populate("Pat_Id");
+  console.log(viewAppoint);
+  console.log(user);
+  const name = user.Doc_FirstName;
+  res.render("./Doc/DocAppDetails.ejs", {
+    name: name,
+    appo: viewAppoint,
   });
 });
 //-------------------------------------------- End Doctor AppDetails---------------------------------------------------
 //-------------------------------------------- Start Doctor Write Prescription---------------------------------------------------
-router.get("/WritePrescription", authorization, async (req, res, next) => {
+router.post("/WritePrescription", authorization, async (req, res, next) => {
   console.log(res.locals.user.id);
   const id = res.locals.user.id;
+  const pat_id = req.body.Pat_Id;
+  const appo_id = req.body.Appo_Id;
+  console.log(pat_id);
+  console.log(appo_id);
+  const viewAppoint = await Appo.findOne({ Pat_Id: pat_id }).populate("Pat_Id");
+  console.log(viewAppoint);
   const user = await User.findById(id);
   console.log(user);
   const name = user.Doc_FirstName;
-  const email = user.Doc_Email;
+
   res.render("./Doc/WritePres.ejs", {
     name: name,
-    email: email,
     errorMessage: "",
+    appo: viewAppoint,
   });
 });
+router.post(
+  "/WritePrescription-create",
+  authorization,
+  async (req, res, next) => {
+    console.log(res.locals.user.id);
+    const id = res.locals.user.id;
+    const pat_id = req.body.Pat_Id;
+    const appo_id = req.body.Appo_Id;
+    console.log(pat_id);
+    const viewAppoint = await Appo.findOne({ Pat_Id: pat_id }).populate(
+      "Pat_Id"
+    );
+    console.log(viewAppoint);
+    const user = await User.findById(id);
+    console.log(user);
+    const name = user.Doc_FirstName;
+    try {
+      const addNewPrescription = new Prescription({
+        pres_Description: req.body.pres_Description,
+        Appoinment_Id: appo_id,
+        Pat_id: pat_id,
+        Doc_Id: id,
+      });
+      const savedPrescription = await addNewPrescription.save();
+      console.log(savedPrescription);
+    } catch (e) {
+      console.log(e.masssage);
+    }
+
+    res.redirect("/doctor/ManageAppointments");
+  }
+);
+
 //-------------------------------------------- End Doctor Write Prescription---------------------------------------------------
 
 module.exports = router;
