@@ -126,7 +126,11 @@
             <div
               class="col-md-2 text-sm-center text-md-start align-self-center my-2"
             >
-            <a class="btn btn-outline-dark w-100" href="http://localhost:5000/patient/AppDetails">Details</a>
+            <form action="http://localhost:5000/patient/viewappoint" method="post">
+              <input hidden value="<%=appoo.Doc_Id._id %>" name="Doc_Id">
+              <button class="btn btn-outline-dark w-100" type="submit">Details</button>
+            <!-- <a class="btn btn-outline-dark w-100" href="http://localhost:5000/patient/AppDetails">Details</a> -->
+          </form>
               <!--  NORMAL DETAILS BUTTON <a href="#demo" class="btn btn-outline-dark w-100" type="button" data-toggle="collapse">Details</a>  --> 
 
               <!--  POP OVER - WORKING FINE  -->

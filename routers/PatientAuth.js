@@ -347,6 +347,38 @@ router.get("/viewappoint", authorization, async (req, res) => {
     });
   });
 });
+router.post("/viewappoint", authorization, async (req, res) => {
+  const id = res.locals.user.id;
+  const DocId = req.body.Doc_Id;
+  console.log(DocId + " Doc_Id");
+  const user = await User.findById(id);
+  const appoo = await Appo.find({ Pat_Id: id })
+    .populate("Pat_Id")
+    .populate("Doc_Id")
+    .sort({ _id: -1 });
+  console.log(user);
+  console.log(appoo);
+  const name = user.pat_FirstName;
+  //--Notification
+  const appo = await Appo.find({ Pat_Id: id })
+    .populate("Pat_Id")
+    .populate("Doc_Id")
+    .sort({ _id: -1 })
+    .limit(5);
+  const query = Appo.find({ Pat_Id: id });
+  query.count(function (err, count) {
+    if (err) console.log(err);
+    else console.log("Count is", count);
+    const number = count;
+    res.redirect("/patient/AppDetails");
+    // res.render("./Patient/viewAppoint.ejs", {
+    //   name: name,
+    //   appoo: appoo,
+    //   appo: appo,
+    //   number: number,
+    // });
+  });
+});
 //-----------------------------End view Appo---------------------------------------------------------
 //-----------------------------Start Booking Appo---------------------------------------------------------
 router.post("/booking", authorization, async (req, res) => {
@@ -367,16 +399,16 @@ router.post("/booking", authorization, async (req, res) => {
   //     else
   //         day = "Monday"
 
-//   let Available_Days = [ a , a , a , a ]
-// let availableStringDays = []
-// for (day in available_days){
-//    dateObject = new Date(day)
-//    day = dateObject.getDay()
-//    if( day === 0)
-//        availableStringDays.push( "Sunday" )
-//     else
-//        availableStringDays.push("Monday")
-// }
+  //   let Available_Days = [ a , a , a , a ]
+  // let availableStringDays = []
+  // for (day in available_days){
+  //    dateObject = new Date(day)
+  //    day = dateObject.getDay()
+  //    if( day === 0)
+  //        availableStringDays.push( "Sunday" )
+  //     else
+  //        availableStringDays.push("Monday")
+  // }
   //--Notification
   const appo = await Appo.find({ Pat_Id: id })
     .populate("Pat_Id")
@@ -436,7 +468,7 @@ router.post("/booking-Create", authorization, async (req, res) => {
     else console.log("Count is", count);
     const number = count;
 
-    res.redirect("/patient/viewappoint", {});
+    res.redirect("/patient/viewappoint");
   });
 });
 //-----------------------------End Booking Appo--------------------------------------------------------------
@@ -446,9 +478,24 @@ router.get("/AppDetails", authorization, async (req, res) => {
   const user = await User.findById(id);
   console.log(user);
   const name = user.pat_FirstName;
-  res.render("./Patient/PatAppDetails.ejs", {
-    name: name,
-    errorMessage: "",
+  //--Notification
+  const appo = await Appo.find({ Pat_Id: id })
+    .populate("Pat_Id")
+    .populate("Doc_Id")
+    .sort({ _id: -1 })
+    .limit(5);
+  const query = Appo.find({ Pat_Id: id });
+  query.count(function (err, count) {
+    if (err) console.log(err);
+    else console.log("Count is", count);
+    const number = count;
+
+    res.render("./Patient/PatAppDetails.ejs", {
+      name: name,
+      errorMessage: "",
+      number: number,
+      appo: appo,
+    });
   });
 });
 //-----------------------------End AppDetails--------------------------------------------------------------
@@ -458,9 +505,23 @@ router.get("/ViewPrescription", authorization, async (req, res) => {
   const user = await User.findById(id);
   console.log(user);
   const name = user.pat_FirstName;
-  res.render("./Patient/ViewPres.ejs", {
-    name: name,
-    errorMessage: "",
+  //--Notification
+  const appo = await Appo.find({ Pat_Id: id })
+    .populate("Pat_Id")
+    .populate("Doc_Id")
+    .sort({ _id: -1 })
+    .limit(5);
+  const query = Appo.find({ Pat_Id: id });
+  query.count(function (err, count) {
+    if (err) console.log(err);
+    else console.log("Count is", count);
+    const number = count;
+    res.render("./Patient/ViewPres.ejs", {
+      name: name,
+      errorMessage: "",
+      number: number,
+      appo: appo,
+    });
   });
 });
 //-----------------------------End AppDetails--------------------------------------------------------------

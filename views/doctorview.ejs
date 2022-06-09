@@ -283,7 +283,7 @@ color: #269bb8
         <div class="row">
 
 <div class="col-md-4">
-    <form action="http://localhost:5000/doctor/doctorview-filter" method="post">
+    <form action="http://localhost:5000/doctor/doctorview" method="post">
 <div class="wrapper center-block hidden-xs">
 <div class="filters-text">
 <span class="filter-span">Sort by: <small>(find doctors using filters below)</small></span>
@@ -371,12 +371,12 @@ color: #269bb8
     <h5 class="mt-0 mb-1"> <div class="c"> Doctor <%=Sch.Doctor_id.Doc_FirstName%></div> </h5>
     <div class="product-rating mb-2"> <span class="badge23"><i class="fa fa-star"></i> 4 Star</span> <span class="rating-review mb-1">4 Ratings &amp; 3 Recommendations</span></div> <span class="doctor-fees price-new">Fees : <%=Sch.Upfront_fees%> </span>
     <!-- <div class="text-right refine" ><a href="http://localhost:5000/booking" class="btn btn-info" role="button">Book Appointment</a> </div> -->
-<form action="http://localhost:5000/doctor/viewDocSch" method="post">
+   <form action="http://localhost:5000/doctor/viewDocSch" method="post">
     <div class="text-right refine" >
     <input hidden value="<%=Sch.Doctor_id._id %>" name="Doc_Id">
    <button  class="btn btn-info" type="submit">Doctor Schedule</button> 
  </div>
-</form>
+   </form>
         
    
     
