@@ -114,9 +114,9 @@ router.get("/doctorview", authorization, async (req, res) => {
   const user = await Patient.findById(id);
   const name = user.pat_FirstName;
   const scheduleList = await DocSche.find({}).populate("Doctor_id");
-  const result = scheduleList.filter(
-    (schedule) => schedule.Meeting_Maximum_Patient > 0
-  );
+  // const result = scheduleList.filter(
+  //   (schedule) => schedule.Meeting_Maximum_Patient > 0
+  // );
   //--Notification
   const appo = await Appo.find({ Pat_Id: id })
     .populate("Pat_Id")
@@ -133,7 +133,7 @@ router.get("/doctorview", authorization, async (req, res) => {
     console.log(appo);
 
     res.render("doctorview.ejs", {
-      Sch: result,
+      Sch: scheduleList,
       name: name,
       appo: appo,
       number: number,
@@ -312,7 +312,7 @@ router.post("/UpdateSchedule", authorization, async (req, res, next) => {
     const SavadUpdateDoc = await UpdateDoc.save();
     console.log(UpdateDoc);
   } catch (e) {
-    console.log(e.masssage + " not working ");
+    console.log(e.masssage);
   }
   // try {
   //   const updateDocSche = await DocSche.findOneAndUpdate(
@@ -322,6 +322,7 @@ router.post("/UpdateSchedule", authorization, async (req, res, next) => {
   //     },
   //     { new: true }
   //   );
+  //   console.log(updateDocSche);
   // } catch (e) {
   //   console.log(e.message);
 
@@ -496,7 +497,7 @@ router.post(
     console.log(viewAppoint);
     const user = await User.findById(id);
     console.log(user);
-    const name = user.Doc_FirstName;
+    // const name = user.Doc_FirstName;
     try {
       const addNewPrescription = new Prescription({
         pres_Description: req.body.pres_Description,
