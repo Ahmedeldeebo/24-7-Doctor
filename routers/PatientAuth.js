@@ -542,12 +542,10 @@ router.post("/ViewPrescription", authorization, async (req, res) => {
   const user = await User.findById(id);
   console.log(user);
   const name = user.pat_FirstName;
-  const PresDesc = await Prescription.find({
+  const PresDesc = await Prescription.findOne({
     Appoinment_Id: ApppId,
   });
-  const presDescription = PresDesc.pres_Description;
   console.log(PresDesc);
-  console.log(presDescription + " what");
   //--Notification
   const appo = await Appo.find({ Pat_Id: id })
     .populate("Pat_Id")
