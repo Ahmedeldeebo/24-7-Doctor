@@ -99,6 +99,15 @@ router.post("/Docter-login", async (req, res) => {
     return console.log(err);
   }
 });
+router.get("/profile-home-doc", authorization, async (req, res, next) => {
+  console.log(res.locals.user.id);
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  console.log(user);
+  const name = user.Doc_FirstName;
+  const email = user.Doc_Email;
+  res.render("./Doc/DocHomePage.ejs", { name: name, email: email });
+});
 //--------------------------------------------Start view---------------------------------------------------
 router.get("/doctorview", authorization, async (req, res) => {
   const id = res.locals.user.id;
@@ -189,6 +198,7 @@ router.get("/Doctor-profile-setting", authorization, async (req, res) => {
     user: user,
   });
 });
+
 //edit
 router.get("/DocProfileEdit", authorization, async (req, res, next) => {
   console.log(res.locals.user.id);
@@ -270,32 +280,6 @@ router.post("/DocTicket", authorization, async (req, res) => {
   });
 });
 //------------------------------------End Tikcet --------------------------------------------------------
-
-router.get("/ManageAppointments", authorization, async (req, res, next) => {
-  console.log(res.locals.user.id);
-  const id = res.locals.user.id;
-  const user = await User.findById(id);
-  console.log(user);
-  const name = user.Doc_FirstName;
-  const email = user.Doc_Email;
-  const appo = await Appo.find({ Doc_Id: id })
-    .populate("Doc_Id")
-    .sort({ _id: -1 });
-  console.log(user);
-  console.log(appo);
-
-  res.render("./Doc/DocMangApp.ejs", { name: name, appo: appo });
-});
-
-router.get("/profile-home-doc", authorization, async (req, res, next) => {
-  console.log(res.locals.user.id);
-  const id = res.locals.user.id;
-  const user = await User.findById(id);
-  console.log(user);
-  const name = user.Doc_FirstName;
-  const email = user.Doc_Email;
-  res.render("./Doc/DocHomePage.ejs", { name: name, email: email });
-});
 //------------------------Start Doc Shcdeule--------------------------------------------------------------
 router.get("/updataShcdeule", authorization, async (req, res) => {
   console.log(res.locals.user.id);
@@ -434,23 +418,40 @@ router.post("/DocSearch", authorization, async (req, res) => {
 
 //-------------------------------------------- End Doc Search ---------------------------------------------------
 //-------------------------------------------- Start Doctor AppDetails---------------------------------------------------
-router.get("/AppDetails", authorization, async (req, res, next) => {
+router.get("/ManageAppointments", authorization, async (req, res, next) => {
   console.log(res.locals.user.id);
   const id = res.locals.user.id;
   const user = await User.findById(id);
   console.log(user);
   const name = user.Doc_FirstName;
-  res.render("./Doc/DocAppDetails.ejs", {
-    name: name,
-  });
+  const email = user.Doc_Email;
+  const appo = await Appo.find({ Doc_Id: id })
+    .populate("Doc_Id")
+    .populate("Pat_Id")
+    .sort({ _id: -1 });
+  // console.log(user);
+  // console.log(appo);
+
+  res.render("./Doc/DocMangApp.ejs", { name: name, appo: appo });
 });
+
+// router.get("/AppDetails", authorization, async (req, res, next) => {
+//   console.log(res.locals.user.id);
+//   const id = res.locals.user.id;
+//   const user = await User.findById(id);
+//   console.log(user);
+//   const name = user.Doc_FirstName;
+//   res.render("./Doc/DocAppDetails.ejs", {
+//     name: name,
+//   });
+// });
 router.post("/AppDetails", authorization, async (req, res, next) => {
   console.log(res.locals.user.id);
   const id = res.locals.user.id;
-  const pat_id = req.body.Pat_Id;
-  console.log(pat_id);
+  const appoId = req.body.appo_Id;
+  console.log(appoId + " appoId");
   const user = await User.findById(id);
-  const viewAppoint = await Appo.findOne({ Pat_Id: pat_id }).populate("Pat_Id");
+  const viewAppoint = await Appo.findById(appoId).populate("Pat_Id");
   console.log(viewAppoint);
   console.log(user);
   const name = user.Doc_FirstName;
@@ -468,7 +469,7 @@ router.post("/WritePrescription", authorization, async (req, res, next) => {
   const appo_id = req.body.Appo_Id;
   console.log(pat_id);
   console.log(appo_id);
-  const viewAppoint = await Appo.findOne({ Pat_Id: pat_id }).populate("Pat_Id");
+  const viewAppoint = await Appo.findById(appo_id).populate("Pat_Id");
   console.log(viewAppoint);
   const user = await User.findById(id);
   console.log(user);

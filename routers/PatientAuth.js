@@ -4,6 +4,7 @@ const Doctor = require("../models/Doctor");
 const shcdeule = require("../models/Doc_Schedule");
 const ticket = require("../models/Ticket");
 const Appo = require("../models/Aappointment");
+const Prescription = require("../models/Prescription");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
@@ -349,16 +350,21 @@ router.get("/viewappoint", authorization, async (req, res) => {
 });
 router.post("/viewappoint", authorization, async (req, res) => {
   const id = res.locals.user.id;
-  const DocId = req.body.Doc_Id;
-  console.log(DocId + " Doc_Id");
+  // const DocId = req.body.Doc_Id;
+  const AppooId = req.body.Appo_Id;
   const user = await User.findById(id);
   const appoo = await Appo.find({ Pat_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
     .sort({ _id: -1 });
-  console.log(user);
-  console.log(appoo);
+  // console.log(user);
+  // console.log(appoo);
   const name = user.pat_FirstName;
+  console.log(AppooId + " Appo_Id");
+  const appoDetails = await Appo.findById(AppooId)
+    .populate("Pat_Id")
+    .populate("Doc_Id");
+  //  console.log(appoDetails);
   //--Notification
   const appo = await Appo.find({ Pat_Id: id })
     .populate("Pat_Id")
@@ -370,13 +376,14 @@ router.post("/viewappoint", authorization, async (req, res) => {
     if (err) console.log(err);
     else console.log("Count is", count);
     const number = count;
-    res.redirect("/patient/AppDetails");
-    // res.render("./Patient/viewAppoint.ejs", {
-    //   name: name,
-    //   appoo: appoo,
-    //   appo: appo,
-    //   number: number,
-    // });
+    // res.redirect("/patient/AppDetails");
+    res.render("./Patient/PatAppDetails.ejs", {
+      name: name,
+      appoo: appoo,
+      appo: appo,
+      appooo: appoDetails,
+      number: number,
+    });
   });
 });
 //-----------------------------End view Appo---------------------------------------------------------
@@ -500,11 +507,45 @@ router.get("/AppDetails", authorization, async (req, res) => {
 });
 //-----------------------------End AppDetails--------------------------------------------------------------
 //-----------------------------Start AppDetails--------------------------------------------------------------
-router.get("/ViewPrescription", authorization, async (req, res) => {
+// router.get("/ViewPrescription", authorization, async (req, res) => {
+//   const id = res.locals.user.id;
+//   const user = await User.findById(id);
+//   console.log(user);
+//   const name = user.pat_FirstName;
+//   //--Notification
+//   const appo = await Appo.find({ Pat_Id: id })
+//     .populate("Pat_Id")
+//     .populate("Doc_Id")
+//     .sort({ _id: -1 })
+//     .limit(5);
+//   const query = Appo.find({ Pat_Id: id });
+//   query.count(function (err, count) {
+//     if (err) console.log(err);
+//     else console.log("Count is", count);
+//     const number = count;
+//     res.render("./Patient/ViewPres.ejs", {
+//       name: name,
+//       errorMessage: "",
+//       number: number,
+//       appo: appo,
+//     });
+//   });
+// });
+router.post("/ViewPrescription", authorization, async (req, res) => {
   const id = res.locals.user.id;
+  const ApppId = req.body.Appo_Id;
+  console.log("App Id " + ApppId);
+  const appoDetails = await Appo.findById(ApppId)
+    .populate("Pat_Id")
+    .populate("Doc_Id");
+  console.log(appoDetails);
   const user = await User.findById(id);
   console.log(user);
   const name = user.pat_FirstName;
+  const PresDesc = await Prescription.findOne({
+    Appoinment_Id: ApppId,
+  });
+  console.log(PresDesc);
   //--Notification
   const appo = await Appo.find({ Pat_Id: id })
     .populate("Pat_Id")
@@ -518,9 +559,11 @@ router.get("/ViewPrescription", authorization, async (req, res) => {
     const number = count;
     res.render("./Patient/ViewPres.ejs", {
       name: name,
+      pres: PresDesc,
       errorMessage: "",
       number: number,
       appo: appo,
+      appoo: appoDetails,
     });
   });
 });
@@ -551,9 +594,23 @@ router.get("/ViewBill", authorization, async (req, res) => {
   const user = await User.findById(id);
   console.log(user);
   const name = user.pat_FirstName;
-  res.render("./Patient/ViewBill.ejs", {
-    name: name,
-    errorMessage: "",
+  //--Notification
+  const appo = await Appo.find({ Pat_Id: id })
+    .populate("Pat_Id")
+    .populate("Doc_Id")
+    .sort({ _id: -1 })
+    .limit(5);
+  const query = Appo.find({ Pat_Id: id });
+  query.count(function (err, count) {
+    if (err) console.log(err);
+    else console.log("Count is", count);
+    const number = count;
+    res.render("./Patient/ViewBill.ejs", {
+      name: name,
+      number: number,
+      appo: appo,
+      errorMessage: "",
+    });
   });
 });
 //-----------------------------End view bills--------------------------------------------------------------
