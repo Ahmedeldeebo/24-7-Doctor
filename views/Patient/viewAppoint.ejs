@@ -20,61 +20,53 @@
     <title>Doctor Schedule</title>
 
     <style>
+      *{
+        margin: 0;
+        padding: 0;
+      }
       .card {
         background-color: rgb(255, 255, 255);
         border: none;
         border-radius: 5px;
         box-shadow: 5px 6px 6px 2px #4e7caa;
       }
-      .allergy {
-        position: relative;
-        bottom: 10px;
-        color: grey;
-      }
-      .head {
-        color: #97989a;
-        font-size: 17px;
-        font-weight: bold;
-      }
-      .bottom {
-        color: grey;
-        font-size: 15px;
-      }
 
-      body {
-        height: 100%;
+
+      html,body {
+
         background: #000;
         background: url("https://i.imgur.com/acoSJ9c.jpg") no-repeat center center fixed;
         width: 100%;
+        display: flex;
+        flex-direction: column;
         height: 100%;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
         background-size: cover;
       }
-      .demo {
-        width: 100%;
-        height: 100%;
-        height: 100vh;
-        background: #000;
+
+      #container{
+        min-height: 100%;
+
       }
 
+      #main{
+        overflow: auto;
+        padding-bottom: 100px;
+
+      }
+
+
       .footer {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 1rem;
-  background-color: #efefef;
-  text-align: center;
+        position: relative;
+        margin-top: -100px;
+        clear: both;
+
+        height: 100px;
+        bottom: 0;
 }
-.text {
-  display: block;
-  width: 100px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
+
 
     </style>
   </head>
@@ -82,9 +74,9 @@
   <body>
     <%- include ('../partials/navHome.ejs') %>
 
-    <div class="container mt-5">
+    <div class="container mt-5" id="container">
       <div class="row d-flex justify-content-center">
-        <div class="row d-flex justify-content-center">
+        <div class="row d-flex justify-content-center" id="main">
           <!-------------------------------------------START HEADERS -------------------------------------------------->
 
           <form
@@ -262,8 +254,11 @@
       </div>
     </div>
   </body>
-  <div id="footer" class="mt-5"><%- include ('../partials/footer.ejs') %></div>
+  <footer id="footer">
+<div  class="mt-5"><%- include ('../partials/footer.ejs') %></div>
 
+  </footer>
+  
   <script>
 $(function () {
     $('#firstButton').popover({

@@ -431,5 +431,20 @@ router.get("/WritePrescription", authorization, async (req, res, next) => {
   });
 });
 //-------------------------------------------- End Doctor Write Prescription---------------------------------------------------
+//-------------------------------------------- Start Doctor Write Bill---------------------------------------------------
+router.get("/WriteBill", authorization, async (req, res, next) => {
+  console.log(res.locals.user.id);
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  console.log(user);
+  const name = user.Doc_FirstName;
+  const email = user.Doc_Email;
+  res.render("./Doc/WriteBill.ejs", {
+    name: name,
+    email: email,
+    errorMessage: "",
+  });
+});
+//-------------------------------------------- End Doctor Write Bill---------------------------------------------------
 
 module.exports = router;

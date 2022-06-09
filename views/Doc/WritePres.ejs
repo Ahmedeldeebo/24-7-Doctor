@@ -364,7 +364,7 @@ p {
                 <div class="col-md-9"> 
 
        <div class="contact-us text-center"> 
-        <h3>Priscription Details</h3> 
+        <h3><i class="fa-solid fa-prescription"></i> Priscription Details</h3> 
         <div class="row"> 
 
                 <div class="col-md-6">
@@ -412,10 +412,26 @@ p {
                 <div class="col-md-6"> 
                     <div class="text-center px-1 py-5"> 
                         <div class="forms p-4 py-5 bg-white"> 
-                            <h5>Write Prescription</h5> 
+                            <h5><i class="fa-solid fa-prescription"></i> Write Prescription</h5> 
                             <form action="" method="">           
                                 <div class="form-outline mt-4"> 
-                               <input type="text" class="form-control mt-3" placeholder="%PatientName" name=""> 
+                               <input type="text" class="form-control mt-3" placeholder="%PatientName" name="" disabled> 
+                                </div>
+                                <div class="input-group">
+  
+                                    <!-- declaration for first field -->
+                                    <input type="text" class="form-control mt-3
+                                            input-sm"  placeholder="%Patient Address" name="" disabled />
+                              
+                                    <!-- reducong the gap between them to zero -->
+                                    <span class="input-group-btn" 
+                                        style="width:10px;"></span>
+                              
+                                    <!-- declaration for second field -->
+                                    <input type="text" class="form-control mt-3
+                                            input-sm" placeholder="%PatientArea" name="" disabled />
+                                </div>
+                                <div class="form-outline mt-4">
                                <textarea class="form-control mt-3" placeholder="Prescription Details" name=""></textarea> 
                            </div> 
                            <div class="button mt-5 text-center"> <button class="btn btn-dark" type="submit">Send Prescription</button> 

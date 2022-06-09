@@ -5,11 +5,10 @@
         <meta charset='utf-8'>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
-        <title>Appointment Details</title>
+        <title>Write Bill</title>
         <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
         <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
         <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-        <script src="https://kit.fontawesome.com/ff8698dfe7.js" crossorigin="anonymous"></script>
         <style>::-webkit-scrollbar {
           width: 8px;
         }
@@ -356,7 +355,7 @@ p {
 
         </head>
         <!--Start Header-->
-
+    <%- include ('../partials/navDoc.ejs') %>
     <!--End Header-->
     
     <div class="wrapper"> 
@@ -365,7 +364,7 @@ p {
                 <div class="col-md-9"> 
 
        <div class="contact-us text-center"> 
-        <h3>Appointment Details</h3> 
+        <h3><i class="fa-solid fa-money-bill"></i> Appointment Bill</h3> 
         <div class="row"> 
 
                 <div class="col-md-6">
@@ -374,14 +373,14 @@ p {
                 <div class="d-flex flex-row align-items-center"> 
                     <span class="icons"><i class="fa-solid fa-user"></i></span> 
                     <div class="address text-left"> 
-                        <span>Doctor Name</span> <p>% DocName</p>
+                        <span>Patient Name</span> <p>% PatientName</p>
                     </div> 
                 </div> 
 
                 <div class="d-flex flex-row align-items-center mt-3"> 
                     <span class="icons"><i class="fa-solid fa-book-medical"></i></span> 
                     <div class="address text-left"> 
-                        <span>Specialization</span> <p>% DocSpec</p> 
+                        <span>Patient Phone</span> <p>% Patient Phone</p>
                     </div> 
                 </div>
 
@@ -410,27 +409,48 @@ p {
                 </div> 
                 </div> 
 
-         <div class="col-md-6"> 
-            <div class="text-center px-1 py-5"> 
-                <div class="forms p-4 py-5 bg-white" > 
-                    <h5><i class="fa-solid fa-prescription"></i> Check Prescription</h5> 
-                    <form action="http://localhost:5000/patient/ViewPrescription" method="">
-                    <div class="button mt-4 text-center"> 
-                        <button class="btn btn-dark" type="submit">Click Here</button> 
-                    </div>
-                 </form>
-                </div> 
-            </div>
-                <div class="forms p-4 py-5 bg-white"> 
-                    <h5><i class="fa-solid fa-money-bill"></i> Check Bill</h5> 
-                    <form action="http://localhost:5000/patient/ViewBill" method="">
-                    <div class="button mt-4 text-center"> 
-                        <button class="btn btn-dark" type="submit">Click Here</button> 
-                    </div>
-                 </form>
-                </div>
-            
-            </div> 
+                <div class="col-md-6"> 
+                    <div class="text-center px-1 py-5"> 
+                        <div class="forms p-4 py-5 bg-white"> 
+                            <h5><i class="fa-solid fa-money-bill"></i> Issue Appointment Bill</h5> 
+                            <form action="" method="">           
+                                <div class="input-group">
+  
+                                    <!-- declaration for first field -->
+                                    <input type="text" class="form-control mt-3
+                                            input-sm"  placeholder="%PatientName" name="" disabled />
+                              
+                                    <!-- reducong the gap between them to zero -->
+                                    <span class="input-group-btn" 
+                                        style="width:10px;"></span>
+                              
+                                    <!-- declaration for second field -->
+                                    <input type="text" class="form-control mt-3
+                                            input-sm" placeholder="%Doctor Name" name="" disabled />
+                                </div>
+                                <div class="input-group">
+  
+                                    <!-- declaration for first field -->
+                                    <input type="text" class="form-control mt-3
+                                            input-sm"  placeholder="%BillDate" name="" disabled />
+                              
+                                    <!-- reducong the gap between them to zero -->
+                                    <span class="input-group-btn" 
+                                        style="width:10px;"></span>
+                              
+                                    <!-- declaration for second field -->
+                                    <input type="text" class="form-control mt-3
+                                            input-sm" placeholder="Enter Bill amount in EGP" name=""  />
+                                </div>
+                           <div class="button mt-5 text-center"> <button class="btn btn-dark" type="submit">Issue Bill Invoice</button> 
+                           </div>
+                        </form>
+                        <div class="alert alert-light text-danger" role="alert">
+                           <%- errorMessage %> 
+                         </div>
+        </div> 
+        </div> 
+        </div> 
         </div>  
 </div> 
 </div> 
