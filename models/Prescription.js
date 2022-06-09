@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const Aappointment = require("./Aappointment");
 
 const prescriptionSchema = new mongoose.Schema({
   pres_Description: { type: String, required: true },

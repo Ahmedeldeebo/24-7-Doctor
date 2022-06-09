@@ -318,6 +318,9 @@ p {
     justify-content: center;
     align-items: center
 }
+.c {
+  text-transform: capitalize;
+}
 
 .icons i {
     font-size: 20px
@@ -356,7 +359,9 @@ p {
 
         </head>
         <!--Start Header-->
-
+    <!--Start Header-->
+    <%- include ('../partials/navHome.ejs') %>
+    <!--End Header-->
     <!--End Header-->
     
     <div class="wrapper"> 
@@ -374,35 +379,35 @@ p {
                 <div class="d-flex flex-row align-items-center"> 
                     <span class="icons"><i class="fa-solid fa-user"></i></span> 
                     <div class="address text-left"> 
-                        <span>Doctor Name</span> <p>% DocName</p>
+                        <span>Doctor Name</span> <p><%=appoo.Doc_Id.Doc_FirstName %></p>
                     </div> 
                 </div> 
 
                 <div class="d-flex flex-row align-items-center mt-3"> 
                     <span class="icons"><i class="fa-solid fa-book-medical"></i></span> 
                     <div class="address text-left"> 
-                        <span>Specialization</span> <p>% DocSpec</p> 
+                        <span>Specialization</span> <p><%=appoo.Doc_Id.Specialization_Name %></p> 
                     </div> 
                 </div>
 
                 <div class="d-flex flex-row align-items-center mt-3"> 
                     <span class="icons"><i class="fa-solid fa-calendar-day"></i></span> 
                      <div class="address text-left"> 
-                        <span>Chosen Day</span> <p>% ChosenDay</p>
+                        <span>Chosen Day</span> <p><%=appoo.App_visit_day%></p>
                     </div>
                  </div>
 
                  <div class="d-flex flex-row align-items-center mt-3"> 
                     <span class="icons"><i class="fa-solid fa-clock"></i></span> 
                      <div class="address text-left"> 
-                        <span>Chosen Hour</span> <p>% ChosenHour</p>
+                        <span>Chosen Hour</span> <p><%=appoo.App_RegVisit_time %></p>
                     </div>
                  </div>
 
                  <div class="d-flex flex-row align-items-center mt-3"> 
                     <span class="icons"><i class="fa-solid fa-clock"></i></span> 
                      <div class="address text-left"> 
-                        <span>Method of Communication</span> <p>% Method</p>
+                        <span>Method of Communication</span> <p><%=appoo.Methed_of_comm%> </p>
                     </div>
                  </div>
 
@@ -415,10 +420,12 @@ p {
                     <div class="text-center px-1 py-5"> 
                         <div class="forms p-4 py-5 bg-white"> 
                             <h5>Prescription</h5> 
-                            <form action="" method="">           
+                          
+                            <!-- <form action="" method="">            -->
                                 <div class="form-outline mt-4"> 
-                               <input type="text" class="form-control mt-3" placeholder="%PatientName" name="" disabled> 
-                               <textarea class="form-control mt-3" placeholder="%Prescription Details" name="" disabled></textarea> 
+                               <input type="text" class="form-control mt-3 c" placeholder="<%=appoo.Pat_Id.pat_FirstName%>" name="" disabled>
+                               
+                               <textarea class="form-control mt-3" placeholder="" name="" disabled><%=pres.pres_Description%><%=pres %> </textarea> 
                            </div> 
                            <div class="button mt-5 text-center"> 
                                <button class="btn btn-success d-print-none" onclick="myFunction()"><span class="fa-solid fa-print" aria-hidden="true"></span> Print Prescription</button>
@@ -426,7 +433,7 @@ p {
                            </div>
                             
                         </div>
-                        </form>
+                        <!-- </form> -->
                         <div class="alert alert-light text-danger" role="alert">
                            <%- errorMessage %> 
                          </div>

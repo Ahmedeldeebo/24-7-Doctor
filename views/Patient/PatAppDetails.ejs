@@ -356,7 +356,7 @@ p {
 
         </head>
         <!--Start Header-->
-
+        <%- include ('../partials/navHome.ejs') %>
     <!--End Header-->
     
     <div class="wrapper"> 
@@ -374,35 +374,35 @@ p {
                 <div class="d-flex flex-row align-items-center"> 
                     <span class="icons"><i class="fa-solid fa-user"></i></span> 
                     <div class="address text-left"> 
-                        <span>Doctor Name</span> <p>appo.Doc_Id.Doc_FirstName %> </p>
+                        <span>Doctor Name</span> <p> <%=appooo.Doc_Id.Doc_FirstName %> </p>
                     </div> 
                 </div> 
 
                 <div class="d-flex flex-row align-items-center mt-3"> 
                     <span class="icons"><i class="fa-solid fa-book-medical"></i></span> 
                     <div class="address text-left"> 
-                        <span>Specialization</span> <p>% DocSpec</p> 
+                        <span>Specialization</span> <p><%=appooo.Doc_Id.Specialization_Name %></p> 
                     </div> 
                 </div>
 
                 <div class="d-flex flex-row align-items-center mt-3"> 
                     <span class="icons"><i class="fa-solid fa-calendar-day"></i></span> 
                      <div class="address text-left"> 
-                        <span>Chosen Day</span> <p>% ChosenDay</p>
+                        <span>Chosen Day</span> <p><%=appooo.App_visit_day%></p>
                     </div>
                  </div>
 
                  <div class="d-flex flex-row align-items-center mt-3"> 
                     <span class="icons"><i class="fa-solid fa-clock"></i></span> 
                      <div class="address text-left"> 
-                        <span>Chosen Hour</span> <p>% ChosenHour</p>
+                        <span>Chosen Hour</span> <p><%=appooo.App_RegVisit_time %></p>
                     </div>
                  </div>
 
                  <div class="d-flex flex-row align-items-center mt-3"> 
                     <span class="icons"><i class="fa-solid fa-clock"></i></span> 
                      <div class="address text-left"> 
-                        <span>Method of Communication</span> <p>% Method</p>
+                        <span>Method of Communication</span> <p><%=appooo.Methed_of_comm%></p>
                     </div>
                  </div>
 
@@ -414,7 +414,8 @@ p {
             <div class="text-center px-1 py-5"> 
                 <div class="forms p-4 py-5 bg-white" > 
                     <h5>Check Prescription</h5> 
-                    <form action="http://localhost:5000/patient/ViewPrescription" method="">
+                    <form action="http://localhost:5000/patient/ViewPrescription" method="post">
+                        <input hidden value="<%=appooo._id %>" name="Appo_Id">
                     <div class="button mt-4 text-center"> 
                         <button class="btn btn-dark" type="submit">Click Here</button> 
                     </div>

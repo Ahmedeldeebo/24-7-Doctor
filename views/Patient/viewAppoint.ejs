@@ -80,7 +80,9 @@
   </head>
 
   <body>
+    <!--Start Header-->
     <%- include ('../partials/navHome.ejs') %>
+    <!--End Header-->
 
     <div class="container mt-5">
       <div class="row d-flex justify-content-center">
@@ -135,7 +137,7 @@
               class="col-md-2 text-sm-center text-md-start align-self-center my-2"
             >
             <form action="http://localhost:5000/patient/viewappoint" method="post">
-              <input hidden value="<%=appoo.Doc_Id._id %>" name="Doc_Id">
+              <input hidden value="<%=appoo._id %>" name="Appo_Id">
               <button class="btn btn-outline-dark w-100" type="submit">Details</button>
             <!-- <a class="btn btn-outline-dark w-100" href="http://localhost:5000/patient/AppDetails">Details</a> -->
           </form>
@@ -151,7 +153,7 @@
               data-bs-toggle="popover" 
               data-bs-placement="bottom" 
               data-bs-content="Bottom popover" 
-              data-message="<%=appoo.Doc_Id.Doc_FirstName%> - <%=appoo.Doc_Id.Specialization_Name%> - <%=appoo.App_visit_day%> - <%=appoo.App_RegVisit_time%>">
+              data-message="=appoo.Doc_Id.Doc_FirstName%> - =appoo.Doc_Id.Specialization_Name%> - =appoo.App_visit_day%> - =appoo.App_RegVisit_time%>">
                 Details
               </button> -->
               <!-- POPOVER END -->
