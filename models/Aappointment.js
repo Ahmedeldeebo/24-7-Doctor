@@ -4,7 +4,7 @@ const AappointmentSchema = new mongoose.Schema(
   {
     Methed_of_comm: { type: String, required: true },
     App_visit_day: { type: String, required: true },
-    App_visit_status: { type: String, required: false, default: "Not Pay" },
+    App_visit_status: { type: String, required: false, default: "Not Paid" },
     App_RegVisit_time: { type: String, required: true },
     Doc_Id: {
       type: mongoose.Schema.Types.ObjectId,
