@@ -376,35 +376,35 @@ p {
                 <div class="d-flex flex-row align-items-center"> 
                     <span class="icons"><i class="fa-solid fa-user"></i></span> 
                     <div class="address text-left c"> 
-                        <span>Patient Name</span> <p><%=appo.Pat_Id.pat_FirstName %> </p>
+                        <span>Patient Name</span> <p><%=appoo.Pat_Id.pat_FirstName %> </p>
                     </div> 
                 </div> 
 
                 <div class="d-flex flex-row align-items-center mt-3"> 
                     <span class="icons"><i class="fa-solid fa-book-medical"></i></span> 
                     <div class="address text-left"> 
-                        <span>Patient Phone</span> <p><%=appo.Pat_Id.Pat_TelNo %> </p>
+                        <span>Patient Phone</span> <p><%=appoo.Pat_Id.Pat_TelNo %> </p>
                     </div> 
                 </div>
 
                 <div class="d-flex flex-row align-items-center mt-3"> 
                     <span class="icons"><i class="fa-solid fa-calendar-day"></i></span> 
                      <div class="address text-left"> 
-                        <span>Chosen Day</span> <p><%=appo.App_visit_day%> </p>
+                        <span>Chosen Day</span> <p><%=appoo.App_visit_day%> </p>
                     </div>
                  </div>
 
                  <div class="d-flex flex-row align-items-center mt-3"> 
                     <span class="icons"><i class="fa-solid fa-clock"></i></span> 
                      <div class="address text-left"> 
-                        <span>Chosen Hour</span> <p><%=appo.App_RegVisit_time %> </p>
+                        <span>Chosen Hour</span> <p><%=appoo.App_RegVisit_time %> </p>
                     </div>
                  </div>
 
                  <div class="d-flex flex-row align-items-center mt-3"> 
                     <span class="icons"><i class="fa-solid fa-clock"></i></span> 
                      <div class="address text-left"> 
-                        <span>Method of Communication</span> <p><%=appo.Methed_of_comm%> </p>
+                        <span>Method of Communication</span> <p><%=appoo.Methed_of_comm%> </p>
                     </div>
                  </div>
 
@@ -418,8 +418,8 @@ p {
                     <h5><i class="fa-solid fa-prescription"></i> Write Prescription</h5> 
                     <form action="http://localhost:5000/doctor/WritePrescription" method="Post">
                     <div class="button mt-4 text-center"> 
-                        <input hidden value="<%=appo.Pat_Id._id %>" name="Pat_Id">
-                        <input hidden value="<%=appo._id%>" name="Appo_Id">
+                        <input hidden value="<%=appoo.Pat_Id._id %>" name="Pat_Id">
+                        <input hidden value="<%=appoo._id%>" name="Appo_Id">
                         <button class="btn btn-dark" type="submit">Click Here</button> 
                     </div>
                  </form>
@@ -429,7 +429,7 @@ p {
                     <h5><i class="fa-solid fa-money-bill"></i> Write Bill</h5> 
                     <!-- <form action="http://localhost:5000/doctor/AppDetails" method="post"> -->
                     <div class="button mt-4 text-center"> 
-                        <input hidden value="<%=appo._id%>" name="Appo_Id">
+                        <input hidden value="<%=appoo._id%>" name="Appo_Id">
                         <button class="btn btn-dark" type="submit">Click Here</button> 
                     </div>
                  </form>

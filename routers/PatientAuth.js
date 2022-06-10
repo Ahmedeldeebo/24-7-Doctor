@@ -18,6 +18,7 @@ const {
 const cors = require("cors");
 const { body } = require("express-validator");
 const { findById } = require("../models/Patient");
+
 //--------------------------------------------Register--------------------------------------------
 // router.use(cors({ origin: "*", credentials:true  } ) );
 
@@ -573,6 +574,30 @@ router.get("/noificationSeystem", authorization, async (req, res) => {
   const id = res.locals.user.id;
   const user = await User.findById(id);
   const name = user.pat_FirstName;
+  //new
+
+  const checkUpList = await Prescription.findOne({ Pat_Id: id }).sort({
+    _id: -1,
+  });
+  console.log(checkUpList.CheckUpDay.toDateString());
+  const checkDayUpdate = checkUpList.CheckUpDay.toDateString();
+  const date = new Date();
+  console.log("test" + checkUpList);
+  const result = checkUpList.filter(
+    (checkUp) => checkUpList.CheckUpDay.toDateString() === date.toDateString()
+  );
+  console.log(date.toDateString());
+  const dataStr = date.toDateString();
+  // console.log(new Date());
+  // if (checkDayUpdate === dataStr) {
+  //   console.log("checkUpDay is = to today");
+  //   const check = await Prescription.find({ Pat_Id: id })
+  //     .sort({ _id: -1 })
+  //     .limit(5);
+  // } else {
+  //   console.log("not equle");
+  // }
+  //new
   const appo = await Appo.find({ Pat_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
@@ -583,9 +608,15 @@ router.get("/noificationSeystem", authorization, async (req, res) => {
     if (err) console.log(err);
     else console.log("Count is", count);
     const number = count;
+
+    res.render("./partials/navHome.ejs", {
+      number: number,
+      name: name,
+      appo: appo,
+    });
   });
-  res.render("./partials/navHome.ejs", { number: number, name: name });
 });
+
 //----------------------------- End Notification--------------------------------------------------------------
 
 //-----------------------------Start View bills--------------------------------------------------------------

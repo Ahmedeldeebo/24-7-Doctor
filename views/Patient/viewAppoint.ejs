@@ -110,13 +110,16 @@
 
           <!-------------------------------------------START FIRST ROW  -------------------------------------------------->
           <%appoo.forEach(appoo=>{%>
+      
           <div
             class="d-md-flex d-sm-block justify-content-md-between justify-content-sm-center text-center border-bottom border-2 my-2 bg-light p-2 rounded-3"
           >
             <div
               class="col-md-2 text-sm-center text-md-start align-self-center my-2 text"
             >
-              <h1 class="h6 text  "><%=appoo.createdAt %></h1>
+              <!-- <h1 class="h6">=appoo.createdAt%></h1> -->
+              <% let date =appoo.createdAt.toDateString(); %> 
+              <h1 class="h6"><%=date%></h1>
             </div>
 
             <div

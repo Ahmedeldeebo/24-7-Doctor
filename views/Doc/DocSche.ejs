@@ -104,9 +104,9 @@ tbody tr td {
                            </div>
 <form action="http://localhost:5000/doctor/UpdateSchedule" method="POST" ><div class="row mt-3">
   
- <label class="">Available Days</label>
- <input type="date" id="daterange" value="01/01/2022 - 01/15/2022" name="Available_Days" readonly />
-
+ <label >Available Days</label>
+ <input class="form-control" type="text" value="01/01/2022 - 01/15/2022" name="Available_Days" readonly />
+ <!-- -->
 
 
 
@@ -197,9 +197,14 @@ tbody tr td {
 
 
 <script>
+
+
+// $('input[name="Available_Days"]').daterangepicker();
+
+
 $(document).ready(function(){
   $(function() {
-    $('input[id="daterange"]').daterangepicker({
+    $('input[name="Available_Days"]').daterangepicker({
       "startDate": moment().startOf('hour'),
        "endDate": moment().startOf('hour').add(32, 'hour'),
       opens: 'center',
@@ -210,6 +215,7 @@ $(document).ready(function(){
     });
   });
 });
+
 </script>
 
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />

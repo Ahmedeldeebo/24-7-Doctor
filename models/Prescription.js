@@ -8,6 +8,7 @@ const prescriptionSchema = new mongoose.Schema({
     immutable: true,
     default: () => Date.now(),
   },
+  CheckUpDay: { type: Date, required: true },
   Appoinment_Id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Aappointment",

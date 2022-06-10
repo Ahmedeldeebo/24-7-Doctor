@@ -129,17 +129,20 @@ div.c {
                 </form>
             </div>
         </li>
-      <!--  <li class="nav-item dropdown no-arrow mx-1"> <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-bell fa-fw"></i> <span class="badge badge-danger badge-counter">3+</span> </a>
+       <li class="nav-item dropdown no-arrow mx-1"> <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-bell fa-fw"></i> <span class="badge badge-danger badge-counter"><%- number %></span> </a>
              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in">
                 <h6 class="dropdown-header"> Alerts Center </h6> <a class="dropdown-item d-flex align-items-center" href="#">
+                    <%appo.forEach(appo=>{%>
                     <div class="mr-3">
                         <div class="icon-circle"> <i class="fa fa-file"></i> </div>
                     </div>
-                    <div>
-                        <div class="small text-gray-500">March 12, 2020</div> <span class="font-weight-bold">Notification 1</span>
-                    </div>
-                </a> <a class="dropdown-item d-flex align-items-center" href="#">
-                    <div class="mr-3">
+                         <div>
+                            <% const date =appo.createdAt.toDateString(); %> 
+                        <div class="small text-gray-500"><%=date%></div> <span class="font-weight-bold">Appointments </span>
+               </div>
+             </a>     <a class="dropdown-item d-flex align-items-center" href="#">
+                <%})%>
+                   <!-- <div class="mr-3">
                         <div class="icon-circle"> <i class="fa fa-user"></i> </div>
                     </div>
                     <div>
@@ -152,10 +155,10 @@ div.c {
                     <div>
                         <div class="small text-gray-500">Jan 2, 2020</div> Appointments Notification
                     </div>
-                </a> <a class="dropdown-item text-center small text-gray-500" href="https://us05web.zoom.us/s/89390283540#success">Show All</a>
+                </a> --><a class="dropdown-item text-center small text-gray-500" href="https://us05web.zoom.us/s/89390283540#success">Show All</a>
             </div> 
-        </li>
-        <li class="nav-item dropdown no-arrow mx-1"> <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-envelope fa-fw"></i> <span class="badge badge-danger badge-counter">4</span> </a>
+      </li> 
+        <!--  <li class="nav-item dropdown no-arrow mx-1"> <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-envelope fa-fw"></i> <span class="badge badge-danger badge-counter">4</span> </a>
             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
                 <h6 class="dropdown-header"> Messages </h6> <a class="dropdown-item d-flex align-items-center" href="#">
                     <div class="dropdown-list-image mr-3"> <img class="rounded-circle" src="/img/doctoricon.png" alt="">
