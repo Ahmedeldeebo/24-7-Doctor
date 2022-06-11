@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const Patient = require("../models/Patient");
+const Pharmacy = require("../models/Pharmacy");
 const User = require("../models/Doctor");
 const Appo = require("../models/Aappointment");
 const DocSche = require("../models/Doc_Schedule");
@@ -108,23 +109,28 @@ router.get("/profile-home-doc", authorization, async (req, res, next) => {
   console.log(user);
   const name = user.Doc_FirstName;
   const email = user.Doc_Email;
+  const countDoc = await User.countDocuments({});
+  console.log("User " + countDoc);
+  const countPhar = await Pharmacy.countDocuments({});
+  console.log("Pharmacy " + countPhar);
+  const countUser = await Patient.countDocuments({});
+  console.log("Doctors " + countUser);
   //--Notification
   const appo = await Appo.find({ Doc_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
     .sort({ _id: -1 })
     .limit(5);
-  const query = Appo.find({ Doc_Id: id });
-  query.count(function (err, count) {
-    if (err) console.log(err);
-    else console.log("Count is", count);
-    const number = count;
-    res.render("./Doc/DocHomePage.ejs", {
-      name: name,
-      email: email,
-      appo: appo,
-      number: number,
-    });
+  const number = await Appo.countDocuments({ Doc_Id: id });
+  console.log(number);
+  res.render("./Doc/DocHomePage.ejs", {
+    name: name,
+    email: email,
+    appo: appo,
+    number: number,
+    userCont: countUser,
+    Phar: countPhar,
+    Doc: countDoc,
   });
 });
 //--------------------------------------------Start view---------------------------------------------------
@@ -137,24 +143,34 @@ router.get("/doctorview", authorization, async (req, res) => {
   //   (schedule) => schedule.Meeting_Maximum_Patient > 0
   // );
   //--Notification
+  const checkUpList = await Prescription.find({
+    Pat_id: id,
+  });
+
+  const date = new Date();
+  const dataStr = date.toDateString();
+  const resultp = checkUpList.filter(
+    (checkUp) => checkUp.CheckUpDay.toDateString() === dataStr
+  );
+
+  console.log(resultp);
   const appo = await Appo.find({ Pat_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
     .sort({ _id: -1 })
     .limit(5);
-  const query = Appo.find({ Pat_Id: id });
-  query.count(function (err, count) {
-    if (err) console.log(err);
-    else console.log("Count is", count);
-    const number = count;
-    res.render("doctorview.ejs", {
-      Sch: scheduleList,
-      name: name,
-      appo: appo,
-      number: number,
-    });
+  const number = await Appo.countDocuments({ Pat_Id: id });
+  console.log(number);
+
+  res.render("doctorview.ejs", {
+    Sch: scheduleList,
+    name: name,
+    appo: appo,
+    number: number,
+    result: resultp,
   });
 });
+
 router.post("/doctorview", authorization, async (req, res) => {
   const id = res.locals.user.id;
   const user = await Patient.findById(id);
@@ -167,28 +183,38 @@ router.post("/doctorview", authorization, async (req, res) => {
     //&& schedule.Meeting_Maximum_Patient > 0
   );
   //--Notification
+
+  const checkUpList = await Prescription.find({
+    Pat_id: id,
+  });
+
+  const date = new Date();
+  const dataStr = date.toDateString();
+  const resultp = checkUpList.filter(
+    (checkUp) => checkUp.CheckUpDay.toDateString() === dataStr
+  );
+
+  console.log(resultp);
   const appo = await Appo.find({ Pat_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
     .sort({ _id: -1 })
     .limit(5);
-  const query = Appo.find({ Pat_Id: id });
-  query.count(function (err, count) {
-    if (err) console.log(err);
-    else console.log("Count is", count);
-    const number = count;
+  const number = await Appo.countDocuments({ Pat_Id: id });
+  console.log(number);
 
-    console.log(result);
-    console.log(SpecName);
-    // res.send(result);
-    res.render("doctorview.ejs", {
-      Sch: result,
-      name: name,
-      appo: appo,
-      number: number,
-    });
+  console.log(result);
+  console.log(SpecName);
+  // res.send(result);
+  res.render("doctorview.ejs", {
+    Sch: result,
+    name: name,
+    appo: appo,
+    number: number,
+    result: resultp,
   });
 });
+
 router.get("/doctorview-doc", authorization, async (req, res) => {
   const id = res.locals.user.id;
   const user = await User.findById(id);
@@ -200,19 +226,14 @@ router.get("/doctorview-doc", authorization, async (req, res) => {
   const appo = await Appo.find({ Doc_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
-    .sort({ _id: -1 })
-    .limit(5);
-  const query = Appo.find({ Doc_Id: id });
-  query.count(function (err, count) {
-    if (err) console.log(err);
-    else console.log("Count is", count);
-    const number = count;
-    res.render("./Doc/docDoctorview.ejs", {
-      users: scheduleList,
-      name: name,
-      appo: appo,
-      number: number,
-    });
+    .sort({ _id: -1 });
+  const number = await Appo.countDocuments({ Doc_Id: id });
+  console.log(number);
+  res.render("./Doc/docDoctorview.ejs", {
+    users: scheduleList,
+    name: name,
+    appo: appo,
+    number: number,
   });
 });
 //--------------------------------------------End view---------------------------------------------------
@@ -229,17 +250,13 @@ router.get("/Doctor-profile-setting", authorization, async (req, res) => {
     .populate("Doc_Id")
     .sort({ _id: -1 })
     .limit(5);
-  const query = Appo.find({ Doc_Id: id });
-  query.count(function (err, count) {
-    if (err) console.log(err);
-    else console.log("Count is", count);
-    const number = count;
-    res.render("./Doc/DocProfile.ejs", {
-      name: name,
-      user: user,
-      appo: appo,
-      number: number,
-    });
+  const number = await Appo.countDocuments({ Doc_Id: id });
+  console.log(number);
+  res.render("./Doc/DocProfile.ejs", {
+    name: name,
+    user: user,
+    appo: appo,
+    number: number,
   });
 });
 
@@ -257,17 +274,13 @@ router.get("/DocProfileEdit", authorization, async (req, res, next) => {
     .populate("Doc_Id")
     .sort({ _id: -1 })
     .limit(5);
-  const query = Appo.find({ Doc_Id: id });
-  query.count(function (err, count) {
-    if (err) console.log(err);
-    else console.log("Count is", count);
-    const number = count;
-    res.render("./Doc/DocProfileEdit.ejs", {
-      name: name,
-      user: user,
-      appo: appo,
-      number: number,
-    });
+  const number = await Appo.countDocuments({ Doc_Id: id });
+  console.log(number);
+  res.render("./Doc/DocProfileEdit.ejs", {
+    name: name,
+    user: user,
+    appo: appo,
+    number: number,
   });
 });
 router.post("/DocProfileEdit", authorization, async (req, res, next) => {
@@ -296,17 +309,13 @@ router.post("/DocProfileEdit", authorization, async (req, res, next) => {
     .populate("Doc_Id")
     .sort({ _id: -1 })
     .limit(5);
-  const query = Appo.find({ Doc_Id: id });
-  query.count(function (err, count) {
-    if (err) console.log(err);
-    else console.log("Count is", count);
-    const number = count;
-    res.render("./Doc/DocProfile.ejs", {
-      name: name,
-      user: user,
-      appo: appo,
-      number: number,
-    });
+  const number = await Appo.countDocuments({ Doc_Id: id });
+  console.log(number);
+  res.render("./Doc/DocProfile.ejs", {
+    name: name,
+    user: user,
+    appo: appo,
+    number: number,
   });
 });
 //-------------------------------------------- End Profile Doc ---------------------------------------------------
@@ -324,18 +333,14 @@ router.get("/DocTicket", authorization, async (req, res, next) => {
     .populate("Doc_Id")
     .sort({ _id: -1 })
     .limit(5);
-  const query = Appo.find({ Doc_Id: id });
-  query.count(function (err, count) {
-    if (err) console.log(err);
-    else console.log("Count is", count);
-    const number = count;
-    res.render("./Doc/DocTicket.ejs", {
-      name: name,
-      email: email,
-      errorMessage: "",
-      appo: appo,
-      number: number,
-    });
+  const number = await Appo.countDocuments({ Doc_Id: id });
+  console.log(number);
+  res.render("./Doc/DocTicket.ejs", {
+    name: name,
+    email: email,
+    errorMessage: "",
+    appo: appo,
+    number: number,
   });
 });
 router.post("/DocTicket", authorization, async (req, res) => {
@@ -363,19 +368,14 @@ router.post("/DocTicket", authorization, async (req, res) => {
   const appo = await Appo.find({ Doc_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
-    .sort({ _id: -1 })
-    .limit(5);
-  const query = Appo.find({ Doc_Id: id });
-  query.count(function (err, count) {
-    if (err) console.log(err);
-    else console.log("Count is", count);
-    const number = count;
-    res.render("./Doc/DocTicket.ejs", {
-      name: name,
-      errorMessage: "Submite",
-      appo: appo,
-      number: number,
-    });
+    .sort({ _id: -1 });
+  const number = await Appo.countDocuments({ Doc_Id: id });
+  console.log(number);
+  res.render("./Doc/DocTicket.ejs", {
+    name: name,
+    errorMessage: "Submite",
+    appo: appo,
+    number: number,
   });
 });
 //------------------------------------End Tikcet --------------------------------------------------------
@@ -391,19 +391,14 @@ router.get("/updataShcdeule", authorization, async (req, res) => {
   const appo = await Appo.find({ Doc_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
-    .sort({ _id: -1 })
-    .limit(5);
-  const query = Appo.find({ Doc_Id: id });
-  query.count(function (err, count) {
-    if (err) console.log(err);
-    else console.log("Count is", count);
-    const number = count;
-    res.render("./Doc/DocSche.ejs", {
-      name: name,
-      email: email,
-      appo: appo,
-      number: number,
-    });
+    .sort({ _id: -1 });
+  const number = await Appo.countDocuments({ Doc_Id: id });
+  console.log(number);
+  res.render("./Doc/DocSche.ejs", {
+    name: name,
+    email: email,
+    appo: appo,
+    number: number,
   });
 });
 router.post("/UpdateSchedule", authorization, async (req, res, next) => {
@@ -450,17 +445,13 @@ router.post("/UpdateSchedule", authorization, async (req, res, next) => {
     .populate("Doc_Id")
     .sort({ _id: -1 })
     .limit(5);
-  const query = Appo.find({ Doc_Id: id });
-  query.count(function (err, count) {
-    if (err) console.log(err);
-    else console.log("Count is", count);
-    const number = count;
-    res.render("./Doc/DocSche.ejs", {
-      name: name,
-      email: email,
-      appo: appo,
-      number: number,
-    });
+  const number = await Appo.countDocuments({ Doc_Id: id });
+  console.log(number);
+  res.render("./Doc/DocSche.ejs", {
+    name: name,
+    email: email,
+    appo: appo,
+    number: number,
   });
 });
 //-------------------------------------------End Doc Shcdeule--------------------------------------------------------------
@@ -482,24 +473,21 @@ router.post("/viewDocSch", authorization, async (req, res) => {
     .populate("Doc_Id")
     .sort({ _id: -1 })
     .limit(5);
-  const query = Appo.find({ Pat_Id: id });
-  query.count(function (err, count) {
-    if (err) console.log(err);
-    else console.log("Count is", count);
-    const number = count;
-    console.log(number);
-    console.log(user);
-    console.log(appo);
+  const number = await Appo.countDocuments({ Doc_Id: id });
+  console.log(number);
+  console.log(number);
+  console.log(user);
+  console.log(appo);
 
-    res.render("./Patient/viewDocSche.ejs", {
-      DocUser: DocUser,
-      shce: shce,
-      name: name,
-      number: number,
-      appo: appo,
-    });
+  res.render("./Patient/viewDocSche.ejs", {
+    DocUser: DocUser,
+    shce: shce,
+    name: name,
+    number: number,
+    appo: appo,
   });
 });
+
 //-------------------------------------------- End view Doc ---------------------------------------------------
 //-------------------------------------------- Start Doc Search ---------------------------------------------------
 router.post("/DocSearch-patient", authorization, async (req, res) => {
@@ -571,18 +559,14 @@ router.get("/ManageAppointments", authorization, async (req, res, next) => {
     .populate("Doc_Id")
     .sort({ _id: -1 })
     .limit(5);
-  const query = Appo.find({ Doc_Id: id });
-  query.count(function (err, count) {
-    if (err) console.log(err);
-    else console.log("Count is", count);
-    const number = count;
+  const number = await Appo.countDocuments({ Doc_Id: id });
+  console.log(number);
 
-    res.render("./Doc/DocMangApp.ejs", {
-      name: name,
-      appoo: appoo,
-      appo: appo,
-      number: number,
-    });
+  res.render("./Doc/DocMangApp.ejs", {
+    name: name,
+    appoo: appoo,
+    appo: appo,
+    number: number,
   });
 });
 
@@ -612,17 +596,13 @@ router.post("/AppDetails", authorization, async (req, res, next) => {
     .populate("Doc_Id")
     .sort({ _id: -1 })
     .limit(5);
-  const query = Appo.find({ Doc_Id: id });
-  query.count(function (err, count) {
-    if (err) console.log(err);
-    else console.log("Count is", count);
-    const number = count;
-    res.render("./Doc/DocAppDetails.ejs", {
-      name: name,
-      appoo: viewAppoint,
-      appo: appo,
-      number: number,
-    });
+  const number = await Appo.countDocuments({ Doc_Id: id });
+  console.log(number);
+  res.render("./Doc/DocAppDetails.ejs", {
+    name: name,
+    appoo: viewAppoint,
+    appo: appo,
+    number: number,
   });
 });
 //-------------------------------------------- End Doctor AppDetails---------------------------------------------------
@@ -645,18 +625,14 @@ router.post("/WritePrescription", authorization, async (req, res, next) => {
     .populate("Doc_Id")
     .sort({ _id: -1 })
     .limit(5);
-  const query = Appo.find({ Doc_Id: id });
-  query.count(function (err, count) {
-    if (err) console.log(err);
-    else console.log("Count is", count);
-    const number = count;
-    res.render("./Doc/WritePres.ejs", {
-      name: name,
-      errorMessage: "",
-      appoo: viewAppoint,
-      appo: appo,
-      number: number,
-    });
+  const number = await Appo.countDocuments({ Doc_Id: id });
+  console.log(number);
+  res.render("./Doc/WritePres.ejs", {
+    name: name,
+    errorMessage: "",
+    appoo: viewAppoint,
+    appo: appo,
+    number: number,
   });
 });
 router.post(
@@ -703,10 +679,13 @@ router.get("/WriteBill", authorization, async (req, res, next) => {
   console.log(user);
   const name = user.Doc_FirstName;
   const email = user.Doc_Email;
+  const number = await Appo.countDocuments({ Doc_Id: id });
+  console.log(number);
   res.render("./Doc/WriteBill.ejs", {
     name: name,
     email: email,
     errorMessage: "",
+    number: number,
   });
 });
 //-------------------------------------------- End Doctor Write Bill---------------------------------------------------

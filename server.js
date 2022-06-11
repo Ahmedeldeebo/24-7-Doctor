@@ -11,6 +11,7 @@ const PatientAuthRouter = require("./routers/PatientAuth");
 const PhamacyAuthRouter = require("./routers/PharmacyAuth");
 const DoctorAuthRouter = require("./routers/DoctorAuth");
 const ticket = require("./models/Ticket");
+const nodemailer = require("nodemailer");
 const stripe = require("stripe")(process.env.STRIPE_PEIVATE_KEY);
 
 const user = require("./routers/user");
