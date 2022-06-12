@@ -682,7 +682,7 @@ router.post("/ViewPrescription", authorization, async (req, res) => {
 });
 //-----------------------------End AppDetails--------------------------------------------------------------
 //----------------------------- Start Notification--------------------------------------------------------------
-router.post("/noificationSystem", authorization, async (req, res) => {
+router.get("/noificationSystem", authorization, async (req, res) => {
   const id = res.locals.user.id;
   const user = await User.findById(id);
   const name = user.pat_FirstName;
@@ -746,13 +746,16 @@ router.post("/noificationSystem", authorization, async (req, res) => {
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
-      user: "cathrine.halvorson78@ethereal.email", // generated ethereal user
-      pass: "9AyYUwFuhfCHJGFkE3", // generated ethereal password
+      user: "daisha.buckridge62@ethereal.email", // generated ethereal user
+      pass: "MtaRtzpkR7x4wWsgeZ", // generated ethereal password
+    },
+    tls: {
+      rejectUnauthorized: false,
     },
   });
 
   const masgEmail = {
-    from: '"Onlin Doctore 24/7" < Doctore 24/7@example.com>', // sender address
+    from: '"Onlin Doctore 24/7" <daisha.buckridge62@ethereal.email>', // sender address
     to: `${email}`, // list of receivers
     subject: "you need to ckeck Up with your Doctor", // Subject line
     text: "you need to ckeck Up with your Doctor", // plain text body
@@ -763,6 +766,14 @@ router.post("/noificationSystem", authorization, async (req, res) => {
     const info = await transporter.sendMail(masgEmail);
   } else {
     console.log("not equle");
+    const info = await transporter.sendMail(masgEmail);
+
+    console.log("Message sent: %s", info.messageId);
+    // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+
+    // Preview only available when sending through an Ethereal account
+    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+    // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
   }
   //new
   const appo = await Appo.find({ Pat_Id: id })
