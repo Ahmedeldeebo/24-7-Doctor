@@ -742,20 +742,23 @@ router.get("/noificationSystem", authorization, async (req, res) => {
   const email = user.pat_Email;
 
   let transporter = nodemailer.createTransport({
+    // service: "gmail",
     host: "smtp.ethereal.email",
     port: 587,
     secure: false, // true for 465, false for other ports
+    // ignoreTLS: false,
+    // secure: false,
     auth: {
-      user: "daisha.buckridge62@ethereal.email", // generated ethereal user
-      pass: "MtaRtzpkR7x4wWsgeZ", // generated ethereal password
+      user: "ernestine.bergnaum50@ethereal.email", // generated ethereal user
+      pass: "1vZYMPWBQBZ1BwBx8r", // generated ethereal password
     },
-    tls: {
-      rejectUnauthorized: false,
-    },
+    // tls: {
+    //   rejectUnauthorized: false,
+    // },
   });
 
   const masgEmail = {
-    from: '"Onlin Doctore 24/7" <daisha.buckridge62@ethereal.email>', // sender address
+    from: '"Onlin Doctore 24/7" <ernestine.bergnaum50@ethereal.email>', // sender address
     to: `${email}`, // list of receivers
     subject: "you need to ckeck Up with your Doctor", // Subject line
     text: "you need to ckeck Up with your Doctor", // plain text body
