@@ -373,35 +373,36 @@ p {
                 <div class="d-flex flex-row align-items-center"> 
                     <span class="icons"><i class="fa-solid fa-user"></i></span> 
                     <div class="address text-left"> 
-                        <span>Patient Name</span> <p>% PatientName</p>
+                        <span>Patient Name</span> <p  style="text-transform: capitalize" ><%=bill.Pat_Id.pat_FirstName %></p>
                     </div> 
                 </div> 
 
                 <div class="d-flex flex-row align-items-center mt-3"> 
                     <span class="icons"><i class="fa-solid fa-book-medical"></i></span> 
                     <div class="address text-left"> 
-                        <span>Patient Phone</span> <p>% Patient Phone</p>
+                        <span>Patient Phone</span> <p><%=bill.Pat_Id.Pat_TelNo %></p>
                     </div> 
                 </div>
 
                 <div class="d-flex flex-row align-items-center mt-3"> 
                     <span class="icons"><i class="fa-solid fa-calendar-day"></i></span> 
                      <div class="address text-left"> 
-                        <span>Chosen Day</span> <p>% ChosenDay</p>
+                        <span>Chosen Day</span> <p><%=bill.App_visit_day%></p>
                     </div>
                  </div>
 
                  <div class="d-flex flex-row align-items-center mt-3"> 
                     <span class="icons"><i class="fa-solid fa-clock"></i></span> 
                      <div class="address text-left"> 
-                        <span>Chosen Hour</span> <p>% ChosenHour</p>
+                        <span>Chosen Hour</span> <p><%=bill.App_RegVisit_time%></p>
                     </div>
                  </div>
 
                  <div class="d-flex flex-row align-items-center mt-3"> 
                     <span class="icons"><i class="fa-solid fa-clock"></i></span> 
                      <div class="address text-left"> 
-                        <span>Method of Communication</span> <p>% Method</p>
+                        <span>Method of Communication</span> <p><%=bill.Methed_of_comm%></p>
+                
                     </div>
                  </div>
 
@@ -413,12 +414,12 @@ p {
                     <div class="text-center px-1 py-5"> 
                         <div class="forms p-4 py-5 bg-white"> 
                             <h5><i class="fa-solid fa-money-bill"></i> Issue Appointment Bill</h5> 
-                            <form action="" method="">           
+                            
                                 <div class="input-group">
   
                                     <!-- declaration for first field -->
                                     <input type="text" class="form-control mt-3
-                                            input-sm"  placeholder="%PatientName" name="" disabled />
+                                            input-sm"  style=" text-transform: capitalize" placeholder="<%=bill.Pat_Id.pat_FirstName %>" name="" disabled />
                               
                                     <!-- reducong the gap between them to zero -->
                                     <span class="input-group-btn" 
@@ -426,21 +427,26 @@ p {
                               
                                     <!-- declaration for second field -->
                                     <input type="text" class="form-control mt-3
-                                            input-sm" placeholder="%Doctor Name" name="" disabled />
+                                            input-sm"  style=" text-transform: capitalize" placeholder="<%=bill.Doc_Id.Doc_FirstName %> " name="" disabled />
                                 </div>
+                                <form action="http://localhost:5000/doctor/WriteBill-post" method="post">
+                                    <input hidden value="<%=bill._id%>" name="appo_Id">
+                                    <input hidden value="<%=bill.Pat_Id._id%>" name="pat_Id">
                                 <div class="input-group">
   
                                     <!-- declaration for first field -->
-                                    <input type="text" class="form-control mt-3
+                                    <!-- <input type="text" class="form-control mt-3
                                             input-sm"  placeholder="%BillDate" name="" disabled />
-                              
+                               -->
                                     <!-- reducong the gap between them to zero -->
                                     <span class="input-group-btn" 
                                         style="width:10px;"></span>
                               
                                     <!-- declaration for second field -->
-                                    <input type="text" class="form-control mt-3
-                                            input-sm" placeholder="Enter Bill amount in EGP" name=""  />
+                                    <input type="number" class="form-control mt-3
+                                            input-sm" placeholder="Enter Bill amount in EGP" name="Bill_Amount"  />
+                                           
+                                        
                                 </div>
                            <div class="button mt-5 text-center"> <button class="btn btn-dark" type="submit">Issue Bill Invoice</button> 
                            </div>

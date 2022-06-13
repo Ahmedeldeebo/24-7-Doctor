@@ -424,8 +424,9 @@ p {
             </div>
                 <div class="forms p-4 py-5 bg-white"> 
                     <h5><i class="fa-solid fa-money-bill"></i> Check Bill</h5> 
-                    <form action="http://localhost:5000/patient/ViewBill" method="">
+                    <form action="http://localhost:5000/patient/ViewBill" method="post">
                     <div class="button mt-4 text-center"> 
+                        <input hidden value="<%=appooo._id %>" name="Appo_Id">
                         <button class="btn btn-dark" type="submit">Click Here</button> 
                     </div>
                  </form>

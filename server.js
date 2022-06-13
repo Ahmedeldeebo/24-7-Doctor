@@ -21,8 +21,6 @@ const {
   verifyTokenAndAuthorization,
   authorization,
 } = require("./routers/verifyToken");
-const User = require("./models/Patient");
-const Pharmacy = require("./models/Pharmacy");
 const { aggregate } = require("./models/Patient");
 
 dotenv.config();
@@ -36,6 +34,18 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
+const Patient = require("./models/Patient");
+const Pharmacy = require("./models/Pharmacy");
+const Docter = require("./models/Doctor");
+// nodeMail transport
+let transporter = nodemailer.createTransport({
+  service: "gmail",
+  secure: false, // true for 465, false for other ports
+  auth: {
+    user: process.env.MAIL_USER, // generated ethereal user
+    pass: process.env.MAIL_PASS, // generated ethereal password
+  },
+});
 // view eingin setup
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
@@ -66,8 +76,18 @@ app.use(cookieParser());
 //   } else return verifyToken(req, res, next);
 // });
 
-app.get("/", (req, res) => {
-  res.render("home.ejs");
+app.get("/", async (req, res) => {
+  const countDoc = await Docter.countDocuments({});
+  console.log("User " + countDoc);
+  const countPhar = await Pharmacy.countDocuments({});
+  console.log("Pharmacy " + countPhar);
+  const countUser = await Patient.countDocuments({});
+  console.log("Doctors " + countUser);
+  res.render("home.ejs", {
+    userCont: countUser,
+    Phar: countPhar,
+    Doc: countDoc,
+  });
 });
 
 app.get("/signup", (req, res, next) => {

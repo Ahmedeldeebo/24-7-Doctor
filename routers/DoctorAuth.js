@@ -5,6 +5,8 @@ const User = require("../models/Doctor");
 const Appo = require("../models/Aappointment");
 const DocSche = require("../models/Doc_Schedule");
 const ticket = require("../models/Ticket");
+const bill = require("../models/Bill");
+const nodemailer = require("nodemailer");
 const Prescription = require("../models/Prescription");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
@@ -150,7 +152,7 @@ router.get("/doctorview", authorization, async (req, res) => {
   const date = new Date();
   const dataStr = date.toDateString();
   const resultp = checkUpList.filter(
-    (checkUp) => checkUp.CheckUpDay.toDateString() === dataStr
+    (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
   );
 
   console.log(resultp);
@@ -468,12 +470,23 @@ router.post("/viewDocSch", authorization, async (req, res) => {
   // console.log(req.body.Doc_Id);
   // console.log(DocID);
   // console.log(id);
+  const checkUpList = await Prescription.find({
+    Pat_id: id,
+  });
+
+  const date = new Date();
+  const dataStr = date.toDateString();
+  const resultp = checkUpList.filter(
+    (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
+  );
+
+  console.log(resultp);
   const appo = await Appo.find({ Pat_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
     .sort({ _id: -1 })
     .limit(5);
-  const number = await Appo.countDocuments({ Doc_Id: id });
+  const number = await Appo.countDocuments({ Pat_Id: id });
   console.log(number);
   console.log(number);
   console.log(user);
@@ -485,6 +498,7 @@ router.post("/viewDocSch", authorization, async (req, res) => {
     name: name,
     number: number,
     appo: appo,
+    result: resultp,
   });
 });
 
@@ -672,20 +686,98 @@ router.post(
 
 //-------------------------------------------- End Doctor Write Prescription---------------------------------------------------
 //-------------------------------------------- Start Doctor Write Bill---------------------------------------------------
+router.post("/WriteBill", authorization, async (req, res, next) => {
+  console.log(res.locals.user.id);
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  console.log(user);
+  const name = user.Doc_FirstName;
+  const appo_id = req.body.Appo_Id;
+  console.log(appo_id);
+  const appoId = await Appo.findById(appo_id)
+    .populate("Pat_Id")
+    .populate("Doc_Id");
+  console.log(appoId);
+  const appo = await Appo.find({ Doc_Id: id })
+    .populate("Pat_Id")
+    .populate("Doc_Id")
+    .sort({ _id: -1 })
+    .limit(5);
+  const number = await Appo.countDocuments({ Doc_Id: id });
+  console.log(number);
+  res.render("./Doc/WriteBill.ejs", {
+    name: name,
+    errorMessage: "",
+    number: number,
+    appo: appo,
+    bill: appoId,
+  });
+});
 router.get("/WriteBill", authorization, async (req, res, next) => {
   console.log(res.locals.user.id);
   const id = res.locals.user.id;
   const user = await User.findById(id);
   console.log(user);
   const name = user.Doc_FirstName;
-  const email = user.Doc_Email;
+  const appo_id = req.body.Appo_Id;
+  console.log(appo_id);
+  const appoId = await Appo.findById(appo_id)
+    .populate("Pat_Id")
+    .populate("Doc_Id");
+  console.log(appoId);
+  const appo = await Appo.find({ Doc_Id: id })
+    .populate("Pat_Id")
+    .populate("Doc_Id")
+    .sort({ _id: -1 })
+    .limit(5);
   const number = await Appo.countDocuments({ Doc_Id: id });
   console.log(number);
   res.render("./Doc/WriteBill.ejs", {
     name: name,
-    email: email,
     errorMessage: "",
     number: number,
+    appo: appo,
+    bill: appoId,
+  });
+});
+router.post("/WriteBill-post", authorization, async (req, res, next) => {
+  console.log(res.locals.user.id);
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  console.log(user);
+  const name = user.Doc_FirstName;
+  const appo_id = req.body.appo_Id;
+  const patId = req.body.pat_Id;
+  console.log(appo_id);
+  try {
+    const NewBill = new bill({
+      Bill_Amount: req.body.Bill_Amount,
+      Appoinment_Id: appo_id,
+      Doc_id: id,
+      Pat_id: patId,
+    });
+    const savedBill = await NewBill.save();
+    console.log(NewBill, "NewBill");
+  } catch (e) {
+    console.log(e.masssage);
+  }
+  const appoId = await Appo.findById(appo_id)
+    .populate("Pat_Id")
+    .populate("Doc_Id");
+  console.log(appoId);
+  const appo = await Appo.find({ Doc_Id: id })
+    .populate("Pat_Id")
+    .populate("Doc_Id")
+    .sort({ _id: -1 })
+    .limit(5);
+  const number = await Appo.countDocuments({ Doc_Id: id });
+  console.log(number);
+  res.render("./Doc/WriteBill.ejs", {
+    name: name,
+    errorMessage: "",
+    number: number,
+    appo: appo,
+    bill: appoId,
   });
 });
 //-------------------------------------------- End Doctor Write Bill---------------------------------------------------
