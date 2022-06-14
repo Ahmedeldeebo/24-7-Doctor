@@ -114,7 +114,7 @@ router.post("/login", async (req, res) => {
 
     //res.status(200).json({ ...others, accessToken });
   } catch (e) {
-    return console.log(e.masssage);
+    return console.log(e.message);
   }
 });
 //-------------------------------------------- End Login ---------------------------------------------------
@@ -137,7 +137,7 @@ router.get("/profile-setting", authorization, async (req, res, next) => {
     (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
   );
 
-  console.log(result);
+  // console.log(result);
   const appo = await Appo.find({ Pat_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
@@ -186,7 +186,7 @@ router.post("/Profile-Edit", authorization, async (req, res, next) => {
     (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
   );
 
-  console.log(result);
+  // console.log(result);
   const appo = await Appo.find({ Pat_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
@@ -222,7 +222,7 @@ router.get("/Profile-Edit", authorization, async (req, res, next) => {
     (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
   );
 
-  console.log(result);
+  // console.log(result);
   const appo = await Appo.find({ Pat_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
@@ -320,7 +320,7 @@ router.get("/profile-home", authorization, async (req, res, next) => {
     (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
   );
 
-  console.log(result);
+  // console.log(result);
   const appo = await Appo.find({ Pat_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
@@ -340,12 +340,6 @@ router.get("/profile-home", authorization, async (req, res, next) => {
 });
 
 ///------------------------------------End fo profile--------------------------------------------------------
-///------------------------------------logOut start--------------------------------------------------------
-router.get("/logOut", authorization, (req, res) => {
-  console.log("LogOut Successful");
-  return res.clearCookie("accessToken").redirect("/");
-});
-//------------------------------------logOut end--------------------------------------------------------
 //------------------------------------Start Tikcet --------------------------------------------------------
 router.get("/Ticket", authorization, async (req, res) => {
   const id = res.locals.user.id;
@@ -364,7 +358,7 @@ router.get("/Ticket", authorization, async (req, res) => {
     (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
   );
 
-  console.log(result);
+  // console.log(result);
   const appo = await Appo.find({ Pat_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
@@ -396,7 +390,7 @@ router.post("/Ticket", authorization, async (req, res) => {
     const savedTikcet = await NewTicket.save();
     console.log(NewTicket);
   } catch (e) {
-    console.log(e.masssage);
+    console.log(e.message);
     res.render("./Patient/Ticket.ejs", {
       name: name,
       errorMessage: "Something is missing",
@@ -416,7 +410,7 @@ router.post("/Ticket", authorization, async (req, res) => {
     (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
   );
 
-  console.log(result);
+  // console.log(result);
   const appo = await Appo.find({ Pat_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
@@ -458,7 +452,7 @@ router.get("/viewappoint", authorization, async (req, res) => {
     (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
   );
 
-  console.log(result);
+  // console.log(result);
   const appo = await Appo.find({ Pat_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
@@ -504,7 +498,7 @@ router.post("/viewappoint", authorization, async (req, res) => {
     (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
   );
 
-  console.log(result);
+  // console.log(result);
   const appo = await Appo.find({ Pat_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
@@ -546,10 +540,12 @@ router.post("/booking", authorization, async (req, res) => {
   // let Available_Days = [a, a, a, a];
   // let availableStringDays = [];
   // for (day in available_days) {
-  //   dateObject = new Date(day);
-  //   day = dateObject.getDay();
-  //   if (day === 0) availableStringDays.push("Sunday");
-  //   else availableStringDays.push("Monday");
+  //   // dateObject = new Date(day);
+  //   // day = dateObject.getDay();
+  //   if (day === 0) 
+  //   availableStringDays.push("Sunday");
+  //   else 
+  //   availableStringDays.push("Monday");
   // }
 
   //--Notification
@@ -564,7 +560,7 @@ router.post("/booking", authorization, async (req, res) => {
     (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
   );
 
-  console.log(result);
+  // console.log(result);
   const appo = await Appo.find({ Pat_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
@@ -579,6 +575,7 @@ router.post("/booking", authorization, async (req, res) => {
     number: number,
     appo: appo,
     result: result,
+    Sche: docSchedule,
   });
 });
 router.post("/booking-Create", authorization, async (req, res) => {
@@ -620,7 +617,7 @@ router.post("/booking-Create", authorization, async (req, res) => {
     (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
   );
 
-  console.log(result);
+  // console.log(result);
   const appo = await Appo.find({ Pat_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
@@ -651,7 +648,7 @@ router.get("/AppDetails", authorization, async (req, res) => {
     (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
   );
 
-  console.log(result);
+  // console.log(result);
   const appo = await Appo.find({ Pat_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
@@ -859,13 +856,14 @@ router.get("/noificationSystem", authorization, async (req, res) => {
 router.post("/ViewBill", authorization, async (req, res) => {
   const id = res.locals.user.id;
   const appo_Id = req.body.Appo_Id;
+
   const user = await User.findById(id);
   const appoBill = await Bill.findOne({ Appoinment_Id: appo_Id })
     .populate("Pat_id")
     .populate("Doc_id")
     .populate("Appoinment_Id");
-  console.log(appoBill);
-  console.log(user);
+  // console.log(appoBill);
+  // console.log(user);
   const name = user.pat_FirstName;
   //--Notification
 
@@ -879,7 +877,7 @@ router.post("/ViewBill", authorization, async (req, res) => {
     (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
   );
 
-  console.log(result);
+  // console.log(result);
   const appo = await Appo.find({ Pat_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
@@ -892,12 +890,268 @@ router.post("/ViewBill", authorization, async (req, res) => {
     number: number,
     appo: appo,
     errorMessage: "",
+    Message: "",
     result: result,
     bill: appoBill,
   });
 });
+// router.get("/ViewBill", authorization, async (req, res) => {
+//   const id = res.locals.user.id;
+//   const appo_Id = req.body.Appo_Id;
+//   console.log(appo_Id);
+//   const user = await User.findById(id);
+//   const appoBill = await Bill.findOne({ Appoinment_Id: appo_Id })
+//     .populate("Pat_id")
+//     .populate("Doc_id")
+//     .populate("Appoinment_Id");
+//   // console.log(appoBill);
+//   // console.log(user);
+//   const name = user.pat_FirstName;
+//   //--Notification
+
+//   const checkUpList = await Prescription.find({
+//     Pat_id: id,
+//   });
+
+//   const date = new Date();
+//   const dataStr = date.toDateString();
+//   const result = checkUpList.filter(
+//     (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
+//   );
+
+//   // console.log(result);
+//   const appo = await Appo.find({ Pat_Id: id })
+//     .populate("Pat_Id")
+//     .populate("Doc_Id")
+//     .sort({ _id: -1 })
+//     .limit(5);
+//   const number = await Appo.countDocuments({ Pat_Id: id });
+//   console.log(number);
+//   res.render("./Patient/ViewBill.ejs", {
+//     name: name,
+//     number: number,
+//     appo: appo,
+//     errorMessage: "",
+//     result: result,
+//     bill: appoBill,
+//   });
+// });
 
 //-----------------------------End view bills--------------------------------------------------------------
+//-----------------------------Start Payment Methods--------------------------------------------------------------
+router.post("/payment-visa", authorization, async (req, res) => {
+  const body = req.body;
+  const id = res.locals.user.id;
+  const BillId = body.BillId;
+  console.log(BillId);
+  const AppoId = body.AppoId;
+  const DocId = body.DocId;
+  const PayAmount = body.Bill_Amount;
+  const appoBill = await Bill.findOne({ Appoinment_Id: AppoId })
+    .populate("Pat_id")
+    .populate("Doc_id")
+    .populate("Appoinment_Id");
+  const user = await User.findById(id);
+  const name = user.pat_FirstName;
+  const appo = await Appo.find({ Pat_Id: id })
+    .populate("Pat_Id")
+    .populate("Doc_Id")
+    .sort({ _id: -1 })
+    .limit(5);
+  const number = await Appo.countDocuments({ Pat_Id: id });
+  console.log(number);
+  const checkUpList = await Prescription.find({
+    Pat_id: id,
+  });
+
+  const date = new Date();
+  const dataStr = date.toDateString();
+  const result = checkUpList.filter(
+    (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
+  );
+  try {
+    const NewPayment = new payment({
+      Pay_Amount: PayAmount,
+      Pay_type: "Card",
+      Pay_Card_Number: body.Pay_Card_Number,
+      Pay_Card_Holder: body.Pay_Card_Holder,
+      Pay_Card_expDate: body.Pay_Card_expDate,
+      Bill_id: BillId,
+      Pat_id: id,
+      Appoinment_Id: AppoId,
+      Doc_id: DocId,
+    });
+    const SavedPayment = await NewPayment.save();
+    console.log(NewPayment);
+    const paymentStatusUpdate = await Bill.findByIdAndUpdate(BillId, {
+      Bill_status: "Paid Successfully",
+    });
+    const AppoPaymentStatusUpdate = await Appo.findByIdAndUpdate(AppoId, {
+      App_visit_status: "Paid Successfully",
+    });
+    res.render("./Patient/ViewBill.ejs", {
+      name: name,
+      number: number,
+      appo: appo,
+      errorMessage: "",
+      Message: "Paid Successfully",
+      result: result,
+      bill: appoBill,
+    });
+  } catch (e) {
+    console.log(e.message);
+    res.render("./Patient/ViewBill.ejs", {
+      name: name,
+      number: number,
+      appo: appo,
+      errorMessage: "Failed",
+      Message: "",
+      result: result,
+      bill: appoBill,
+    });
+  }
+});
+router.post("/payment-paypal", authorization, async (req, res) => {
+  const body = req.body;
+  const id = res.locals.user.id;
+  const BillId = body.BillId;
+  console.log(BillId);
+  const AppoId = body.AppoId;
+  const DocId = body.DocId;
+  const PayAmount = body.Bill_Amount;
+  const appoBill = await Bill.findOne({ Appoinment_Id: AppoId })
+    .populate("Pat_id")
+    .populate("Doc_id")
+    .populate("Appoinment_Id");
+  const user = await User.findById(id);
+  const name = user.pat_FirstName;
+  const appo = await Appo.find({ Pat_Id: id })
+    .populate("Pat_Id")
+    .populate("Doc_Id")
+    .sort({ _id: -1 })
+    .limit(5);
+  const number = await Appo.countDocuments({ Pat_Id: id });
+  console.log(number);
+  const checkUpList = await Prescription.find({
+    Pat_id: id,
+  });
+
+  const date = new Date();
+  const dataStr = date.toDateString();
+  const result = checkUpList.filter(
+    (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
+  );
+  try {
+    const NewPayment = new payment({
+      Pay_Amount: PayAmount,
+      Pay_type: "PayPal",
+      Pay_PayPal_Email: body.Pay_PayPal_Email,
+      Bill_id: BillId,
+      Pat_id: id,
+      Appoinment_Id: AppoId,
+      Doc_id: DocId,
+    });
+    const SavedPayment = await NewPayment.save();
+    console.log(NewPayment);
+    const paymentStatusUpdate = await Bill.findByIdAndUpdate(BillId, {
+      Bill_status: "Paid Successfully",
+    });
+    const AppoPaymentStatusUpdate = await Appo.findByIdAndUpdate(AppoId, {
+      App_visit_status: "Paid Successfully",
+    });
+    res.render("./Patient/ViewBill.ejs", {
+      name: name,
+      number: number,
+      appo: appo,
+      errorMessage: "",
+      Message: "Paid Successfully",
+      result: result,
+      bill: appoBill,
+    });
+  } catch (e) {
+    console.log(e.message);
+    res.render("./Patient/ViewBill.ejs", {
+      name: name,
+      number: number,
+      appo: appo,
+      errorMessage: "Failed",
+      Message: "",
+      result: result,
+      bill: appoBill,
+    });
+  }
+});
+router.post("/payment-vodcash", authorization, async (req, res) => {
+  const body = req.body;
+  const id = res.locals.user.id;
+  const BillId = body.BillId;
+  console.log(BillId);
+  const AppoId = body.AppoId;
+  const DocId = body.DocId;
+  const PayAmount = body.Bill_Amount;
+  const appoBill = await Bill.findOne({ Appoinment_Id: AppoId })
+    .populate("Pat_id")
+    .populate("Doc_id")
+    .populate("Appoinment_Id");
+  const user = await User.findById(id);
+  const name = user.pat_FirstName;
+  const appo = await Appo.find({ Pat_Id: id })
+    .populate("Pat_Id")
+    .populate("Doc_Id")
+    .sort({ _id: -1 })
+    .limit(5);
+  const number = await Appo.countDocuments({ Pat_Id: id });
+  console.log(number);
+  const checkUpList = await Prescription.find({
+    Pat_id: id,
+  });
+
+  const date = new Date();
+  const dataStr = date.toDateString();
+  const result = checkUpList.filter(
+    (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
+  );
+  try {
+    const NewPayment = new payment({
+      Pay_Amount: PayAmount,
+      Pay_type: "Vodafone Cash",
+      Pay_VodCash_Number: body.Pay_VodCash_Number,
+      Bill_id: BillId,
+      Pat_id: id,
+      Appoinment_Id: AppoId,
+      Doc_id: DocId,
+    });
+    const SavedPayment = await NewPayment.save();
+    console.log(NewPayment);
+    const paymentStatusUpdate = await Bill.findByIdAndUpdate(BillId, {
+      Bill_status: "Paid Successfully",
+    });
+    const AppoPaymentStatusUpdate = await Appo.findByIdAndUpdate(AppoId, {
+      App_visit_status: "Paid Successfully",
+    });
+    res.render("./Patient/ViewBill.ejs", {
+      name: name,
+      number: number,
+      appo: appo,
+      errorMessage: "",
+      Message: "Paid Successfully",
+      result: result,
+      bill: appoBill,
+    });
+  } catch (e) {
+    console.log(e.message);
+    res.render("./Patient/ViewBill.ejs", {
+      name: name,
+      number: number,
+      appo: appo,
+      errorMessage: "Failed",
+      Message: "",
+      result: result,
+      bill: appoBill,
+    });
+  }
+});
+//-----------------------------Start Payment Methods--------------------------------------------------------------
 //-----------------------------Start Notification Method--------------------------------------------------------------
 router.post("/notification-details", authorization, async (res, req) => {
   const id = res.locals.user.id;
@@ -908,7 +1162,7 @@ router.post("/notification-details", authorization, async (res, req) => {
     (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
   );
 
-  console.log(result);
+  // console.log(result);
   const appo = await Appo.find({ Pat_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
@@ -923,41 +1177,5 @@ router.post("/notification-details", authorization, async (res, req) => {
 });
 
 //-----------------------------End Notification Method--------------------------------------------------------------
-//-----------------------------Start Payment Methods--------------------------------------------------------------
-router.post("payment-visa", authorization, async (res, req) => {
-  const id = res.locals.user.id;
-  const body = req.body;
-  const BillId = body.bill_Id;
-  const AppoId = body.AppoId;
-  const DocId = body.DocId;
-  const PayAmount = body.Bill_Amount;
-  try {
-    const NewPayment = new payment({
-      Pay_Amount: PayAmount,
-      Pay_type: " Visa",
-      Pay_Card_Number: body.Pay_Card_Holder,
-      Pay_Card_Holder: body.Pay_Card_Holder,
-      Pay_Card_expDate: body.Pay_Card_expDate,
-      Bill_id: BillId,
-      Pat_id: id,
-      Appoinment_Id: AppoId,
-      Doc_id: DocId,
-    });
-    const SavedPayment = await NewPayment.save();
-    const paymentStatusUpdate = await Bill.findByIdAndUpdate(BillId, {
-      Bill_status: "Paid Successfully",
-    });
-    const AppoPaymentStatusUpdate = await Appo.findByIdAndUpdate(AppoId, {
-      App_visit_status: "Paid Successfully",
-    });
-    console.log(NewPayment);
-  } catch (e) {
-    console.log(e.masssage);
-  }
-  res.redirect("patient/ViewBill");
-});
-// router.post("payment-paypal", authorization, async (res, req) => {});
-// router.post("payment-vodcash", authorization, async (res, req) => {});
-//-----------------------------Start Payment Methods--------------------------------------------------------------
 
 module.exports = router;

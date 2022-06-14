@@ -155,7 +155,7 @@ router.get("/doctorview", authorization, async (req, res) => {
     (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
   );
 
-  console.log(resultp);
+  // console.log(resultp);
   const appo = await Appo.find({ Pat_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
@@ -196,7 +196,7 @@ router.post("/doctorview", authorization, async (req, res) => {
     (checkUp) => checkUp.CheckUpDay.toDateString() === dataStr
   );
 
-  console.log(resultp);
+  // console.log(resultp);
   const appo = await Appo.find({ Pat_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
@@ -205,8 +205,8 @@ router.post("/doctorview", authorization, async (req, res) => {
   const number = await Appo.countDocuments({ Pat_Id: id });
   console.log(number);
 
-  console.log(result);
-  console.log(SpecName);
+  // console.log(result);
+  // console.log(SpecName);
   // res.send(result);
   res.render("doctorview.ejs", {
     Sch: result,
@@ -223,11 +223,12 @@ router.get("/doctorview-doc", authorization, async (req, res) => {
   const name = user.Doc_FirstName;
   const scheduleList = await DocSche.find({}).populate("Doctor_id");
 
-  console.log(scheduleList);
+  // console.log(scheduleList);
   //--Notification
   const appo = await Appo.find({ Doc_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
+    .limit(5)
     .sort({ _id: -1 });
   const number = await Appo.countDocuments({ Doc_Id: id });
   console.log(number);
@@ -360,7 +361,7 @@ router.post("/DocTicket", authorization, async (req, res) => {
     const savedTikcet = await NewTicket.save();
     console.log(NewTicket);
   } catch (e) {
-    console.log(e.masssage);
+    console.log(e.message);
     res.render("./Doc/DocTicket.ejs", {
       name: name,
       errorMessage: "Something is missing",
@@ -370,7 +371,8 @@ router.post("/DocTicket", authorization, async (req, res) => {
   const appo = await Appo.find({ Doc_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
-    .sort({ _id: -1 });
+    .sort({ _id: -1 })
+    .limit(5);
   const number = await Appo.countDocuments({ Doc_Id: id });
   console.log(number);
   res.render("./Doc/DocTicket.ejs", {
@@ -393,6 +395,7 @@ router.get("/updataShcdeule", authorization, async (req, res) => {
   const appo = await Appo.find({ Doc_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
+    .limit(5)
     .sort({ _id: -1 });
   const number = await Appo.countDocuments({ Doc_Id: id });
   console.log(number);
@@ -425,7 +428,7 @@ router.post("/UpdateSchedule", authorization, async (req, res, next) => {
     const SavadUpdateDoc = await UpdateDoc.save();
     console.log(SavadUpdateDoc);
   } catch (e) {
-    console.log(e.masssage);
+    console.log(e.message);
   }
   // try {
   //   const updateDocSche = await DocSche.findOneAndUpdate(
@@ -465,7 +468,7 @@ router.post("/viewDocSch", authorization, async (req, res) => {
   const name = user.pat_FirstName;
   const shce = await DocSche.findOne({ Doctor_id: DocID });
   const DocUser = await User.findById(DocID);
-  // console.log(shce);
+  console.log(shce);
   // console.log(DocUser);
   // console.log(req.body.Doc_Id);
   // console.log(DocID);
@@ -480,17 +483,17 @@ router.post("/viewDocSch", authorization, async (req, res) => {
     (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
   );
 
-  console.log(resultp);
+  // console.log(resultp);
   const appo = await Appo.find({ Pat_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
     .sort({ _id: -1 })
     .limit(5);
   const number = await Appo.countDocuments({ Pat_Id: id });
-  console.log(number);
-  console.log(number);
-  console.log(user);
-  console.log(appo);
+  // console.log(number);
+  // console.log(number);
+  // console.log(user);
+  // console.log(appo);
 
   res.render("./Patient/viewDocSche.ejs", {
     DocUser: DocUser,
@@ -525,7 +528,7 @@ router.post("/DocSearch-patient", authorization, async (req, res) => {
       shce: shce,
     });
   } catch (e) {
-    console.log(e.masssage);
+    console.log(e.message);
   }
   res.render("search.ejs");
 });
@@ -547,7 +550,7 @@ router.post("/DocSearch", authorization, async (req, res) => {
     console.log(docId);
     res.render("./Patient/DocSearch.ejs", { Doc: Doc, name: name, shce: shce });
   } catch (e) {
-    console.log(e.masssage);
+    console.log(e.message);
     res.render("search.ejs");
   }
 });
@@ -677,7 +680,7 @@ router.post(
       const savedPrescription = await addNewPrescription.save();
       console.log(savedPrescription);
     } catch (e) {
-      console.log(e.masssage);
+      console.log(e.message);
     }
 
     res.redirect("/doctor/ManageAppointments");
@@ -759,7 +762,7 @@ router.post("/WriteBill-post", authorization, async (req, res, next) => {
     const savedBill = await NewBill.save();
     console.log(NewBill, "NewBill");
   } catch (e) {
-    console.log(e.masssage);
+    console.log(e.message);
   }
   const appoId = await Appo.findById(appo_id)
     .populate("Pat_Id")

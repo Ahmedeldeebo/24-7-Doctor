@@ -149,6 +149,12 @@ app.post("/PublicTicket", async (req, res) => {
 });
 ///--------------------------------------End public ticket--------------------------------------------
 
+///------------------------------------logOut start--------------------------------------------------------
+app.get("/logOut", authorization, (req, res) => {
+  console.log("LogOut Successful");
+  return res.clearCookie("accessToken").redirect("/");
+});
+//------------------------------------logOut end--------------------------------------------------------
 app.get("*", (req, res) => {
   res.render("404.ejs", { title: "404" });
 });

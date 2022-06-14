@@ -155,25 +155,33 @@ p {
 
                       <div class="row">
                           <form action="http://localhost:5000/patient/booking-Create" method="post">
-                        <input class="form-control col-md-12" list="Methods" id="DataList" placeholder="Method of Comm." name="Methed_of_comm">
+                            <%Sche.forEach(Sche=>{%>
+                        <input class="form-control col-12 me-md-4" list="Methods" id="DataList" placeholder="Method of Comm." name="Methed_of_comm"  autocomplete="off">
                         <datalist id="Methods">
-                          <option value="Zoom Meeting" false>
-                          <option value="WhatsApp">
-                          <option value="Face to Face">
+                          <option value="<%=Sche.Available_methods[0]%>">
+                          <option value="<%=Sche.Available_methods[1]%>">
+                          <option value="<%=Sche.Available_methods[2]%>">
                           </option>
                         </datalist>
                         
                         <div class="col-md-5 col-12 me-md-4">
-                            <input class="form-control col-md-12" list="Days" id="DataList" placeholder="Day" name="App_visit_day">
+                            <input class="form-control col-md-12" list="Days" id="DataList" placeholder="Day" name="App_visit_day"  autocomplete="off">
                         <datalist id="Days">
-                            <option value="Sunday" false>
-                            <option value="Monday">
+                            <option value="<%=Sche.Available_Days[0]%>">
+                            <option value="<%=Sche.Available_Days[1]%>">
+                            <option value="<%=Sche.Available_Days[2]%>">
+                            <option value="<%=Sche.Available_Days[3]%>">
+                            <option value="<%=Sche.Available_Days[4]%>">
+                            <option value="<%=Sche.Available_Days[5]%>">
+                            <option value="<%=Sche.Available_Days[6]%>">
+                          
+                            <!-- <option value="Monday">
                             <option value="Tuesday">
                             <option value="Wednesday">
                             <option value="Thursday">
                             <option value="Friday">
-                            <option value="Saturday">
-
+                            <option value="Saturday"> -->
+                                <%})%>
                           </option>
                         </datalist>
                         </div>  
