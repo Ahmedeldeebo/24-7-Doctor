@@ -110,17 +110,36 @@
                           <input class="form-control col-md-12" list="" id="exampleDataList" placeholder="Enter your Address"> -->
 
                           <!-- <div class="col-md-12"><label class="labels">Area</label><input type="text" class="form-control" placeholder="Enter area" value=""></div> -->
-                          <label for="exampleDataList" class="form-label col-md-12">Area</label>
-                        <input class="form-control col-md-12" list="Areas" id="exampleDataList" value="<%=user.city%>" name="city">
-                        <datalist id="Areas">
-                          <option value="New Cairo" false>
-                          <option value="Nasr City">
-                          <option value="El-Maadi">
-                          <option value="Heliopolis">
-                          <option value="El-Rehab">
-                          <option value="Type your Area">
-                          </option>
-                        </datalist>
+                            <label for="exampleDataList" class="form-label col-md-12"> City </label>
+                            <select class="form-control col-md-12" name="city" id="slct1" onchange="populate(this.id, 'slct2')" value="<%=user.city%>">
+                              <option value="<%=user.city%>"><%=user.city%></option>
+                              <option value="Cairo">Cairo</option>
+                              <option value="Giza">Giza</option>
+                              <option value="Alexandria">Alexandria
+                                <option value="North Coast">North Coast
+                                <option value="Qalyubia">Qalyubia
+                                <option value="Gharbia">Gharbia
+                                <option value="Menoufia">Menoufia
+                                <option value="Fayoum">Fayoum
+                                <option value="El-Dakahlia">El-Dakahlia
+                                <option value="El-Sharqia">El-Sharqia
+                                <option value="El-Beheira">El-Beheira
+                                <option value="Damietta">Damietta
+                                <option value="Matrouh">Matrouh
+                                <option value="Assiut">Assiut
+                                <option value="El-Ismailia">El-Ismailia
+                                <option value="Hurghada">Hurghada
+                                <option value="Sharm El Sheikh">Sharm El Sheikh
+                                <option value="Portsaid">Portsaid
+                                <option value="Suez">Suez
+                                <option value="Sohag">Sohag
+                                <option value="El-Minia">El-Minia
+                                <option value="Kafr El sheikh">Kafr El sheikh
+                                <option value="Luxor">Luxor
+                                <option value="Qena">Qena
+                                <option value="Aswan">Aswan
+                                <option value="Beni Suef">Beni Suef
+                            </select>
 
                         <!-- <br></br>
 

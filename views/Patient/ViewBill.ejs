@@ -5,14 +5,22 @@
         <meta charset='utf-8'>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
+
         <title>View Bill</title>
+
         <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
         <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
         <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
         <script src="https://kit.fontawesome.com/ff8698dfe7.js" crossorigin="anonymous"></script>
-        <style>::-webkit-scrollbar {
+
+
+
+        <style>
+        
+        ::-webkit-scrollbar {
           width: 8px;
         }
+
         /* Track */
         ::-webkit-scrollbar-track {
           background: #f1f1f1; 
@@ -26,54 +34,22 @@
         /* Handle on hover */
         ::-webkit-scrollbar-thumb:hover {
           background: #555; 
-        } body {
+        } 
+        
+        body {
 color: #000;
 overflow-x: hidden;
 height: 100%;
 background-repeat: no-repeat;
 }
 
-/*Outter Card*/
-.card0 {
-background-color: #F5F5F5;
-border-radius: 8px;
-z-index: 0;
-}
 
-/*Inner Card*/
-.card00 {
-z-index: 0;
-}
 
-/*Left side card with progressbar*/
-.card1 {
-margin-left: 140px;
-z-index: 0;
-border-right: 1px solid #F5F5F5;
-}
 
-/*right side cards*/
-.card2 {
-display: none;
-}
-
-.card2.show {
-display: block;
-}
-
-/* .social {
-border-radius: 50%;
-background-color: #000000;
-color: #4dbac9;
-height: 47px;
-width: 47px;
-padding-top: 16px;
-cursor: pointer;
-} */
 
 input, select {
 padding: 2px;
-border-radius: 0px;
+border-radius: 4px;
 box-sizing: border-box;
 color: #9E9E9E;
 border: 1px solid #BDBDBD;
@@ -263,20 +239,12 @@ border-bottom: 1px solid #F5F5F5;
 margin-bottom: 25px;
 }
 
-/* .social {
-height: 30px;
-width: 30px;
-font-size: 15px;
-padding-top: 8px;
-margin-top: 7px;
-} */
-
 #progressbar {
 left: -25px;
 }
 }
 .wrapper {
-    height: 70vh;
+    height: 80vh;
     background: #000;
     background: url("https://i.imgur.com/DWu2SHz.jpg");
     background-size: cover;
@@ -500,7 +468,7 @@ p {
                     <div class="text-center px-1 py-5"> 
                         <div class="forms p-4 py-5 bg-white">
                             <h5> <i class="fa-solid fa-money-bill"></i> Bill & Payment</h5> 
-                            <form action="" method="">           
+                                       
 
                            <div class="input-group">
   
@@ -514,7 +482,7 @@ p {
                       
                             <!-- declaration for second field -->
                             <input type="text" class="form-control mt-3
-                                    input-sm" style=" text-transform: capitalize"  placeholder="<%=bill.Doc_id.Doc_FirstName %>" name="" disabled />
+                                    input-sm" style=" text-transform: capitalize"  placeholder="Doctor <%=bill.Doc_id.Doc_FirstName %>" name="" disabled />
                         </div>
                         <div class="input-group">
   
@@ -595,7 +563,7 @@ p {
                                   </div> 
                               </div> 
                            <div class="tab-pane fade" id="paypal" role="tabpanel" aria-labelledby="paypal-tab"> 
-                              <form method="post" action="">
+
                                <div class="px-5 mt-5"> <div class="inputbox"> 
                                    <input type="text" name="name" class="form-control" required="required" autocomplete="off"> 
                                    <span>Paypal Email Address</span> 
@@ -609,10 +577,10 @@ p {
                         <div class="tab-pane fade" id="vodafone" role="tabpanel" aria-labelledby="vodafone-tab"> 
                             <div class="mt-4 mx-4"> 
                                 <div class="text-center"> <h5>Vodafone Credit card</h5> 
-                                </div> 
+                                 
                             
                                 <div class="form mt-3">
-                                     <form method="post" action="">
+
                                     <div class="inputbox">   
                                         
                                         <input type="text" name="name" min="1" max="999" class="form-control" required="required" autocomplete="off"> <span>Card Number</span> 
@@ -630,7 +598,7 @@ p {
                                     </div>
                                     <div class="px-5 pay mt-3"> <button class="btn btn-danger btn-block" type="submit">Complete Payment</button> 
                                     </div> 
-                                </form>
+                                
                             </div>
                             </div>
                             </div>
@@ -656,6 +624,7 @@ p {
 </div> 
 </div>
 </div>
+
 
 
         <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
@@ -729,7 +698,7 @@ previous_fs.css({
 });
 
 });</script>
-        <script type='text/javascript'>var myLink = document.querySelector('a[href="#"]');
+        <script type='text/javascript'>var myLink = document.querySelector();
         myLink.addEventListener('click', function(e) {
           e.preventDefault();
         });</script>

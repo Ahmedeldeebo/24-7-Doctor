@@ -21,67 +21,10 @@ label {
 
 input {
     padding: 10px 15px !important;
-    border: 1px solid #CFD8DC !important;
-    border-radius: 4px !important;
-    box-sizing: border-box;
-    background-color: #fff !important;
-    color: #000 !important;
-    font-size: 16px !important;
-    letter-spacing: 1px;
-    position: relative;
-    width: 100%;
+
 }
 
-input:focus {
-    -moz-box-shadow: none !important;
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
-    border: 1px solid #FFA000 !important;
-    outline-width: 0;
-}
 
-.daterangepicker {
-  background-color: #fff;
-  border-radius: 0 !important;
-  align-content: center !important;
-  padding: 0 !important;
-}
-
-/*Weekday Heading*/
-thead tr:nth-child(2) {
-  color: #BDBDBD !important;
-}
-
-tbody tr td {
-  padding: 5px 7px !important;
-}
-
-.month {
-  font-size: 16px !important;
-  padding-bottom: 10px !important;
-  padding-top: 10px !important;
-}
-
-.start-date, .end-date {
-  border-radius: 0px !important;
-}
-
-.available:hover {
-  border-radius: 0px !important;
-}
-
-.off {
-  color: #EEEEEE !important;
-}
-
-.off:hover {
-  background-color: #EEEEEE !important;
-  color: #fff !important;
-}
-
-.drp-buttons {
-  display: none !important;
-}
 </style>
 
   <!--Start Hader-->
@@ -105,8 +48,37 @@ tbody tr td {
 <form action="http://localhost:5000/doctor/UpdateSchedule" method="POST" ><div class="row mt-3">
   
  <label >Available Days</label>
- <input class="form-control" type="text" value="01/01/2022 - 01/15/2022" name="Available_Days" readonly />
- <!-- -->
+
+ <!-- <input class="form-control" type="text" value="01/01/2022 - 01/15/2022" name="Available_Days" readonly /> -->
+
+ <div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="Available_Days" />
+  <label class="form-check-label" for="flexCheckDefault">Saturday</label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="Available_Days" />
+  <label class="form-check-label" for="flexCheckDefault">Sunday</label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="Available_Days"  />
+  <label class="form-check-label" for="flexCheckDefault">Monday</label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="Available_Days" />
+  <label class="form-check-label" for="flexCheckDefault">Tuesday</label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="Available_Days" />
+  <label class="form-check-label" for="flexCheckDefault">Wednesday</label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="Available_Days"  />
+  <label class="form-check-label" for="flexCheckDefault">Thursday</label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="Available_Days"  />
+  <label class="form-check-label" for="flexCheckDefault">Friday</label>
+</div>
 
 
 
@@ -114,12 +86,12 @@ tbody tr td {
    <br>
 
    <label for="exampleDataList" class="form-label" >Time-Period</label>
-    <input class="form-control" list="Time-Period" id="exampleDataList" placeholder="Type to search..."name="Start_Time">
+    <input class="form-control" list="Time-Period" id="exampleDataList" placeholder="From --:--am till --:--pm"name="Start_Time">
     <datalist id="Time-Period">
       <option value="All day">
-      <option value="From 9:00am till 5:00pm">
-      <option value="From 2:00pm till 9:00pm">
-      <option value="Enter your own">
+      <option value="From 9:00am till 5:00pm"></option>
+      <option value="From 2:00pm till 9:00pm"></option>
+      <option value="Enter your own">Enter your own</option>
     </datalist>
 
     <br>
@@ -128,22 +100,37 @@ tbody tr td {
     <label for="exampleDataList" class="form-label">Patients per-day</label>
     <input class="form-control" list="Patients per-day" id="exampleDataList" placeholder="Type to search..." name="Meeting_Maximum_Patient">
     <datalist id="Patients per-day">
-      <option value="10">
-      <option value="20">
-      <option value="30">
-      <option value="Enter your own">
+      <option value="10">10</option>
+      <option value="20">20</option>
+      <option value="30">30</option>
+      <option value="Enter your own">Enter your own</option>
     </datalist>
 
     <br>
     <br>
 
     <label for="exampleDataList" class="form-label">Available methods</label>
-    <input class="form-control" list="Available methods" id="exampleDataList" placeholder="Type to search..." name="Available_methods">
-    <datalist id="Available methods">
+    <!-- <input class="form-control" list="Available methods" id="exampleDataList" placeholder="Type to search..." name="Available_Days">
+        <datalist id="Available methods">
       <option value="Zoom Meeting">
       <option value="WhatsApp">
       <option value="Face to Face">
-    </datalist>
+    </datalist> -->
+
+
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="Available_Days" />
+  <label class="form-check-label" for="flexCheckDefault">Zoom Meeting</label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="Available_Days" />
+  <label class="form-check-label" for="flexCheckDefault">WhatsApp</label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="Available_Days"  />
+  <label class="form-check-label" for="flexCheckDefault">Face to Face</label>
+</div>
+
 
     <br>
     <br>
@@ -171,9 +158,16 @@ tbody tr td {
       <option value="Enter your own">
     </datalist>
 </div>
-                             <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Update Schedule</button></div>  
-</form>
 
+                             <div class="mt-5 text-center">
+                              <button class="btn btn-success profile-button" type="submit">Update Schedule</button>
+                              <a class="btn btn-primary" href="http://localhost:5000/doctor/viewDocSche" role="button" aria-controls="offcanvasExample">
+                                View Schedule
+                              </a>
+                            </div>
+                            </form>
+
+                             
                            </div> 
                           
                     </div>
@@ -202,19 +196,6 @@ tbody tr td {
 // $('input[name="Available_Days"]').daterangepicker();
 
 
-$(document).ready(function(){
-  $(function() {
-    $('input[name="Available_Days"]').daterangepicker({
-      "startDate": moment().startOf('hour'),
-       "endDate": moment().startOf('hour').add(32, 'hour'),
-      opens: 'center',
-      locale: {
-      format: 'DD/MM/YYYY'
-
-      }
-    });
-  });
-});
 
 </script>
 
