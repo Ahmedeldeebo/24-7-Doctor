@@ -17,7 +17,7 @@
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
 
 
-    <title>Doctor Schedule</title>
+    <title>Prescription History</title>
 
     <style>
       *{
@@ -73,7 +73,7 @@
 
   <body>
     <!--Start Header-->
-    <%- include ('../partials/navHome.ejs') %>
+    - include ('../partials/navHome.ejs') 
     <!--End Header-->
 
     <div class="container mt-5" id="container">
@@ -87,12 +87,11 @@
             class="d-md-flex d-sm-block justify-content-between"
           >
             <input type="hidden" name="command" value="select-orders" />
-            <h1 class="h5 align-self-center col-3">Appointments History</h1>
-
-            <a href="http://localhost:5000/PresHistory" class="btn btn-danger btn-lg" role="button" aria-pressed="true">Prescription History</a>
+            <h1 class="h5 align-self-center col-3">Prescription Histroy</h1>
+            <form>
+              <input class="btn btn-danger" type="button" value="Go back" onclick="history.back()">
+             </form>
           </form>
-          <br></br>
-          
 
           <div
             class="d-md-flex d-none justify-content-md-between justify-content-sm-center align-content-center border-bottom border-2 my-2 bg-dark text-light p-3 rounded-3"
@@ -100,20 +99,14 @@
             <div class="col-2 align-self-center">
               <h1 class="h5 fw-bold">Date Created</h1>
             </div>
-            <div class="col-3 align-self-center">
-              <h1 class="h5 fw-bold">Communication Type</h1>
-            </div>
             <div class="col-2 align-self-center">
               <h1 class="h5 fw-bold">Show details</h1>
-            </div>
-            <div class="col-2 align-self-center">
-              <h1 class="h5 fw-bold">Payment Status</h1>
             </div>
           </div>
           <!-------------------------------------------END HEADERS -------------------------------------------------->
 
           <!-------------------------------------------START FIRST ROW  -------------------------------------------------->
-          <%appoo.forEach(appoo=>{%>
+          appoo.forEach(appoo=>{
       
           <div
             class="d-md-flex d-sm-block justify-content-md-between justify-content-sm-center text-center border-bottom border-2 my-2 bg-light p-2 rounded-3"
@@ -122,21 +115,17 @@
               class="col-md-2 text-sm-center text-md-start align-self-center my-2 text"
             >
               <!-- <h1 class="h6">=appoo.createdAt%></h1> -->
-              <% let date =appoo.createdAt.toDateString(); %> 
-              <h1 class="h6"><%=date%></h1>
+               let date =appoo.createdAt.toDateString(); 
+              <h1 class="h6">=date</h1>
             </div>
 
-            <div
-              class="col-md-3 text-sm-center text-md-start align-self-center my-2"
-            >
-              <h1 class="h6"><%=appoo.Methed_of_comm %></h1>
-            </div>
+
 
             <div
               class="col-md-2 text-sm-center text-md-start align-self-center my-2"
             >
             <form action="http://localhost:5000/patient/viewappoint" method="post">
-              <input hidden value="<%=appoo._id %>" name="Appo_Id">
+              <input hidden value="=appoo._id " name="Appo_Id">
               <button class="btn btn-outline-dark w-100" type="submit">Details</button>
             <!-- <a class="btn btn-outline-dark w-100" href="http://localhost:5000/patient/AppDetails">Details</a> -->
           </form>
@@ -169,18 +158,8 @@
 
             </div>
 
-            <div
-              class="col-md-2 text-sm-center text-md-start align-self-center my-2"
-            >
-              <form method="get" action="controller" class="d-flex btn-group">
-                <h1 class="h6"><%=appoo.App_visit_status%></h1>
-                <!-- <input type="hidden" name="command" value="refresh-order-status">
-                     <select name="status" class="btn btn-outline-dark">   
-                    </select>  -->
-              </form>
-            </div>
           </div>
-          <%})%>
+          })
 
           <!-------------------------------------------END FIRST ROW  -------------------------------------------------->
 
@@ -271,25 +250,7 @@
 <div  class="mt-5"><%- include ('../partials/footer.ejs') %></div>
 
   </footer>
-  
-  <script>
-$(function () {
-    $('#firstButton').popover({
-      container: "body",
-      html: true,
-      content: function () {
-        return '<div class="popover-message">' + $(this).data("message") + '</div>';
-      }
-    });
-    $('#secondButton').popover(); // <-- The first initializer does this, which causes the next one to fail on the next line.
-    $('#secondButton').popover({
-      container: "body",
-      html: true,
-      content: function () {
-        return '<div class="popover-message">' + $(this).data("message") + '</div>';
-      }
-    });
-});  </script>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"></link>

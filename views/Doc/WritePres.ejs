@@ -376,7 +376,7 @@ textarea::-webkit-scrollbar{
                 <div class="col-md-9"> 
 
        <div class="contact-us text-center"> 
-        <h3><i class="fa-solid fa-prescription"></i> Priscription Details</h3> 
+        <h3><i class="fa-solid fa-prescription"></i> Prescription Details</h3> 
         <div class="row"> 
 
                 <div class="col-md-6">
@@ -427,30 +427,31 @@ textarea::-webkit-scrollbar{
                             <h5><i class="fa-solid fa-prescription"></i> Write Prescription</h5> 
                             <form action="http://localhost:5000/doctor/WritePrescription-create" method="post">           
                                 <div class="form-outline mt-4"> 
+                                  <h6 class="text-left">Patient Name</h6>
                                <input type="text" class="form-control mt-3" placeholder="" value="<%=appoo.Pat_Id.pat_FirstName %>" name="" disabled> 
                                <input hidden value="<%=appoo.Pat_Id._id %>" name="Pat_Id">
                                <input hidden value="<%=appoo._id%>" name="Appo_Id">
                                 </div>
-                                <div class="input-group">
-  
-                                    <!-- declaration for first field -->
-                                    <input type="text" class="form-control mt-3
-                                            input-sm"  placeholder="%Patient Address" name="" disabled />
-                              
-                                    <!-- reducong the gap between them to zero -->
-                                    <span class="input-group-btn" 
-                                        style="width:10px;"></span>
-                              
-                                    <!-- declaration for second field -->
-                                    <input type="text" class="form-control mt-3
-                                            input-sm" placeholder="%PatientArea" name="" disabled />
+
+                                <div class="form-row">
+
+                                  <div class="form-group col-md-6 mt-3 text-left">
+                                    <h6 class="text-left">Patient Address</h6>
+                                   <input type="text" class="form-control mt-3 input-sm"  placeholder="%Patient Address" name="" disabled />
+                                  </div>
+                                  <div class="form-group col-md-6 mt-3 text-left">
+                                    <h6 class="text-left">Patient Area</h6>
+                                    <input type="text" class="form-control mt-3 input-sm" placeholder="%PatientArea" name="" disabled />                                  
                                 </div>
-                                <div class="form-outline mt-4">
-                                   
+                                </div>
+
+                                <div class="form-outline">
+                                  <h6 class="text-left">Prescription Details </h6>
                                <textarea class="form-control mt-3" placeholder="Prescription Details" name="pres_Description"></textarea> 
-                            
                            </div> 
                            <div class="form-group col-md-6 feight py-3">
+                            <h6 class="text-left">Next Checkup </h6>
+
                             <input type="date" class="form-control" placeholder="m/d/y"
                             required name="CheckUpDay">
                            </div>

@@ -421,7 +421,7 @@ router.post("/Ticket", authorization, async (req, res) => {
 
   res.render("./Patient/Ticket.ejs", {
     name: name,
-    errorMessage: "Submite",
+    errorMessage: "Ticket Sent Successfully",
     number: number,
     appo: appo,
     result: result,

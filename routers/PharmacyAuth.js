@@ -85,5 +85,10 @@ router.post("/Pharmacy-login", async (req, res) => {
     return console.log(e.message);
   }
 });
+//  Start Pharmacy Profile
+router.get("/PharmacyProfile", authorization, async (req,res)=>{
+  res.render("./Pharmacy/PharProfile.ejs")
+})
+// End Pharmacy Profile
 
 module.exports = router;
