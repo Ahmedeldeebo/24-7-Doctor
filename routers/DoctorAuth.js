@@ -105,7 +105,7 @@ router.post("/Docter-login", async (req, res) => {
   }
 });
 router.get("/profile-home-doc", authorization, async (req, res, next) => {
-  console.log(res.locals.user.id);
+  // console.log(res.locals.user.id);
   const id = res.locals.user.id;
   const user = await User.findById(id);
   console.log(user);
@@ -242,10 +242,10 @@ router.get("/doctorview-doc", authorization, async (req, res) => {
 //--------------------------------------------End view---------------------------------------------------
 //-------------------------------------------- Start profile Doc ---------------------------------------------------
 router.get("/Doctor-profile-setting", authorization, async (req, res) => {
-  console.log(res.locals.user.id);
+  // console.log(res.locals.user.id);
   const id = res.locals.user.id;
   const user = await User.findById(id);
-  console.log(user);
+  // console.log(user);
   const name = user.Doc_FirstName;
   //--Notification
   const appo = await Appo.find({ Doc_Id: id })
@@ -265,13 +265,14 @@ router.get("/Doctor-profile-setting", authorization, async (req, res) => {
 
 //edit
 router.get("/DocProfileEdit", authorization, async (req, res, next) => {
-  console.log(res.locals.user.id);
+  // console.log(res.locals.user.id);
   const id = res.locals.user.id;
   const user = await User.findById(id);
   console.log(user);
   const name = user.Doc_FirstName;
-  const email = user.Doc_Email;
-  const Lname = user.Doc_Lastname; //--Notification
+  // const email = user.Doc_Email;
+  // const Lname = user.Doc_Lastname;
+  //--Notification
   const appo = await Appo.find({ Doc_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
@@ -287,7 +288,7 @@ router.get("/DocProfileEdit", authorization, async (req, res, next) => {
   });
 });
 router.post("/DocProfileEdit", authorization, async (req, res, next) => {
-  console.log(res.locals.user.id);
+  // console.log(res.locals.user.id);
   const id = res.locals.user.id;
   const user = await User.findById(id);
   console.log(user);
@@ -324,10 +325,10 @@ router.post("/DocProfileEdit", authorization, async (req, res, next) => {
 //-------------------------------------------- End Profile Doc ---------------------------------------------------
 //------------------------------------Start Tikcet --------------------------------------------------------
 router.get("/DocTicket", authorization, async (req, res, next) => {
-  console.log(res.locals.user.id);
+  // console.log(res.locals.user.id);
   const id = res.locals.user.id;
   const user = await User.findById(id);
-  console.log(user);
+  // console.log(user);
   const name = user.Doc_FirstName;
   const email = user.Doc_Email;
   //--Notification
@@ -349,7 +350,7 @@ router.get("/DocTicket", authorization, async (req, res, next) => {
 router.post("/DocTicket", authorization, async (req, res) => {
   const id = res.locals.user.id;
   const user = await User.findById(id);
-  console.log(user);
+  // console.log(user);
   const name = user.Doc_FirstName;
   try {
     const NewTicket = new ticket({
@@ -385,7 +386,7 @@ router.post("/DocTicket", authorization, async (req, res) => {
 //------------------------------------End Tikcet --------------------------------------------------------
 //------------------------Start Doc Shcdeule--------------------------------------------------------------
 router.get("/updataShcdeule", authorization, async (req, res) => {
-  console.log(res.locals.user.id);
+  // console.log(res.locals.user.id);
   const id = res.locals.user.id;
   const user = await User.findById(id);
   console.log(user);
@@ -407,10 +408,10 @@ router.get("/updataShcdeule", authorization, async (req, res) => {
   });
 });
 router.post("/UpdateSchedule", authorization, async (req, res, next) => {
-  console.log(res.locals.user.id);
+  // console.log(res.locals.user.id);
   const id = res.locals.user.id;
   const user = await User.findById(id);
-  console.log(user);
+  // console.log(user);
   const name = user.Doc_FirstName;
   const email = user.Doc_Email;
   try {
@@ -468,7 +469,7 @@ router.post("/viewDocSch", authorization, async (req, res) => {
   const name = user.pat_FirstName;
   const shce = await DocSche.findOne({ Doctor_id: DocID });
   const DocUser = await User.findById(DocID);
-  console.log(shce);
+  // console.log(shce);
   // console.log(DocUser);
   // console.log(req.body.Doc_Id);
   // console.log(DocID);
@@ -519,9 +520,9 @@ router.post("/DocSearch-patient", authorization, async (req, res) => {
     const shce = await DocSche.findOne({ Doctor_id: docId }).populate(
       "Doctor_id"
     );
-    console.log(shce);
-    console.log(docName);
-    console.log(docId);
+    // console.log(shce);
+    // console.log(docName);
+    // console.log(docId);
     res.render("./Patient/DocSearch.ejs", {
       Doc: Doc,
       name: name,
@@ -545,9 +546,9 @@ router.post("/DocSearch", authorization, async (req, res) => {
     const shce = await DocSche.findOne({ Doctor_id: docId }).populate(
       "Doctor_id"
     );
-    console.log(shce);
-    console.log(docName);
-    console.log(docId);
+    // console.log(shce);
+    // console.log(docName);
+    // console.log(docId);
     res.render("./Patient/DocSearch.ejs", { Doc: Doc, name: name, shce: shce });
   } catch (e) {
     console.log(e.message);
@@ -558,12 +559,12 @@ router.post("/DocSearch", authorization, async (req, res) => {
 //-------------------------------------------- End Doc Search ---------------------------------------------------
 //-------------------------------------------- Start Doctor AppDetails---------------------------------------------------
 router.get("/ManageAppointments", authorization, async (req, res, next) => {
-  console.log(res.locals.user.id);
+  // console.log(res.locals.user.id);
   const id = res.locals.user.id;
   const user = await User.findById(id);
-  console.log(user);
+  // console.log(user);
   const name = user.Doc_FirstName;
-  const email = user.Doc_Email;
+  // const email = user.Doc_Email;
   const appoo = await Appo.find({ Doc_Id: id })
     .populate("Doc_Id")
     .populate("Pat_Id")
@@ -598,14 +599,14 @@ router.get("/ManageAppointments", authorization, async (req, res, next) => {
 //   });
 // });
 router.post("/AppDetails", authorization, async (req, res, next) => {
-  console.log(res.locals.user.id);
+  // console.log(res.locals.user.id);
   const id = res.locals.user.id;
   const appoId = req.body.appo_Id;
-  console.log(appoId + " appoId");
+  // console.log(appoId + " appoId");
   const user = await User.findById(id);
   const viewAppoint = await Appo.findById(appoId).populate("Pat_Id");
-  console.log(viewAppoint);
-  console.log(user);
+  // console.log(viewAppoint);
+  // console.log(user);
   const name = user.Doc_FirstName;
   //--Notification
   const appo = await Appo.find({ Doc_Id: id })
@@ -625,16 +626,16 @@ router.post("/AppDetails", authorization, async (req, res, next) => {
 //-------------------------------------------- End Doctor AppDetails---------------------------------------------------
 //-------------------------------------------- Start Doctor Write Prescription---------------------------------------------------
 router.post("/WritePrescription", authorization, async (req, res, next) => {
-  console.log(res.locals.user.id);
+  // console.log(res.locals.user.id);
   const id = res.locals.user.id;
   const pat_id = req.body.Pat_Id;
   const appo_id = req.body.Appo_Id;
-  console.log(pat_id);
-  console.log(appo_id);
+  // console.log(pat_id);
+  // console.log(appo_id);
   const viewAppoint = await Appo.findById(appo_id).populate("Pat_Id");
-  console.log(viewAppoint);
+  // console.log(viewAppoint);
   const user = await User.findById(id);
-  console.log(user);
+  // console.log(user);
   const name = user.Doc_FirstName;
   //--Notification
   const appo = await Appo.find({ Doc_Id: id })
@@ -656,15 +657,15 @@ router.post(
   "/WritePrescription-create",
   authorization,
   async (req, res, next) => {
-    console.log(res.locals.user.id);
+    // console.log(res.locals.user.id);
     const id = res.locals.user.id;
     const pat_id = req.body.Pat_Id;
     const appo_id = req.body.Appo_Id;
-    console.log(pat_id);
+    // console.log(pat_id);
     const viewAppoint = await Appo.findOne({ Pat_Id: pat_id }).populate(
       "Pat_Id"
     );
-    console.log(viewAppoint);
+    // console.log(viewAppoint);
     const user = await User.findById(id);
     console.log(user);
     // const name = user.Doc_FirstName;
@@ -690,17 +691,17 @@ router.post(
 //-------------------------------------------- End Doctor Write Prescription---------------------------------------------------
 //-------------------------------------------- Start Doctor Write Bill---------------------------------------------------
 router.post("/WriteBill", authorization, async (req, res, next) => {
-  console.log(res.locals.user.id);
+  // console.log(res.locals.user.id);
   const id = res.locals.user.id;
   const user = await User.findById(id);
-  console.log(user);
+  // console.log(user);
   const name = user.Doc_FirstName;
   const appo_id = req.body.Appo_Id;
-  console.log(appo_id);
+  // console.log(appo_id);
   const appoId = await Appo.findById(appo_id)
     .populate("Pat_Id")
     .populate("Doc_Id");
-  console.log(appoId);
+  // console.log(appoId);
   const appo = await Appo.find({ Doc_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
@@ -717,13 +718,13 @@ router.post("/WriteBill", authorization, async (req, res, next) => {
   });
 });
 router.get("/WriteBill", authorization, async (req, res, next) => {
-  console.log(res.locals.user.id);
+  // console.log(res.locals.user.id);
   const id = res.locals.user.id;
   const user = await User.findById(id);
-  console.log(user);
+  // console.log(user);
   const name = user.Doc_FirstName;
   const appo_id = req.body.Appo_Id;
-  console.log(appo_id);
+  // console.log(appo_id);
   const appoId = await Appo.findById(appo_id)
     .populate("Pat_Id")
     .populate("Doc_Id");
@@ -744,20 +745,20 @@ router.get("/WriteBill", authorization, async (req, res, next) => {
   });
 });
 router.post("/WriteBill-post", authorization, async (req, res, next) => {
-  console.log(res.locals.user.id);
+  // console.log(res.locals.user.id);
   const id = res.locals.user.id;
   const user = await User.findById(id);
-  console.log(user);
+  // console.log(user);
   const name = user.Doc_FirstName;
   const appo_id = req.body.appo_Id;
   const patId = req.body.pat_Id;
-  console.log(appo_id);
+  // console.log(appo_id);
   try {
     const NewBill = new bill({
       Bill_Amount: req.body.Bill_Amount,
       Appoinment_Id: appo_id,
-      Doc_id: id,
-      Pat_id: patId,
+      Doc_Id: id,
+      Pat_Id: patId,
     });
     const savedBill = await NewBill.save();
     console.log(NewBill, "NewBill");
@@ -767,7 +768,7 @@ router.post("/WriteBill-post", authorization, async (req, res, next) => {
   const appoId = await Appo.findById(appo_id)
     .populate("Pat_Id")
     .populate("Doc_Id");
-  console.log(appoId);
+  // console.log(appoId);
   const appo = await Appo.find({ Doc_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
