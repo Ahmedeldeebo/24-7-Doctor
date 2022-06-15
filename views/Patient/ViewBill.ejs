@@ -427,14 +427,14 @@ p {
                 <div class="d-flex flex-row align-items-center"> 
                     <span class="icons"><i class="fa-solid fa-user"></i></span> 
                     <div class="address text-left"> 
-                        <span>Doctor Name</span> <p style=" text-transform: capitalize" ><%=bill.Doc_id.Doc_FirstName %></p>
+                        <span>Doctor Name</span> <p style=" text-transform: capitalize" ><%=bill.Doc_Id.Doc_FirstName %></p>
                     </div> 
                 </div> 
 
                 <div class="d-flex flex-row align-items-center mt-3"> 
                     <span class="icons"><i class="fa-solid fa-book-medical"></i></span> 
                     <div class="address text-left"> 
-                        <span>Specialization</span> <p><%=bill.Doc_id.Specialization_Name %></p> 
+                        <span>Specialization</span> <p><%=bill.Doc_Id.Specialization_Name %></p> 
                     </div> 
                 </div>
 
@@ -472,37 +472,35 @@ p {
                             
                             <div class="form-row">
 
-                                <div class="form-group col-md-6 text-left">
-                                  <h6 class="text-left">Patient Name</h6>
-                                  <input type="text" class="form-control
-                                    input-sm" style=" text-transform: capitalize"   placeholder="<%=bill.Pat_id.pat_FirstName %>" name="" disabled />
-                                </div>
-                                <div class="form-group col-md-6 text-left">
-                                  <h6 class="text-left">Doctor Name</h6>
-                                  <input type="text" class="form-control
-                                    input-sm" style=" text-transform: capitalize"  placeholder="Doctor <%=bill.Doc_id.Doc_FirstName %>" name="" disabled />                              
-                              </div>
-
-                              </div>
-
-                              <div class="form-row">
-                                <% const date = bill.Bill_Date.toDateString()%>
-
-                                <div class="form-group col-md-6 text-left">
-                                  <h6 class="text-left">Date Issued</h6>
-                                  <input type="text" class="form-control 
+                           <div class="input-group">
+  
+                            <!-- declaration for first field -->
+                            <input type="text" class="form-control mt-3
+                                    input-sm" style=" text-transform: capitalize"   placeholder="<%=bill.Pat_Id.pat_FirstName %>" name="" disabled />
+                      
+                            <!-- reducong the gap between them to zero -->
+                            <span class="input-group-btn" 
+                                style="width:10px;"></span>
+                      
+                            <!-- declaration for second field -->
+                            <input type="text" class="form-control mt-3
+                                    input-sm" style=" text-transform: capitalize"  placeholder="Doctor <%=bill.Doc_Id.Doc_FirstName %>" name="" disabled />
+                        </div>
+                        <div class="input-group">
+  
+                            <!-- declaration for first field -->
+                            <% const date = bill.Bill_Date.toDateString()%> 
+                            <input type="text" class="form-control mt-3
                                     input-sm"  placeholder="<%=date %> " name="" disabled />
-                                </div>
-                                <div class="form-group col-md-6 text-left">
-                                  <h6 class="text-left">Bill Amount</h6>
-                                  <input type="text" class="form-control
-                                    input-sm" placeholder="<%=bill.Bill_Amount%> EGP" name="" disabled />                              
-                              </div>
-                              
-                              </div>
-
-                        <div class="form-outline"> 
-                            <h6 class="text-left">Bill Status</h6>
+                      
+                            <!-- reducong the gap between them to zero -->
+                            <span class="input-group-btn" 
+                                style="width:10px;"></span>
+                      
+                            <!-- declaration for second field -->
+                            <input type="text" class="form-control mt-3
+                                    input-sm" placeholder="<%=bill.Bill_Amount%> EGP" name="" disabled />
+                        </div>
 
                             <input type="text" class="form-control mt-3" placeholder="<%=bill.Bill_status%> " name="" disabled> 
                         </div>
@@ -567,7 +565,7 @@ p {
                                                <input hidden value="<%=bill._id%>" name="BillId">
                                               <input hidden value="<%=bill.Bill_Amount%>" name="Bill_Amount">
                                               <input hidden value="<%=bill.Appoinment_Id._id%>" name="AppoId">
-                                              <input hidden value="<%=bill.Doc_id._id%>" name="DocId">
+                                              <input hidden value="<%=bill.Doc_Id._id%>" name="DocId">
                                               <!-- <input hidden value="bill.Pat_id._id%>" name="PatId"> -->
                                               </div>
                                           </div> 
@@ -582,7 +580,7 @@ p {
                                 <input hidden value="<%=bill._id%>" name="BillId">
                                 <input hidden value="<%=bill.Bill_Amount%>" name="Bill_Amount">
                                 <input hidden value="<%=bill.Appoinment_Id._id%>" name="AppoId">
-                                <input hidden value="<%=bill.Doc_id._id%>" name="DocId">
+                                <input hidden value="<%=bill.Doc_Id._id%>" name="DocId">
                                <div class="px-5 mt-5"> <div class="inputbox"> 
                                    <input type="text" name="Pay_PayPal_Email" class="form-control" required="required" autocomplete="off"> 
                                    <span>Paypal Email Address</span> 
@@ -601,7 +599,7 @@ p {
                                         <input hidden value="<%=bill._id%>" name="BillId">
                                         <input hidden value="<%=bill.Bill_Amount%>" name="Bill_Amount">
                                         <input hidden value="<%=bill.Appoinment_Id._id%>" name="AppoId">
-                                        <input hidden value="<%=bill.Doc_id._id%>" name="DocId">
+                                        <input hidden value="<%=bill.Doc_Id._id%>" name="DocId">
                                 <div class="form mt-3">
 
                                     <div class="inputbox">   

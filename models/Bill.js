@@ -9,7 +9,7 @@ const BillSchema = new mongoose.Schema({
   },
   Bill_Amount: { type: Number, required: true },
   Bill_status: { type: String, required: false, default: "Not Paid" },
-  Pat_id: {
+  Pat_Id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Patient",
     required: true,
@@ -20,7 +20,7 @@ const BillSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  Doc_id: {
+  Doc_Id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Doctor",
     required: true,

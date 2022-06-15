@@ -78,11 +78,11 @@ app.use(cookieParser());
 
 app.get("/", async (req, res) => {
   const countDoc = await Docter.countDocuments({});
-  console.log("User " + countDoc);
+  console.log("Doctors " + countDoc);
   const countPhar = await Pharmacy.countDocuments({});
   console.log("Pharmacy " + countPhar);
   const countUser = await Patient.countDocuments({});
-  console.log("Doctors " + countUser);
+  console.log("User " + countUser);
   res.render("home.ejs", {
     userCont: countUser,
     Phar: countPhar,

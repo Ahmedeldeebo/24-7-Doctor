@@ -542,9 +542,9 @@ router.post("/booking", authorization, async (req, res) => {
   // for (day in available_days) {
   //   // dateObject = new Date(day);
   //   // day = dateObject.getDay();
-  //   if (day === 0) 
+  //   if (day === 0)
   //   availableStringDays.push("Sunday");
-  //   else 
+  //   else
   //   availableStringDays.push("Monday");
   // }
 
@@ -853,18 +853,17 @@ router.get("/noificationSystem", authorization, async (req, res) => {
 //----------------------------- End Notification--------------------------------------------------------------
 
 //-----------------------------Start View bills--------------------------------------------------------------
-router.post("/ViewBill", authorization, async (req, res) => {
+router.post("/ViewBill", authorization, async (req, res, next) => {
   const id = res.locals.user.id;
   const appo_Id = req.body.Appo_Id;
-
   const user = await User.findById(id);
+  const name = user.pat_FirstName;
+
   const appoBill = await Bill.findOne({ Appoinment_Id: appo_Id })
-    .populate("Pat_id")
-    .populate("Doc_id")
+    .populate("Pat_Id")
+    .populate("Doc_Id")
     .populate("Appoinment_Id");
   // console.log(appoBill);
-  // console.log(user);
-  const name = user.pat_FirstName;
   //--Notification
 
   const checkUpList = await Prescription.find({
@@ -948,8 +947,8 @@ router.post("/payment-visa", authorization, async (req, res) => {
   const DocId = body.DocId;
   const PayAmount = body.Bill_Amount;
   const appoBill = await Bill.findOne({ Appoinment_Id: AppoId })
-    .populate("Pat_id")
-    .populate("Doc_id")
+    .populate("Pat_Id")
+    .populate("Doc_Id")
     .populate("Appoinment_Id");
   const user = await User.findById(id);
   const name = user.pat_FirstName;
@@ -1020,8 +1019,8 @@ router.post("/payment-paypal", authorization, async (req, res) => {
   const DocId = body.DocId;
   const PayAmount = body.Bill_Amount;
   const appoBill = await Bill.findOne({ Appoinment_Id: AppoId })
-    .populate("Pat_id")
-    .populate("Doc_id")
+    .populate("Pat_Id")
+    .populate("Doc_Id")
     .populate("Appoinment_Id");
   const user = await User.findById(id);
   const name = user.pat_FirstName;
@@ -1090,8 +1089,8 @@ router.post("/payment-vodcash", authorization, async (req, res) => {
   const DocId = body.DocId;
   const PayAmount = body.Bill_Amount;
   const appoBill = await Bill.findOne({ Appoinment_Id: AppoId })
-    .populate("Pat_id")
-    .populate("Doc_id")
+    .populate("Pat_Id")
+    .populate("Doc_Id")
     .populate("Appoinment_Id");
   const user = await User.findById(id);
   const name = user.pat_FirstName;
