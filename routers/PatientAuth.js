@@ -288,9 +288,9 @@ router.get("/profile-home", authorization, async (req, res, next) => {
     subject: "Ckeck Up Reminder", // Subject line
     // text: "You need to ckeck Up with your Doctor",
     html: `<h2 style=" text-transform: capitalize">Hello ${name}!</h2>
-        <h4>You need to ckeck Up with your Doctor</h4>
+        <h4>You need to check up with your Doctor</h4>
         <p>Doctor Name: Dr.<b>${checkUpListtt.Doc_Id.Doc_FirstName}</b></p>
-        <p>Ckeck Up Date: <b>${checkUpListtt.CheckUpDay.toDateString()}</b></p>
+        <p>Check-up Date: <b>${checkUpListtt.CheckUpDay.toDateString()}</b></p>
         <p>Have a nice day!</p>`, // plain text body
     // send mail with defined transport object
   };
