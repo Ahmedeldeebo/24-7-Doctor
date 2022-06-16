@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
-    <title>Update Schedule</title>
+    <title>Set Schedule</title>
 
     <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
@@ -23,6 +23,23 @@ input {
     padding: 10px 15px !important;
 
 }
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    background-image: url("https://i.imgur.com/yxGld6F.png");
+
+  /* Full height */
+  height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 
 </style>
 
@@ -30,56 +47,62 @@ input {
 
 
 
-            <div class="container rounded bg-white mt-5 mb-5 mt-5">
+            <div class="container-fluid">
                 <div class="row">
                        <div class="col-md-3 border-right">
                     </div>
-                     <div class="col-md-5 border-right">
+                     <div class="col-md-5 border-right bg-white">
                         <div class="p-3 py-5">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h4 class="text-right">Schedule Settings</h4>
+                                <h4 class="text-center">Set Schedule</h4>
                            </div>
-<form action="http://localhost:5000/doctor/UpdateSchedule" method="POST" ><div class="row mt-3">
-  
- <label >Available Days</label>
+<form action="http://localhost:5000/doctor/UpdateSchedule" method="POST" ><div class="row">
+  <div class="container-fluid">
+
+ <label><strong>Available Days</strong></label>
 
  <!-- <input class="form-control" type="text" value="01/01/2022 - 01/15/2022" name="Available_Days" readonly /> -->
 
  <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="Saturday" id="flexCheckDefault" name="Available_Days" />
-  <label class="form-check-label" for="flexCheckDefault">Saturday</label>
+  <input class="form-check-input" type="checkbox" value="Saturday" id="Saturday" name="Available_Days" />
+  <label class="form-check-label" for="Saturday">Saturday</label>
 </div>
+
 <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="Sunday" id="flexCheckDefault" name="Available_Days" />
-  <label class="form-check-label" for="flexCheckDefault">Sunday</label>
+  <input class="form-check-input" type="checkbox" value="Sunday" id="Sunday" name="Available_Days" />
+  <label class="form-check-label" for="Sunday">Sunday</label>
 </div>
+
 <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="Monday" id="flexCheckDefault" name="Available_Days"  />
-  <label class="form-check-label" for="flexCheckDefault">Monday</label>
+  <input class="form-check-input" type="checkbox" value="Monday" id="Monday" name="Available_Days"  />
+  <label class="form-check-label" for="Monday">Monday</label>
 </div>
+
 <div class="form-check">
   <input class="form-check-input" type="checkbox" value="Tuesday" id="flexCheckDefault" name="Available_Days" />
   <label class="form-check-label" for="flexCheckDefault">Tuesday</label>
 </div>
+
 <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="Wednesday" id="flexCheckDefault" name="Available_Days" />
-  <label class="form-check-label" for="flexCheckDefault">Wednesday</label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" value="Thursday" id="flexCheckDefault" name="Available_Days"  />
-  <label class="form-check-label" for="flexCheckDefault">Thursday</label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" value="Friday" id="flexCheckDefault" name="Available_Days"  />
-  <label class="form-check-label" for="flexCheckDefault">Friday</label>
+  <input class="form-check-input" type="checkbox" value="Wednesday" id="Wednesday" name="Available_Days" />
+  <label class="form-check-label" for="Wednesday">Wednesday</label>
 </div>
 
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="Thursday" id="Thursday" name="Available_Days"  />
+  <label class="form-check-label" for="Thursday">Thursday</label>
+</div>
 
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="Friday" id="Friday" name="Available_Days"  />
+  <label class="form-check-label" for="Friday">Friday</label>
+</div>
 
-   <br>
-   <br>
+</div>
 
-   <label for="exampleDataList" class="form-label" >Time-Period</label>
+   
+
+   <div class="container-fluid mt-3">
+    <label for="exampleDataList" class="form-label m"><strong>Time-Period</strong></label>
     <input class="form-control" list="Time-Period" id="exampleDataList" placeholder="From --:--am till --:--pm"name="Start_Time">
     <datalist id="Time-Period">
       <option value="All day">
@@ -88,10 +111,14 @@ input {
       <option value="Enter your own">Enter your own</option>
     </datalist>
 
-    <br>
-    <br>
+  </div>
 
-    <label for="exampleDataList" class="form-label">Patients per-day</label>
+    
+    
+
+
+<div class="container-fluid mt-3">
+    <label for="exampleDataList" class="form-label"><strong>Patients per-day</strong></label>
     <input class="form-control" list="Patients per-day" id="exampleDataList" placeholder="Type to search..." name="Meeting_Maximum_Patient">
     <datalist id="Patients per-day">
       <option value="10">10</option>
@@ -100,36 +127,35 @@ input {
       <option value="Enter your own">Enter your own</option>
     </datalist>
 
-    <br>
-    <br>
-
-    <label for="exampleDataList" class="form-label">Available methods</label>
-    <!-- <input class="form-control" list="Available methods" id="exampleDataList" placeholder="Type to search..." name="Available_Days">
-        <datalist id="Available methods">
-      <option value="Zoom Meeting">
-      <option value="WhatsApp">
-      <option value="Face to Face">
-    </datalist> -->
-
-
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" value="Zoom Meeting" id="flexCheckDefault" name="Available_methods" />
-  <label class="form-check-label" for="flexCheckDefault">Zoom Meeting</label>
+    
+    
 </div>
+
+    <div class="container-fluid mt-3">
+    <label for="exampleDataList" class="form-label"><strong>Available methods</strong></label>
+
 <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="WhatsApp" id="flexCheckDefault" name="Available_methods" />
-  <label class="form-check-label" for="flexCheckDefault">WhatsApp</label>
+  <input class="form-check-input" type="checkbox" value="Zoom Meeting" id="Zoom Meetin" name="Available_methods" />
+  <label class="form-check-label" for="Zoom Meetin">Zoom Meeting</label>
 </div>
+
 <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="Face to Face" id="flexCheckDefault" name="Available_methods"  />
-  <label class="form-check-label" for="flexCheckDefault">Face to Face</label>
+  <input class="form-check-input" type="checkbox" value="WhatsApp" id="WhatsApp" name="Available_methods" />
+  <label class="form-check-label" for="WhatsApp">WhatsApp</label>
+</div>
+
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="Face to Face" id="Face to Face" name="Available_methods"  />
+  <label class="form-check-label" for="Face to Face">Face to Face</label>
 </div>
 
 
-    <br>
-    <br>
+    
+    
+</div>
 
-    <label for="exampleDataList" class="form-label">Average Waiting-Time</label>
+<div class="container-fluid mt-3">
+    <label for="exampleDataList" class="form-label"><strong>Average Waiting-Time</strong></label>
     <input class="form-control" list="Average Waiting-Time" id="exampleDataList" placeholder="Type to search..." name="AveWating_Time">
     <datalist id="Average Waiting-Time">
       <option value="1 Hour">
@@ -138,11 +164,13 @@ input {
       <option value="Less than 1 Hour">
       <option value="More than 3 Hours">
     </datalist>
+    </div>
 
-    <br>
-    <br>
+    
+    
 
-    <label for="exampleDataList" class="form-label">Upfront Fees</label>
+<div class="container-fluid mt-3">
+    <label for="exampleDataList" class="form-label"><strong>Upfront Fees</strong></label>
     <input class="form-control" list="Upfront Fees" id="exampleDataList" placeholder="Type to search..." name="Upfront_fees">
     <datalist id="Upfront Fees">
       <option value="150 EGP">
@@ -151,9 +179,11 @@ input {
       <option value="300 EGP">
       <option value="Enter your own">
     </datalist>
+  </div>
+
 </div>
 
-                             <div class="mt-5 text-center">
+                             <div class="mt-5 text-center mb-5">
                               <button class="btn btn-success profile-button" type="submit">Submit Schedule</button>
                               <button class="btn btn-outline-danger" type="submit">Skip</button>
                             </div>
