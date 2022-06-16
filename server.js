@@ -174,6 +174,13 @@ app.get("/logOut", authorization, (req, res) => {
 // });
 // //------------------------------------End Prescription History--------------------------------------------------------
 
+
+///------------------------------------Doctor Prescription History--------------------------------------------------------
+app.get("/SetDocSche", (req, res) => {
+  res.render("Doc/SetDocSche.ejs");
+});
+// //------------------------------------End Prescription History--------------------------------------------------------
+
 app.get("*", (req, res) => {
   res.render("404.ejs", { title: "404" });
 });

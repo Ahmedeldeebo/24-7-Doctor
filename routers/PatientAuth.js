@@ -55,7 +55,7 @@ router.post("/register", async (req, res) => {
     //  const savedUser = await NewUser.save();
     //  console.log(NewUser);
 
-    res.render("signIn.ejs", { Message: "Account Created Successfully" });
+    res.render("signIn.ejs", { errorMessage:"", Message: "Account Created Successfully" });
   } catch (e) {
     console.log(e.message);
   }
