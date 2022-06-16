@@ -65,7 +65,8 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ Pat_username: req.body.Pat_username });
-    !user && res.render("signIn.ejs", { errorMessage: "Wrong email" });
+    !user &&
+      res.render("signIn.ejs", { errorMessage: "Wrong email", Message: "" });
     //res.Status(401).json("Wrong credentials!");
     const hashedPassword = CryptoJS.AES.decrypt(
       user.pat_password,
@@ -74,7 +75,7 @@ router.post("/login", async (req, res) => {
     const Originalpassword = hashedPassword.toString(CryptoJS.enc.Utf8);
 
     Originalpassword !== req.body.pat_password &&
-      res.render("signIn.ejs", { errorMessage: "Wrong password" });
+      res.render("signIn.ejs", { errorMessage: "Wrong password", Message: "" });
     // res.status(401).json("Wrong credentials!");
 
     const accessToken = jwt.sign(
@@ -275,12 +276,12 @@ router.get("/profile-home", authorization, async (req, res, next) => {
       _id: -1,
     })
     .populate("Doc_Id");
-  const checkDayUpdate = checkUpListtt.CheckUpDay.toDateString();
-  const date = new Date();
-  const dataStr = date.toDateString();
-  const resultt = checkUpListt.filter(
-    (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
-  );
+  // const checkDayUpdate = checkUpListtt.CheckUpDay.toDateString();
+  // const date = new Date();
+  // const dataStr = date.toDateString();
+  // const resultt = checkUpListt.filter(
+  //   (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
+  // );
   // let masgEmail = {
   //   from: `"Doctor 24/7" <${process.env.MAIL_USER}`, // sender address
   //   to: `${email}`, // list of receivers
