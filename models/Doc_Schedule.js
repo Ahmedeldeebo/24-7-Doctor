@@ -10,7 +10,6 @@ const Doc_scheduleSchema = new mongoose.Schema({
   Doctor_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Doctor",
-    unique: true,
     required: true,
   },
 });
