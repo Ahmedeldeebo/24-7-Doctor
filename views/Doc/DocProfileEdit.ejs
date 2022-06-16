@@ -60,7 +60,7 @@
   </style>
   <body>
     <!--Start Hader-->
-    - include ('../partials/NavDoc.ejs') 
+    <%- include ('../partials/NavDoc.ejs') %>
     <!--End Hader-->
 
     <body>
@@ -87,26 +87,27 @@
                       </div>
                       <form action="http://localhost:5000/doctor/DocProfileEdit" method="post">
                       <div class="row mt-2">
-                          <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="" value="- name " name= "Doc_FirstName"></div>
+                          <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="" value="<%- name %>" name= "Doc_FirstName"></div>
 
-                          <div class="col-md-6"><label class="labels">Last name</label><input type="text" class="form-control" placeholder="" value="=user.Doc_Lastname" name="Doc_Lastname"></div>
+                          <div class="col-md-6"><label class="labels">Last name</label><input type="text" class="form-control" placeholder="" value="<%=user.Doc_Lastname%>" name="Doc_Lastname"></div>
                       </div>
 
                       <div class="row mt-3">
                         <!-- <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" placeholder="user.Doc_Email%>" value=""></div> -->
                           <label for="exampleDataList" class="form-label col-md-12">Email</label>
-                          <input class="form-control col-md-12" list="" id="exampleDataList" value="=user.Doc_Email" name="Doc_Email">
+                          <input class="form-control col-md-12" list="" id="exampleDataList" value="<%=user.Doc_Email%>" name="Doc_Email">
 
                           <br></br>
 
                           <!-- <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control" placeholder="Enter phone number" value=""></div> -->
                           <label for="exampleDataList" class="form-label col-md-12">Mobile Number</label>
-                          <input class="form-control col-md-12" list="" id="exampleDataList" value="=user.Doc_TelNo" name="Doc_TelNo">
+                          <input class="form-control col-md-12" list="" id="exampleDataList" value="<%=user.Doc_TelNo%>" name="Doc_TelNo">
 
                           <br></br>
 
                           <label for="exampleDataList" class="form-label col-md-12">WhatsApp Number</label>
-                          <input class="form-control col-md-12" list="" id="exampleDataList" value="" name="Doc_Whats">
+                          <input class="form-control col-md-12" list="" id="exampleDataList" value="" name="Doc_TelNoWhatsapp
+                          ">
 
                           <br></br>
 
@@ -116,8 +117,8 @@
 
                           <!-- <div class="col-md-12"><label class="labels">Area</label><input type="text" class="form-control" placeholder="Enter area" value=""></div> -->
                             <label for="exampleDataList" class="form-label col-md-12"> City </label>
-                            <select class="form-control col-md-12" name="city" id="slct1" onchange="populate(this.id, 'slct2')" value="=user.city">
-                              <option value="=user.city">=user.city</option>
+                            <select class="form-control col-md-12" name="city" id="slct1" onchange="populate(this.id, 'slct2')" value="<%=user.city%>">
+                              <option value="<%=user.city%>"><%=user.city%></option>
                               <option value="Cairo">Cairo</option>
                               <option value="Giza">Giza</option>
                               <option value="Alexandria">Alexandria
