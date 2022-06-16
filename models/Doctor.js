@@ -16,6 +16,11 @@ const DoctorSchema = new mongoose.Schema(
       required: false,
       default: "Enter your Phone Number",
     },
+    Doc_TelNoWhatsapp: {
+      type: String,
+      required: false,
+      default: "Enter your Phone Number",
+    },
     city: { type: String, required: false, default: "Enter your city" },
     addres_details: {
       type: String,
