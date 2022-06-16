@@ -140,7 +140,9 @@ router.get("/doctorview", authorization, async (req, res) => {
   const id = res.locals.user.id;
   const user = await Patient.findById(id);
   const name = user.pat_FirstName;
-  const scheduleList = await DocSche.find({}).populate("Doctor_id");
+  const scheduleList = await DocSche.find({})
+    .populate("Doctor_id")
+    .sort({ _id: -1 });
   // const result = scheduleList.filter(
   //   (schedule) => schedule.Meeting_Maximum_Patient > 0
   // );
@@ -179,7 +181,9 @@ router.post("/doctorview", authorization, async (req, res) => {
   const name = user.pat_FirstName;
   const SpecName = req.body.SpecName;
 
-  let scheduleList = await DocSche.find().populate("Doctor_id");
+  let scheduleList = await DocSche.find()
+    .populate("Doctor_id")
+    .sort({ _id: -1 });
   const result = scheduleList.filter(
     (schedule) => schedule.Doctor_id.Specialization_Name === SpecName
     //&& schedule.Meeting_Maximum_Patient > 0
@@ -789,7 +793,7 @@ router.post("/WriteBill-post", authorization, async (req, res, next) => {
 router.get("/DoctorSchedule", authorization, async (req, res) => {
   const DocID = res.locals.user.id;
   const user = await User.findById(DocID);
-  const shce = await DocSche.findOne({ Doctor_id: DocID });
+  const shce = await DocSche.findOne({ Doctor_id: DocID }).sort({ _id: -1 });
   const DocUser = await User.findById(DocID);
   // console.log(user);
   const name = user.Doc_FirstName;
