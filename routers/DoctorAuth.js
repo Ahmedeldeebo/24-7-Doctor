@@ -41,29 +41,54 @@ router.post("/Doctor-register", async (req, res) => {
     });
     const savedUser = await NewUser.save();
     console.log(NewUser);
-  } catch (err) {
+    // const id = NewUser._id;
+    const id = encodeURIComponent(NewUser._id);
+    console.log(id);
+    return res
+      .cookie("id", id, {
+        httpOnly: true,
+      })
+      .redirect("/doctor/SetDocSche");
+  } catch (e) {
+    console.log(e.message);
     res.render("./Doc/DocSignup.ejs", { errorMessage: "Something is missing" });
   }
-
-  try {
-    const savedUser = await NewUser.save();
-    console.log(NewUser);
-  } catch (err) {
-    res.render("./Doc/signInDoc.ejs", {
-      errorMessage: "Account Created Successfully",
-    });
-  }
-  try {
-    // const savedUser = await NewUser.save();
-    // console.log(NewUser);
-    res.render("signIn.ejs", {
-      errorMessage: "Credentials already in use",
-    });
-  } catch (err) {
-    console.log(err);
-  }
 });
+///------------------------------------Doctor Prescription History--------------------------------------------------------
+router.get("/SetDocSche", (req, res) => {
+  res.render("./Doc/SetDocSche.ejs");
+});
+router.post("/SetDocSche", async (req, res) => {
+  console.log(req.body);
+  let id = req.headers.cookie;
+  id = id.slice(3, id.length);
+  console.log(id);
+  const user = await User.findById(id);
+  try {
+    const UpdateDoc = new DocSche({
+      Meeting_Maximum_Patient: req.body.Meeting_Maximum_Patient,
+      Start_Time: req.body.Start_Time,
+      AveWating_Time: req.body.AveWating_Time,
+      Available_Days: req.body.Available_Days,
+      Doctor_Date: req.body.Doctor_Date,
+      Upfront_fees: req.body.Upfront_fees,
+      Available_methods: req.body.Available_methods,
+      Doctor_id: id,
+    });
+
+    const SavadUpdateDoc = await UpdateDoc.save();
+    console.log(SavadUpdateDoc);
+  } catch (e) {
+    console.log(e.message);
+  }
+  res.clearCookie("id").render("./Doc/signInDoc.ejs", {
+    errorMessage: "Account Created Successfully",
+  });
+});
+// //------------------------------------End Prescription History--------------------------------------------------------
+
 //-------------------------------------------- End Register---------------------------------------------
+
 //-------------------------------------------- Login ---------------------------------------------------
 router.post("/Docter-login", async (req, res) => {
   try {
@@ -140,9 +165,7 @@ router.get("/doctorview", authorization, async (req, res) => {
   const id = res.locals.user.id;
   const user = await Patient.findById(id);
   const name = user.pat_FirstName;
-  const scheduleList = await DocSche.find({})
-    .populate("Doctor_id")
-    .sort({ _id: -1 });
+  const scheduleList = await DocSche.find({}).populate("Doctor_id");
   // const result = scheduleList.filter(
   //   (schedule) => schedule.Meeting_Maximum_Patient > 0
   // );
@@ -419,36 +442,19 @@ router.post("/UpdateSchedule", authorization, async (req, res, next) => {
   const name = user.Doc_FirstName;
   const email = user.Doc_Email;
   try {
-    const UpdateDoc = new DocSche({
-      Meeting_Maximum_Patient: req.body.Meeting_Maximum_Patient,
-      Start_Time: req.body.Start_Time,
-      AveWating_Time: req.body.AveWating_Time,
-      Available_Days: req.body.Available_Days,
-      Doctor_Date: req.body.Doctor_Date,
-      Upfront_fees: req.body.Upfront_fees,
-      Available_methods: req.body.Available_methods,
-      Doctor_id: id,
-    });
-
-    const SavadUpdateDoc = await UpdateDoc.save();
-    console.log(SavadUpdateDoc);
+    const updateDocSche = await DocSche.findOneAndUpdate(
+      { Doctor_id: id },
+      {
+        $set: req.body,
+      },
+      { new: true }
+    );
+    console.log(updateDocSche);
   } catch (e) {
     console.log(e.message);
-  }
-  // try {
-  //   const updateDocSche = await DocSche.findOneAndUpdate(
-  //     { Doctor_id: id },
-  //     {
-  //       $set: req.body,
-  //     },
-  //     { new: true }
-  //   );
-  //   console.log(updateDocSche);
-  // } catch (e) {
-  //   console.log(e.message);
 
-  //   res.redirect("/doctor/UpdateSchedule");
-  // }
+    res.redirect("/doctor/UpdateSchedule");
+  }
   //--Notification
   const appo = await Appo.find({ Doc_Id: id })
     .populate("Pat_Id")
@@ -571,8 +577,7 @@ router.get("/ManageAppointments", authorization, async (req, res, next) => {
   // const email = user.Doc_Email;
   const appoo = await Appo.find({ Doc_Id: id })
     .populate("Doc_Id")
-    .populate("Pat_Id")
-    .sort({ _id: -1 });
+    .populate("Pat_Id");
   // console.log(user);
   // console.log(appo);
   //--Notification
