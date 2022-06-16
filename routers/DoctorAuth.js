@@ -785,5 +785,31 @@ router.post("/WriteBill-post", authorization, async (req, res, next) => {
   });
 });
 //-------------------------------------------- End Doctor Write Bill---------------------------------------------------
+///------------------------------------Start View Shedule--------------------------------------------------------
+router.get("/DoctorSchedule", authorization, async (req, res) => {
+  const DocID = res.locals.user.id;
+  const user = await User.findById(DocID);
+  const shce = await DocSche.findOne({ Doctor_id: DocID });
+  const DocUser = await User.findById(DocID);
+  // console.log(user);
+  const name = user.Doc_FirstName;
+  //--Notification
+  const appo = await Appo.find({ Doc_Id: DocID })
+    .populate("Pat_Id")
+    .populate("Doc_Id")
+    .sort({ _id: -1 })
+    .limit(5);
+  const number = await Appo.countDocuments({ Doc_Id: DocID });
+  console.log(number);
+  res.render("./Doc/DocViewSche.ejs", {
+    name: name,
+    errorMessage: "",
+    DocUser: user,
+    appo: appo,
+    number: number,
+    shce: shce,
+  });
+});
+//------------------------------------EndView Shedule--------------------------------------------------------
 
 module.exports = router;

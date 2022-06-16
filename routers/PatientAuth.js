@@ -1177,4 +1177,43 @@ router.post("/notification-details", authorization, async (res, req) => {
 
 //-----------------------------End Notification Method--------------------------------------------------------------
 
+///------------------------------------Start Prescription History--------------------------------------------------------
+router.get("/PresHistory", authorization, async (req, res) => {
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  const name = user.pat_FirstName;
+  const history = await Prescription.find({ Pat_id: id });
+  // console.log(history);
+  //--Notification
+
+  const checkUpList = await Prescription.find({
+    Pat_id: id,
+  });
+
+  const date = new Date();
+  const dataStr = date.toDateString();
+  const result = checkUpList.filter(
+    (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
+  );
+
+  // console.log(result);
+  const appo = await Appo.find({ Pat_Id: id })
+    .populate("Pat_Id")
+    .populate("Doc_Id")
+    .sort({ _id: -1 })
+    .limit(5);
+  const number = await Appo.countDocuments({ Pat_Id: id });
+  console.log(number);
+
+  res.render("./Patient/PresHistory.ejs", {
+    name: name,
+    number: number,
+    appo: appo,
+    errorMessage: "",
+    Message: "",
+    result: result,
+    prse: history,
+  });
+});
+//------------------------------------End Prescription History--------------------------------------------------------
 module.exports = router;

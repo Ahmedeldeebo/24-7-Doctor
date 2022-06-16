@@ -73,7 +73,7 @@
 
   <body>
     <!--Start Header-->
-    - include ('../partials/navHome.ejs') 
+   <%- include ('../partials/navHome.ejs') %>
     <!--End Header-->
 
     <div class="container mt-5" id="container">
@@ -106,7 +106,7 @@
           <!-------------------------------------------END HEADERS -------------------------------------------------->
 
           <!-------------------------------------------START FIRST ROW  -------------------------------------------------->
-          appoo.forEach(appoo=>{
+          <%prse.forEach(prse=>{%>
       
           <div
             class="d-md-flex d-sm-block justify-content-md-between justify-content-sm-center text-center border-bottom border-2 my-2 bg-light p-2 rounded-3"
@@ -115,20 +115,24 @@
               class="col-md-2 text-sm-center text-md-start align-self-center my-2 text"
             >
               <!-- <h1 class="h6">=appoo.createdAt%></h1> -->
-               let date =appoo.createdAt.toDateString(); 
-              <h1 class="h6">=date</h1>
+               <%  let date =prse.Pres_Arrival_Date.toDateString(); %>
+              <h1 class="h6"><%=date %></h1>
             </div>
 
-
+   
 
             <div
               class="col-md-2 text-sm-center text-md-start align-self-center my-2"
             >
-            <form action="http://localhost:5000/patient/viewappoint" method="post">
+            <form action="" method="post">
               <input hidden value="=appoo._id " name="Appo_Id">
-              <button class="btn btn-outline-dark w-100" type="submit">Details</button>
+              <button class="btn btn-outline-dark w-100" type="">Details</button>
             <!-- <a class="btn btn-outline-dark w-100" href="http://localhost:5000/patient/AppDetails">Details</a> -->
           </form>
+          </div>
+        </div>
+          <%})%>
+      
               <!--  NORMAL DETAILS BUTTON <a href="#demo" class="btn btn-outline-dark w-100" type="button" data-toggle="collapse">Details</a>  --> 
 
               <!--  POP OVER - WORKING FINE  -->
@@ -159,7 +163,7 @@
             </div>
 
           </div>
-          })
+          
 
           <!-------------------------------------------END FIRST ROW  -------------------------------------------------->
 

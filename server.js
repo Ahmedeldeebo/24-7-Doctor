@@ -157,23 +157,22 @@ app.get("/logOut", authorization, (req, res) => {
 //------------------------------------logOut end--------------------------------------------------------
 
 ///------------------------------------Doctor Profile Update--------------------------------------------------------
-app.get("/DoctorUpdate", (req, res) => {
-  res.render("Doc/DocProfileEdit.ejs")
-});
+// app.get("/DoctorUpdate", (req, res) => {
+//   res.render("Doc/DocProfileEdit.ejs")
+// });
 //------------------------------------End Doctor Profile Update--------------------------------------------------------
 
-///------------------------------------Doctor Prescription History--------------------------------------------------------
-app.get("/PresHistory", (req, res) => {
-  res.render("Patient/PresHistory.ejs")
-});
-//------------------------------------End Prescription History--------------------------------------------------------
+// ///------------------------------------Doctor Prescription History--------------------------------------------------------
+// app.get("/PresHistory", (req, res) => {
+//   res.render("Patient/PresHistory.ejs")
+// });
+// //------------------------------------End Prescription History--------------------------------------------------------
 
 ///------------------------------------Doctor Prescription History--------------------------------------------------------
-app.get("/DoctorSchedule", (req, res) => {
-  res.render("Doc/DocViewSche.ejs")
-});
-//------------------------------------End Prescription History--------------------------------------------------------
-
+// app.get("/DoctorSchedule", (req, res) => {
+//   res.render("Doc/DocViewSche.ejs");
+// });
+// //------------------------------------End Prescription History--------------------------------------------------------
 
 app.get("*", (req, res) => {
   res.render("404.ejs", { title: "404" });
