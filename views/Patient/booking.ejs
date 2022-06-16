@@ -1,260 +1,181 @@
-<!doctype html>
-<html>
-    <head>
-      
-        <meta charset='utf-8'>
-        <meta name='viewport' content='width=device-width, initial-scale=1'>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
 
-        <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
-        <title>Appointment</title>
+    <title>Appointment</title>
 
-        <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css' rel='stylesheet'>
-        <link href='https://use.fontawesome.com/releases/v5.7.2/css/all.css' rel='stylesheet'>
-        <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-        <script src="https://kit.fontawesome.com/ff8698dfe7.js" crossorigin="anonymous"></script>
-        <style>
-          @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
+
+    <script src="https://kit.fontawesome.com/ff8698dfe7.js" crossorigin="anonymous"></script>
+</head>
+
+<style>
+     @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
+
+
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    list-style: none;
     font-family: 'Montserrat', sans-serif;
 }
-.c {
-  text-transform: capitalize;
+.center-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 15vh;
+
 }
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    background-image: url("https://i.imgur.com/yxGld6F.png");
 
+  /* Full height */
+  height: 100%; 
 
-body {
-    background-image: url("https://ngarp5kyrr3cbssa6oxan1aa-wpengine.netdna-ssl.com/wp-content/uploads/2019/03/doctor.jpg");
-    width: 100%;
-    height: 100%;
-    background-position: center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-     background-size: cover;
-    position: relative;
-    
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-
-.container {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-p {
-    margin: 0px;
-}
-
-.heading {
-    cursor: pointer;
-}
-
-/* .callback {
-    padding: 70px;
-    background: #007CC7;
-    color: white;
-    
-} */
-
-.callback .fa-solid.fa-heart-pulse {
+.fa-solid.fa-heart-pulse {
     font-size: 70px;
     color: #c42c2c;
     padding-bottom: 10px;
 }
-
-.callback .h-1 {
-    font-size: 38px;
-    font-weight: 500;
+.center {
+  margin: auto;
+  width: 60%;
+  padding: 90px 0;
+  text-align:  center;
+  min-height: 70vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.callback .p-1 {
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 10px;
+#middle {
+  font-size: 50px;
+  font-family:'AmstelvarAlpha';
+  font-weight: bold;
 }
 
-.callback .btn.btn-primary {
-    font-size: 12px;
-    background: #2845BA;
-    border-radius: 0px;
-    width: 130px;
-    height: 50px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+#para {
+    font-size: 35px;
+    text-align: center;
+    margin-top: 36vh;
+    font-weight: lighter;
 }
-
-.callback .btn.btn-primary:hover {
-    background-color: #3f59c0;
+#but{
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 49%;
+  margin: -25px 0 0 -25px;
+  margin-top: 5%;
 }
+</style>
 
-.callback .form-control {
-    width: 200px;
-    height: 50px;
-    box-shadow: none;
-}
+<body>
+             <!--Start Hader-->
+             <%- include ('../partials/navHome.ejs') %>
+             <!--End Hader-->
 
-::placeholder {
-    font-size: 12px;
-    color: black !important;
-    font-weight: 600;
-}
 
-@media (max-width:500px) {
-    body {
-        padding: 20px 0;
 
-    }
+             <div class="center" id="middle">
+                <span class="fa-solid fa-heart-pulse"></span>
+                <p>Appointment Booking</p>
+             </div>
+             <p id="para">Fill in the following</p>
 
-    .callback .form-control {
-        width: 100%;
-        height: 50px;
-        margin-bottom: 15px;
-    }
+             <div class="container-fluid">
+                <form action="http://localhost:5000/patient/booking-Create" method="post">
+    <div class="row row-cols-3 center-screen">
+        <div class="col">
+            <input class="form-control c" type="text" placeholder="Your Name" value="<%=user.pat_FirstName %> ">
+        </div>
 
-    .callback .btn.btn-primary {
-        width: 100%;
-    }
-}
-        </style>
+        <div class="col">
+            <input class="form-control" type="text" placeholder="Phone No.">
+        </div>
+
+        <div class="col">
+                <input class="form-control" type="text" value="<%=user.pat_Email %> "placeholder="Your Email" >
+        </div>
+
         
-        
-        <body>
-         <!--Start Hader-->
-         <%- include ('../partials/navHome.ejs') %>
-         <!--End Hader-->
 
-            <div class="container">
-              <div class="callback d-flex flex-column align-items-center justify-content-center">
-                  <div class="heading d-flex flex-column align-items-center justify-content-center">
-                      <span class="fa-solid fa-heart-pulse"></span>
-                      <p class="h-1">Appointment Booking</p>
-                      <p class="p-1">Fill in the following</p>
-                  </div>
-                  <div class="d-md-flex">
-                      <div class="row">
-                          <div class="col-md-5 col-12 me-md-4 ">
-                              <input class="form-control c" type="text" placeholder="Your Name" value="<%=user.pat_FirstName %> ">
-                          </div>
-                          <div class="col-md-5 col-12 ms-md-1">
-                              <input class="form-control" type="text" placeholder="Phone No.">
-                          </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-5 col-12 me-md-4">
-                            <input class="form-control" type="text" value="<%=user.pat_Email %> "placeholder="Your Email" >
+        
+            <%Sche.forEach(Sche=>{%>
+
+        <div class="col" >
+            <select class="custom-select" name="Methed_of_comm">
+                <option selected>Communication Method</option>
+                <option value="<%=Sche.Available_methods[0]%>"><%=Sche.Available_methods[0]%></option>
+                <option value="<%=Sche.Available_methods[1]%>"><%=Sche.Available_methods[1]%></option>
+                <option value="<%=Sche.Available_methods[2]%>"><%=Sche.Available_methods[2]%></option>
+                    </option>
+              </select>
+        </div>  
+        
+        <div class="col">
+            <select class="custom-select" name="App_visit_day" autocomplete="off">
+                <option selected>Available Days</option>
+                <option value="<%=Sche.Available_Days[0]%>"><%=Sche.Available_Days[0]%></option>
+                    <option value="<%=Sche.Available_Days[1]%>"><%=Sche.Available_Days[1]%></option>
+                    <option value="<%=Sche.Available_Days[2]%>"><%=Sche.Available_Days[2]%></option>
+                    <option value="<%=Sche.Available_Days[3]%>"><%=Sche.Available_Days[3]%></option>
+                    <option value="<%=Sche.Available_Days[4]%>"><%=Sche.Available_Days[4]%></option>
+                    <option value="<%=Sche.Available_Days[5]%>"><%=Sche.Available_Days[5]%></option>
+                    <option value="<%=Sche.Available_Days[6]%>"><%=Sche.Available_Days[6]%></option>
+              </select>
+        </div>
+
+        <%})%>
+        
+        <div class="col">
+            <select class="custom-select" name="App_RegVisit_time">
+                <option selected>Hour of Choice</option>
+                <option value="11:00 AM" disabled>11:00 AM</option>
+                    <option value="12:00 AM" disabled>12:00 AM</option>
+                    <option value="1:00 PM">1:00 PM</option>
+                    <option value="2:00 PM">2:00 PM</option>
+                    <option value="3:00 PM">3:00 PM</option>
+                    <option value="4:00 PM">4:00 PM</option>
+                    <option value="5:00 PM">5:00 PM</option>
+                    <option value="6:00 PM">6:00 PM</option>
+                    <option value="7:00 PM">7:00 PM</option>
+                    <option value="8:00 PM">8:00 PM</option>
+                    <option value="9:00 PM">9:00 PM</option>
+              </select>
+        </div>  
+
+        <div id="but">
+            <input hidden value="<%=Doc._id%>" name="Doc_Id">
+                          <div onclick="showSwal('success-message')">
+                            <button class="btn btn-danger mt-5" type="submit">Book Now</button>
                         </div>
-                    </div>
-
-                      <div class="row">
-                          <form action="http://localhost:5000/patient/booking-Create" method="post">
-                            <%Sche.forEach(Sche=>{%>
-                        <input class="form-control col-12 me-md-4" list="Methods" id="DataList" placeholder="Method of Comm." name="Methed_of_comm"  autocomplete="off">
-                        <datalist id="Methods">
-                          <option value="<%=Sche.Available_methods[0]%>">
-                          <option value="<%=Sche.Available_methods[1]%>">
-                          <option value="<%=Sche.Available_methods[2]%>">
-                          </option>
-                        </datalist>
-                        
-                        <div class="col-md-5 col-12 me-md-4">
-                            <input class="form-control col-md-12" list="Days" id="DataList" placeholder="Day" name="App_visit_day"  autocomplete="off">
-                        <datalist id="Days">
-                            <option value="<%=Sche.Available_Days[0]%>">
-                            <option value="<%=Sche.Available_Days[1]%>">
-                            <option value="<%=Sche.Available_Days[2]%>">
-                            <option value="<%=Sche.Available_Days[3]%>">
-                            <option value="<%=Sche.Available_Days[4]%>">
-                            <option value="<%=Sche.Available_Days[5]%>">
-                            <option value="<%=Sche.Available_Days[6]%>">
-                          
-                            <!-- <option value="Monday">
-                            <option value="Tuesday">
-                            <option value="Wednesday">
-                            <option value="Thursday">
-                            <option value="Friday">
-                            <option value="Saturday"> -->
-                                <%})%>
-                          </option>
-                        </datalist>
-                        </div>  
-                        
-                    </div>
-                    <div class="row ">
-                        <input class="form-control col-12 me-md-4" list="Hours" id="DataList" placeholder="Chosen Hour" name="App_RegVisit_time">
-                        <datalist id="Hours">
-                            <option value="11:00 AM" false>
-                            <option value="12:00 AM">
-                            <option value="1:00 PM">
-                            <option value="2:00 PM">
-                            <option value="3:00 PM">
-                            <option value="4:00 PM">
-                            <option value="5:00 PM">
-                            <option value="6:00 PM">
-                            <option value="7:00 PM">
-                            <option value="8:00 PM">
-                            <option value="9:00 PM">
+            </div>
+        </form>
+        </div>
 
 
-                          </option>
-                        </datalist>
-                    </div>
-                  </div>
-                  <input hidden value="<%=Doc._id%>" name="Doc_Id">
-                      <div onclick="showSwal('success-message')"><button class="btn btn-danger mt-5" type="submit">Book Now</button></div>
-                    </form>
-              </div>
-          </div>
-
-
-
-          </div>
-        </body>
+    </div>
+</div>
         
-        
-      
+
+</body>
 
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
-    
-        </body>
 
-        <script>
-            (function($) {
-  showSwal = function(type) {
-    'use strict';
-     if (type === 'success-message') {
-      swal({
-        title: 'Appointment Scheduled!',
-        text: 'Doctor has been informed and you shall recieve a notification or a call soon',
-        type: 'success',
-        button: {
-          text: "Continue",
-          value: true,
-          visible: true,
-          className: "btn btn-primary"
-          
-        }
-      })
 
-    }else{
-        swal("Error occured !");
-    } 
-  }
-
-})(jQuery);
-        </script>
-
-    </html>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
+</html>
