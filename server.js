@@ -175,11 +175,35 @@ app.get("/logOut", authorization, (req, res) => {
 // //------------------------------------End Prescription History--------------------------------------------------------
 
 
-///------------------------------------Doctor Prescription History--------------------------------------------------------
+///------------------------------------Start Doctor Signup Schedule Set--------------------------------------------------------
 app.get("/SetDocSche", (req, res) => {
   res.render("Doc/SetDocSche.ejs");
 });
-// //------------------------------------End Prescription History--------------------------------------------------------
+// //-----------------------------------End Doctor Signup Schedule Set---------------------------------------------------------
+
+///------------------------------------Start Pharmacy Profile--------------------------------------------------------
+app.get("/PharmacyProfile", (req, res) => {
+  res.render("Pharmacy/PharProfile.ejs");
+});
+// //------------------------------------End Pharmacy Profile--------------------------------------------------------
+
+///------------------------------------Start Pharmacy Edit Profile--------------------------------------------------------
+app.get("/PharmacyProfileEdit", (req, res) => {
+  res.render("Pharmacy/PharProfileEdit.ejs");
+});
+// //------------------------------------End Pharmacy Edit Profile--------------------------------------------------------
+
+///------------------------------------Start Pharmacy Ticket--------------------------------------------------------
+app.get("/PharTicket", (req, res) => {
+  res.render("Pharmacy/PharTicket.ejs");
+});
+// //------------------------------------End Pharmacy Ticket--------------------------------------------------------
+
+///------------------------------------Start Pharmacy Prescription view--------------------------------------------------------
+app.get("/Prescriptions", (req, res) => {
+  res.render("Pharmacy/Prescriptions.ejs");
+});
+// //------------------------------------End Pharmacy Prescription view--------------------------------------------------------
 
 app.get("*", (req, res) => {
   res.render("404.ejs", { title: "404" });

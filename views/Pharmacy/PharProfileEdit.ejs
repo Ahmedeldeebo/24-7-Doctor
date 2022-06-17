@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
+    <title>Profile Edit</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+  </head>
+      <!--Start Header-->
+      - include ('../partials/navPha.ejs') 
+      <!--End Header-->
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    h1{
+      font-family: sans-serif;
+      text-align: center;
+      font-size: 30px;
+    }
+    .profile-pic-div{
+      height: 200px;
+      width: 200px;
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      border-radius: 50%;
+      overflow: hidden;
+      }
+      #photo{
+        height: 100%;
+        width: 100%;
+      }
+      #file{
+        display: none;
+      }
+      #uploadBtn{
+        height: 20%;
+        width: 100%;
+        position: absolute;
+        bottom: -5%;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        background: black;
+        color: rgb(47, 133, 190);
+        line-height: 30px;
+        font-family: sans-serif;
+        font-size: 15px;
+        font-weight: 500;
+        cursor: pointer;
+      }
+  </style>
+
+  <body>
+
+
+            <div class="container rounded bg-white mt-5 mb-5">
+                <div class="row">
+                  <div class="col-md-4 border-right">
+                    <div class="d-flex flex-column align-items-center text-center py-5 py-6">
+                      <div class="profile-pic-div">
+                        <img src="/img/Profile.jpg" id="photo">
+                        <input type="file" id="file" name="img">
+                        <label for="file" id="uploadBtn">Update Photo</label>
+                        <!-- <span class="font-weight-bold">
+                        <div class="c"> name %></div> </span>
+                        <span class="text-black-50">email %> </span> -->
+                      </div>
+                    </div>
+                </div>
+                    <div class="col-md-5 border-right">
+                        <div class="p-3 py-5">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h4 class="text-right">Update Profile</h4>
+                            </div>
+                            <form action="http://localhost:5000/patient/Profile-Edit" method="post">            
+                              <div class="row mt-2">
+                                <label for="exampleDataList" class="form-label col-md-12">Pharmacy Name</label>
+                                <input class="form-control col-md-12" list="" id="exampleDataList" placeholder="" value="name  " name="pat_Email">
+                            </div>
+
+                            <div class="row mt-3">
+                              <!-- <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" placeholder=" email %>" value=""></div> -->
+                                <label for="exampleDataList" class="form-label col-md-12">Email</label>
+                                <input class="form-control col-md-12" list="" id="exampleDataList" placeholder="" value="=user.pat_Email  " name="pat_Email">
+                            </div>
+                                
+                                <div class="row mt-3">
+                                <!-- <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control" placeholder="Enter phone number" value=""></div> -->
+                                <label for="exampleDataList" class="form-label col-md-12">Mobile Number</label>
+                                <input type="text" class="form-control col-md-12" list="" id="exampleDataList" placeholder="" value="=user.Pat_TelNo" name="Pat_TelNo">
+
+                                <br></br>
+
+                                <label for="exampleDataList" class="form-label col-md-12">WhatsApp Number</label>
+                                <input type="text" class="form-control col-md-12" list="" id="exampleDataList" placeholder="" value="=user.Pat_TelNo" name="Pat_TelNo">
+                              </div>
+                                
+                              
+                              
+                              <div class="row mt-3">
+                                <label for="exampleDataList" class="form-label col-md-12"> City </label>
+                                <select class="form-control col-md-12" name="city" id="slct1" onchange="populate(this.id, 'slct2')" value="=user.city">
+                                  <option value="=user.city%>">=user.city</option>
+                                  <option value="Cairo">Cairo</option>
+                                  <option value="Giza">Giza</option>
+                                  <option value="Alexandria">Alexandria
+                                    <option value="North Coast">North Coast
+                                    <option value="Qalyubia">Qalyubia
+                                    <option value="Gharbia">Gharbia
+                                    <option value="Menoufia">Menoufia
+                                    <option value="Fayoum">Fayoum
+                                    <option value="El-Dakahlia">El-Dakahlia
+                                    <option value="El-Sharqia">El-Sharqia
+                                    <option value="El-Beheira">El-Beheira
+                                    <option value="Damietta">Damietta
+                                    <option value="Matrouh">Matrouh
+                                    <option value="Assiut">Assiut
+                                    <option value="El-Ismailia">El-Ismailia
+                                    <option value="Hurghada">Hurghada
+                                    <option value="Sharm El Sheikh">Sharm El Sheikh
+                                    <option value="Portsaid">Portsaid
+                                    <option value="Suez">Suez
+                                    <option value="Sohag">Sohag
+                                    <option value="El-Minia">El-Minia
+                                    <option value="Kafr El sheikh">Kafr El sheikh
+                                    <option value="Luxor">Luxor
+                                    <option value="Qena">Qena
+                                    <option value="Aswan">Aswan
+                                    <option value="Beni Suef">Beni Suef
+                                </select>
+                                </div>
+
+<div class="row mt-3">
+  <label for="exampleDataList" class="form-label col-md-12"> Area </label>
+  <select class="form-control col-md-12" name="area" id="slct2" value="=user.area">
+  <option value="">--Choose Area -- </option>
+</select>
+</div>
+
+                            
+<div class="row mt-3">
+  <label for="exampleDataList" class="form-label col-md-12">Address</label>
+  <input class="form-control col-md-12" list="" id="exampleDataList" placeholder="" value="=user.addres_details " type="text" name="addres_details">
+</div>
+
+
+
+<div class="row mt-3">
+
+
+
+                                <!-- <div class="col-md-12"><label class="labels">Insurance Number</label><input type="text" class="form-control" placeholder="Insurance no" value=""></div> -->
+
+                            </div>
+                            <!-- <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Save Profile</button></div> -->
+                            <div class="mt-5 text-center">
+                            <button  class="btn btn-success btn-small active profile-button"  type="submit" aria-pressed="true">Save Profile</button>
+                            </form> 
+                          </div> 
+                           
+                        </div>
+                      </div>
+                      <!-- <div class="alert alert-light text-success" role="alert">
+                        - Message %>
+                      </div>
+                      <div class="alert alert-light text-danger" role="alert">
+                        - errorMessage %>
+                      </div>-->
+                   
+                 
+                 
+            </div>
+            </div>
+            </div>
+
+<!--Start Footer-->
+<footer>
+<%- include ('../partials/footer.ejs') %>
+</footer>
+<!--End Footer-->
+
+<script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      const imgDiv = document.querySelector('.profile-pic-div');
+      const img = document.querySelector('#photo');
+      const file = document.querySelector('#file');
+      const uploadBtn = document.querySelector('#uploadBtn');
+      
+      imgDiv.addEventListener('mouseenter', function(){
+          uploadBtn.style.display = "block";
+      });
+      
+      imgDiv.addEventListener('mouseleave', function(){
+          uploadBtn.style.display = "none";
+      });
+      
+      file.addEventListener('change', function(){
+      
+          const choosedFile = this.files[0];
+      
+          if (choosedFile) {
+      
+              const reader = new FileReader();
+      
+              reader.addEventListener('load', function(){
+                  img.setAttribute('src', reader.result);
+              });
+      
+              reader.readAsDataURL(choosedFile);
+          }
+      });
+          </script>
+          <script>
+
+            function populate(s1,s2)
+            {
+              var s1 = document.getElementById(s1);
+              var s2 = document.getElementById(s2);
+
+              s2.innerHTML = "";
+
+              if(s1.value == "Cairo")
+              {
+                var optionArray = 
+                ['Heliopolis|Heliopolis',
+                'Nasr City|Nasr City','El-Maadi|El-Maadi','New Cairo|New Cairo','Hadayek El-Kobba|Hadayek El-Kobba','El-Obour City|El-Obour City','El-Manyal|El-Manyal','Shoubra|Shoubra','West El-Balad|West El-Balad','10th of Ramadan|10th of Ramadan','Ain Shams|Ain Shams','Badr City|Badr City','Boula|Boulaq','Dar El-Salam|Dar El-Salam','El Salam City|El Salam City','El-Abbasia|El-Abbasia','El-Kattameya|El-Kattameya','El-Marg|El-Marg','El-Matareya|El-Matareya','El-Mokattam|El-Mokattam','El-Rehab|El-Rehab','El-Sayeda Zainab|El-Sayeda Zainab','El-Shorouk|El-Shorouk','El-Zaitoun|El-Zaitoun','El-Zamalek|El-Zamalek','Hadayek El Maadi|Hadayek El Maadi','Hadayek Helwan|Hadayek Helwan','Helwan|Helwan','Madinaty|Madinaty','Masr El-Kadima|Masr El-Kadima','Shoubra El-Kheima|Shoubra El-Kheima'];
+              }
+              else if(s1.value == 'Giza')
+              {
+                var optionArray = ['Dokki and Mohandessin|Dokki and Mohandessin','6th of October|6th of October','El-Haram|El-Haram','Faisal|Faisal','El-Sheikh Zayed|El-Sheikh Zayed','Hadayek El-Ahram|Hadayek El-Ahram','El-Agouza|El-Agouza','New Giza|New Giza','Boulaq El Dakrour|Boulaq El Dakrour','El-Ayyat|El-Ayyat','El-Badrashin|El-Badrashin','El-Giza|El-Giza','El-Hawamdeya|El-Hawamdeya','Imbaba|Imbaba']
+              }
+
+              else if(s1.value == 'Alexandria')
+              {
+                var optionArray = ['Mahatet El-Raml|Mahatet El-Raml','Roshdy|Roshdy','Smouha|Smouha','Sporting|Sporting','Sidy Gaber|Sidy Gaber','Loran|Loran','Camp Caesar|Camp Caesar','El-Ibrahimia|El-Ibrahimia','Janaklees|Janaklees','All Areas|All Areas','Abou Keir|Abou Keir','Bahary|Bahary','Bakos|Bakos','Bulkly|Bulkly','Cleopatra|Cleopatra','El-Agamy|El-Agamy','El-Amreya|El-Amreya','El-Asafra|El-Asafra']
+              }
+
+              else if(s1.value == 'North Coast')
+              {
+                var optionArray = ['North Coast|North Coast']
+              }
+
+              else if(s1.value == 'Qalyubia')
+              {
+                var optionArray = ['Shibin Al Qanater|Shibin Al Qanater','Banha|Banha','Qalyoub|Qalyoub']
+              }
+
+              else if(s1.value == 'Gharbia')
+              {
+                var optionArray = ['Samannoud|Samannoud','Tanta|Tanta','Kafr El Zayat|Kafr El Zayat','Mahalla|Mahalla']
+              }
+
+              else if(s1.value == 'Menoufia')
+              {
+                var optionArray = ['Ashmun|Ashmun','Shibin El-Kom|Shibin El-Kom','Menouf|Menouf','Sadat City|Sadat City','Birket El Sabea|Birket El Sabea']
+              }
+
+              else if(s1.value == 'Fayoum')
+              {
+                var optionArray = ['Ibsheway|Ibsheway','El-Fayoum city|El-Fayoum city']
+              }
+
+              else if(s1.value == 'El-Dakahlia')
+              {
+                var optionArray = ['Aga|Aga','Belkas|Belkas','Dekernes|Dekernes','Shirbin|Shirbin','El Senbellawein|El Senbellawein','El-Mansoura|El-Mansoura','Mit Ghamr|Mit Ghamr']
+              }
+
+              else if(s1.value == 'El-Sharqia')
+              {
+                var optionArray = ['Abu Hammad|Abu Hammad','Belbes|Belbes','El-Zagazig|El-Zagazig','Menya El-Kamh|Menya El-Kamh','Fakous|Fakous'
+                ]
+              }
+
+              else if(s1.value == 'El-Beheira')
+              {
+                var optionArray = ['Damanhur|Damanhur','kafr El dawar|kafr El dawar']
+              }
+              
+              else if(s1.value == 'Damietta')
+              {
+                var optionArray = ['Damietta El Gadeeda|Damietta El Gadeeda','Damietta City|Damietta City']
+              }
+
+              else if(s1.value == 'Matrouh')
+              {
+                var optionArray = ['Marsa Matrouh|Marsa Matrouh']
+              }
+
+              else if(s1.value == 'Assiut')
+              {
+                var optionArray = ['Abnub|Abnub','Dayrout|Dayrout','Manfalut|Manfalut','Assiut city|Assiut city']
+              }
+
+              else if(s1.value == 'El-Ismailia')
+              {
+                var optionArray = ['El-Ismailia city|El-Ismailia city']
+              }
+
+              else if(s1.value == 'Hurghada')
+              {
+                var optionArray = ['Hurghada City|Hurghada City']
+              }
+
+              else if(s1.value == 'Sharm El Sheikh')
+              {
+                var optionArray = ['harm El Sheikh City|Sharm El Sheikh City']
+              }
+
+              else if(s1.value == 'Portsaid')
+              {
+                var optionArray = ['Port Said City|Port Said City','Port Fouad|Port Fouad']
+              }
+
+              else if(s1.value == 'Suez')
+              {
+                var optionArray = ['Suez City|Suez City']
+              }
+
+              else if(s1.value == 'Sohag')
+              {
+                var optionArray = ['Sohag City|Sohag City']
+              }
+
+              else if(s1.value == 'El-Minia')
+              {
+                var optionArray = ['El Minya City|El Minya City']
+              }
+
+              else if(s1.value == 'Kafr El sheikh')
+              {
+                var optionArray = ['Kafr El sheikh City|Kafr El sheikh City']
+              }
+
+              else if(s1.value == 'Luxor')
+              {
+                var optionArray = ['Luxor City|Luxor City','Esna|Esna']
+              }
+
+              else if(s1.value == 'Qena')
+              {
+                var optionArray = ['Qena City|Qena City']
+              }
+
+              else if(s1.value == 'Aswan')
+              {
+                var optionArray = ['Aswan|Aswan','Edfu|Edfu','Kom Ombo|Kom Ombo','Deraw|Deraw']
+              }
+
+              else if(s1.value == 'Beni Suef')
+              {
+                var optionArray = ['Beni Suef City|Beni Suef City']
+              }
+              
+
+              for(var option in optionArray)
+              {
+                var pair = optionArray[option].split("|");
+                var newoption = document.createElement("option");
+
+                newoption.value = pair[0];
+                newoption.innerHTML=pair[1];
+                s2.options.add(newoption);
+              }
+            }
+
+
+          </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
