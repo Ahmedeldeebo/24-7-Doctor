@@ -205,6 +205,12 @@ app.get("/Prescriptions", (req, res) => {
 });
 // //------------------------------------End Pharmacy Prescription view--------------------------------------------------------
 
+///------------------------------------Start Pharmacy Prescription view--------------------------------------------------------
+app.get("/Pharmacies", (req, res) => {
+  res.render("Pharmacy/PharmaciesView.ejs");
+});
+// //------------------------------------End Pharmacy Prescription view--------------------------------------------------------
+
 app.get("*", (req, res) => {
   res.render("404.ejs", { title: "404" });
 });
