@@ -44,39 +44,22 @@
         -moz-background-size: cover;
         -o-background-size: cover;
         background-size: cover;
-      }
-
-      #container{
-        min-height: 100%;
-
-      }
-
-      #main{
-        overflow: auto;
-        padding-bottom: 100px;
-
-      }
-
-
-      .footer {
         position: relative;
-        margin-top: -100px;
-        clear: both;
+        margin-bottom: 60px;
+  min-height: 100%;
+      }
 
-        height: 100px;
-        bottom: 0;
-}
 
 
     </style>
   </head>
 
-  <body>
+  <body id="page-container">
     <!--Start Header-->
    <%- include ('../partials/navHome.ejs') %>
     <!--End Header-->
 
-    <div class="container mt-5" id="container">
+    <div class="container mt-5" id="content-wrap">
       <div class="row d-flex justify-content-center">
         <div class="row d-flex justify-content-center" id="main">
           <!-------------------------------------------START HEADERS -------------------------------------------------->
@@ -100,7 +83,13 @@
               <h1 class="h5 fw-bold">Date Created</h1>
             </div>
             <div class="col-2 align-self-center">
-              <h1 class="h5 fw-bold">Show details</h1>
+              <h1 class="h5 fw-bold">Doctor Name & Specialization</h1>
+            </div>
+            <div class="col-2 align-self-center">
+              <h1 class="h5 fw-bold"></h1>
+            </div>
+            <div class="col-2 align-self-center">
+              <h1 class="h5 fw-bold" style="padding-right: 70px;">Prescriptions</h1>
             </div>
           </div>
           <!-------------------------------------------END HEADERS -------------------------------------------------->
@@ -119,19 +108,61 @@
               <h1 class="h6"><%=date %></h1>
             </div>
 
-   
 
             <div
+              class="col-md-2 text-sm-center text-md-start align-self-center my-2 text"
+            >
+              <!-- <h1 class="h6">=appoo.createdAt%></h1> -->
+               
+              <h1 class="h6">asdasd</h1>
+            </div>
+            
+
+            <div class="col-md-6"> 
+              <div class="text-center px-1 py-5"> 
+                  <div class="forms p-4 py-5 bg-white"> 
+                      <h5><i class="fa-solid fa-prescription"></i> Prescription</h5> 
+                      <!-- <form action="http://localhost:5000/doctor/WritePrescription-create" method="post">            -->
+                          <div class="form-outline mt-4"> 
+                              <h6 class="text-left">Patient Name</h6>
+                         <input type="text" class="form-control mt-3 c" placeholder="=appoo.Pat_Id.pat_FirstName" name="" disabled>
+                          </div>
+
+                          <div class="form-row">
+                              <div class="form-group col-md-6 mt-3 text-left">
+                                <h6 class="text-left">Patient Address</h6>
+                                <input type="text" class="form-control mt-3
+                                input-sm"  placeholder="=appoo.Pat_Id.addres_details" name="" disabled />
+                              </div>
+
+                              <div class="form-group col-md-6 mt-3 text-left">
+                                <h6 class="text-left">Patient Area</h6>
+                                <input type="text" class="form-control mt-3
+                                input-sm" placeholder="=appoo.Pat_Id.city" name="" disabled />                                
+                            </div>
+                          </div>
+
+                          <div class="form-outline m4-4"> 
+                              <h6 class="text-left">Prescription Details </h6>
+                         <textarea class="form-control mt-3" placeholder="Prescription Details" name="" disabled>=pres.pres_Description</textarea> 
+                          </div>
+
+            <!-- <div
               class="col-md-2 text-sm-center text-md-start align-self-center my-2"
             >
             <form action="" method="post">
               <input hidden value="=appoo._id " name="Appo_Id">
               <button class="btn btn-outline-dark w-100" type="">Details</button>
-            <!-- <a class="btn btn-outline-dark w-100" href="http://localhost:5000/patient/AppDetails">Details</a> -->
+             <a class="btn btn-outline-dark w-100" href="http://localhost:5000/patient/AppDetails">Details</a>
           </form>
-          </div>
-        </div>
-          <%})%>
+          </div> -->
+          
+                </div>
+                
+              </div>
+              
+            </div>
+          
       
               <!--  NORMAL DETAILS BUTTON <a href="#demo" class="btn btn-outline-dark w-100" type="button" data-toggle="collapse">Details</a>  --> 
 
@@ -161,9 +192,10 @@
               <!-- END COLLAPSE  -->
 
             </div>
-
+            <%})%>
           </div>
-          
+      </div>
+    </div>
 
           <!-------------------------------------------END FIRST ROW  -------------------------------------------------->
 
@@ -246,14 +278,11 @@
             </div>
           </div>
           -----------------------------------------END THIRD ROW  ------------------------------------------------ -->
-        </div>
-      </div>
-    </div>
+   
   </body>
-  <footer id="footer">
-<div  class="mt-5"><%- include ('../partials/footer.ejs') %></div>
 
-  </footer>
+    <footer id="footer" class="mt-5"><%- include ('../partials/footer.ejs') %></footer>
+
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
