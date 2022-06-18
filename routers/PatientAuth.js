@@ -293,7 +293,9 @@ router.get("/profile-home", authorization, async (req, res, next) => {
     // text: "You need to ckeck Up with your Doctor",
     html: `<h2 style=" text-transform: capitalize">Hello ${name}!</h2>
         <h4>You need to ckeck Up with your Doctor</h4>
-        <p>Doctor Name: Dr.<b>${checkUpListtt.Doc_Id.Doc_FirstName}</b></p>
+        <p  style=" text-transform: capitalize">Doctor Name: Dr.<b>${
+          checkUpListtt.Doc_Id.Doc_FirstName
+        }</b></p>
         <p>Ckeck Up Date: <b>${checkUpListtt.CheckUpDay.toDateString()}</b></p>
         <p>Have a nice day!</p>`, // plain text body
     // send mail with defined transport object
@@ -706,13 +708,43 @@ router.post("/ViewPrescription", authorization, async (req, res) => {
   const user = await User.findById(id);
   console.log(user);
   const name = user.pat_FirstName;
-  try {
-    const PresDesc = await Prescription.findOne({
-      Appoinment_Id: ApppId,
-    })
-      .populate("Pat_id")
-      .populate("Doc_Id");
-    console.log(PresDesc);
+
+  const PresDesc = await Prescription.findOne({
+    Appoinment_Id: ApppId,
+  })
+    .populate("Pat_id")
+    .populate("Doc_Id");
+  console.log(PresDesc);
+  if (PresDesc === null) {
+    //--Notification
+
+    const checkUpList = await Prescription.find({
+      Pat_id: id,
+    });
+
+    const date = new Date();
+    const dataStr = date.toDateString();
+    const result = checkUpList.filter(
+      (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
+    );
+
+    const appo = await Appo.find({ Pat_Id: id })
+      .populate("Pat_Id")
+      .populate("Doc_Id")
+      .sort({ _id: -1 })
+      .limit(5);
+    const number = await Appo.countDocuments({ Pat_Id: id });
+    console.log(number);
+    res.render("./Patient/viewPresNull.ejs", {
+      name: name,
+      pres: PresDesc,
+      errorMessage: "",
+      number: number,
+      appo: appo,
+      result: result,
+      appoo: appoDetails,
+    });
+  } else {
     //--Notification
 
     const checkUpList = await Prescription.find({
@@ -741,8 +773,6 @@ router.post("/ViewPrescription", authorization, async (req, res) => {
       result: result,
       appoo: appoDetails,
     });
-  } catch (e) {
-    console.log(e.message);
   }
 
   // //--Notification
@@ -895,41 +925,77 @@ router.post("/ViewBill", authorization, async (req, res, next) => {
   const appo_Id = req.body.Appo_Id;
   const user = await User.findById(id);
   const name = user.pat_FirstName;
+  const appoo = await Appo.findById(appo_Id)
+    .populate("Pat_Id")
+    .populate("Doc_Id");
 
   const appoBill = await Bill.findOne({ Appoinment_Id: appo_Id })
     .populate("Pat_Id")
     .populate("Doc_Id")
     .populate("Appoinment_Id");
   // console.log(appoBill);
-  //--Notification
+  if (appoBill === null) {
+    //--Notification
 
-  const checkUpList = await Prescription.find({
-    Pat_id: id,
-  });
+    const checkUpList = await Prescription.find({
+      Pat_id: id,
+    });
 
-  const date = new Date();
-  const dataStr = date.toDateString();
-  const result = checkUpList.filter(
-    (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
-  );
+    const date = new Date();
+    const dataStr = date.toDateString();
+    const result = checkUpList.filter(
+      (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
+    );
 
-  // console.log(result);
-  const appo = await Appo.find({ Pat_Id: id })
-    .populate("Pat_Id")
-    .populate("Doc_Id")
-    .sort({ _id: -1 })
-    .limit(5);
-  const number = await Appo.countDocuments({ Pat_Id: id });
-  console.log(number);
-  res.render("./Patient/ViewBill.ejs", {
-    name: name,
-    number: number,
-    appo: appo,
-    errorMessage: "",
-    Message: "",
-    result: result,
-    bill: appoBill,
-  });
+    // console.log(result);
+    const appo = await Appo.find({ Pat_Id: id })
+      .populate("Pat_Id")
+      .populate("Doc_Id")
+      .sort({ _id: -1 })
+      .limit(5);
+    const number = await Appo.countDocuments({ Pat_Id: id });
+    console.log(number);
+    res.render("./Patient/ViewBillNull.ejs", {
+      name: name,
+      number: number,
+      appo: appo,
+      appoo: appoo,
+      errorMessage: "",
+      Message: "",
+      result: result,
+      bill: appoBill,
+    });
+  } else {
+    //--Notification
+
+    const checkUpList = await Prescription.find({
+      Pat_id: id,
+    });
+
+    const date = new Date();
+    const dataStr = date.toDateString();
+    const result = checkUpList.filter(
+      (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
+    );
+
+    // console.log(result);
+    const appo = await Appo.find({ Pat_Id: id })
+      .populate("Pat_Id")
+      .populate("Doc_Id")
+      .sort({ _id: -1 })
+      .limit(5);
+    const number = await Appo.countDocuments({ Pat_Id: id });
+    console.log(number);
+    res.render("./Patient/ViewBill.ejs", {
+      name: name,
+      number: number,
+      appo: appo,
+      errorMessage: "",
+      Message: "",
+      result: result,
+      bill: appoBill,
+    });
+  }
 });
 // router.get("/ViewBill", authorization, async (req, res) => {
 //   const id = res.locals.user.id;
