@@ -175,11 +175,11 @@ app.get("/logOut", authorization, (req, res) => {
 // //------------------------------------End Prescription History--------------------------------------------------------
 
 
-///------------------------------------Start Doctor Signup Schedule Set--------------------------------------------------------
-app.get("/SetDocSche", (req, res) => {
-  res.render("Doc/SetDocSche.ejs");
-});
-// //-----------------------------------End Doctor Signup Schedule Set---------------------------------------------------------
+// ///------------------------------------Start Doctor Signup Schedule Set--------------------------------------------------------
+// app.get("/SetDocSche", (req, res) => {
+//   res.render("Doc/SetDocSche.ejs");
+// });
+// // //-----------------------------------End Doctor Signup Schedule Set---------------------------------------------------------
 
 ///------------------------------------Start Pharmacy Profile--------------------------------------------------------
 app.get("/PharmacyProfile", (req, res) => {

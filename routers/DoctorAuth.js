@@ -54,7 +54,7 @@ router.post("/Doctor-register", async (req, res) => {
     res.render("./Doc/DocSignup.ejs", { errorMessage: "Something is missing" });
   }
 });
-///------------------------------------Doctor Prescription History--------------------------------------------------------
+///------------------------------------Start Doctor Sechduel Set Up-------------------------------------------------------
 router.get("/SetDocSche", (req, res) => {
   res.render("./Doc/SetDocSche.ejs");
 });
@@ -85,7 +85,7 @@ router.post("/SetDocSche", async (req, res) => {
     errorMessage: "Account Created Successfully",
   });
 });
-// //------------------------------------End Prescription History--------------------------------------------------------
+//------------------------------------End Doctor Sechduel Set Up---------------------------------------------------------
 
 //-------------------------------------------- End Register---------------------------------------------
 

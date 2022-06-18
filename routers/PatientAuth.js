@@ -55,7 +55,10 @@ router.post("/register", async (req, res) => {
     //  const savedUser = await NewUser.save();
     //  console.log(NewUser);
 
-    res.render("signIn.ejs", { errorMessage:"", Message: "Account Created Successfully" });
+    res.render("signIn.ejs", {
+      errorMessage: "",
+      Message: "Account Created Successfully",
+    });
   } catch (e) {
     console.log(e.message);
   }
@@ -276,41 +279,41 @@ router.get("/profile-home", authorization, async (req, res, next) => {
       _id: -1,
     })
     .populate("Doc_Id");
-  // const checkDayUpdate = checkUpListtt.CheckUpDay.toDateString();
-  // const date = new Date();
-  // const dataStr = date.toDateString();
-  // const resultt = checkUpListt.filter(
-  //   (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
-  // );
-  // let masgEmail = {
-  //   from: `"Doctor 24/7" <${process.env.MAIL_USER}`, // sender address
-  //   to: `${email}`, // list of receivers
-  //   //to: "davidlotfy123@gmail.com",
-  //   subject: "Ckeck Up Reminder", // Subject line
-  //   // text: "You need to ckeck Up with your Doctor",
-  //   html: `<h2 style=" text-transform: capitalize">Hello ${name}!</h2>
-  //       <h4>You need to ckeck Up with your Doctor</h4>
-  //       <p>Doctor Name: Dr.<b>${checkUpListtt.Doc_Id.Doc_FirstName}</b></p>
-  //       <p>Ckeck Up Date: <b>${checkUpListtt.CheckUpDay.toDateString()}</b></p>
-  //       <p>Have a nice day!</p>`, // plain text body
-  //   // send mail with defined transport object
-  // };
+  const checkDayUpdate = checkUpListtt.CheckUpDay.toDateString();
+  const date = new Date();
+  const dataStr = date.toDateString();
+  const resultt = checkUpListt.filter(
+    (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
+  );
+  let masgEmail = {
+    from: `"Doctor 24/7" <${process.env.MAIL_USER}`, // sender address
+    to: `${email}`, // list of receivers
+    //to: "davidlotfy123@gmail.com",
+    subject: "Ckeck Up Reminder", // Subject line
+    // text: "You need to ckeck Up with your Doctor",
+    html: `<h2 style=" text-transform: capitalize">Hello ${name}!</h2>
+        <h4>You need to ckeck Up with your Doctor</h4>
+        <p>Doctor Name: Dr.<b>${checkUpListtt.Doc_Id.Doc_FirstName}</b></p>
+        <p>Ckeck Up Date: <b>${checkUpListtt.CheckUpDay.toDateString()}</b></p>
+        <p>Have a nice day!</p>`, // plain text body
+    // send mail with defined transport object
+  };
 
-  // if (checkDayUpdate === dataStr) {
-  //   console.log("checkUpDay is = to today");
-  //   transporter.sendMail(masgEmail, (err, data) => {
-  //     if (err) {
-  //       res.status(400).send(err);
-  //     } else res.send(`Email Sent: ${data}`);
-  //   });
-  // } else {
-  //   console.log("not equle");
-  //   // transporter.sendMail(masgEmail, (err, data) => {
-  //   //   if (err) {
-  //   //     res.status(400).send(err);
-  //   //   } else res.send(`Email Sent: ${data}`);
-  //   // });
-  // }
+  if (checkDayUpdate === dataStr) {
+    console.log("checkUpDay is = to today");
+    transporter.sendMail(masgEmail, (err, data) => {
+      if (err) {
+        res.status(400).send(err);
+      } else res.send(`Email Sent: ${data}`);
+    });
+  } else {
+    console.log("not equle");
+    // transporter.sendMail(masgEmail, (err, data) => {
+    //   if (err) {
+    //     res.status(400).send(err);
+    //   } else res.send(`Email Sent: ${data}`);
+    // });
+  }
 
   // const date = new Date();
   // const dataStr = date.toDateString();
@@ -473,32 +476,32 @@ router.get("/viewappoint", authorization, async (req, res) => {
 router.post("/viewappoint", authorization, async (req, res) => {
   const id = res.locals.user.id;
   // const DocId = req.body.Doc_Id;
-  const AppooId = req.body.Appo_Id;
   const user = await User.findById(id);
+  const name = user.pat_FirstName;
+
+  const AppooId = req.body.Appo_Id;
   const appoo = await Appo.find({ Pat_Id: id })
     .populate("Pat_Id")
     .populate("Doc_Id")
     .sort({ _id: -1 });
   // console.log(user);
   // console.log(appoo);
-  const name = user.pat_FirstName;
+
   console.log(AppooId + " Appo_Id");
   const appoDetails = await Appo.findById(AppooId)
     .populate("Pat_Id")
     .populate("Doc_Id");
   //  console.log(appoDetails);
-  //--Notification
 
+  //--Notification
   const checkUpList = await Prescription.find({
     Pat_id: id,
   });
-
   const date = new Date();
   const dataStr = date.toDateString();
   const result = checkUpList.filter(
     (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
   );
-
   // console.log(result);
   const appo = await Appo.find({ Pat_Id: id })
     .populate("Pat_Id")
@@ -703,40 +706,73 @@ router.post("/ViewPrescription", authorization, async (req, res) => {
   const user = await User.findById(id);
   console.log(user);
   const name = user.pat_FirstName;
-  const PresDesc = await Prescription.findOne({
-    Appoinment_Id: ApppId,
-  })
-    .populate("Pat_id")
-    .populate("Doc_Id");
-  console.log(PresDesc);
-  //--Notification
+  try {
+    const PresDesc = await Prescription.findOne({
+      Appoinment_Id: ApppId,
+    })
+      .populate("Pat_id")
+      .populate("Doc_Id");
+    console.log(PresDesc);
+    //--Notification
 
-  const checkUpList = await Prescription.find({
-    Pat_id: id,
-  });
+    const checkUpList = await Prescription.find({
+      Pat_id: id,
+    });
 
-  const date = new Date();
-  const dataStr = date.toDateString();
-  const result = checkUpList.filter(
-    (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
-  );
+    const date = new Date();
+    const dataStr = date.toDateString();
+    const result = checkUpList.filter(
+      (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
+    );
 
-  const appo = await Appo.find({ Pat_Id: id })
-    .populate("Pat_Id")
-    .populate("Doc_Id")
-    .sort({ _id: -1 })
-    .limit(5);
-  const number = await Appo.countDocuments({ Pat_Id: id });
-  console.log(number);
-  res.render("./Patient/ViewPres.ejs", {
-    name: name,
-    pres: PresDesc,
-    errorMessage: "",
-    number: number,
-    appo: appo,
-    result: result,
-    appoo: appoDetails,
-  });
+    const appo = await Appo.find({ Pat_Id: id })
+      .populate("Pat_Id")
+      .populate("Doc_Id")
+      .sort({ _id: -1 })
+      .limit(5);
+    const number = await Appo.countDocuments({ Pat_Id: id });
+    console.log(number);
+    res.render("./Patient/ViewPres.ejs", {
+      name: name,
+      pres: PresDesc,
+      errorMessage: "",
+      number: number,
+      appo: appo,
+      result: result,
+      appoo: appoDetails,
+    });
+  } catch (e) {
+    console.log(e.message);
+  }
+
+  // //--Notification
+
+  // const checkUpList = await Prescription.find({
+  //   Pat_id: id,
+  // });
+
+  // const date = new Date();
+  // const dataStr = date.toDateString();
+  // const result = checkUpList.filter(
+  //   (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
+  // );
+
+  // const appo = await Appo.find({ Pat_Id: id })
+  //   .populate("Pat_Id")
+  //   .populate("Doc_Id")
+  //   .sort({ _id: -1 })
+  //   .limit(5);
+  // const number = await Appo.countDocuments({ Pat_Id: id });
+  // console.log(number);
+  // res.render("./Patient/ViewPres.ejs", {
+  //   name: name,
+  //   pres: PresDesc,
+  //   errorMessage: "",
+  //   number: number,
+  //   appo: appo,
+  //   result: result,
+  //   appoo: appoDetails,
+  // });
 });
 //-----------------------------End AppDetails--------------------------------------------------------------
 //----------------------------- Start Notification--------------------------------------------------------------
