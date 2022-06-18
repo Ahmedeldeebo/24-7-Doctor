@@ -63,6 +63,9 @@
         font-weight: 500;
         cursor: pointer;
       }
+      .c {
+  text-transform: capitalize;
+}
   </style>
 
   <body>
@@ -87,35 +90,35 @@
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <h4 class="text-right">Update Profile</h4>
                             </div>
-                            <form action="http://localhost:5000/patient/Profile-Edit" method="post">            
+                            <form action="http://localhost:5000/pharmacy/PharmacyProfileEdit" method="post">            
                               <div class="row mt-2">
                                 <label for="exampleDataList" class="form-label col-md-12">Pharmacy Name</label>
-                                <input class="form-control col-md-12" list="" id="exampleDataList" placeholder="" value="name  " name="pat_Email">
+                                <input class="form-control col-md-12 c" list="" id="exampleDataList" placeholder="" value="<%=user.Phar_name%>" name="Phar_name">
                             </div>
 
                             <div class="row mt-3">
                               <!-- <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" placeholder=" email %>" value=""></div> -->
                                 <label for="exampleDataList" class="form-label col-md-12">Email</label>
-                                <input class="form-control col-md-12" list="" id="exampleDataList" placeholder="" value="=user.pat_Email  " name="pat_Email">
+                                <input class="form-control col-md-12" list="" id="exampleDataList" placeholder="" value="<%=user.Phar_Email%>" name="Phar_Email">
                             </div>
                                 
                                 <div class="row mt-3">
                                 <!-- <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control" placeholder="Enter phone number" value=""></div> -->
                                 <label for="exampleDataList" class="form-label col-md-12">Mobile Number</label>
-                                <input type="text" class="form-control col-md-12" list="" id="exampleDataList" placeholder="" value="=user.Pat_TelNo" name="Pat_TelNo">
+                                <input type="text" class="form-control col-md-12" list="" id="exampleDataList" placeholder="" value="<%=user.Phar_PhoneNumber%>" name="Phar_PhoneNumber">
 
                                 <br></br>
 
                                 <label for="exampleDataList" class="form-label col-md-12">WhatsApp Number</label>
-                                <input type="text" class="form-control col-md-12" list="" id="exampleDataList" placeholder="" value="=user.Pat_TelNo" name="Pat_TelNo">
+                                <input type="text" class="form-control col-md-12" list="" id="exampleDataList" placeholder="" value="<%=user.Phar_WhatsappPhoneNumber%>" name="Phar_WhatsappPhoneNumber">
                               </div>
                                 
                               
                               
                               <div class="row mt-3">
                                 <label for="exampleDataList" class="form-label col-md-12"> City </label>
-                                <select class="form-control col-md-12" name="city" id="slct1" onchange="populate(this.id, 'slct2')" value="=user.city">
-                                  <option value="=user.city%>">=user.city</option>
+                                <select class="form-control col-md-12" name="city" id="slct1" onchange="populate(this.id, 'slct2')" value="<%=user.city%>">
+                                  <option value="<%=user.city%>"><%=user.city%></option>
                                   <option value="Cairo">Cairo</option>
                                   <option value="Giza">Giza</option>
                                   <option value="Alexandria">Alexandria
@@ -155,7 +158,7 @@
                             
 <div class="row mt-3">
   <label for="exampleDataList" class="form-label col-md-12">Address</label>
-  <input class="form-control col-md-12" list="" id="exampleDataList" placeholder="" value="=user.addres_details " type="text" name="addres_details">
+  <input class="form-control col-md-12" list="" id="exampleDataList" placeholder="" value="<%=user.addres_details%>" type="text" name="addres_details">
 </div>
 
 

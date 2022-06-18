@@ -174,7 +174,6 @@ app.get("/logOut", authorization, (req, res) => {
 // });
 // //------------------------------------End Prescription History--------------------------------------------------------
 
-
 // ///------------------------------------Start Doctor Signup Schedule Set--------------------------------------------------------
 // app.get("/SetDocSche", (req, res) => {
 //   res.render("Doc/SetDocSche.ejs");
@@ -200,9 +199,9 @@ app.get("/logOut", authorization, (req, res) => {
 // //------------------------------------End Pharmacy Ticket--------------------------------------------------------
 
 //------------------------------------Start Pharmacy Prescription view--------------------------------------------------------
-app.get("/Prescriptions", (req, res) => {
-  res.render("Pharmacy/Prescriptions.ejs");
-});
+// app.get("/Prescriptions", (req, res) => {
+//   res.render("Pharmacy/Prescriptions.ejs");
+// });
 //------------------------------------End Pharmacy Prescription view--------------------------------------------------------
 
 ///------------------------------------Start Pharmacy Prescription view--------------------------------------------------------

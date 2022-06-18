@@ -787,6 +787,9 @@ div#preloader {
   right: 0;
   width: 40%;
 }
+div.c {
+  text-transform: capitalize;
+}
 
 .sec-head {
   display: inline-block;
@@ -849,7 +852,7 @@ div#preloader {
         <div class="count-box">
           <i class="fas fa-user-md"></i>
           <!-- <span data-purecounter-start="0" data-purecounter-end="85" data-purecounter-duration="1" class="purecounter"></span> -->
-          <H2>9</H2>
+          <H2><%=countDoc%></H2>
           <p style="color: #1e75cc; font-weight: bold;">Doctors</p>
         </div>
       </div>
@@ -867,7 +870,7 @@ div#preloader {
         <div class="count-box">
           <i class="fa-solid fa-house-medical"></i>
           <!-- <span data-purecounter-start="0" data-purecounter-end="12" data-purecounter-duration="1" class="purecounter"></span> -->
-          <H2>2</H2>
+          <H2><%=countUser%></H2>
           <p style="color: #1e75cc; font-weight: bold;">Pharmacies</p>
         </div>
       </div>
@@ -876,7 +879,7 @@ div#preloader {
         <div class="count-box">
           <i class="fas fa-solid fa-users"></i>
           <!-- <span data-purecounter-start="0" data-purecounter-end="150" data-purecounter-duration="1" class="purecounter"></span> -->
-          <H2>20</H2>
+          <H2><%=countPat%></H2>
           <p style="color: #1e75cc; font-weight: bold;">Users</p>
         </div>
       </div>

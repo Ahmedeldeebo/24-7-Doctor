@@ -6,7 +6,8 @@ const PharmacySchema = new mongoose.Schema(
     Phar_name: { type: String, required: true },
     Phar_userName: { type: String, required: true, unique: true },
     Phar_Email: { type: String, required: true, unique: true },
-    Phar_PhoneNumber: { type: Number, required: true, unique: true },
+    Phar_PhoneNumber: { type: Number, required: true },
+    Phar_WhatsappPhoneNumber: { type: Number, required: true },
     Phar_Password: { type: String, required: true },
     Pat_Id: {
       type: mongoose.Schema.Types.ObjectId,

@@ -1,12 +1,14 @@
 const router = require("express").Router();
 const User = require("../models/Pharmacy");
+const Doctor = require("../models/Doctor");
+const Patient = require("../models/Patient");
+const Tikcet = require("../models/Ticket");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
 const { render } = require("ejs");
 const cors = require("cors");
 const { body } = require("express-validator");
 const { authorization } = require("./verifyToken");
-const { findById } = require("../models/Pharmacy");
 //--------------------------------------------Register--------------------------------------------
 // router.use(cors({ origin: "*", credentials:true  } ) );
 
@@ -73,15 +75,15 @@ router.post("/Pharmacy-login", async (req, res) => {
     );
 
     // const { Doc_password, ...others } = user._doc;
-    const name = user.Phar_name;
+    // const name = user.Phar_name;
     console.log(accessToken);
-    console.log(name);
+    // console.log(name);
 
     return res
       .cookie("accessToken", accessToken, {
         httpOnly: true,
       })
-      .render("./Pharmacy/PhaHome.ejs", { name: name }); //res.status(200).json({ ...others, accessToken });
+      .redirect("/Pharmacy/Pharmacy-profile"); //res.status(200).json({ ...others, accessToken });
   } catch (e) {
     return console.log(e.message);
   }
@@ -89,12 +91,35 @@ router.post("/Pharmacy-login", async (req, res) => {
 
 //------------------------------------End Login--------------------------------------------------------
 //------------------------------------Start Pharmacy Profile--------------------------------------------------------
+//Profile
+router.get("/Pharmacy-profile", authorization, async (req, res) => {
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  const name = user.Phar_name;
+  console.log(user);
+  const countUser = await User.countDocuments({});
+  console.log("User " + countUser);
+  const countPat = await Patient.countDocuments({});
+  console.log("Patient " + countPat);
+  const countDoc = await Doctor.countDocuments({});
+  console.log("Doctors " + countDoc);
+  res.render("./Pharmacy/PhaHome.ejs", {
+    name: name,
+    countUser: countUser,
+    countPat: countPat,
+    countDoc: countDoc,
+  });
+});
 router.get("/PharmacyProfile", authorization, async (req, res) => {
   const id = res.locals.user.id;
   const user = await User.findById(id);
   const name = user.Phar_name;
 
-  res.render("./Pharmacy/PharProfile.ejs", { name: name });
+  res.render("./Pharmacy/PharProfile.ejs", {
+    name: name,
+    user: user,
+    errorMessage: "",
+  });
 });
 //------------------------------------End Pharmacy Profile-------------------------------------------------------
 //------------------------------------Start Pharmacy Edit Profile--------------------------------------------------------
@@ -103,7 +128,26 @@ router.get("/PharmacyProfileEdit", authorization, async (req, res) => {
   const user = await User.findById(id);
   const name = user.Phar_name;
 
-  res.render("Pharmacy/PharProfileEdit.ejs", { name: name });
+  res.render("Pharmacy/PharProfileEdit.ejs", { name: name, user: user });
+});
+router.post("/PharmacyProfileEdit", authorization, async (req, res) => {
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  const name = user.Phar_name;
+  try {
+    const updateUser = await User.findByIdAndUpdate(
+      id,
+      {
+        $set: req.body,
+      },
+      { new: true }
+    );
+    res.redirect("/pharmacy/PharmacyProfile");
+  } catch (e) {
+    console.log(e.message);
+
+    res.redirect("/pharmacy/PharmacyProfile");
+  }
 });
 //------------------------------------End Pharmacy Edit Profile--------------------------------------------------------
 //------------------------------------Start Pharmacy Ticket--------------------------------------------------------
@@ -111,6 +155,30 @@ router.get("/PharTicket", authorization, async (req, res) => {
   const id = res.locals.user.id;
   const user = await User.findById(id);
   const name = user.Phar_name;
+  res.render("Pharmacy/PharTicket.ejs", { name: name });
+});
+router.post("/PharTicket", authorization, async (req, res) => {
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  const name = user.Phar_name;
+  try {
+    const NewTicket = new Tikcet({
+      ticket_Name: req.body.ticket_Name,
+      ticket_Email: req.body.ticket_Email,
+      ticket_details: req.body.ticket_details,
+      Phar_Id: id,
+    });
+    const savedTikcet = await NewTicket.save();
+    console.log(NewTicket);
+  } catch (e) {
+    console.log(e.message);
+    res.render("./Patient/Ticket.ejs", {
+      name: name,
+      errorMessage: "Something is missing",
+      number: number,
+      appo: appo,
+    });
+  }
   res.render("Pharmacy/PharTicket.ejs", { name: name });
 });
 //------------------------------------End Pharmacy Ticket--------------------------------------------------------

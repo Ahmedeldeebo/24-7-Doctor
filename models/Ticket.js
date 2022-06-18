@@ -15,6 +15,11 @@ const ticketSchema = new mongoose.Schema(
       ref: "Doctor",
       required: false,
     },
+    Phar_Id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Pharmacy",
+      required: false,
+    },
   },
   { timestamps: true }
 );

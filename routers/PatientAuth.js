@@ -155,6 +155,7 @@ router.get("/profile-setting", authorization, async (req, res, next) => {
     appo: appo,
     number: number,
     result: result,
+    errorMessage: "",
   });
 });
 router.post("/Profile-Edit", authorization, async (req, res, next) => {
