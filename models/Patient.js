@@ -26,6 +26,11 @@ const patientSchema = new mongoose.Schema(
       required: false,
       default: "Enter your Addres",
     },
+    area: {
+      type: String,
+      required: false,
+      default: "Enter your Area",
+    },
   },
   { timestamps: true }
 );

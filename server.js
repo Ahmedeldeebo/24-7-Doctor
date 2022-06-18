@@ -181,29 +181,29 @@ app.get("/logOut", authorization, (req, res) => {
 // });
 // // //-----------------------------------End Doctor Signup Schedule Set---------------------------------------------------------
 
-///------------------------------------Start Pharmacy Profile--------------------------------------------------------
-app.get("/PharmacyProfile", (req, res) => {
-  res.render("Pharmacy/PharProfile.ejs");
-});
+// //------------------------------------Start Pharmacy Profile--------------------------------------------------------
+// app.get("/PharmacyProfile", (req, res) => {
+//   res.render("Pharmacy/PharProfile.ejs");
+// });
 // //------------------------------------End Pharmacy Profile--------------------------------------------------------
 
-///------------------------------------Start Pharmacy Edit Profile--------------------------------------------------------
-app.get("/PharmacyProfileEdit", (req, res) => {
-  res.render("Pharmacy/PharProfileEdit.ejs");
-});
+// //------------------------------------Start Pharmacy Edit Profile--------------------------------------------------------
+// app.get("/PharmacyProfileEdit", (req, res) => {
+//   res.render("Pharmacy/PharProfileEdit.ejs");
+// });
 // //------------------------------------End Pharmacy Edit Profile--------------------------------------------------------
 
-///------------------------------------Start Pharmacy Ticket--------------------------------------------------------
-app.get("/PharTicket", (req, res) => {
-  res.render("Pharmacy/PharTicket.ejs");
-});
+// ///------------------------------------Start Pharmacy Ticket--------------------------------------------------------
+// app.get("/PharTicket", (req, res) => {
+//   res.render("Pharmacy/PharTicket.ejs");
+// });
 // //------------------------------------End Pharmacy Ticket--------------------------------------------------------
 
-///------------------------------------Start Pharmacy Prescription view--------------------------------------------------------
+//------------------------------------Start Pharmacy Prescription view--------------------------------------------------------
 app.get("/Prescriptions", (req, res) => {
   res.render("Pharmacy/Prescriptions.ejs");
 });
-// //------------------------------------End Pharmacy Prescription view--------------------------------------------------------
+//------------------------------------End Pharmacy Prescription view--------------------------------------------------------
 
 ///------------------------------------Start Pharmacy Prescription view--------------------------------------------------------
 app.get("/Pharmacies", (req, res) => {

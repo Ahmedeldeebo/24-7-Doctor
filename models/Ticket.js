@@ -5,7 +5,7 @@ const ticketSchema = new mongoose.Schema(
     ticket_Name: { type: String, required: true },
     ticket_Email: { type: String, required: true },
     ticket_details: { type: String, required: true },
-    pat_id: {
+    pat_Id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Patient",
       required: false,

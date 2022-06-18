@@ -14,7 +14,7 @@ const prescriptionSchema = new mongoose.Schema({
     ref: "Aappointment",
     required: true,
   },
-  Pat_id: {
+  Pat_Id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Patient",
     required: true,

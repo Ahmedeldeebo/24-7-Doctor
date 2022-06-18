@@ -132,7 +132,7 @@ router.get("/profile-setting", authorization, async (req, res, next) => {
   //--Notification
 
   const checkUpList = await Prescription.find({
-    Pat_id: id,
+    Pat_Id: id,
   });
 
   const date = new Date();
@@ -181,7 +181,7 @@ router.post("/Profile-Edit", authorization, async (req, res, next) => {
   //--Notification
 
   const checkUpList = await Prescription.find({
-    Pat_id: id,
+    Pat_Id: id,
   });
 
   const date = new Date();
@@ -217,7 +217,7 @@ router.get("/Profile-Edit", authorization, async (req, res, next) => {
   //--Notification
 
   const checkUpList = await Prescription.find({
-    Pat_id: id,
+    Pat_Id: id,
   });
 
   const date = new Date();
@@ -320,7 +320,7 @@ router.get("/profile-home", authorization, async (req, res, next) => {
   // const date = new Date();
   // const dataStr = date.toDateString();
   const checkUpList = await Prescription.find({
-    Pat_id: id,
+    Pat_Id: id,
   });
   const result = checkUpList.filter(
     (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
@@ -355,7 +355,7 @@ router.get("/Ticket", authorization, async (req, res) => {
   //--Notification
 
   const checkUpList = await Prescription.find({
-    Pat_id: id,
+    Pat_Id: id,
   });
 
   const date = new Date();
@@ -391,7 +391,7 @@ router.post("/Ticket", authorization, async (req, res) => {
       ticket_Name: req.body.ticket_Name,
       ticket_Email: req.body.ticket_Email,
       ticket_details: req.body.ticket_details,
-      pat_id: id,
+      Pat_Id: id,
     });
     const savedTikcet = await NewTicket.save();
     console.log(NewTicket);
@@ -407,7 +407,7 @@ router.post("/Ticket", authorization, async (req, res) => {
   //--Notification
 
   const checkUpList = await Prescription.find({
-    Pat_id: id,
+    Pat_Id: id,
   });
 
   const date = new Date();
@@ -449,7 +449,7 @@ router.get("/viewappoint", authorization, async (req, res) => {
   //--Notification
 
   const checkUpList = await Prescription.find({
-    Pat_id: id,
+    Pat_Id: id,
   });
 
   const date = new Date();
@@ -497,7 +497,7 @@ router.post("/viewappoint", authorization, async (req, res) => {
 
   //--Notification
   const checkUpList = await Prescription.find({
-    Pat_id: id,
+    Pat_Id: id,
   });
   const date = new Date();
   const dataStr = date.toDateString();
@@ -557,7 +557,7 @@ router.post("/booking", authorization, async (req, res) => {
   //--Notification
 
   const checkUpList = await Prescription.find({
-    Pat_id: id,
+    Pat_Id: id,
   });
 
   const date = new Date();
@@ -614,7 +614,7 @@ router.post("/booking-Create", authorization, async (req, res) => {
   //--Notification
 
   const checkUpList = await Prescription.find({
-    Pat_id: id,
+    Pat_Id: id,
   });
 
   const date = new Date();
@@ -645,7 +645,7 @@ router.get("/AppDetails", authorization, async (req, res) => {
   //--Notification
 
   const checkUpList = await Prescription.find({
-    Pat_id: id,
+    Pat_Id: id,
   });
 
   const date = new Date();
@@ -712,14 +712,14 @@ router.post("/ViewPrescription", authorization, async (req, res) => {
   const PresDesc = await Prescription.findOne({
     Appoinment_Id: ApppId,
   })
-    .populate("Pat_id")
+    .populate("Pat_Id")
     .populate("Doc_Id");
   console.log(PresDesc);
   if (PresDesc === null) {
     //--Notification
 
     const checkUpList = await Prescription.find({
-      Pat_id: id,
+      Pat_Id: id,
     });
 
     const date = new Date();
@@ -748,7 +748,7 @@ router.post("/ViewPrescription", authorization, async (req, res) => {
     //--Notification
 
     const checkUpList = await Prescription.find({
-      Pat_id: id,
+      Pat_Id: id,
     });
 
     const date = new Date();
@@ -778,7 +778,7 @@ router.post("/ViewPrescription", authorization, async (req, res) => {
   // //--Notification
 
   // const checkUpList = await Prescription.find({
-  //   Pat_id: id,
+  //   Pat_Id: id,
   // });
 
   // const date = new Date();
@@ -938,7 +938,7 @@ router.post("/ViewBill", authorization, async (req, res, next) => {
     //--Notification
 
     const checkUpList = await Prescription.find({
-      Pat_id: id,
+      Pat_Id: id,
     });
 
     const date = new Date();
@@ -969,7 +969,7 @@ router.post("/ViewBill", authorization, async (req, res, next) => {
     //--Notification
 
     const checkUpList = await Prescription.find({
-      Pat_id: id,
+      Pat_Id: id,
     });
 
     const date = new Date();
@@ -1003,7 +1003,7 @@ router.post("/ViewBill", authorization, async (req, res, next) => {
 //   console.log(appo_Id);
 //   const user = await User.findById(id);
 //   const appoBill = await Bill.findOne({ Appoinment_Id: appo_Id })
-//     .populate("Pat_id")
+//     .populate("Pat_Id")
 //     .populate("Doc_id")
 //     .populate("Appoinment_Id");
 //   // console.log(appoBill);
@@ -1012,7 +1012,7 @@ router.post("/ViewBill", authorization, async (req, res, next) => {
 //   //--Notification
 
 //   const checkUpList = await Prescription.find({
-//     Pat_id: id,
+//     Pat_Id: id,
 //   });
 
 //   const date = new Date();
@@ -1063,7 +1063,7 @@ router.post("/payment-visa", authorization, async (req, res) => {
   const number = await Appo.countDocuments({ Pat_Id: id });
   console.log(number);
   const checkUpList = await Prescription.find({
-    Pat_id: id,
+    Pat_Id: id,
   });
 
   const date = new Date();
@@ -1079,7 +1079,7 @@ router.post("/payment-visa", authorization, async (req, res) => {
       Pay_Card_Holder: body.Pay_Card_Holder,
       Pay_Card_expDate: body.Pay_Card_expDate,
       Bill_id: BillId,
-      Pat_id: id,
+      Pat_Id: id,
       Appoinment_Id: AppoId,
       Doc_id: DocId,
     });
@@ -1135,7 +1135,7 @@ router.post("/payment-paypal", authorization, async (req, res) => {
   const number = await Appo.countDocuments({ Pat_Id: id });
   console.log(number);
   const checkUpList = await Prescription.find({
-    Pat_id: id,
+    Pat_Id: id,
   });
 
   const date = new Date();
@@ -1149,7 +1149,7 @@ router.post("/payment-paypal", authorization, async (req, res) => {
       Pay_type: "PayPal",
       Pay_PayPal_Email: body.Pay_PayPal_Email,
       Bill_id: BillId,
-      Pat_id: id,
+      Pat_Id: id,
       Appoinment_Id: AppoId,
       Doc_id: DocId,
     });
@@ -1205,7 +1205,7 @@ router.post("/payment-vodcash", authorization, async (req, res) => {
   const number = await Appo.countDocuments({ Pat_Id: id });
   console.log(number);
   const checkUpList = await Prescription.find({
-    Pat_id: id,
+    Pat_Id: id,
   });
 
   const date = new Date();
@@ -1219,7 +1219,7 @@ router.post("/payment-vodcash", authorization, async (req, res) => {
       Pay_type: "Vodafone Cash",
       Pay_VodCash_Number: body.Pay_VodCash_Number,
       Bill_id: BillId,
-      Pat_id: id,
+      Pat_Id: id,
       Appoinment_Id: AppoId,
       Doc_id: DocId,
     });
@@ -1258,7 +1258,7 @@ router.post("/payment-vodcash", authorization, async (req, res) => {
 router.post("/notification-details", authorization, async (res, req) => {
   const id = res.locals.user.id;
   const checkUpList = await Prescription.find({
-    Pat_id: id,
+    Pat_Id: id,
   });
   const result = checkUpList.filter(
     (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
@@ -1285,12 +1285,15 @@ router.get("/PresHistory", authorization, async (req, res) => {
   const id = res.locals.user.id;
   const user = await User.findById(id);
   const name = user.pat_FirstName;
-  const history = await Prescription.find({ Pat_id: id });
+  const history = await Prescription.find({ Pat_Id: id })
+    .populate("Pat_Id")
+    .populate("Doc_Id")
+    .sort({ _id: -1 });
   // console.log(history);
   //--Notification
 
   const checkUpList = await Prescription.find({
-    Pat_id: id,
+    Pat_Id: id,
   });
 
   const date = new Date();

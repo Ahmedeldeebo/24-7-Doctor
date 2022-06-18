@@ -24,6 +24,9 @@
         margin: 0;
         padding: 0;
       }
+      .c {
+  text-transform: capitalize;
+}
       .card {
         background-color: rgb(255, 255, 255);
         border: none;
@@ -114,7 +117,8 @@
             >
               <!-- <h1 class="h6">=appoo.createdAt%></h1> -->
                
-              <h1 class="h6">asdasd</h1>
+              <h1 class="h6 c"><%=prse.Doc_Id.Doc_FirstName %></h1>
+              <h1 class="h6"><%=prse.Doc_Id.Specialization_Name %></h1>
             </div>
             
 
@@ -125,26 +129,26 @@
                       <!-- <form action="http://localhost:5000/doctor/WritePrescription-create" method="post">            -->
                           <div class="form-outline mt-4"> 
                               <h6 class="text-left">Patient Name</h6>
-                         <input type="text" class="form-control mt-3 c" placeholder="=appoo.Pat_Id.pat_FirstName" name="" disabled>
+                         <input type="text" class="form-control mt-3 c" placeholder="<%=prse.Pat_Id.pat_FirstName %>" name="" disabled>
                           </div>
 
                           <div class="form-row">
                               <div class="form-group col-md-6 mt-3 text-left">
                                 <h6 class="text-left">Patient Address</h6>
                                 <input type="text" class="form-control mt-3
-                                input-sm"  placeholder="=appoo.Pat_Id.addres_details" name="" disabled />
+                                input-sm"  placeholder="<%=prse.Pat_Id.addres_details %>" name="" disabled />
                               </div>
 
                               <div class="form-group col-md-6 mt-3 text-left">
                                 <h6 class="text-left">Patient Area</h6>
                                 <input type="text" class="form-control mt-3
-                                input-sm" placeholder="=appoo.Pat_Id.city" name="" disabled />                                
+                                input-sm" placeholder="<%=prse.Pat_Id.city %>" name="" disabled />                                
                             </div>
                           </div>
 
                           <div class="form-outline m4-4"> 
                               <h6 class="text-left">Prescription Details </h6>
-                         <textarea class="form-control mt-3" placeholder="Prescription Details" name="" disabled>=pres.pres_Description</textarea> 
+                         <textarea class="form-control mt-3" placeholder="Prescription Details" name="" disabled><%=prse.pres_Description %></textarea> 
                           </div>
 
             <!-- <div

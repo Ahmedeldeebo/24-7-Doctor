@@ -166,9 +166,7 @@ router.get("/doctorview", authorization, async (req, res) => {
   const user = await Patient.findById(id);
   const name = user.pat_FirstName;
   const scheduleList = await DocSche.find({}).populate("Doctor_id");
-  // const result = scheduleList.filter(
-  //   (schedule) => schedule.Meeting_Maximum_Patient > 0
-  // );
+  const result = scheduleList.filter((schedule) => schedule.Start_Time != "");
   //--Notification
   const checkUpList = await Prescription.find({
     Pat_id: id,
@@ -190,7 +188,7 @@ router.get("/doctorview", authorization, async (req, res) => {
   console.log(number);
 
   res.render("doctorview.ejs", {
-    Sch: scheduleList,
+    Sch: result,
     name: name,
     appo: appo,
     number: number,
@@ -203,12 +201,17 @@ router.post("/doctorview", authorization, async (req, res) => {
   const user = await Patient.findById(id);
   const name = user.pat_FirstName;
   const SpecName = req.body.SpecName;
+  const CommType = req.body.CommType;
+  console.log(CommType);
+  console.log(SpecName);
 
   let scheduleList = await DocSche.find()
     .populate("Doctor_id")
     .sort({ _id: -1 });
   const result = scheduleList.filter(
-    (schedule) => schedule.Doctor_id.Specialization_Name === SpecName
+    (schedule) =>
+      schedule.Doctor_id.Specialization_Name === SpecName ||
+      schedule.Available_methods === CommType
     //&& schedule.Meeting_Maximum_Patient > 0
   );
   //--Notification

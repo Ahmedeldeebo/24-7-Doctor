@@ -6,6 +6,7 @@ const { render } = require("ejs");
 const cors = require("cors");
 const { body } = require("express-validator");
 const { authorization } = require("./verifyToken");
+const { findById } = require("../models/Pharmacy");
 //--------------------------------------------Register--------------------------------------------
 // router.use(cors({ origin: "*", credentials:true  } ) );
 
@@ -85,10 +86,41 @@ router.post("/Pharmacy-login", async (req, res) => {
     return console.log(e.message);
   }
 });
-//  Start Pharmacy Profile
-router.get("/PharmacyProfile", authorization, async (req,res)=>{
-  res.render("./Pharmacy/PharProfile.ejs")
-})
-// End Pharmacy Profile
+
+//------------------------------------End Login--------------------------------------------------------
+//------------------------------------Start Pharmacy Profile--------------------------------------------------------
+router.get("/PharmacyProfile", authorization, async (req, res) => {
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  const name = user.Phar_name;
+
+  res.render("./Pharmacy/PharProfile.ejs", { name: name });
+});
+//------------------------------------End Pharmacy Profile-------------------------------------------------------
+//------------------------------------Start Pharmacy Edit Profile--------------------------------------------------------
+router.get("/PharmacyProfileEdit", authorization, async (req, res) => {
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  const name = user.Phar_name;
+
+  res.render("Pharmacy/PharProfileEdit.ejs", { name: name });
+});
+//------------------------------------End Pharmacy Edit Profile--------------------------------------------------------
+//------------------------------------Start Pharmacy Ticket--------------------------------------------------------
+router.get("/PharTicket", authorization, async (req, res) => {
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  const name = user.Phar_name;
+  res.render("Pharmacy/PharTicket.ejs", { name: name });
+});
+//------------------------------------End Pharmacy Ticket--------------------------------------------------------
+//------------------------------------Start Pharmacy Prescription view--------------------------------------------------------
+router.get("/Prescriptions", authorization, async (req, res) => {
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  const name = user.Phar_name;
+  res.render("Pharmacy/Prescriptions.ejs", { name: name });
+});
+//------------------------------------End Pharmacy Prescription view--------------------------------------------------------
 
 module.exports = router;
