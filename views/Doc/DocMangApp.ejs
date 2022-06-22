@@ -166,7 +166,12 @@
         <div class="col-md-1 text-sm-center text-md-start align-self-center my-2"> 
             <!-- <form method="get" action="controller" class="d-flex btn-group">  -->
                 <!-- <a class="btn btn-outline-success" style="padding: 10px 10px;" href="#">Accept</a> -->
+                <form action="http://localhost:5000/doctor/ZoomDoc" method="post" >
+                    <input hidden value="<%=appoo._id%>" name="appo_Id">
                 <button class="btn btn-outline-success" style="padding: 10px 10px;" data-toggle="modal" data-target="#zoomaccept">Accept</button>
+                </form>
+                <!-- <a href="" class="btn btn-outline-success" role="button" style="padding: 10px 10px;" data-toggle="modal" data-target="#zoomaccept">Accept</a> -->
+           
                 <div id="zoomaccept" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content border-0">   
@@ -182,7 +187,13 @@
                                         <div class="row justify-content-end no-gutters"><div class="col-auto"><button type="button" class="btn btn-light text-muted" data-dismiss="modal">Cancel</button></div>
 
                                         <div class="col-auto">
-                                    <a href="http://localhost:5000/ZoomDoc" class="btn btn-success px-4" role="button" aria-disabled="true">Yes</a></div>
+                                          
+                                                <button type="submit" class="btn btn-success px-4">Yes</button>
+                                          
+                                    <!-- <a href="" class="btn btn-success px-4" role="button" aria-disabled="true">Yes</a> -->
+                                
+                                </div>
+                        
 
                                         </div>
                                     </div>

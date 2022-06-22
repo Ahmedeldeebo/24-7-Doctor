@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const Patient = require("../models/Patient");
 const Pharmacy = require("../models/Pharmacy");
+const Meet_Link = require("../models/Meet_Link");
 const User = require("../models/Doctor");
 const Appo = require("../models/Aappointment");
 const DocSche = require("../models/Doc_Schedule");
@@ -93,7 +94,8 @@ router.post("/SetDocSche", async (req, res) => {
 router.post("/Docter-login", async (req, res) => {
   try {
     const user = await User.findOne({ Doc_username: req.body.Doc_username });
-    !user && res.render("./Doc/signInDoc.ejs", { errorMessage: "Wrong username" });
+    !user &&
+      res.render("./Doc/signInDoc.ejs", { errorMessage: "Wrong username" });
     //res.Status(401).json("Wrong credentials!");
     const hashedPassword = CryptoJS.AES.decrypt(
       user.Doc_password,
@@ -582,7 +584,7 @@ router.get("/ManageAppointments", authorization, async (req, res, next) => {
     .populate("Doc_Id")
     .populate("Pat_Id");
   // console.log(user);
-  // console.log(appo);
+  // console.log(appoo);
   //--Notification
   const appo = await Appo.find({ Doc_Id: id })
     .populate("Pat_Id")
@@ -823,5 +825,64 @@ router.get("/DoctorSchedule", authorization, async (req, res) => {
   });
 });
 //------------------------------------EndView Shedule--------------------------------------------------------
+//------------------------------------Start ZoomDoc--------------------------------------------------------
+// router.get("/ZoomDoc", authorization, async (req, res) => {
+//   const DocID = res.locals.user.id;
+//   const user = await User.findById(DocID);
+//   const name = user.Doc_FirstName;
+//   //--Notification
+//   const appo = await Appo.find({ Doc_Id: DocID })
+//     .populate("Pat_Id")
+//     .populate("Doc_Id")
+//     .sort({ _id: -1 })
+//     .limit(5);
+//   const number = await Appo.countDocuments({ Doc_Id: DocID });
+//   console.log(number);
+//   res.render("./Doc/ZoomDoc.ejs", {
+//     name: name,
+//     errorMessage: "",
+//     DocUser: user,
+//     appo: appo,
+//     number: number,
+//   });
+// });
+router.post("/ZoomDoc", authorization, async (req, res) => {
+  const DocID = res.locals.user.id;
+  const appoId = req.body.appo_Id;
+  console.log(appoId);
+  res.render("./Doc/ZoomDoc.ejs", {
+    appoo: appoId,
+  });
+});
+router.post("/online-meeting-create", authorization, async (req, res) => {
+  // const DocID = res.locals.user.id;
+  // const user = await User.findById(DocID);
+  // const name = user.Doc_FirstName;
+  const appoId = req.body.appo_Id;
+  console.log(appoId);
 
+  // const appo = await Appo.findById(appoId);
+  // console.log(appo);
+  try {
+    const NewMeet = new Meet_Link({
+      Appointment_Id: appoId,
+      Doc_Id: DocID,
+      Pat_Id: Pat_Id,
+      Meeting_Link: req.body.Meet_Link,
+    });
+    console.log(NewMeet, " NewMeet");
+  } catch (e) {
+    console.log(e.message);
+  }
+  // //--Notification
+  // const appo = await Appo.find({ Doc_Id: DocID })
+  //   .populate("Pat_Id")
+  //   .populate("Doc_Id")
+  //   .sort({ _id: -1 })
+  //   .limit(5);
+  // const number = await Appo.countDocuments({ Doc_Id: DocID });
+  // console.log(number);
+  res.redirect("http://localhost:5000/doctor/ManageAppointments");
+});
+//------------------------------------End ZoomDoc--------------------------------------------------------
 module.exports = router;
