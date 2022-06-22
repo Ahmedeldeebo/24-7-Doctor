@@ -21,13 +21,15 @@
     align-items: center;
     padding: 0 .75rem
 }
-
+span{
+    font-size: 18px !important;
+}
 .topbar .nav-item .nav-link .badge-counter {
     position: absolute;
-    transform: scale(.7);
+    transform: scale(.10);
     transform-origin: top right;
-    right: .25rem;
-    margin-top: -.25rem
+    right: .70rem;
+    margin-top: -.30rem
 }
 div.c {
   text-transform: capitalize;
@@ -73,8 +75,8 @@ div.c {
     position: absolute;
     transform: scale(.7);
     transform-origin: top right;
-    right: .25rem;
-    margin-top: -.25rem
+    right: .10rem;
+    margin-top: -.80rem
 }
 
 .badge {
@@ -145,7 +147,7 @@ div.c {
                         <div class="icon-circle"> <i class="fa fa-file"></i> </div>
                     </div>
                     <div><% const date =appo.createdAt.toDateString(); %> 
-                        <div class="small text-gray-500 text"><%=date%></div> <span class="font-weight-bold">Appointments</span>
+                        <div class="small text-gray-500 text"><%=date%></div> <span class="font-weight-bold">Appointment Created</span>
                     </div>
                      
                 </a> <a class="dropdown-item d-flex align-items-center" href="http://localhost:5000/patient/viewappoint">
@@ -167,15 +169,29 @@ div.c {
             </div>
         </li> 
        
-       <li class="nav-item dropdown no-arrow mx-1"> <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-envelope fa-fw"></i> <span class="badge badge-danger badge-counter"></span> </a>
-            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
-                <h6 class="dropdown-header"> Messages </h6> <a class="dropdown-item d-flex align-items-center" href="#">
+       <li class="nav-item dropdown mx-1"> <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-envelope fa-fw"></i> <span class="badge badge-danger badge-counter"><%- number %></span> </a>
+
+            <div class="dropdown-list dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
+                <h6 class="dropdown-header"> Messages </h6> 
+                <a class="dropdown-item d-flex" href="http://localhost:5000/ZoomPatient">
+                    <div class="dropdown-list-image mr-3"> <img class="rounded-circle" src="/Doctors/MaleDoctor.jpg" alt="">
+                        <div class="status-indicator bg-success"></div>
+                    </div>
+                    <div class="font-weight-bold">
+                        <div class="text-truncate">Zoom Meeting Now</div>                       
+                        <div class="small text-gray-500"> Date </div>
+
+                    </div>
+                    
+               </a>
+
+                <a class="dropdown-item d-flex align-items-center" href="#">
                     <%result.forEach(result=>{%>
                     <div class="dropdown-list-image mr-3"> <img class="rounded-circle" src="/img/doctoricon.png" alt="">
                         <div class="status-indicator bg-success"></div>
                     </div>
                     <div class="font-weight-bold">
-                        <div class="text-truncate">Check up now</div>
+                        <div class="text-truncate">Check-Up Now</div>
                         <% const date =result.CheckUpDay.toDateString();%>
                         <div class="small text-gray-500"> %> <%=date%></div>
                     </div>

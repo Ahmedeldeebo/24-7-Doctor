@@ -69,7 +69,7 @@ router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ Pat_username: req.body.Pat_username });
     !user &&
-      res.render("signIn.ejs", { errorMessage: "Wrong email", Message: "" });
+      res.render("signIn.ejs", { errorMessage: "Wrong username", Message: "" });
     //res.Status(401).json("Wrong credentials!");
     const hashedPassword = CryptoJS.AES.decrypt(
       user.pat_password,

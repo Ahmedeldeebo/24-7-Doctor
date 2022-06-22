@@ -50,7 +50,7 @@ router.post("/Pharmacy-login", async (req, res) => {
   try {
     const user = await User.findOne({ Phar_userName: req.body.Phar_userName });
     !user &&
-      res.render("./Pharmacy/signInPhar.ejs", { errorMessage: "Wrong email" });
+      res.render("./Pharmacy/signInPhar.ejs", { errorMessage: "Wrong username" });
     //res.Status(401).json("Wrong credentials!");
     const hashedPassword = CryptoJS.AES.decrypt(
       user.Phar_Password,

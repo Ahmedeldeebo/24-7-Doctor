@@ -82,6 +82,8 @@
   width: 100%;
   height: 2.5rem;            /* Footer height */
 }
+
+
 </style>
 
 </head>
@@ -162,9 +164,35 @@
              </form> 
         </div> 
         <div class="col-md-1 text-sm-center text-md-start align-self-center my-2"> 
-            <form method="get" action="controller" class="d-flex btn-group"> 
-                <a class="btn btn-outline-success" style="padding: 10px 10px;" href="#">Accept</a>
-             </form>   
+            <!-- <form method="get" action="controller" class="d-flex btn-group">  -->
+                <!-- <a class="btn btn-outline-success" style="padding: 10px 10px;" href="#">Accept</a> -->
+                <button class="btn btn-outline-success" style="padding: 10px 10px;" data-toggle="modal" data-target="#zoomaccept">Accept</button>
+                <div id="zoomaccept" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content border-0">   
+                            <div class="modal-body p-0">
+                                <div class="card border-0 p-sm-3 p-2 justify-content-center">
+
+                                    <div class="card-header pb-0 bg-white border-0 "><div class="row"><div class="col ml-auto"><button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button></div> </div>
+                                    <p class="font-weight-bold mb-2">By clicking Yes, you will be creating a new Zoom meeting and auto sent to the patient! Continue?</p><p class="text-muted "> Make sure to have an active <a href="https://zoom.us/signin" target="_blank">Zoom account</a></p>     
+                                    </div>
+
+                                    <div class="card-body px-sm-4 mb-2 pt-1 pb-0"> 
+
+                                        <div class="row justify-content-end no-gutters"><div class="col-auto"><button type="button" class="btn btn-light text-muted" data-dismiss="modal">Cancel</button></div>
+
+                                        <div class="col-auto">
+                                    <a href="http://localhost:5000/ZoomDoc" class="btn btn-success px-4" role="button" aria-disabled="true">Yes</a></div>
+
+                                        </div>
+                                    </div>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+             <!-- </form>    -->
         </div>
         <div class="col-md-1 text-sm-center text-md-start align-self-center my-2"> 
             <form method="get" action="controller" class="d-flex btn-group"> 
@@ -184,7 +212,9 @@
 
 
 
+<div class="container d-flex justify-content-center">
 
+</div>
 
 </div>
 <footer id="footer" class="mt-5"><%- include ('../partials/footer.ejs') %></footer>
