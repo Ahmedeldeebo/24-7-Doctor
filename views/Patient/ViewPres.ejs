@@ -429,7 +429,12 @@ p {
                                 <div class="form-outline m4-4"> 
                                     <h6 class="text-left">Prescription Details </h6>
                                <textarea class="form-control mt-3" placeholder="Prescription Details" name="" disabled><%=pres.pres_Description%></textarea> 
-
+                               <div class="form-group col-md-6 feight py-3">
+                                <h6 class="text-left">Next Checkup </h6>
+    
+                                <input type="date" class="form-control" placeholder="m/d/y"
+                                required name="CheckUpDay" disabled>
+                               </div>
                            </div> 
                            <div class="button mt-5 text-center"> 
                                <button class="btn btn-success d-print-none" onclick="myFunction()"><span class="fa-solid fa-print" aria-hidden="true"></span> Print Prescription</button>
@@ -441,6 +446,9 @@ p {
                         <div class="alert alert-light text-danger" role="alert">
                            <%- errorMessage %> 
                          </div>
+                         <form class="mt-3">
+                            <input class="btn btn-danger" type="button" value="Go back" onclick="history.back()">
+                           </form>
         </div> 
         </div> 
         </div> 

@@ -24,9 +24,11 @@
         margin: 0;
         padding: 0;
       }
+
       .c {
-  text-transform: capitalize;
-}
+      text-transform: capitalize;
+      }
+
       .card {
         background-color: rgb(255, 255, 255);
         border: none;
@@ -34,9 +36,7 @@
         box-shadow: 5px 6px 6px 2px #4e7caa;
       }
 
-
       html,body {
-
         background: #000;
         background: url("https://i.imgur.com/acoSJ9c.jpg") no-repeat center center fixed;
         width: 100%;
@@ -49,9 +49,16 @@
         background-size: cover;
         position: relative;
         margin-bottom: 60px;
-  min-height: 100%;
+        min-height: 100%;
       }
 
+      #badg{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width: 10rem; 
+    font-size: 1.2em;
+}
 
 
     </style>
@@ -117,8 +124,8 @@
             >
               <!-- <h1 class="h6">=appoo.createdAt%></h1> -->
                
-              <h1 class="h6 c"><%=prse.Doc_Id.Doc_FirstName %></h1>
-              <h1 class="h6"><%=prse.Doc_Id.Specialization_Name %></h1>
+              <h1 class="h6 c">Dr. <%=prse.Doc_Id.Doc_FirstName %></h1>
+              <h1 class="text-wrap" id="badg"><%=prse.Doc_Id.Specialization_Name %></h1>
             </div>
             
 

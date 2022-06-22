@@ -21,67 +21,22 @@
     align-items: center;
     padding: 0 .75rem
 }
-
-.topbar .nav-item .nav-link .badge-counter {
-    position: absolute;
-    transform: scale(.7);
-    transform-origin: top right;
-    right: .25rem;
-    margin-top: -.25rem
-}
-div.c {
-  text-transform: capitalize;
-}
-
-.topbar.navbar-light .navbar-nav .nav-item .nav-link {
-    color: #3f3b3b
+#spann{
+    font-size: 18px !important;
 }
 
 .dropdown-toggle::after {
     content: none !important
 }
 
-.badge {
-    display: inline-block;
-    padding: .25em .4em;
-    font-size: 75%;
-    font-weight: 700;
-    line-height: 1;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
-    border-radius: .35rem;
-    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out
-}
-
-.form-control:focus {
-    box-shadow: none !important
-}
-
-.input-group-append button {
-    box-shadow: none !important
-}
-
 .topbar .nav-item .nav-link .badge-counter {
     position: absolute;
     transform: scale(.7);
     transform-origin: top right;
-    right: .25rem;
-    margin-top: -.25rem
+    right: .10rem;
+    margin-top: -.80rem
 }
 
-.badge {
-    display: inline-block;
-    padding: .25em .4em;
-    font-size: 75%;
-    font-weight: 700;
-    line-height: 1;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
-    border-radius: .35rem;
-    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out
-}
 
 .rounded-circle {
     width: 50px;
@@ -97,8 +52,6 @@ div.c {
 
 .topbar .dropdown-list {
     width: 20rem 
-}span{
-    font-size: 18px !important;
 }
 </style>
 </head>
@@ -131,7 +84,7 @@ div.c {
                 </form>
             </div>
         </li>
-       <li class="nav-item dropdown no-arrow mx-1"> <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-bell fa-fw"></i> <span class="badge badge-danger badge-counter"><%- number %></span> </a>
+       <li class="nav-item dropdown no-arrow mx-1"> <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-bell fa-fw"></i> <span id="spann" class="badge badge-danger badge-counter"><%- number %></span> </a>
              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in">
                 <h6 class="dropdown-header"> Alerts Center </h6> <a class="dropdown-item d-flex align-items-center" href="#">
                     <%appo.forEach(appo=>{%>
@@ -201,7 +154,7 @@ div.c {
         <li class="nav-item dropdown no-arrow"> 
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                    <div class="c">Dr.<%- name %> </div></span><img class="img-profile rounded-circle" src="/Doctors/MaleDoctor.jpg"> </a>
+                    <div id="spann" class="c">Dr.<%- name %> </div></span><img class="img-profile rounded-circle" src="/Doctors/MaleDoctor.jpg"> </a>
                     
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown"> 
                 <a class="dropdown-item" href="http://localhost:5000/doctor/Doctor-profile-setting"> <i class="fa fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile </a> 

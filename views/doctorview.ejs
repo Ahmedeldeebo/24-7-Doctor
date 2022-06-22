@@ -6,68 +6,30 @@
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
         <title>24/7 Doctors</title>
-        <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link href='https://use.fontawesome.com/releases/v5.7.2/css/all.css' rel='stylesheet'>
-        <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-        <style>
- 
-        
 
-.badge23 {
-display: inline-block;
-padding: 0.40em .4em;
-font-size: 75%;
-font-weight: 300;
-line-height: 1;
-text-align: center;
-white-space: nowrap;
-vertical-align: baseline;
-border-radius: .25rem;
-color: #fff;
-background-color: #28a745
-}
+<style>
+
 
 body {
     overflow-x: hidden !important;
 }
-.container {
-    max-width: 100% !important;
-    overflow-x: hidden !important;
-}
-.rating-review {
-color: #5b5b5b;
-font-size: 12px
-}
 
 .doctor-fees {
 display: inline;
-font-size: 30px;
+font-size: 20px;
 font-weight: 400;
-margin-top: -11px;
+margin-top: -15px;
 margin-bottom: 0px;
 color: #080808;
 clear: left
-}
 
-.list-group-item {
-position: relative;
-display: block;
-margin-bottom: -1px;
-background-color: #fff;
-border: 1px solid rgba(0, 0, 0, .125)
 }
 
 .seperator {
 background: #a2a2efb8
 }
-
-div.c {
-  text-transform: capitalize;
-}
-
-/*Filters */
-
-
 
 .wrapper {
 width: 70%;
@@ -82,12 +44,10 @@ width: 100%
 }
 
 .panel{
-
 margin-bottom: 5px;
 }
 
 .panel-title{
-
 margin-bottom: .0rem;
 }
 
@@ -116,7 +76,6 @@ text-transform: uppercase;
 letter-spacing: 1px;
 word-spacing: 3px;
 text-decoration: none;
-
 }
 
 .panel-heading a:before {
@@ -130,12 +89,6 @@ transition: all 0.5s
 -webkit-transform: rotate(180deg);
 -moz-transform: rotate(180deg);
 transform: rotate(180deg)
-}
-
-.panel-default>.panel-heading {
-color: #282b2f;
-background-color: #ffffff !important;
-border-bottom: 1px solid #d5d5d5;
 }
 
 @keyframes click-wave {
@@ -211,10 +164,6 @@ position: relative;
 z-index: 100
 }
 
-.option-input.radio {
-border-radius: 50%
-}
-
 .option-input.radio::after {
 border-radius: 50%
 }
@@ -226,39 +175,17 @@ margin-left: -4px !important;
 margin-top: 9px
 }
 
-input[type="checkbox"]:focus {
-outline: thin dotted #333;
-outline: 0px auto -webkit-focus-ring-color;
-outline-offset: 0px
+.checkbox input[type="radio"],
+.checkbox-inline input[type="radio"] {
+float: left;
+margin-left: -4px !important;
+margin-top: 9px
 }
 
 .ml-10 {
 margin-left: 10px;
 font-size: 12px;
 color: #080808
-}
-
-.btn.btn-out {
-outline: 1px solid #fff;
-outline-offset: -5px
-}
-
-.btn {
-border-radius: 2px;
-text-transform: capitalize;
-font-size: 11px;
-padding: 10px 19px;
-cursor: pointer;
-color: #fff
-}
-
-.fa {
-font-size: 12px;
-color: rgb(0, 0, 0)
-}
-
-.refine {
-padding: 0px 0px !important
 }
 
 .filters-text {
@@ -268,84 +195,120 @@ margin-bottom: 15px;
 padding: 12px 
 }
 
-.filter-span {
-font-size: 17px;
-color: #269bb8
+#container{
+        min-height: 100%;
+      }
+
+      #main{
+        overflow: auto;
+        padding-bottom: 100px;
+      }
+
+      .footer {
+        position: relative;
+        margin-top: -100px;
+        clear: both;
+        height: 100px;
+        bottom: 0;
+        min-height: 100%;
 }
-
-
 </style>
-        </head>
-        <body>
-             <!--Start Hader-->
+</head>
+
+    <body>
+    <!--Start Hader-->
     <%- include ('./partials/navHome.ejs') %>
     <!--End Hader-->
-        <div class="row">
 
+<div class="row" id="container">
 <div class="col-md-4">
+
     <form action="http://localhost:5000/doctor/doctorview" method="post">
-<div class="wrapper center-block hidden-xs">
-<div class="filters-text">
-<span class="filter-span">Sort by: <small>(find doctors using filters below)</small></span>
-<span style="float:right;"><i class="fa fa-filter"></i></span>
-</div>
+        
+        <div class="wrapper center-block hidden-xs">
+
+    <div class="filters-text">
+        <span class="filter-span">Sort by: <small>(find doctors using filters below)</small></span>
+        <div class="text-right refine"> <button class="btn btn-in btn-info btn-square" id="button-filter" type="submit">Refine Search</button> </div>
+
+    </div>
+
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
 <div class="panel panel-default">
 <div class="panel-heading" role="tab" id="heading1">
   
-<h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="false" aria-controls="collapse1"> Specialization </a> </h4>
-</div>
-<div id="collapse1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading1">
+<h4 class="panel-title">
+    <a class="collapsed" role="button" data-toggle="collapse" href="#collapse1" aria-expanded="false" aria-controls="collapse1"> Specialization </a> </h4>
+
+<div id="collapse1" class="collapse" role="button" aria-labelledby="collapse1">
 <div class="panel-body">
-<div class="checkbox"> <label> <input type="checkbox" class="option-input checkbox" name="SpecName" value="Dentistry" /> <span class="ml-10">Dentistry</span> </label> </div>
-<div class="checkbox"> <label> <input type="checkbox" class="option-input checkbox" name="SpecName" value="Neurology" /> <span class="ml-10">Neurology</span> </label> </div>
-<div class="checkbox"> <label> <input type="checkbox" class="option-input checkbox" name="SpecName" value="Dermatology" /> <span class="ml-10">Dermatology</span> </label> </div>
-<div class="checkbox"> <label> <input type="checkbox" class="option-input checkbox" name="SpecName" value="Pediatrics" /> <span class="ml-10">Pediatrics</span> </label> </div>
-<div class="checkbox"> <label> <input type="checkbox" class="option-input checkbox" name="SpecName" value="Ophthalmology" /> <span class="ml-10">Ophthalmology</span> </label> </div>
-<div class="checkbox"> <label> <input type="checkbox" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Diabetes</span> </label> </div>
-</div>
-</div>
-</div>
-<div class="panel panel-default">
-<div class="panel-heading" role="tab" id="heading2">
-<h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="false" aria-controls="collapse2"> Communication Type </a> </h4>
-</div>
-<div id="collapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2">
-<div class="panel-body">
-<div class="checkbox"> <label> <input type="checkbox" class="option-input checkbox" name="CommType" value="Zoom Meeting" /> <span class="ml-10">Zoom Meeting</span> </label> </div>
-<div class="checkbox"> <label> <input type="checkbox" class="option-input checkbox" name="CommType" value="Face to Face" /> <span class="ml-10">Face to Face</span> </label> </div>
-<div class="checkbox"> <label> <input type="checkbox" class="option-input checkbox" name="CommType" value="WhatsApp" /> <span class="ml-10">WhatsApp</span> </label> </div>
-</div>
-</div>
-</div>
-<div class="panel panel-default">
-<div class="panel-heading" role="tab" id="heading3">
-<h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="false" aria-controls="collapse3"> Date & Time </a> </h4>
-</div>
-<div id="collapse3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading3">
-<div class="panel-body">
-<div class="checkbox"> <label> <input type="checkbox" class="option-input checkbox" name="filter[]" value="12" /> <span class="ml-10">Available Today</span> </label> </div>
-<div class="checkbox"> <label> <input type="checkbox" class="option-input checkbox" name="filter[]" value="12" /> <span class="ml-10">Available This Week</span> </label> </div>
-<div class="checkbox"> <label> <input type="checkbox" class="option-input checkbox" name="filter[]" value="12" /> <span class="ml-10">Available This Month</span> </label> </div>
-</div>
-</div>
-</div>
-<div class="panel panel-default">
-<div class="panel-heading" role="tab" id="heading4">
-<h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="false" aria-controls="collapse4"> Ratings & Recommendations </a> </h4>
-</div>
-<div id="collapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading4">
-<div class="panel-body">
-<div class="checkbox"> <label> <input type="checkbox" class="option-input checkbox" name="filter[]" value="12" /> <span class="ml-10">⭐⭐⭐⭐⭐</span> </label> </div>
-<div class="checkbox"> <label> <input type="checkbox" class="option-input checkbox" name="filter[]" value="12" /> <span class="ml-10">⭐⭐⭐⭐</span> </label> </div>
-<div class="checkbox"> <label> <input type="checkbox" class="option-input checkbox" name="filter[]" value="12" /> <span class="ml-10">⭐⭐⭐</span> </label> </div>
-<div class="checkbox"> <label> <input type="checkbox" class="option-input checkbox" name="filter[]" value="12" /> <span class="ml-10">⭐⭐</span> </label> </div>
-<div class="checkbox"> <label> <input type="checkbox" class="option-input checkbox" name="filter[]" value="12" /> <span class="ml-10">⭐</span> </label> </div>
-</div>
-</div>
-</div>
-</div>
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Neurology" /> <span class="ml-10">Neurology</span> </label> </div>
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Pediatrics" /> <span class="ml-10">Pediatrics</span> </label> </div>
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Ophthalmology" /> <span class="ml-10">Ophthalmology</span> </label> </div>
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Diabetes</span> </label> </div>
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Dermatology (Skin)" /> <span class="ml-10">Dermatology (Skin)</span> </label> </div>
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Dentistry (Teeth)" /> <span class="ml-10">Dentistry (Teeth)</span> </label> </div>
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Psychiatry (Mental, Emotional or Behavioral Disorders)" /> <span class="ml-10">Psychiatry (Mental, Emotional or Behavioral Disorders)</span> </label> </div>
+
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Neurology (Brain & Nerves)</span> </label> </div>
+
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Orthopedics (Bones)</span> </label> </div>
+
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Gynaecology and Infertility</span> </label> </div>
+
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Ear, Nose and Throat</span> </label> </div>
+
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Cardiology and Vascular Disease (Heart)</span> </label> </div>
+
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Allergy and Immunology (Sensitivity and Immunity)</span> </label> </div>
+
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Andrology and Male Infertility</span> </label> </div>
+
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Audiology</span> </label> </div>
+
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Cardiology and Thoracic Surgery (Heart & Chest)</span> </label> </div>
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Chest and Respiratory</span> </label> </div>
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Diabetes and Endocrinology</span> </label> </div>
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Diagnostic Radiology (Scan Centers)</span> </label> </div>
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Dietitian and Nutrition</span> </label> </div>
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Family Medicine</span> </label> </div>
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Gastroenterology and Endoscopy</span> </label> </div>
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">General Practice</span> </label> </div>
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">General Surgery</span> </label> </div>
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Geriatrics (Old People Health)</span> </label> </div>
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Family Medicine</span> </label> </div>
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Hematology</span> </label> </div>
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Hepatology (Liver Doctor)</span> </label> </div>
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Internal Medicine</span> </label> </div>
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">IVF and Infertility</span> </label> </div>
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Laboratories</span> </label> </div>
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Nephrology</span> </label> </div>
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Neurosurgery (Brain & Nerves Surgery)</span> </label> </div>
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Obesity and Laparoscopic Surgery</span> </label> </div>
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Oncology (Tumor)</span> </label> </div>
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Oncology Surgery (Tumor Surgery)</span> </label> </div>
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Ophthalmology (Eyes)</span> </label> </div>
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Osteopathy (Osteopathic Medicine)</span> </label> </div>
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Pain Management</span> </label> </div>
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Pediatric Surgery</span> </label> </div>
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Phoniatrics (Speech)</span> </label> </div>
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Physiotherapy and Sport Injuries</span> </label> </div>
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Plastic Surgery</span> </label> </div>
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Rheumatology</span> </label> </div>
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Spinal Surgery</span> </label> </div>
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Urology (Urinary System)</span> </label> </div>
+
+<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Vascular Surgery (Arteries and Vein Surgery)</span> </label> </div>
 <div class="text-right refine"> <button class="btn btn-in btn-info btn-square" id="button-filter" type="submit">Refine Search</button> </div>
+
+</div>
+</div>
+</div>
+</div>
+
+
+</div>
 </div>
 
 </form>
@@ -354,14 +317,14 @@ color: #269bb8
 
 </div>
 
-<div class="col-md-8">
+<div class="col-md-8" id="main">
     
 <div class="container py-5">
 <div class="row">
 <div class="col-lg-12 mx-auto">
     <!-- <div class="d-flex justify-content-between mb-3"> <class="text-right refine ><a href="http://localhost:5000/doctors/" class="btn btn-info add" role="button">View High Rated Doctors</a> </div> -->
 
-    <ul class="list-group shadow">
+<ul class="list-group shadow">
 <li class="list-group-item">
     <%Sch.forEach(Sch=>{%>
 <div class="media align-items-lg-center flex-column flex-lg-row"> <img src="/Doctors/MaleDoctor.jpg" alt="Generic placeholder image" width="200" height="200" class="order-1 order-lg-1">
@@ -369,7 +332,9 @@ color: #269bb8
     <div class="media-body order-2 order-lg-2 ml-lg-5">
 
     <h5 class="mt-0 mb-1"> <div class="c"> Doctor <%=Sch.Doctor_id.Doc_FirstName%></div> </h5>
-    <div class="product-rating mb-2"> <span class="badge23"><i class="fa fa-star"></i> 4 Star</span> <span class="rating-review mb-1">4 Ratings &amp; 3 Recommendations</span></div> <span class="doctor-fees price-new">Fees : <%=Sch.Upfront_fees%> </span>
+    <!-- <div class="product-rating mb-2"> <span class="badge23"><i class="fa fa-star"></i> 4 Star</span> <span class="rating-review mb-1">4 Ratings &amp; 3 Recommendations</span></div>  -->
+    
+    <span class="doctor-fees price-new">Fees : <%=Sch.Upfront_fees%> </span>
     <!-- <div class="text-right refine" ><a href="http://localhost:5000/booking" class="btn btn-info" role="button">Book Appointment</a> </div> -->
    <form action="http://localhost:5000/doctor/viewDocSch" method="post">
     <div class="text-right refine" >
@@ -396,127 +361,26 @@ color: #269bb8
 </div>
 
 </div>
-
 <hr class="seperator">
 <%})%>
-</li>
-<li class="list-group-item">
-<div class="media align-items-lg-center flex-column flex-lg-row"> <img src="/Doctors/ShreifHelal.jpg" alt="Generic placeholder image" height="200" width="200" class="order-1 order-lg-1">
-<div class="media-body order-2 order-lg-2 ml-lg-5">
-    <h5 class="mt-0 mb-1">Doctor Sherif Helal</h5>
-    <div class="product-rating mb-2"> <span class="badge23"><i class="fa fa-star"></i> 5 Star</span> <span class="rating-review mb-1">4 Ratings &amp; 6 Recommendations</span> </div> <span class="doctor-fees price-new">Fees : 250 EGP </span>
-    <!-- <div class="text-right refine" ><a href="http://localhost:5000/booking" class="btn btn-info" role="button">Book Appointment</a> </div> -->
-    <hr class="mb-2 mt-1 seperator">
-    <div class="d-flex align-items-center justify-content-between mt-1">
-        <ul class="list-inline small">
-            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png">Consultant ENT and Fellow of Royal College of Surgeon in Ereland</li>
-            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png">Waiting Time : 5 Minutes</li>
-            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> ENT Doctor Specialized in Adult Ear, Nose and throat Surgery, Adult Ear, Nose and Throat, Pediatric Ear, Nose and throat Surgery and Pediatric Ear, Nose and Throat</li>
-            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Available Zoom/FacetoFace</li>
-        </ul>
-    </div>
-</div>
-</div>
-<hr class="seperator">
-</li>
-<li class="list-group-item">
-<div class="media align-items-lg-center flex-column flex-lg-row"> <img src="/Doctors/EmadIsmail.jpg" alt="Generic placeholder image" height="200" width="200" class="order-1 order-lg-1">
-<div class="media-body order-2 order-lg-2 ml-lg-5">
-    <h5 class="mt-0 mb-1">Doctor Emad Ismail</h5>
-    <div class="product-rating mb-2"> <span class="badge23"><i class="fa fa-star"></i> 4 Star</span> <span class="rating-review mb-1">3.5 Ratings &amp; 8 Recommendations</span> </div> <span class="doctor-fees price-new">Fees : 300 EGP</span>
-    <!-- <div class="text-right refine" ><a href="http://localhost:5000/booking" class="btn btn-info" role="button">Book Appointment</a> </div> -->
-    <hr class="mb-2 mt-1 seperator">
-    <div class="d-flex align-items-center justify-content-between mt-1">
-        <ul class="list-inline small">
-            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png">Professor and consultant of diabetes endocrinology</li>
-            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png">Endocrinologist Specialized in Adult Internal Medicine and Adult Diabetes</li>
-            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png">Waiting Time : 34 Minutes</li>
-        </ul>
-        <ul class="list-inline small">
-            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png">Available Zoom/WhatsApp/FacetoFace</li>
-        </ul>
-    </div>
-</div>
-</div>
-<hr class="seperator">
-</li>
-<!-- <li class="list-group-item">
-<div class="media align-items-lg-center flex-column flex-lg-row"> <img src="/Doctors/FemaleDoctor.png" alt="Generic placeholder image" width="200" height="200" class="order-1 order-lg-1">
-<div class="media-body order-2 order-lg-2 ml-lg-5">
-    <h5 class="mt-0 mb-1">Doctor N/A</h5>
-    <div class="product-rating mb-2"> <span class="badge23"><i class="fa fa-star"></i> - Stars</span> <span class="rating-review mb-1">- Ratings &amp;  Recommendations</span> </div> <span class="doctor-fees price-new">Fees: - </span>
-     <div class="text-right refine" ><a href="http://localhost:5000/booking" class="btn btn-info" role="button">Book Appointment</a> </div> 
-    <hr class="mb-2 mt-1 seperator">
-    <div class="d-flex align-items-center justify-content-between mt-1">
-        <ul class="list-inline small">
-            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Doctor Info</li>
-            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Doctor Info</li>
-            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Doctor Info</li>
-        </ul>
-        <ul class="list-inline small">
-            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Doctor Info</li>
-            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Doctor Info</li>
-            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Doctor Info</li>
-        </ul>
-    </div>
-</div>
-</div>
-<hr class="seperator">
-</li>
-<li class="list-group-item">
-<div class="media align-items-lg-center flex-column flex-lg-row"> <img src="/Doctors/MaleDoctor.jpg" alt="Generic placeholder image" width="200" height="200" class="order-1 order-lg-1">
-<div class="media-body order-2 order-lg-2 ml-lg-5">
-    <h5 class="mt-0 mb-1">Doctor N/A</h5>
-    <div class="product-rating mb-2"> <span class="badge23"><i class="fa fa-star"></i> - Star</span> <span class="rating-review mb-1">- Ratings &amp; 3 Recommendations</span> </div> <span class="doctor-fees price-new">Fees: -</span>
-     <div class="text-right refine" ><a href="http://localhost:5000/booking" class="btn btn-info" role="button">Book Appointment</a> </div> 
-    
-    
-    <hr class="mb-2 mt-1 seperator">
-    <div class="d-flex align-items-center justify-content-between mt-1">
-        <ul class="list-inline small">
-            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Doctor Info</li>
-            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Doctor Info</li>
-            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Doctor Info</li>
-        </ul>
-        <ul class="list-inline small">
-            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Doctor Info</li>
-            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Doctor Info</li>
-            <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Doctor Info</li>
-        </ul>
-    </div>
-</div>
-</div> -->
-<hr class="seperator">
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
 
-<!-- <div class="container">
-    <div class="row">
-        <div class="col-xs-12" 
-
-            <div class="dropdown">
-            <button class="btn btn-defeault dropdown-toggle" type="button" id="dropdownmenu" data-toggle="dropdown">
-            dropdown
-            <span class="caret"></span>
-            </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdown-menu">
-            <li><a href="#"> Some test </a></li>
-            </ul>
-    </div>
 </div>
-</div> -->
-        
+</div>
+</div>
+</div>
+</div>
+</body>
+       
     
-    <!--Start Footer-->
-<footer>
-    <%- include ('./partials/footer.ejs') %>
-    </footer>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-     </html>
+
+
+
+<footer id="footer" class="mt-5">
+<%- include ('./partials/footer.ejs') %>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</html>
