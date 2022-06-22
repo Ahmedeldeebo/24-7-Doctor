@@ -28,21 +28,19 @@ router.post("/Pharmcy-register", async (req, res) => {
     });
     const savedUser = await NewUser.save();
     console.log(NewUser);
-  } catch (err) {
+  } catch (e) {
+    console.log(e.message);
     res.render("./Pharmacy/PharmacySignUp.ejs", {
       errorMessage: "Something is missing",
     });
   }
-  try {
-    // const savedUser = await NewUser.save();
-    // console.log(NewUser);
 
-    res.render("./Pharmacy/signInPhar.ejs", {
-      errorMessage: "Account Created Successfully",
-    });
-  } catch (err) {
-    console.log(err);
-  }
+  // const savedUser = await NewUser.save();
+  // console.log(NewUser);
+
+  res.render("./Pharmacy/signInPhar.ejs", {
+    errorMessage: "Account Created Successfully",
+  });
 });
 //-------------------------------------------- End Register---------------------------------------------
 //-------------------------------------------- Login ---------------------------------------------------
