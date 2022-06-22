@@ -849,27 +849,36 @@ router.get("/DoctorSchedule", authorization, async (req, res) => {
 router.post("/ZoomDoc", authorization, async (req, res) => {
   const DocID = res.locals.user.id;
   const appoId = req.body.appo_Id;
+  const appo = await Appo.findById(appoId)
+    .populate("Pat_Id")
+    .populate("Doc_Id");
+  console.log(appo);
   console.log(appoId);
   res.render("./Doc/ZoomDoc.ejs", {
     appoo: appoId,
+    appo: appo,
   });
 });
 router.post("/online-meeting-create", authorization, async (req, res) => {
   // const DocID = res.locals.user.id;
   // const user = await User.findById(DocID);
   // const name = user.Doc_FirstName;
-  const appoId = req.body.appo_Id;
+  const appoId = req.body.appointmentId;
+  const DocID = req.body.doctor_Id;
+  const Pat_Id = req.body.patient_Id;
   console.log(appoId);
 
   // const appo = await Appo.findById(appoId);
   // console.log(appo);
   try {
     const NewMeet = new Meet_Link({
-      Appointment_Id: appoId,
+      Appoinment_Id: appoId,
       Doc_Id: DocID,
       Pat_Id: Pat_Id,
-      Meeting_Link: req.body.Meet_Link,
+      Meeting_link: req.body.Meet_Link,
     });
+
+    const savedMeet = await NewMeet.save();
     console.log(NewMeet, " NewMeet");
   } catch (e) {
     console.log(e.message);

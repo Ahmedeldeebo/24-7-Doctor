@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const Meet_LinkSchema = new mongoose.Schema(
   {
-    Meeting_link: { type: String, unique: true },
+    Meeting_link: { type: String, unique: true, required: true },
 
     Doc_Id: {
       type: mongoose.Schema.Types.ObjectId,

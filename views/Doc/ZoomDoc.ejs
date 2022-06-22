@@ -122,14 +122,17 @@
         method="post"
       >
         <div id="link">
-          <input hidden value="<%=appoo._id%>" name="appo_Id" />
+          <input hidden value="<%=appo._id%>" name="appointmentId" />
+          <input hidden value="<%=appo.Doc_Id._id%>" name="doctor_Id" />
+          <input hidden value="<%=appo.Pat_Id._id%>" name="patient_Id" />
+
           <h6 class="text-left">Zoom Link</h6>
 
           <input
             type="text"
             class="form-control mt-3 input-sm"
             placeholder="2- Drop Zoom address"
-            name="Meeting_link"
+            name="Meet_Link"
           />
         </div>
         <div id="button">
