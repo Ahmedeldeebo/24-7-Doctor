@@ -119,6 +119,9 @@
     <div class="card">
       <div class="user-content">
         <h2 class="align-items-center">Setting Google Meeting</h2>
+        <h6 class="align-items-center">
+          Wating to the Doctor to send the link
+        </h6>
       </div>
       <div>
         <div class="box mt-5">
@@ -135,14 +138,24 @@
             input-sm" placeholder="Google Meet Link" name="Bill_Amount"  /> -->
       </div>
       <div id="button">
-        <a
-          href="<%=link.Meeting_link%> "
+        <button
+          href="#"
+          disabled="disabled"
           target="_blank"
-          class="btn btn-outline-success btn-lg"
+          class="btn btn-outline-danger btn-lg"
           role="button"
           aria-disabled="true"
-          >Join Now</a
         >
+          Join Now
+        </button>
+        <form class="mt-3">
+          <input
+            class="btn btn-danger"
+            type="button"
+            value="Go back"
+            onclick="history.back()"
+          />
+        </form>
       </div>
     </div>
   </body>

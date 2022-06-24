@@ -3,6 +3,7 @@ const User = require("../models/Patient");
 const Doctor = require("../models/Doctor");
 const Pharmacy = require("../models/Pharmacy");
 const shcdeule = require("../models/Doc_Schedule");
+const Meet_Link = require("../models/Meet_Link");
 const ticket = require("../models/Ticket");
 const Bill = require("../models/Bill");
 const Appo = require("../models/Aappointment");
@@ -1323,4 +1324,18 @@ router.get("/PresHistory", authorization, async (req, res) => {
   });
 });
 //------------------------------------End Prescription History--------------------------------------------------------
+//------------------------------------Start Zoom Patient--------------------------------------------------------
+router.post("/ZoomPatient", authorization, async (req, res) => {
+  const id = res.locals.user.id;
+  const appo_Id = req.body.Appo_Id;
+  console.log(appo_Id);
+  const meeting_link = await Meet_Link.findOne({ Appoinment_Id: appo_Id });
+  console.log(meeting_link);
+  if (meeting_link === null) {
+    res.render("./Patient/ZoomPatientNull.ejs");
+  } else {
+    res.render("./Patient/ZoomPatient.ejs", { link: meeting_link });
+  }
+});
+//------------------------------------End Zoom Patient--------------------------------------------------------
 module.exports = router;

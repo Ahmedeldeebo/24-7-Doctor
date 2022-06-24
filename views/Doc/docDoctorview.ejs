@@ -281,10 +281,11 @@ padding: 12px
               
             <h4 class="panel-title">
                 <a class="collapsed" role="button" data-toggle="collapse" href="#collapse1" aria-expanded="false" aria-controls="collapse1"> Specialization </a> </h4>
-            
+            <form action="http://localhost:5000/doctor/doctorview-doc" method="post">
                 <div class="card example-1 square scrollbar-cyan bordered-cyan">   
             <div id="collapse1" class="collapse" role="button" aria-labelledby="collapse1">
             <div class="panel-body">
+                
             <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Neurology" /> <span class="ml-10">Neurology</span> </label> </div>
             <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Pediatrics" /> <span class="ml-10">Pediatrics</span> </label> </div>
             <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Ophthalmology" /> <span class="ml-10">Ophthalmology</span> </label> </div>
@@ -350,8 +351,9 @@ padding: 12px
             
                 </div>
                 <div class="text-right refine"> <button class="btn btn-in btn-info btn-square" id="button-filter" type="submit">Refine Search</button> </div>
-
-            </div>
+           </form>
+            </div> 
+       
             </div>
             
             

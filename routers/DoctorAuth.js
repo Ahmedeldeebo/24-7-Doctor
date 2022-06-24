@@ -203,17 +203,13 @@ router.post("/doctorview", authorization, async (req, res) => {
   const user = await Patient.findById(id);
   const name = user.pat_FirstName;
   const SpecName = req.body.SpecName;
-  const CommType = req.body.CommType;
-  console.log(CommType);
   console.log(SpecName);
 
   let scheduleList = await DocSche.find()
     .populate("Doctor_id")
     .sort({ _id: -1 });
   const result = scheduleList.filter(
-    (schedule) =>
-      schedule.Doctor_id.Specialization_Name === SpecName ||
-      schedule.Available_methods === CommType
+    (schedule) => schedule.Doctor_id.Specialization_Name === SpecName
     //&& schedule.Meeting_Maximum_Patient > 0
   );
   //--Notification
@@ -253,8 +249,11 @@ router.get("/doctorview-doc", authorization, async (req, res) => {
   const id = res.locals.user.id;
   const user = await User.findById(id);
   const name = user.Doc_FirstName;
-  const scheduleList = await DocSche.find({}).populate("Doctor_id");
-
+  let scheduleList = await DocSche.find()
+    .populate("Doctor_id")
+    .sort({ _id: -1 });
+  const result = scheduleList.filter((schedule) => schedule.Start_Time != "");
+  //&& schedule.Meeting_Maximum_Patient > 0
   // console.log(scheduleList);
   //--Notification
   const appo = await Appo.find({ Doc_Id: id })
@@ -265,7 +264,33 @@ router.get("/doctorview-doc", authorization, async (req, res) => {
   const number = await Appo.countDocuments({ Doc_Id: id });
   console.log(number);
   res.render("./Doc/docDoctorview.ejs", {
-    users: scheduleList,
+    users: result,
+    name: name,
+    appo: appo,
+    number: number,
+  });
+});
+router.post("/doctorview-doc", authorization, async (req, res) => {
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  const name = user.Doc_FirstName;
+  const SpecName = req.body.SpecName;
+  let scheduleList = await DocSche.find()
+    .populate("Doctor_id")
+    .sort({ _id: -1 });
+  const result = scheduleList.filter(
+    (schedule) => schedule.Doctor_id.Specialization_Name === SpecName
+    //&& schedule.Meeting_Maximum_Patient > 0
+  );
+  const appo = await Appo.find({ Doc_Id: id })
+    .populate("Pat_Id")
+    .populate("Doc_Id")
+    .limit(5)
+    .sort({ _id: -1 });
+  const number = await Appo.countDocuments({ Doc_Id: id });
+  console.log(number);
+  res.render("./Doc/docDoctorview.ejs", {
+    users: result,
     name: name,
     appo: appo,
     number: number,
@@ -336,8 +361,6 @@ router.post("/DocProfileEdit", authorization, async (req, res, next) => {
     res.redirect("/doctor/Doctor-profile-setting");
   } catch (e) {
     console.log(e.message);
-
-    res.redirect("/doctor/Doctor-profile-setting");
   }
   //--Notification
   const appo = await Appo.find({ Doc_Id: id })
@@ -529,24 +552,22 @@ router.post("/DocSearch-patient", authorization, async (req, res) => {
   const user = await Patient.findById(id);
   const name = user.pat_FirstName;
   try {
-    const docName = await User.findOne({ Doc_FirstName: DocName });
-    const docId = docName._id;
-    const Doc = await User.findById(docId);
-    const shce = await DocSche.findOne({ Doctor_id: docId }).populate(
-      "Doctor_id"
-    );
+    const DocUser = await User.find({ Doc_FirstName: DocName });
+    const scheduleList = await DocSche.findOne({
+      Doc_FirstName: DocName,
+    }).populate("Doctor_id");
+
     // console.log(shce);
     // console.log(docName);
     // console.log(docId);
     res.render("./Patient/DocSearch.ejs", {
-      Doc: Doc,
       name: name,
-      shce: shce,
+      Sch: DocUser,
     });
   } catch (e) {
     console.log(e.message);
+    res.render("search.ejs");
   }
-  res.render("search.ejs");
 });
 
 router.post("/DocSearch", authorization, async (req, res) => {
@@ -582,6 +603,7 @@ router.get("/ManageAppointments", authorization, async (req, res, next) => {
   // const email = user.Doc_Email;
   const appoo = await Appo.find({ Doc_Id: id })
     .populate("Doc_Id")
+    .sort({ _id: -1 })
     .populate("Pat_Id");
   // console.log(user);
   // console.log(appoo);
@@ -735,6 +757,14 @@ router.get("/WriteBill", authorization, async (req, res, next) => {
   // console.log(res.locals.user.id);
   const id = res.locals.user.id;
   const user = await User.findById(id);
+  try {
+    const shcdeule = await DocSche.find({ Doctor_id: id }).populate(
+      "Doctor_id"
+    );
+    console.log(shcdeule);
+  } catch (e) {
+    console.log(e.message);
+  }
   // console.log(user);
   const name = user.Doc_FirstName;
   const appo_id = req.body.Appo_Id;
@@ -756,16 +786,26 @@ router.get("/WriteBill", authorization, async (req, res, next) => {
     number: number,
     appo: appo,
     bill: appoId,
+    sehc: shcdeule,
   });
 });
 router.post("/WriteBill-post", authorization, async (req, res, next) => {
   // console.log(res.locals.user.id);
   const id = res.locals.user.id;
   const user = await User.findById(id);
+  try {
+    const shcdeule = await DocSche.find({ Doctor_id: id }).populate(
+      "Doctor_id"
+    );
+    console.log(shcdeule);
+  } catch (e) {
+    console.log(e.message);
+  }
   // console.log(user);
   const name = user.Doc_FirstName;
   const appo_id = req.body.appo_Id;
   const patId = req.body.pat_Id;
+
   // console.log(appo_id);
   try {
     const NewBill = new bill({
@@ -796,6 +836,7 @@ router.post("/WriteBill-post", authorization, async (req, res, next) => {
     number: number,
     appo: appo,
     bill: appoId,
+    sehc: shcdeule,
   });
 });
 //-------------------------------------------- End Doctor Write Bill---------------------------------------------------
@@ -860,13 +901,42 @@ router.post("/ZoomDoc", authorization, async (req, res) => {
   });
 });
 router.post("/online-meeting-create", authorization, async (req, res) => {
-  // const DocID = res.locals.user.id;
-  // const user = await User.findById(DocID);
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
   // const name = user.Doc_FirstName;
   const appoId = req.body.appointmentId;
   const DocID = req.body.doctor_Id;
   const Pat_Id = req.body.patient_Id;
+  const DocName = user.Doc_FirstName;
+  const pat = await Patient.findById(Pat_Id);
+  const name = pat.pat_FirstName;
+  const email = pat.pat_Email;
+  const link = req.body.Meet_Link;
   console.log(appoId);
+  const date = new Date();
+  const dataStr = date.toDateString();
+  let transporter = nodemailer.createTransport({
+    service: "gmail",
+    secure: false, // true for 465, false for other ports
+    auth: {
+      user: process.env.MAIL_USER, // generated ethereal user
+      pass: process.env.MAIL_PASS, // generated ethereal password
+    },
+  });
+  let masgEmail = {
+    from: `"Doctor 24/7" <${process.env.MAIL_USER}`, // sender address
+    to: `${email}`, // list of receivers
+    //to: "davidlotfy123@gmail.com",
+    subject: "Meeing Link", // Subject line
+    // text: "You need to ckeck Up with your Doctor",
+    html: `<h2 style=" text-transform: capitalize">Hello ${name}!</h2>
+        <h4 >This is the link to Join the meeting with your Dcotor  </h4>
+        <p  style=" text-transform: capitalize">Doctor Name: Dr.<b>${DocName}</b></p>
+        <p>Meeting Date: <b>${dataStr}</b></p>
+        <p>Meeting Link: <a href="${link}">Join Now</a></p>
+        <p>Have a nice day!</p>`, // plain text body
+    // send mail with defined transport object
+  };
 
   // const appo = await Appo.findById(appoId);
   // console.log(appo);
@@ -877,7 +947,14 @@ router.post("/online-meeting-create", authorization, async (req, res) => {
       Pat_Id: Pat_Id,
       Meeting_link: req.body.Meet_Link,
     });
-
+    transporter.sendMail(masgEmail, (err, data) => {
+      if (err) {
+        res.status(400).send(err);
+      } else {
+        console.log("Email sent");
+        res.send(`Email Sent: ${data}`);
+      }
+    });
     const savedMeet = await NewMeet.save();
     console.log(NewMeet, " NewMeet");
   } catch (e) {
