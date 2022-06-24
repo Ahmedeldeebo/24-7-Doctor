@@ -205,7 +205,30 @@
                             </div>
                             <!-- <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Save Profile</button></div> -->
                             <div class="mt-5 text-center">
-                            <button  class="btn btn-success btn-small active profile-button"  type="submit" aria-pressed="true">Save Profile</button>
+                            <!-- <button  class="btn btn-success btn-small active profile-button"  type="submit" aria-pressed="true">Save Profile</button> -->
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#updateprofile">
+                              Save Changes
+                            </button>
+                            
+                            <!-- Modal -->
+                            <div class="modal fade" id="updateprofile" tabindex="-1" role="dialog" aria-labelledby="updateprofile" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    Confirm profile changes?
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button class="btn btn-success btn-small active profile-button"  type="submit" aria-pressed="true">Save changes</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                             </form> 
                           </div> 
                            
