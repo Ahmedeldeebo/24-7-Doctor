@@ -16,233 +16,9 @@
 
 
         <style>
-        
-        ::-webkit-scrollbar {
-          width: 8px;
-        }
-
-        /* Track */
-        ::-webkit-scrollbar-track {
-          background: #f1f1f1; 
-        }
-         
-        /* Handle */
-        ::-webkit-scrollbar-thumb {
-          background: #888; 
-        }
-        
-        /* Handle on hover */
-        ::-webkit-scrollbar-thumb:hover {
-          background: #555; 
-        } 
-        
-        body {
-color: #000;
-overflow-x: hidden;
-height: 100%;
-background-repeat: no-repeat;
-}
-
-
-
-
-
-input, select {
-padding: 2px;
-border-radius: 4px;
-box-sizing: border-box;
-color: #9E9E9E;
-border: 1px solid #BDBDBD;
-font-size: 16px;
-letter-spacing: 1px;
-height: 50px !important;
-}
-
-select {
-width: 100%;
-margin-bottom: 85px;
-}
-
-input:focus, select:focus {
--moz-box-shadow: none !important;
--webkit-box-shadow: none !important;
-box-shadow: none !important;
-border: 1px solid #2aafc7 !important;
-outline-width: 0 !important;
-}
-
-/*Red colored checkbox*/
-.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
-background-color: #4dbac9;
-}
-
-.form-group {
-position: relative;
-margin-bottom: 1.5rem;
-width: 77%;
-}
-
-.form-control-placeholder {
-position: absolute;
-top: 0px;
-padding: 12px 2px 0 2px;
-transition: all 300ms;
-opacity: 0.5;
-}
-
-.form-control:focus + .form-control-placeholder,
-.form-control:valid + .form-control-placeholder {
-font-size: 95%;
-top: 10px;
-transform: translate3d(0, -100%, 0);
-opacity: 1;
-background-color: #fff;
-}
-
-.next-button {
-width: 18%;
-height: 50px;
-background-color: #BDBDBD;
-color: #fff;
-border-radius: 6px;
-padding: 10px;
-cursor: pointer;
-}
-
-.next-button:hover {
-background-color: #4dbac9;
-color: #fff;
-}
-
-.get-bonus {
-margin-left: 600px;
-}
-
-/*Logo pic*/
-.pic {
-width: 350px;
-height: 110px;
-}
-
-/*Icon progressbar*/
-#progressbar {
-position: absolute;
-left: 35px;
-overflow: hidden;
-color: #4dbac9;
-} 
-
-#progressbar li {
-list-style-type: none;
-font-size: 8px;
-font-weight: 400;
-margin-bottom: 36px;
-}
-
-#progressbar li:nth-child(3) {
-margin-bottom: 88px;
-}
-
-#progressbar .step0:before {
-content: "";
-color: #fff;
-}
-
-#progressbar li:before {
-width: 30px;
-height: 30px;
-line-height: 30px;
-display: block;
-font-size: 20px;
-background: #fff;
-border: 2px solid #4dbac9;
-border-radius: 50%;
-margin: auto;
-}
-
-#progressbar li:last-child:before {
-width: 40px;
-height: 40px;
-}
-
-/*ProgressBar connectors*/
-#progressbar li:after {
-content: '';
-width: 3px;
-height: 66px;
-background: #BDBDBD;
-position: absolute;
-left: 58px;
-top: 15px;
-z-index: -1;
-}
-
-#progressbar li:last-child:after {
-top: 147px;
-height: 132px;
-}
-
-#progressbar li:nth-child(3):after {
-top: 81px;
-}
-
-#progressbar li:nth-child(2):after {
-top: 0px;
-}
-
-#progressbar li:first-child:after {
-position: absolute;
-top: -81px;
-}
-
-/*Color of the connector before*/
-#progressbar li.active:after {
-background: #4dbac9;
-}
-
-/*Color of the step before*/
-#progressbar li.active:before {
-background: #4dbac9;
-font-family: FontAwesome;
-content: "\f00c";
-}
-
-.tick {
-width: 400px;
-height: 200px;
-}
-
-.prev {
-display: block;
-position: absolute;
-left: 40px;
-top: 20px;
-cursor: pointer;
-}
-
-.prev:hover {
-color: #4dbac9 !important;
-}
-
-@media screen and (max-width: 912px) {
-.card00 {
-padding-top: 30px;
-}
-
-.card1 {
-border: none;
-margin-left: 50px;
-}
-
-.card2 {
-border-bottom: 1px solid #F5F5F5;
-margin-bottom: 25px;
-}
-
-#progressbar {
-left: -25px;
-}
-}
+      body{
+        overflow-x: hidden
+      }
 .wrapper {
     height: auto;
     background: #000;
@@ -291,26 +67,6 @@ p {
     font-size: 20px
 }
 
-.inputs input {
-    margin-bottom: 13px;
-    border: none;
-    border-bottom: 2px solid #eee
-}
-
-.inputs input:focus {
-    margin-bottom: 13px;
-    border: none;
-    border-bottom: 2px solid #1f83a2;
-    box-shadow: none
-}
-
-.inputs textarea {
-    margin-bottom: 13px;
-    border: none;
-    border-bottom: 2px solid #eee;
-    width: 100%;
-    resize: none
-}
 
 .inputs textarea:focus {
     margin-bottom: 13px;
@@ -470,40 +226,39 @@ p {
                             <h5> <i class="fa-solid fa-money-bill"></i> Bill & Payment</h5> 
                                
                             
-                            <div class="form-row">
+                            
 
-                           <div class="input-group">
-  
-                            <!-- declaration for first field -->
-                            <input type="text" class="form-control mt-3
-                                    input-sm" style=" text-transform: capitalize"   placeholder="" name="" disabled />
-                      
-                            <!-- reducong the gap between them to zero -->
-                            <span class="input-group-btn" 
-                                style="width:10px;"></span>
-                      
-                            <!-- declaration for second field -->
-                            <input type="text" class="form-control mt-3
-                                    input-sm" style=" text-transform: capitalize"  placeholder="Doctor " name="" disabled />
-                        </div>
-                        <div class="input-group">
-  
-                            <!-- declaration for first field -->
-                           
-                            <input type="text" class="form-control mt-3
-                                    input-sm"  placeholder=" " name="" disabled />
-                      
-                            <!-- reducong the gap between them to zero -->
-                            <span class="input-group-btn" 
-                                style="width:10px;"></span>
-                      
-                            <!-- declaration for second field -->
-                            <input type="text" class="form-control mt-3
-                                    input-sm" placeholder=" EGP" name="" disabled />
-                        </div>
+                                <div class="form-group row">
+                                    <div class="col">
+                                      <label>Patient Name</label>
+                                      <input type="text" class="form-control input-sm" style=" text-transform: capitalize" placeholder="" name="" disabled />
+                                    </div>
+                                    <div class="col">
+                                      <label>Doctor Name</label>
+                                      <input type="text" class="form-control
+                                  input-sm" style=" text-transform: capitalize"  placeholder="" name="" disabled />
+                                    </div>
+                                  </div>
 
-                            <input type="text" class="form-control mt-3" placeholder="" name="" disabled> 
-                        </div>
+                                  <div class="form-group row">
+                                    <div class="col">
+                                      <label>Appointment Date</label>
+                                      <input type="text" class="form-control
+                                input-sm"  placeholder="" name="" disabled />
+                                    </div>
+                                    <div class="col">
+                                      <label>Payment in EGP</label>
+                                      <input type="text" class="form-control 
+                                input-sm" placeholder="" name="" disabled />
+                                    </div>
+                                  </div>
+
+                                  <div class="form-group">
+                                    <label>Payment Status</label>
+                                    <input type="text" class="form-control mt-3" placeholder="" name="" disabled> 
+                                  </div>
+                                  
+                                  
                         <div class="alert alert-light text-danger" role="alert">
                             <%- errorMessage %> 
                           </div>
@@ -525,7 +280,7 @@ p {
     </div>
     
                            </div>
-                        </form>
+                        
                         <form class="mt-3">
                             <input class="btn btn-danger" type="button" value="Go back" onclick="history.back()">
                            </form>

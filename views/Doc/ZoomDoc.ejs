@@ -5,7 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
-    <title>Zoom Link</title>
+    <title>Google Meeting</title>
+    <script src="https://kit.fontawesome.com/ff8698dfe7.js" crossorigin="anonymous"></script>
+
   </head>
   <style>
     body {
@@ -80,14 +82,14 @@
     }
     #button {
       text-align: center;
-      font-size: 40px;
+      font-size: 20px;
       position: fixed;
-      right: 37%;
-      top: 53%;
+      left: 56%;
+      top: 55%;
       transform: translate(-50%, 10%);
     }
     .card {
-      width: 420px;
+      width: 450px;
       height: 380px;
       align-items: center;
       position: relative;
@@ -97,14 +99,24 @@
       margin-right: 180px;
       margin-top: 120px;
     }
-    #sendbutton {
-      margin-top: 10%;
-    }
+    .center {
+  margin: 0;
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.img-responsive{
+    margin: 0;
+    margin-top: 20px;
+    width: 1110px;
+}
   </style>
   <body>
     <div class="card">
       <div class="user-content">
-        <h2 class="align-items-center">Setting Zoom Meeting</h2>
+        <h2 class="align-items-center">Setting Google Meeting</h2>
       </div>
       <div>
         <div class="box mt-5">
@@ -117,36 +129,106 @@
         </div>
       </div>
 
-      <form
-        action="http://localhost:5000/doctor/online-meeting-create"
-        method="post"
-      >
-        <div id="link">
-          <input hidden value="<%=appo._id%>" name="appointmentId" />
-          <input hidden value="<%=appo.Doc_Id._id%>" name="doctor_Id" />
-          <input hidden value="<%=appo.Pat_Id._id%>" name="patient_Id" />
-
-          <h6 class="text-left">Zoom Link</h6>
-
-          <input
-            type="text"
-            class="form-control mt-3 input-sm"
-            placeholder="2- Drop Zoom address"
-            name="Meet_Link"
-          />
-        </div>
-        <div id="button">
+      
+        <!-- <div id="button">
           <a
             href="https://fuelms.zoom.us/s/8027024397#success"
             target="_blank"
             class="btn btn-outline-danger btn"
             role="button"
             aria-disabled="true"
-            >1-Set Zoom</a
+            >1-Set Google Meet</a
           >
+        </div> -->
+        <button id="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#myModal">
+          Set Google Meet
+        </button>
+      
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal">
+          <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+            
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Setting Google Meet</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              
+              <!-- Modal body -->
+              <div class="modal-body">
+                <h5><strong><i class="fa-solid fa-1">-</i> First Step:</strong> <a href="https://meet.google.com/?pli=1" target="_blank">CLICK HERE</a></h5>
+                <p><i class="fa-solid fa-triangle-exclamation"></i> Make sure to SIGN-IN with your google account or create a new account in order to start the meeting</p>
+              </div>
+
+            
+              <div class="modal-body">
+                <h5><strong><i class="fa-solid fa-2">-</i> Second Step:</strong> Press on "New Meeting"</a></h5>
+                <p><img class="img-responsive" src="https://i.imgur.com/Zbo7LQg.png"></p>
+              </div>
+
+              <div class="modal-body">
+                <h5><strong><i class="fa-solid fa-3">-</i> Third Step:</strong> Press on "Start an instant meeting"</a></h5>
+                <p><img class="img-responsive" src="https://i.imgur.com/fh3ybtK.png"></p>
+              </div>
+              
+              <div class="modal-body">
+                <h5><strong><i class="fa-solid fa-4">-</i> Fourth Step:</strong> Copy the link shown on bottom right by pressing on the <i class="fa-solid fa-copy"></i></a>
+                <p><img class="img-responsive" src="https://i.imgur.com/kYloJkn.png"></p>
+              </div>
+
+              <div class="modal-body">
+                <h5><strong><i class="fa-solid fa-5">-</i> Fifth Step:</strong> Head back to our website and paste the link in the box "CTRL-V" or "Right click - Paste"</i></a>
+                <p><img class="img-responsive" src="https://i.imgur.com/L24jqg2.png"></p>
+              </div>
+
+              <div class="modal-body">
+                <h5><strong><i class="fa-solid fa-6">-</i> Last Step:</strong> By clicking "Send to Patient", The meeting will be sent to the patient and you will be redirected back to home page</i></a>
+                <p><img class="img-responsive" src="https://i.imgur.com/1Dcle0J.png"></p>
+              </div>
+
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+              
+            </div>
+          </div>
         </div>
 
-        <div id="sendbutton">
+  <!-- <div class="modal-body">
+    <strong>First Step:</strong> <a href="https://meet.google.com/?pli=1" class="link-danger">CLICK HERE</a>
+    <p><i class="fa-solid fa-triangle-exclamation"></i>Make sure to SIGN-IN with your google account or create a new account in order to start the meeting</p>
+  </div>
+
+  <div class="modal-body">
+    <strong>Second Step:</strong> Press on "New Meeting"</a>
+    <p><i class="fa-solid fa-triangle-exclamation"></i> <img class="img-responsive" src="https://i.imgur.com/Zbo7LQg.png"></p>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button type="button" class="btn btn-primary">Save changes</button>
+  </div> -->
+  <form
+  action="http://localhost:5000/doctor/online-meeting-create"
+  method="post"
+>
+  <div id="link">
+    <input hidden value="<%=appo._id%>" name="appointmentId" />
+    <input hidden value="<%=appo.Doc_Id._id%>" name="doctor_Id" />
+    <input hidden value="<%=appo.Pat_Id._id%>" name="patient_Id" />
+
+    <h6 class="text-left">Google Meeting Link</h6>
+
+    <input
+      type="text"
+      class="form-control mt-3 input-sm"
+      placeholder="Ctrl V the link"
+      name="Meet_Link"
+    />
+  </div>
+        <div class="center">
           <button
             type="submit"
             class="btn btn-success btn-lg"
@@ -163,22 +245,17 @@
   <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-    crossorigin="anonymous"
+
   />
   <script
     src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"
+
   ></script>
   <script
     src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"
+
   ></script>
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"
   ></script>
 </html>

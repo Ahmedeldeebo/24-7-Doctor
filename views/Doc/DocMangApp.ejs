@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  <body>
-    <!--Start Headder-->
-     <%- include ('../partials/NavDoc.ejs') %>
-    <!--End Header-->
+
+    
 
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
 
-    <title>Doctors</title>
-    
+    <title>Appointments</title>
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css' rel='stylesheet'>
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-</body>
+
 </head>
+<!--Start Headder-->
+<%- include ('../partials/NavDoc.ejs') %>
+<!--End Header-->
 <style>
         
     .card{
@@ -100,7 +100,10 @@
 
 <form action="controller" method="get" class="d-md-flex d-sm-block justify-content-between" >
      <input type="hidden" name="command" value="select-orders"> 
-     <h1 class="h5 align-self-center col-3">Appointments Histroy</h1> 
+     <h1 class="h5 align-self-center col-3">Appointments</h1> 
+     <div class="alert alert-danger" role="alert">
+        By clicking <strong>"Set Meeting"</strong>, you will be creating a new <strong>"Google Meet room!"</strong> Follow the steps shown there
+      </div>
 </form> 
 
 <div class="d-md-flex d-none justify-content-md-between justify-content-sm-center align-content-center border-bottom border-2 my-2 bg-dark text-light p-3 rounded-3"> 
@@ -168,11 +171,11 @@
                 <!-- <a class="btn btn-outline-success" style="padding: 10px 10px;" href="#">Accept</a> -->
                 <form action="http://localhost:5000/doctor/ZoomDoc" method="post" >
                     <input hidden value="<%=appoo._id%>" name="appo_Id">
-                <button class="btn btn-outline-success" style="padding: 10px 10px;" data-toggle="modal" data-target="#zoomaccept">Accept</button>
+                <button class="btn btn-outline-success" style="padding: 10px 40px;" data-toggle="modal" data-target="#zoomaccept">Set Meeting</button>
                 </form>
                 <!-- <a href="" class="btn btn-outline-success" role="button" style="padding: 10px 10px;" data-toggle="modal" data-target="#zoomaccept">Accept</a> -->
            
-                <div id="zoomaccept" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                <!-- <div id="zoomaccept" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content border-0">   
                             <div class="modal-body p-0">
@@ -190,7 +193,7 @@
                                           
                                                 <button type="submit" class="btn btn-success px-4">Yes</button>
                                           
-                                    <!-- <a href="" class="btn btn-success px-4" role="button" aria-disabled="true">Yes</a> -->
+                                     <a href="" class="btn btn-success px-4" role="button" aria-disabled="true">Yes</a>
                                 
                                 </div>
                         
@@ -201,15 +204,15 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 
              <!-- </form>    -->
         </div>
-        <div class="col-md-1 text-sm-center text-md-start align-self-center my-2"> 
-            <form method="get" action="controller" class="d-flex btn-group"> 
+         <div class="col-md-1 text-sm-center text-md-start align-self-center my-2"> 
+            <!--<form method="get" action="controller" class="d-flex btn-group"> 
                 <a class="btn btn-outline-danger" style="padding: 10px 10px;" href="#">Delay</a>
-             </form> 
-        </div> 
+             </form> -->
+        </div>  
 
         </div>
         <%})%>
