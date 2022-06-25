@@ -10,6 +10,7 @@ const prescriptionSchema = new mongoose.Schema({
   },
   CheckUpDay: { type: Date, required: true },
   Appoinment_Id: {
+    unique: true,
     type: mongoose.Schema.Types.ObjectId,
     ref: "Aappointment",
     required: true,

@@ -4,7 +4,7 @@ const mongosose = require("mongoose");
 const PaymentSchema = new mongosose.Schema({
   status: { type: String, required: true, default: "Successfully" },
   Web_Commission: { type: Number, required: false },
-  Pay_Amount: { type: Number, required: true },
+  Pay_Amount: { type: String, required: true },
   Pay_type: { type: String, required: true },
   Pay_Card_Holder: { type: String, required: false },
   Pay_Card_Number: { type: Number, required: false },
@@ -22,7 +22,7 @@ const PaymentSchema = new mongosose.Schema({
     ref: "Bill",
     required: true,
   },
-  Pat_id: {
+  Pat_Id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Patient",
     required: true,

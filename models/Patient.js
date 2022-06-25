@@ -25,13 +25,11 @@ const patientSchema = new mongoose.Schema(
     addres_details: {
       type: String,
       required: false,
-      trim: true,
       default: "Enter your Addres",
     },
     area: {
       type: String,
       required: false,
-      trim: true,
       default: "Enter your Area",
     },
   },

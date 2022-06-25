@@ -362,6 +362,9 @@ textarea:is(:focus, :valid){
 textarea::-webkit-scrollbar{
   width: 0px;
 }
+.c{
+  text-transform: capitalize;
+}
 
 </style>
 
@@ -428,7 +431,7 @@ textarea::-webkit-scrollbar{
                             <form action="http://localhost:5000/doctor/WritePrescription-create" method="post">           
                                 <div class="form-outline mt-4"> 
                                   <h6 class="text-left">Patient Name</h6>
-                               <input type="text" class="form-control mt-3" placeholder="" value="<%=appoo.Pat_Id.pat_FirstName %>" name="" disabled> 
+                               <input type="text" class="form-control mt-3 c" placeholder="" value="<%=appoo.Pat_Id.pat_FirstName %>" name="" disabled> 
                                <input hidden value="<%=appoo.Pat_Id._id %>" name="Pat_Id">
                                <input hidden value="<%=appoo._id%>" name="Appo_Id">
                                 </div>

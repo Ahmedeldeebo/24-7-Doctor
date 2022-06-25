@@ -7,7 +7,7 @@ const BillSchema = new mongoose.Schema({
     immutable: true,
     default: () => Date.now(),
   },
-  Bill_Amount: { type: Number, required: true },
+  Bill_Amount: { type: String, required: true },
   Bill_status: { type: String, required: false, default: "Not Paid" },
   Pat_Id: {
     type: mongoose.Schema.Types.ObjectId,

@@ -24,6 +24,7 @@ const cors = require("cors");
 const { body } = require("express-validator");
 const { findById, count } = require("../models/Patient");
 const { check } = require("prettier");
+const Doc_Schedule = require("../models/Doc_Schedule");
 
 //--------------------------------------------Register--------------------------------------------
 // router.use(cors({ origin: "*", credentials:true  } ) );
@@ -593,6 +594,10 @@ router.post("/booking-Create", authorization, async (req, res) => {
   const id = res.locals.user.id;
   console.log(id);
   const user = await User.findById(id);
+  const DocUpFrontFees = await Doc_Schedule.findOne({ Doctor_id: DocId });
+  console.log(DocUpFrontFees);
+  const fees = DocUpFrontFees.Upfront_fees;
+  console.log(fees);
   const name = user.pat_FirstName;
   try {
     const NewAppoinemt = new Appo({
@@ -604,6 +609,17 @@ router.post("/booking-Create", authorization, async (req, res) => {
       Pat_Id: id,
     });
     const SavdAppoinemt = await NewAppoinemt.save();
+    const AppoId = encodeURIComponent(NewAppoinemt._id);
+    console.log(id);
+    const NewBill = new Bill({
+      Bill_Amount: fees,
+      Appoinment_Id: AppoId,
+      Doc_Id: DocId,
+      Pat_Id: id,
+    });
+    const savedBill = await NewBill.save();
+    console.log(NewBill, "NewBill");
+
     const pat_perDay = await shcdeule.findOne({ Doctor_id: DocId });
     console.log(pat_perDay.Meeting_Maximum_Patient + " old");
     const update = await shcdeule.findByIdAndUpdate(pat_perDay._id, {
@@ -936,7 +952,8 @@ router.post("/ViewBill", authorization, async (req, res, next) => {
     .populate("Doc_Id")
     .populate("Appoinment_Id");
   // console.log(appoBill);
-  if (appoBill === null) {
+  const status = appoBill.Bill_status;
+  if (status === "Not Paid") {
     //--Notification
 
     const checkUpList = await Prescription.find({
@@ -957,7 +974,7 @@ router.post("/ViewBill", authorization, async (req, res, next) => {
       .limit(5);
     const number = await Appo.countDocuments({ Pat_Id: id });
     console.log(number);
-    res.render("./Patient/ViewBillNull.ejs", {
+    res.render("./Patient/ViewBill.ejs", {
       name: name,
       number: number,
       appo: appo,
@@ -988,57 +1005,94 @@ router.post("/ViewBill", authorization, async (req, res, next) => {
       .limit(5);
     const number = await Appo.countDocuments({ Pat_Id: id });
     console.log(number);
-    res.render("./Patient/ViewBill.ejs", {
+    res.render("./Patient/ViewBillNull.ejs", {
       name: name,
       number: number,
       appo: appo,
       errorMessage: "",
-      Message: "",
+      Message: "Payment is already made",
       result: result,
       bill: appoBill,
     });
   }
 });
-// router.get("/ViewBill", authorization, async (req, res) => {
+// router.get("/ViewBill", authorization, async (req, res, next) => {
 //   const id = res.locals.user.id;
 //   const appo_Id = req.body.Appo_Id;
 //   console.log(appo_Id);
 //   const user = await User.findById(id);
+//   const name = user.pat_FirstName;
+//   const appoo = await Appo.findById(appo_Id)
+//     .populate("Pat_Id")
+//     .populate("Doc_Id");
+
 //   const appoBill = await Bill.findOne({ Appoinment_Id: appo_Id })
 //     .populate("Pat_Id")
-//     .populate("Doc_id")
+//     .populate("Doc_Id")
 //     .populate("Appoinment_Id");
 //   // console.log(appoBill);
-//   // console.log(user);
-//   const name = user.pat_FirstName;
-//   //--Notification
+//   if (appoBill === null) {
+//     //--Notification
 
-//   const checkUpList = await Prescription.find({
-//     Pat_Id: id,
-//   });
+//     const checkUpList = await Prescription.find({
+//       Pat_Id: id,
+//     });
 
-//   const date = new Date();
-//   const dataStr = date.toDateString();
-//   const result = checkUpList.filter(
-//     (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
-//   );
+//     const date = new Date();
+//     const dataStr = date.toDateString();
+//     const result = checkUpList.filter(
+//       (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
+//     );
 
-//   // console.log(result);
-//   const appo = await Appo.find({ Pat_Id: id })
-//     .populate("Pat_Id")
-//     .populate("Doc_Id")
-//     .sort({ _id: -1 })
-//     .limit(5);
-//   const number = await Appo.countDocuments({ Pat_Id: id });
-//   console.log(number);
-//   res.render("./Patient/ViewBill.ejs", {
-//     name: name,
-//     number: number,
-//     appo: appo,
-//     errorMessage: "",
-//     result: result,
-//     bill: appoBill,
-//   });
+//     // console.log(result);
+//     const appo = await Appo.find({ Pat_Id: id })
+//       .populate("Pat_Id")
+//       .populate("Doc_Id")
+//       .sort({ _id: -1 })
+//       .limit(5);
+//     const number = await Appo.countDocuments({ Pat_Id: id });
+//     console.log(number);
+//     res.render("./Patient/ViewBillNull.ejs", {
+//       name: name,
+//       number: number,
+//       appo: appo,
+//       appoo: appoo,
+//       errorMessage: "",
+//       Message: "",
+//       result: result,
+//       bill: appoBill,
+//     });
+//   } else {
+//     //--Notification
+
+//     const checkUpList = await Prescription.find({
+//       Pat_Id: id,
+//     });
+
+//     const date = new Date();
+//     const dataStr = date.toDateString();
+//     const result = checkUpList.filter(
+//       (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
+//     );
+
+//     // console.log(result);
+//     const appo = await Appo.find({ Pat_Id: id })
+//       .populate("Pat_Id")
+//       .populate("Doc_Id")
+//       .sort({ _id: -1 })
+//       .limit(5);
+//     const number = await Appo.countDocuments({ Pat_Id: id });
+//     console.log(number);
+//     res.render("./Patient/ViewBill.ejs", {
+//       name: name,
+//       number: number,
+//       appo: appo,
+//       errorMessage: "",
+//       Message: "",
+//       result: result,
+//       bill: appoBill,
+//     });
+//   }
 // });
 
 //-----------------------------End view bills--------------------------------------------------------------
@@ -1108,7 +1162,7 @@ router.post("/payment-visa", authorization, async (req, res) => {
       name: name,
       number: number,
       appo: appo,
-      errorMessage: "Failed",
+      errorMessage: "You Pay Before",
       Message: "",
       result: result,
       bill: appoBill,
@@ -1178,7 +1232,7 @@ router.post("/payment-paypal", authorization, async (req, res) => {
       name: name,
       number: number,
       appo: appo,
-      errorMessage: "Failed",
+      errorMessage: "You Pay Before",
       Message: "",
       result: result,
       bill: appoBill,
@@ -1248,7 +1302,7 @@ router.post("/payment-vodcash", authorization, async (req, res) => {
       name: name,
       number: number,
       appo: appo,
-      errorMessage: "Failed",
+      errorMessage: "You Pay Before",
       Message: "",
       result: result,
       bill: appoBill,
@@ -1329,12 +1383,117 @@ router.post("/ZoomPatient", authorization, async (req, res) => {
   const id = res.locals.user.id;
   const appo_Id = req.body.Appo_Id;
   console.log(appo_Id);
+  const appo = await Appo.findById(appo_Id);
   const meeting_link = await Meet_Link.findOne({ Appoinment_Id: appo_Id });
   console.log(meeting_link);
-  if (meeting_link === null) {
-    res.render("./Patient/ZoomPatientNull.ejs");
+  if (appo.App_visit_status === "Not Paid") {
+    const user = await User.findById(id);
+    const name = user.pat_FirstName;
+    const appoBill = await Bill.findOne({ Appoinment_Id: appo_Id })
+      .populate("Pat_Id")
+      .populate("Doc_Id")
+      .populate("Appoinment_Id");
+    if (appoBill === null) {
+      const appoo = await Appo.findById(appo_Id)
+        .populate("Pat_Id")
+        .populate("Doc_Id");
+      //--Notification
+
+      const checkUpList = await Prescription.find({
+        Pat_Id: id,
+      });
+
+      const date = new Date();
+      const dataStr = date.toDateString();
+      const result = checkUpList.filter(
+        (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
+      );
+
+      // console.log(result);
+      const appo = await Appo.find({ Pat_Id: id })
+        .populate("Pat_Id")
+        .populate("Doc_Id")
+        .sort({ _id: -1 })
+        .limit(5);
+      const number = await Appo.countDocuments({ Pat_Id: id });
+      console.log(number);
+      res.render("./Patient/ViewBillNull.ejs", {
+        name: name,
+        number: number,
+        appo: appo,
+        appoo: appoo,
+        errorMessage: "You need to pay first to enter the meeting",
+        Message: "",
+        result: result,
+        bill: appoBill,
+      });
+    } else {
+      //--Notification
+
+      const checkUpList = await Prescription.find({
+        Pat_Id: id,
+      });
+
+      const date = new Date();
+      const dataStr = date.toDateString();
+      const result = checkUpList.filter(
+        (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
+      );
+
+      // console.log(result);
+      const appo = await Appo.find({ Pat_Id: id })
+        .populate("Pat_Id")
+        .populate("Doc_Id")
+        .sort({ _id: -1 })
+        .limit(5);
+      const number = await Appo.countDocuments({ Pat_Id: id });
+      console.log(number);
+      res.render("./Patient/ViewBill.ejs", {
+        name: name,
+        number: number,
+        appo: appo,
+        errorMessage: "",
+        Message: "",
+        result: result,
+        bill: appoBill,
+      });
+    }
+    //--Notification
+
+    const checkUpList = await Prescription.find({
+      Pat_Id: id,
+    });
+
+    const date = new Date();
+    const dataStr = date.toDateString();
+    const result = checkUpList.filter(
+      (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
+    );
+
+    // console.log(result);
+    const appo = await Appo.find({ Pat_Id: id })
+      .populate("Pat_Id")
+      .populate("Doc_Id")
+      .sort({ _id: -1 })
+      .limit(5);
+    const number = await Appo.countDocuments({ Pat_Id: id });
+    console.log(number);
+
+    res.render("./Patient/ViewBill.ejs", {
+      name: name,
+      number: number,
+      appo: appo,
+      errorMessage: "",
+      Message: "",
+      result: result,
+      bill: appoBill,
+    });
   } else {
-    res.render("./Patient/ZoomPatient.ejs", { link: meeting_link });
+    if (meeting_link === null) {
+      res.render("./Patient/ZoomPatientNull.ejs");
+    } else {
+      res.render("./Patient/ZoomPatient.ejs", { link: meeting_link });
+    }
   }
 });
 //------------------------------------End Zoom Patient--------------------------------------------------------

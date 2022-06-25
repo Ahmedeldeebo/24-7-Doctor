@@ -230,6 +230,7 @@
   </div>
         <div class="center">
           <button
+          disabled="disabled"
             type="submit"
             class="btn btn-success btn-lg"
             role="button"
@@ -239,11 +240,21 @@
           </button>
         </div>
       </form>
-      <div class="alert alert-light text-danger" role="alert">
+      <div class="alert alert-light text-danger  m-2" role="alert">
         <%- errorMessage %>
       </div>
+      <a href="<%=link%>" target="_blank">
+        <button class="btn btn-outline-danger">
+          <i class="fa-solid fa-external-link"></i>
+          Open Meeting
+        </button>
+      <form class="m-4">
+        <a href="http://localhost:5000/doctor/ManageAppointments" class="btn btn-danger" role="button">
+          Go Back
+       </form>
 
-    </div>
+    </div>  
+  
   </body>
 
   <link

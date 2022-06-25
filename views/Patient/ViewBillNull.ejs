@@ -16,7 +16,8 @@
 
 
         <style>
-      body{
+        
+        body{
         overflow-x: hidden
       }
 .wrapper {
@@ -67,6 +68,13 @@ p {
     font-size: 20px
 }
 
+.inputs textarea {
+    margin-bottom: 13px;
+    border: none;
+    border-bottom: 2px solid #eee;
+    width: 100%;
+    resize: none
+}
 
 .inputs textarea:focus {
     margin-bottom: 13px;
@@ -161,6 +169,14 @@ p {
               border-radius: 37px
           }
 
+.form-group label {
+    font-size:1rem;
+    font-weight: 400;
+    line-height: 1.4rem;
+    vertical-align: top;
+    margin-bottom: .5rem;
+}
+
 </style>
 
         </head>
@@ -183,35 +199,35 @@ p {
                 <div class="d-flex flex-row align-items-center"> 
                     <span class="icons"><i class="fa-solid fa-user"></i></span> 
                     <div class="address text-left"> 
-                        <span>Doctor Name</span> <p style=" text-transform: capitalize" ><%=appoo.Doc_Id.Doc_FirstName %></p>
+                        <span>Doctor Name</span> <p style=" text-transform: capitalize" ><%=bill.Doc_Id.Doc_FirstName %></p>
                     </div> 
                 </div> 
 
                 <div class="d-flex flex-row align-items-center mt-3"> 
                     <span class="icons"><i class="fa-solid fa-book-medical"></i></span> 
                     <div class="address text-left"> 
-                        <span>Specialization</span> <p><%=appoo.Doc_Id.Specialization_Name %></p> 
+                        <span>Specialization</span> <p><%=bill.Doc_Id.Specialization_Name %></p> 
                     </div> 
                 </div>
 
                 <div class="d-flex flex-row align-items-center mt-3"> 
                     <span class="icons"><i class="fa-solid fa-calendar-day"></i></span> 
                      <div class="address text-left"> 
-                        <span>Chosen Day</span> <p><%=appoo.App_visit_day%></p>
+                        <span>Chosen Day</span> <p><%=bill.Appoinment_Id.App_visit_day%></p>
                     </div>
                  </div>
 
                  <div class="d-flex flex-row align-items-center mt-3"> 
                     <span class="icons"><i class="fa-solid fa-clock"></i></span> 
                      <div class="address text-left"> 
-                        <span>Chosen Hour</span> <p><%=appoo.App_RegVisit_time%></p>
+                        <span>Chosen Hour</span> <p><%=bill.Appoinment_Id.App_RegVisit_time%></p>
                     </div>
                  </div>
 
                  <div class="d-flex flex-row align-items-center mt-3"> 
                     <span class="icons"><i class="fa-solid fa-clock"></i></span> 
                      <div class="address text-left"> 
-                        <span>Method of Communication</span> <p><%=appoo.App_visit_day%></p>
+                        <span>Method of Communication</span> <p><%=bill.Appoinment_Id.App_visit_day%></p>
                     </div>
                  </div>
 
@@ -226,75 +242,168 @@ p {
                             <h5> <i class="fa-solid fa-money-bill"></i> Bill & Payment</h5> 
                                
                             
-                            
 
-                                <div class="form-group row">
-                                    <div class="col">
-                                      <label>Patient Name</label>
-                                      <input type="text" class="form-control input-sm" style=" text-transform: capitalize" placeholder="" name="" disabled />
+                                    <div class="form-group row">
+                                      <div class="col">
+                                        <label>Patient Name</label>
+                                        <input type="text" class="form-control input-sm" style=" text-transform: capitalize" placeholder="<%=bill.Pat_Id.pat_FirstName %>" name="" disabled />
+                                      </div>
+                                      <div class="col">
+                                        <label>Doctor Name</label>
+                                        <input type="text" class="form-control
+                                    input-sm" style=" text-transform: capitalize"  placeholder="Doctor <%=bill.Doc_Id.Doc_FirstName %>" name="" disabled />
+                                      </div>
                                     </div>
-                                    <div class="col">
-                                      <label>Doctor Name</label>
-                                      <input type="text" class="form-control
-                                  input-sm" style=" text-transform: capitalize"  placeholder="" name="" disabled />
-                                    </div>
-                                  </div>
 
-                                  <div class="form-group row">
-                                    <div class="col">
-                                      <label>Appointment Date</label>
-                                      <input type="text" class="form-control
-                                input-sm"  placeholder="" name="" disabled />
-                                    </div>
-                                    <div class="col">
-                                      <label>Payment in EGP</label>
-                                      <input type="text" class="form-control 
-                                input-sm" placeholder="" name="" disabled />
-                                    </div>
-                                  </div>
+                                    <div class="form-group row">
+                                        <div class="col">
+                                            <% const date = bill.Bill_Date.toDateString()%> 
+                                          <label>Appointment Date</label>
+                                          <input type="text" class="form-control
+                                    input-sm"  placeholder="<%=date %> " name="" disabled />
+                                        </div>
+                                        <div class="col">
+                                          <label>Payment in EGP</label>
+                                          <input type="text" class="form-control 
+                                    input-sm" placeholder="<%=bill.Bill_Amount%>" name="" disabled />
+                                        </div>
+                                      </div>
 
-                                  <div class="form-group">
-                                    <label>Payment Status</label>
-                                    <input type="text" class="form-control mt-3" placeholder="" name="" disabled> 
-                                  </div>
-                                  
-                                  
+                                    <div class="form-group">
+                                      <label>Payment Status</label>
+                                      <input type="text" class="form-control mt-3" placeholder="<%=bill.Bill_status%> " name="" disabled> 
+                                    </div>
+                          
+
+
                         <div class="alert alert-light text-danger" role="alert">
                             <%- errorMessage %> 
                           </div>
                           <div class="alert alert-light text-success" role="alert">
                             <%- Message %> 
                           </div>
+                    
 
-                           <!-- <div class="button mt-5 text-center"> 
-                               <button class="btn btn-success" type="submit">Pay Now</button> 
-                           </div> -->
-
-                           <button type="button" class="btn btn-success launch disabled" data-toggle="modal" data-target="#staticBackdrop"> <i class="fa fa-rocket"></i> Pay Now
+                           <button type="button" class="btn btn-success launch" data-toggle="modal" data-target="#staticBackdrop"disabled="true"> <i class="fa fa-rocket"></i> Pay Now
                            </button> 
+                        </div>
+                    </div>  
+                    <form class="mt-3">
+                        <input class="btn btn-danger" type="button" value="Go back" onclick="history.back()">
+                       </form>
+                </div>
 
-  
+               <!-- Paypal Credit Modal -->
+               <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true"> 
+                   <div class="modal-dialog"> 
+                       <div class="modal-content"> 
+                           <div class="modal-body"> 
+                               <div class="text-right"> 
+                                   <i class="fa fa-close close" data-dismiss="modal"></i> 
+                                </div> 
+                                <div class="tabs mt-3"> 
+                                    <ul class="nav nav-tabs" id="myTab" role="tablist"> 
+                                        <li class="nav-item" role="presentation"> 
+                                            <a class="nav-link active" id="visa-tab" data-toggle="tab" href="#visa" role="tab" aria-controls="visa" aria-selected="true"> <img src="https://i.imgur.com/sB4jftM.png" width="80"> </a> 
+                                        </li> 
+                                        <li class="nav-item" role="presentation"> <a class="nav-link" id="paypal-tab" data-toggle="tab" href="#paypal" role="tab" aria-controls="paypal" aria-selected="false"> <img src="https://i.imgur.com/yK7EDD1.png" width="80"> </a> 
+                                        </li> 
+                                        <li class="nav-item" role="presentation"> <a class="nav-link" id="vodafone-tab" data-toggle="tab" href="#vodafone" role="tab" aria-controls="vodafone" aria-selected="false"> <img src="https://i.imgur.com/80tObqg.png" width="80"> </a> 
+                                        </li>
+                          </ul> 
+                          <div class="tab-content" id="myTabContent"> 
+                              <div class="tab-pane fade show active" id="visa" role="tabpanel" aria-labelledby="visa-tab"> 
+                                  <div class="mt-4 mx-4"> 
+                                      <div class="text-center"> <h5>Credit card</h5> 
+                                      </div> 
+                                      <div class="form mt-3"> 
+                                        <form  action="http://localhost:5000/patient/payment-visa" method="POST">
+                                         
+                                          <div class="inputbox"> 
+                                      
+                                              <input type="text" name="Pay_Card_Holder" class="form-control" required="required" autocomplete="off"> 
+                                              <span>Cardholder Name</span>
+                                          </div> 
+                                          <div class="inputbox"> 
+                                              <input type="number" name="Pay_Card_Number" min="16"  class="form-control" required="required" autocomplete="off"> <span>Card Number</span> 
+                                          </div> 
+                                          <div class="d-flex flex-row"> 
+                                              <div class="inputbox"> <input type="text" name="Pay_Card_expDate" min="5" class="form-control" required="required" autocomplete="off"> <span>Expiration Date</span> 
+                                              </div> 
+                                              <div class="inputbox"> <input type="text" name="name" min="3"  class="form-control" autocomplete="off"> <span>CVV</span> 
+                                              </div> 
+                                      
+                                              <div>
+                                               <input hidden value="<%=bill._id%>" name="BillId">
+                                              <input hidden value="<%=bill.Bill_Amount%>" name="Bill_Amount">
+                                              <input hidden value="<%=bill.Appoinment_Id._id%>" name="AppoId">
+                                              <input hidden value="<%=bill.Doc_Id._id%>" name="DocId">
+                                              <!-- <input hidden value="bill.Pat_id._id%>" name="PatId"> -->
+                                              </div>
+                                          </div> 
+                                          <div class="px-5 pay"> <button class="btn btn-success btn-block" type="submit">Complete Payment</button> 
+                                          </div> 
+                                        </form>
+                                      </div> 
+                                  </div> 
+                              </div> 
+                           <div class="tab-pane fade" id="paypal" role="tabpanel" aria-labelledby="paypal-tab"> 
+                            <form  action="http://localhost:5000/patient/payment-paypal" method="POST">
+                                <input hidden value="<%=bill._id%>" name="BillId">
+                                <input hidden value="<%=bill.Bill_Amount%>" name="Bill_Amount">
+                                <input hidden value="<%=bill.Appoinment_Id._id%>" name="AppoId">
+                                <input hidden value="<%=bill.Doc_Id._id%>" name="DocId">
+                               <div class="px-5 mt-5"> <div class="inputbox"> 
+                                   <input type="text" name="Pay_PayPal_Email" class="form-control" required="required" autocomplete="off"> 
+                                   <span>Paypal Email Address</span> 
+                                </div> 
+                                <div class="pay px-5"> 
+                                    <button class="btn btn-primary btn-block" type="submit">Complete Payment</button> 
+                                </div> 
+                            </div>
+                         </form>
+                           </div> 
+                        <div class="tab-pane fade" id="vodafone" role="tabpanel" aria-labelledby="vodafone-tab"> 
+                            <div class="mt-4 mx-4"> 
+                                <div class="text-center"> <h5>Vodafone Credit card</h5> 
+                                 
+                                    <form  action="http://localhost:5000/patient/payment-vodcash" method="POST">
+                                        <input hidden value="<%=bill._id%>" name="BillId">
+                                        <input hidden value="<%=bill.Bill_Amount%>" name="Bill_Amount">
+                                        <input hidden value="<%=bill.Appoinment_Id._id%>" name="AppoId">
+                                        <input hidden value="<%=bill.Doc_Id._id%>" name="DocId">
+                                <div class="form mt-3">
 
-
-         
-    </div>
-    
-                           </div>
-                        
-                        <form class="mt-3">
-                            <input class="btn btn-danger" type="button" value="Go back" onclick="history.back()">
-                           </form>
-                      
-        </div> 
-        </div> 
-        </div> 
-        </div>  
-</div> 
-</div> 
+                                    <div class="inputbox">   
+                                        
+                                        <input type="number" name="Pay_VodCash_Number"  class="form-control" required="required" autocomplete="off"> <span>Phone Number</span> 
+                                    </div> 
+                                    <div class="text-center">
+                                        <h6>This service is only for Vodafone Cash customers.</h6>
+                                        <h6>Maximum daily amount is 3000 EGP.</h6>
+                                        <h6><a href="https://youtu.be/1RUmM158nK8" target=”_blank”>Click here for more information</a></h6>
+                                    </div>
+                                    <div class="px-5 pay mt-3"> <button class="btn btn-danger btn-block" type="submit">Complete Payment</button> 
+                                    </div> 
+                                
+                            </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                          </div> 
+                                </div> 
+                                </div> 
 </div> 
 </div> 
 </div>
-</div>
+</div>                                              
+</div> 
+</div> 
+</div> 
+</div>  
+</div> 
+
 
 
 
@@ -381,9 +490,9 @@ previous_fs.css({
         <%- include ('../partials/footer.ejs') %> 
         </footer>
 
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
         <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js'></script>
     </body>
     </html>

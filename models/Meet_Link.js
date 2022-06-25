@@ -15,10 +15,10 @@ const Meet_LinkSchema = new mongoose.Schema(
       required: true,
     },
     Appoinment_Id: {
+      unique: true,
       type: mongoose.Schema.Types.ObjectId,
       ref: "Aappointment",
       required: true,
-      unique: true,
     },
   },
   { timestamps: true }

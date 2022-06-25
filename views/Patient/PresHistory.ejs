@@ -157,6 +157,12 @@
                               <h6 class="text-left">Prescription Details </h6>
                          <textarea class="form-control mt-3" placeholder="Prescription Details" name="" disabled><%=prse.pres_Description %></textarea> 
                           </div>
+                          <div class="form-group col-md-6 feight py-3">
+                            <h6 class="text-left">Next Checkup </h6>
+                               <%date=prse.CheckUpDay.toDateString() %> 
+                            <input type="text" class="form-control" placeholder="<%=date %>"
+                            required name="CheckUpDay" disabled>
+                           </div>
 
             <!-- <div
               class="col-md-2 text-sm-center text-md-start align-self-center my-2"

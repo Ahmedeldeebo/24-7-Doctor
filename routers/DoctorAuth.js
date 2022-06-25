@@ -552,14 +552,13 @@ router.post("/DocSearch-patient", authorization, async (req, res) => {
   const user = await Patient.findById(id);
   const name = user.pat_FirstName;
   try {
-    const DocUser = await User.find({ Doc_FirstName: DocName });
-    const scheduleList = await DocSche.findOne({
+    const DocUser1 = await User.exists({
       Doc_FirstName: DocName,
-    }).populate("Doctor_id");
+    });
 
-    // console.log(shce);
-    // console.log(docName);
-    // console.log(docId);
+    const DocUser = await User.find({
+      Doc_FirstName: DocName,
+    });
     res.render("./Patient/DocSearch.ejs", {
       name: name,
       Sch: DocUser,
@@ -568,6 +567,16 @@ router.post("/DocSearch-patient", authorization, async (req, res) => {
     console.log(e.message);
     res.render("search.ejs");
   }
+
+  // console.log(DocUser1 + " test");
+  // if (DocUser1 === "null") {
+  //   // console.log(shce);
+  //   // console.log(docName);
+  //   // console.log(docId);
+
+  // } else {
+
+  // }
 });
 
 router.post("/DocSearch", authorization, async (req, res) => {
@@ -710,17 +719,35 @@ router.post(
         pres_Description: req.body.pres_Description,
         CheckUpDay: req.body.CheckUpDay,
         Appoinment_Id: appo_id,
-        Pat_id: pat_id,
+        Pat_Id: pat_id,
         Doc_Id: id,
       });
 
       const savedPrescription = await addNewPrescription.save();
       console.log(savedPrescription);
+      res.redirect("/doctor/ManageAppointments");
     } catch (e) {
       console.log(e.message);
-    }
+      //--Notification
+      const id = res.locals.user.id;
+      const appo = await Appo.find({ Doc_Id: id })
+        .populate("Pat_Id")
+        .populate("Doc_Id")
+        .sort({ _id: -1 })
+        .limit(5);
+      const number = await Appo.countDocuments({ Doc_Id: id });
+      console.log(number);
 
-    res.redirect("/doctor/ManageAppointments");
+      const user = await User.findById(id);
+      const name = user.Doc_FirstName;
+      res.render("./Doc/WritePres.ejs", {
+        name: name,
+        errorMessage: "You send the prescription before",
+        appoo: viewAppoint,
+        appo: appo,
+        number: number,
+      });
+    }
   }
 );
 
@@ -898,6 +925,7 @@ router.post("/ZoomDoc", authorization, async (req, res) => {
   res.render("./Doc/ZoomDoc.ejs", {
     appoo: appoId,
     appo: appo,
+    errorMessage: "",
   });
 });
 router.post("/online-meeting-create", authorization, async (req, res) => {
@@ -909,6 +937,7 @@ router.post("/online-meeting-create", authorization, async (req, res) => {
   const Pat_Id = req.body.patient_Id;
   const DocName = user.Doc_FirstName;
   const pat = await Patient.findById(Pat_Id);
+  const appo = await Appo.findById(appoId);
   const name = pat.pat_FirstName;
   const email = pat.pat_Email;
   const link = req.body.Meet_Link;
@@ -947,18 +976,38 @@ router.post("/online-meeting-create", authorization, async (req, res) => {
       Pat_Id: Pat_Id,
       Meeting_link: req.body.Meet_Link,
     });
-    transporter.sendMail(masgEmail, (err, data) => {
-      if (err) {
-        res.status(400).send(err);
-      } else {
-        console.log("Email sent");
-        res.send(`Email Sent: ${data}`);
-      }
-    });
     const savedMeet = await NewMeet.save();
+    if (appo.App_visit_status === "Not Paid") {
+      console.log("Not Paid");
+    } else {
+      transporter.sendMail(masgEmail, (err, data) => {
+        if (err) {
+          res.status(400).send(err);
+        } else {
+          console.log("Email sent");
+          res.send(`Email Sent: ${data}`);
+        }
+      });
+    }
+
     console.log(NewMeet, " NewMeet");
+    res.redirect("http://localhost:5000/doctor/ManageAppointments");
   } catch (e) {
     console.log(e.message);
+    const DocID = res.locals.user.id;
+    const OldLink = await Meet_Link.findOne({ Appoinment_Id: appoId });
+    const link = OldLink.Meeting_link;
+    const appo = await Appo.findById(appoId)
+      .populate("Pat_Id")
+      .populate("Doc_Id");
+    console.log(appo);
+    console.log(appoId);
+    res.render("./Doc/ZoomDocFailed.ejs", {
+      errorMessage: "You send the link to the patient before",
+      link: link,
+      appoo: appoId,
+      appo: appo,
+    });
   }
   // //--Notification
   // const appo = await Appo.find({ Doc_Id: DocID })
@@ -968,7 +1017,6 @@ router.post("/online-meeting-create", authorization, async (req, res) => {
   //   .limit(5);
   // const number = await Appo.countDocuments({ Doc_Id: DocID });
   // console.log(number);
-  res.redirect("http://localhost:5000/doctor/ManageAppointments");
 });
 //------------------------------------End ZoomDoc--------------------------------------------------------
 module.exports = router;
