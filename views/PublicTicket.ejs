@@ -276,7 +276,7 @@ left: -25px;
 }
 }
 .wrapper {
-    height: 70vh;
+    height: 75vh;
     background: #000;
     background: url("https://i.imgur.com/DWu2SHz.jpg");
     background-size: cover;
@@ -405,8 +405,11 @@ p {
                        <input type="text" class="form-control" placeholder="Name" name="ticket_Name"> 
                        <input type="text" class="form-control" placeholder="Email" name="ticket_Email"> <textarea class="form-control" placeholder="Type your message" name="ticket_details"></textarea> 
                    </div> 
-                   <div class="button mt-4 text-left"> <button class="btn btn-dark" type="submit">Send</button> 
+                   <div class="button mt-4 text-left"> <button class="btn btn-dark" type="submit">Send</button>        
                    </div>
+                   <form class="d-flex p-2">
+                    <input class="btn btn-danger d-print-none" type="button" value="Go back" onclick="history.back()">
+                   </form>
                 </form>
                 <div class="alert alert-light text-danger" role="alert">
                    <%- errorMessage %>
@@ -414,6 +417,7 @@ p {
                 </div> 
             </div> 
         </div> 
+
 </div> 
 </div> 
 </div> 

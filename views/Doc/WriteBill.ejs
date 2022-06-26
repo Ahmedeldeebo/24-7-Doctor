@@ -435,11 +435,14 @@ p {
                                 <div class="form-outline mt-4"> 
                                     <h6 class="text-left">Bill Amount</h6>
                                     <input type="number" class="form-control mt-3
-                                    input-sm" placeholder="=sehc.Upfront_fees" name="Bill_Amount"  />
+                                    input-sm" placeholder="<%=bill.Bill_Amount%>" name="Bill_Amount"  disabled/>
                                   </div>
 
 
-                           <div class="button mt-5 text-center"> <button class="btn btn-dark" type="submit">Issue Bill Invoice</button> 
+                           <!-- <div class="button mt-5 text-center"> <button class="btn btn-dark" type="submit">Issue Bill Invoice</button> 
+                           </div> -->
+                           <div class="button mt-5 text-center">
+                            <input class="btn btn-danger d-print-none" type="button" value="Go back" onclick="history.back()">
                            </div>
                         </form>
                         <div class="alert alert-light text-danger" role="alert">

@@ -16,6 +16,7 @@ body {
     overflow-x: hidden !important;
 }
 
+
 .doctor-fees {
 display: inline;
 font-size: 20px;
@@ -195,23 +196,7 @@ margin-bottom: 15px;
 padding: 12px 
 }
 
-#container{
-        min-height: 100%;
-      }
 
-      #main{
-        overflow: auto;
-        padding-bottom: 100px;
-      }
-
-      .footer {
-        position: relative;
-        margin-top: -100px;
-        clear: both;
-        height: 100px;
-        bottom: 0;
-        min-height: 100%;
-}
 .scrollbar-cyan::-webkit-scrollbar-track {
     background-color: #F5F5F5;
     border-radius: 10px;
@@ -255,16 +240,35 @@ padding: 12px
     max-height: 300px;
 }
 
+#container{
+        min-height: 100%;
+
+      }
+
+      #main{
+        overflow: auto;
+        padding-bottom: 100px;
+
+      }
+
+
+      #footer {
+        position: relative;
+        margin-top: -100px;
+        height: 100px;
+        bottom: 0;
+}
+
 </style>
 </head>
-
-    <body>
     <!--Start Hader-->
     <%- include ('./partials/navHome.ejs') %>
     <!--End Hader-->
+    <body>
+
 
 <div class="row" id="container">
-<div class="col-md-4">
+<div class="col-md-4" id="main">
 
     <form action="http://localhost:5000/doctor/doctorview" method="post">
         
@@ -282,61 +286,71 @@ padding: 12px
 <div class="panel-heading" role="tab" id="heading1">
   
 <h4 class="panel-title">
-    <a class="collapsed" role="button" data-toggle="collapse" href="#collapse1" aria-expanded="false" aria-controls="collapse1"> Specialization </a> </h4>
+    <a class="accordion" data-toggle="accordion" aria-expanded="false" aria-controls="accordion"> Specialization </a> </h4>
     <div class="card example-1 square scrollbar-cyan bordered-cyan">
-<div id="collapse1" class="collapse" role="button" aria-labelledby="collapse1">
-<div class="panel-body">
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Neurology" /> <span class="ml-10">Neurology</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Pediatrics" /> <span class="ml-10">Pediatrics</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Ophthalmology" /> <span class="ml-10">Ophthalmology</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Diabetes</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Dermatology (Skin)" /> <span class="ml-10">Dermatology (Skin)</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Dentistry (Teeth)" /> <span class="ml-10">Dentistry (Teeth)</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Psychiatry (Mental, Emotional or Behavioral Disorders)" /> <span class="ml-10">Psychiatry (Mental, Emotional or Behavioral Disorders)</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Neurology (Brain & Nerves)</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Orthopedics (Bones)</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Gynaecology and Infertility</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Ear, Nose and Throat</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Cardiology and Vascular Disease (Heart)</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Allergy and Immunology (Sensitivity and Immunity)</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Andrology and Male Infertility</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Audiology</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Cardiology and Thoracic Surgery (Heart & Chest)</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Chest and Respiratory</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Diabetes and Endocrinology</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Diagnostic Radiology (Scan Centers)</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Dietitian and Nutrition</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Family Medicine</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Gastroenterology and Endoscopy</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">General Practice</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">General Surgery</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Geriatrics (Old People Health)</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Family Medicine</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Hematology</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Hepatology (Liver Doctor)</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Internal Medicine</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">IVF and Infertility</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Laboratories</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Nephrology</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Neurosurgery (Brain & Nerves Surgery)</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Obesity and Laparoscopic Surgery</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Oncology (Tumor)</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Oncology Surgery (Tumor Surgery)</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Ophthalmology (Eyes)</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Osteopathy (Osteopathic Medicine)</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Pain Management</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Pediatric Surgery</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Phoniatrics (Speech)</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Physiotherapy and Sport Injuries</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Plastic Surgery</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Rheumatology</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Spinal Surgery</span> </label> </div>
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Urology (Urinary System)</span> </label> </div>
-
-<div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Vascular Surgery (Arteries and Vein Surgery)</span> </label> </div>
-<!-- <div class="text-right refine"> <button class="btn btn-in btn-info btn-square" id="button-filter" type="submit">Refine Search</button> </div> -->
-
-</div>
+<div id="accordion" class="accordion" role="button" aria-labelledby="accordion">
+    <div class="panel-body">
+                
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Neurology" /> <span class="ml-10">Neurology</span> </label> </div>
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Pediatrics" /> <span class="ml-10">Pediatrics</span> </label> </div>
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Ophthalmology" /> <span class="ml-10">Ophthalmology</span> </label> </div>
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes" /> <span class="ml-10">Diabetes</span> </label> </div>
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Dermatology (Skin)" /> <span class="ml-10">Dermatology (Skin)</span> </label> </div>
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Dentistry (Teeth)" /> <span class="ml-10">Dentistry (Teeth)</span> </label> </div>
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Psychiatry (Mental, Emotional or Behavioral Disorders)" /> <span class="ml-10">Psychiatry (Mental, Emotional or Behavioral Disorders)</span> </label> </div>
+        
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Neurology (Brain & Nerves)" /> <span class="ml-10">Neurology (Brain & Nerves)</span> </label> </div>
+        
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Orthopedics (Bones)" /> <span class="ml-10">Orthopedics (Bones)</span> </label> </div>
+        
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Gynaecology and Infertility" /> <span class="ml-10">Gynaecology and Infertility</span> </label> </div>
+        
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Ear, Nose and Throat" /> <span class="ml-10">Ear, Nose and Throat</span> </label> </div>
+        
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Cardiology and Vascular Disease (Heart)" /> <span class="ml-10">Cardiology and Vascular Disease (Heart)</span> </label> </div>
+        
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Allergy and Immunology (Sensitivity and Immunity)" /> <span class="ml-10">Allergy and Immunology (Sensitivity and Immunity)</span> </label> </div>
+        
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Andrology and Male Infertility" /> <span class="ml-10">Andrology and Male Infertility</span> </label> </div>
+        
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Audiology" /> <span class="ml-10">Audiology</span> </label> </div>
+        
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Cardiology and Thoracic Surgery (Heart & Chest)" /> <span class="ml-10">Cardiology and Thoracic Surgery (Heart & Chest)</span> </label> </div>
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Chest and Respiratory" /> <span class="ml-10">Chest and Respiratory</span> </label> </div>
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diabetes and Endocrinology" /> <span class="ml-10">Diabetes and Endocrinology</span> </label> </div>
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Diagnostic Radiology (Scan Centers)" /> <span class="ml-10">Diagnostic Radiology (Scan Centers)</span> </label> </div>
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Dietitian and Nutrition" /> <span class="ml-10">Dietitian and Nutrition</span> </label> </div>
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Family Medicine" /> <span class="ml-10">Family Medicine</span> </label> </div>
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Gastroenterology and Endoscopy" /> <span class="ml-10">Gastroenterology and Endoscopy</span> </label> </div>
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="General Practice" /> <span class="ml-10">General Practice</span> </label> </div>
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="General Surgery" /> <span class="ml-10">General Surgery</span> </label> </div>
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Geriatrics (Old People Health)" /> <span class="ml-10">Geriatrics (Old People Health)</span> </label> </div>
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Family Medicine" /> <span class="ml-10">Family Medicine</span> </label> </div>
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Hematology" /> <span class="ml-10">Hematology</span> </label> </div>
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Hepatology (Liver Doctor)" /> <span class="ml-10">Hepatology (Liver Doctor)</span> </label> </div>
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Internal Medicine" /> <span class="ml-10">Internal Medicine</span> </label> </div>
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="IVF and Infertility" /> <span class="ml-10">IVF and Infertility</span> </label> </div>
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Laboratories" /> <span class="ml-10">Laboratories</span> </label> </div>
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Nephrology" /> <span class="ml-10">Nephrology</span> </label> </div>
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Neurosurgery (Brain & Nerves Surgery)" /> <span class="ml-10">Neurosurgery (Brain & Nerves Surgery)</span> </label> </div>
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Obesity and Laparoscopic Surgery" /> <span class="ml-10">Obesity and Laparoscopic Surgery</span> </label> </div>
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Oncology (Tumor)" /> <span class="ml-10">Oncology (Tumor)</span> </label> </div>
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Oncology Surgery (Tumor Surgery)" /> <span class="ml-10">Oncology Surgery (Tumor Surgery)</span> </label> </div>
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Ophthalmology (Eyes)" /> <span class="ml-10">Ophthalmology (Eyes)</span> </label> </div>
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Osteopathy (Osteopathic Medicine)" /> <span class="ml-10">Osteopathy (Osteopathic Medicine)</span> </label> </div>
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Pain Management" /> <span class="ml-10">Pain Management</span> </label> </div>
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Pediatric Surgery" /> <span class="ml-10">Pediatric Surgery</span> </label> </div>
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Phoniatrics (Speech)" /> <span class="ml-10">Phoniatrics (Speech)</span> </label> </div>
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Physiotherapy and Sport Injuries" /> <span class="ml-10">Physiotherapy and Sport Injuries</span> </label> </div>
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Plastic Surgery" /> <span class="ml-10">Plastic Surgery</span> </label> </div>
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Rheumatology" /> <span class="ml-10">Rheumatology</span> </label> </div>
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Spinal Surgery" /> <span class="ml-10">Spinal Surgery</span> </label> </div>
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Urology (Urinary System)" /> <span class="ml-10">Urology (Urinary System)</span> </label> </div>
+        
+        <div class="checkbox"> <label> <input type="radio" class="option-input checkbox" name="SpecName" value="Vascular Surgery (Arteries and Vein Surgery)" /> <span class="ml-10">Vascular Surgery (Arteries and Vein Surgery)</span> </label> </div>
+        <!-- <div class="text-right refine"> <button class="btn btn-in btn-info btn-square" id="button-filter" type="submit">Refine Search</button> </div> -->
+        
+        </div>
 </div>
     </div>
     <div class="text-right refine"> <button class="btn btn-in btn-info btn-square" id="button-filter" type="submit">Refine Search</button> </div>

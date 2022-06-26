@@ -59,17 +59,33 @@
     width: 10rem; 
     font-size: 1.2em;
 }
+#container{
+        min-height: 100%;
+
+      }
+
+      #main{
+        overflow: auto;
+        padding-bottom: 100px;
+
+      }
 
 
+      #footer {
+        position: relative;
+        margin-top: -100px;
+        height: 100px;
+        bottom: 0;
+}
     </style>
   </head>
 
-  <body id="page-container">
+  <body>
     <!--Start Header-->
    <%- include ('../partials/navHome.ejs') %>
     <!--End Header-->
 
-    <div class="container mt-5" id="content-wrap">
+    <div class="container mt-5" id="container">
       <div class="row d-flex justify-content-center">
         <div class="row d-flex justify-content-center" id="main">
           <!-------------------------------------------START HEADERS -------------------------------------------------->
@@ -108,7 +124,7 @@
           <%prse.forEach(prse=>{%>
       
           <div
-            class="d-md-flex d-sm-block justify-content-md-between justify-content-sm-center text-center border-bottom border-2 my-2 bg-light p-2 rounded-3"
+            id="main" class="d-md-flex d-sm-block justify-content-md-between justify-content-sm-center text-center border-bottom border-2 my-2 bg-light p-2 rounded-3"
           >
             <div
               class="col-md-2 text-sm-center text-md-start align-self-center my-2 text"
@@ -295,10 +311,13 @@
             </div>
           </div>
           -----------------------------------------END THIRD ROW  ------------------------------------------------ -->
-   
+  
   </body>
 
-    <footer id="footer" class="mt-5"><%- include ('../partials/footer.ejs') %></footer>
+  <footer id="footer">
+    <div  class="mt-5"><%- include ('../partials/footer.ejs') %></div>
+    
+      </footer>
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>

@@ -89,8 +89,8 @@
       transform: translate(-50%, 10%);
     }
     .card {
-      width: 450px;
-      height: 380px;
+      width: 470px;
+      height: 390px;
       align-items: center;
       position: relative;
       cursor: pointer;
@@ -140,61 +140,10 @@
             >1-Set Google Meet</a
           >
         </div> -->
-        <button id="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#myModal">
+        <!-- <button id="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#myModal">
           Set Google Meet
-        </button>
-      
-        <!-- The Modal -->
-        <div class="modal fade" id="myModal">
-          <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-            
-              <!-- Modal Header -->
-              <div class="modal-header">
-                <h4 class="modal-title">Setting Google Meet</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-              </div>
-              
-              <!-- Modal body -->
-              <div class="modal-body">
-                <h5><strong><i class="fa-solid fa-1">-</i> First Step:</strong> <a href="https://meet.google.com/?pli=1" target="_blank">CLICK HERE</a></h5>
-                <p><i class="fa-solid fa-triangle-exclamation"></i> Make sure to SIGN-IN with your google account or create a new account in order to start the meeting</p>
-              </div>
+        </button> -->
 
-            
-              <div class="modal-body">
-                <h5><strong><i class="fa-solid fa-2">-</i> Second Step:</strong> Press on "New Meeting"</a></h5>
-                <p><img class="img-responsive" src="https://i.imgur.com/Zbo7LQg.png"></p>
-              </div>
-
-              <div class="modal-body">
-                <h5><strong><i class="fa-solid fa-3">-</i> Third Step:</strong> Press on "Start an instant meeting"</a></h5>
-                <p><img class="img-responsive" src="https://i.imgur.com/fh3ybtK.png"></p>
-              </div>
-              
-              <div class="modal-body">
-                <h5><strong><i class="fa-solid fa-4">-</i> Fourth Step:</strong> Copy the link shown on bottom right by pressing on the <i class="fa-solid fa-copy"></i></a>
-                <p><img class="img-responsive" src="https://i.imgur.com/kYloJkn.png"></p>
-              </div>
-
-              <div class="modal-body">
-                <h5><strong><i class="fa-solid fa-5">-</i> Fifth Step:</strong> Head back to our website and paste the link in the box "CTRL-V" or "Right click - Paste"</i></a>
-                <p><img class="img-responsive" src="https://i.imgur.com/L24jqg2.png"></p>
-              </div>
-
-              <div class="modal-body">
-                <h5><strong><i class="fa-solid fa-6">-</i> Last Step:</strong> By clicking "Send to Patient", The meeting will be sent to the patient and you will be redirected back to home page</i></a>
-                <p><img class="img-responsive" src="https://i.imgur.com/1Dcle0J.png"></p>
-              </div>
-
-              <!-- Modal footer -->
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              </div>
-              
-            </div>
-          </div>
-        </div>
 
   <!-- <div class="modal-body">
     <strong>First Step:</strong> <a href="https://meet.google.com/?pli=1" class="link-danger">CLICK HERE</a>
@@ -228,33 +177,39 @@
       name="Meet_Link"
     />
   </div>
-        <div class="center">
+
+         <div class="center">
+          <form action="http://localhost:5000/doctor/ManageAppointments" method="post">
           <button
-          disabled="disabled"
             type="submit"
-            class="btn btn-success btn-lg"
+            class="btn btn-danger mt-4"
             role="button"
             aria-disabled="true"
           >
-            Send to Patient
+          Go Back
           </button>
-        </div>
+        </form>
+        </div> 
+
+        <!-- <form class="d-flex p-2">
+          <a href="http://localhost:5000/doctor/ManageAppointments" class="btn btn-danger" role="button">
+            Go Back
+         </form>  -->
       </form>
       <div class="alert alert-light text-danger  m-2" role="alert">
         <%- errorMessage %>
       </div>
-      <a href="<%=link%>" target="_blank">
+      <a href="<%=link%>" target="_blank"  id="button">
         <button class="btn btn-outline-danger">
           <i class="fa-solid fa-external-link"></i>
           Open Meeting
         </button>
-      <form class="m-4">
-        <a href="http://localhost:5000/doctor/ManageAppointments" class="btn btn-danger" role="button">
-          Go Back
-       </form>
+      </a>
+
 
     </div>  
-  
+ 
+
   </body>
 
   <link
