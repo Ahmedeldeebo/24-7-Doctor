@@ -259,7 +259,6 @@ router.get("/profile-home", authorization, async (req, res, next) => {
   console.log("Pharmacy " + countPhar);
   const countDoc = await Doctor.countDocuments({});
   console.log("Doctors " + countDoc);
-  //--Notification
   // nodeMail transport
   let transporter = nodemailer.createTransport({
     service: "gmail",
@@ -269,6 +268,8 @@ router.get("/profile-home", authorization, async (req, res, next) => {
       pass: process.env.MAIL_PASS, // generated ethereal password
     },
   });
+
+  //--Notification
 
   let checkUpListt = await Prescription.find({
     Pat_Id: id,
@@ -282,70 +283,88 @@ router.get("/profile-home", authorization, async (req, res, next) => {
       _id: -1,
     })
     .populate("Doc_Id");
-  const checkDayUpdate = checkUpListtt.CheckUpDay.toDateString();
-  const date = new Date();
-  const dataStr = date.toDateString();
-  const resultt = checkUpListt.filter(
-    (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
-  );
-  let masgEmail = {
-    from: `"Doctor 24/7" <${process.env.MAIL_USER}`, // sender address
-    to: `${email}`, // list of receivers
-    //to: "davidlotfy123@gmail.com",
-    subject: "Ckeck Up Reminder", // Subject line
-    // text: "You need to ckeck Up with your Doctor",
-    html: `<h2 style=" text-transform: capitalize">Hello ${name}!</h2>
-        <h4>You need to ckeck Up with your Doctor</h4>
-        <p  style=" text-transform: capitalize">Doctor Name: Dr.<b>${
-          checkUpListtt.Doc_Id.Doc_FirstName
-        }</b></p>
-        <p>Ckeck Up Date: <b>${checkUpListtt.CheckUpDay.toDateString()}</b></p>
-        <p>Have a nice day!</p>`, // plain text body
-    // send mail with defined transport object
-  };
-
-  if (checkDayUpdate === dataStr) {
-    console.log("checkUpDay is = to today");
-    transporter.sendMail(masgEmail, (err, data) => {
-      if (err) {
-        res.status(400).send(err);
-      } else res.send(`Email Sent: ${data}`);
+  try {
+    const checkDayUpdate = checkUpListtt.CheckUpDay.toDateString();
+    const date = new Date();
+    const dataStr = date.toDateString();
+    const resultt = checkUpListt.filter(
+      (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
+    );
+    if (checkDayUpdate === dataStr) {
+      console.log("checkUpDay is = to today");
+      transporter.sendMail(masgEmail, (err, data) => {
+        if (err) {
+          res.status(400).send(err);
+        } else res.send(`Email Sent: ${data}`);
+      });
+    } else {
+      console.log("not equle");
+      // transporter.sendMail(masgEmail, (err, data) => {
+      //   if (err) {
+      //     res.status(400).send(err);
+      //   } else res.send(`Email Sent: ${data}`);
+      // });
+    }
+    // const date = new Date();
+    // const dataStr = date.toDateString();
+    const checkUpList = await Prescription.find({
+      Pat_Id: id,
     });
-  } else {
-    console.log("not equle");
-    // transporter.sendMail(masgEmail, (err, data) => {
-    //   if (err) {
-    //     res.status(400).send(err);
-    //   } else res.send(`Email Sent: ${data}`);
-    // });
+    const result = checkUpList.filter(
+      (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
+    );
+
+    // console.log(result);
+    const appo = await Appo.find({ Pat_Id: id })
+      .populate("Pat_Id")
+      .populate("Doc_Id")
+      .sort({ _id: -1 })
+      .limit(5);
+    const number = await Appo.countDocuments({ Pat_Id: id });
+    console.log(number);
+    let masgEmail = {
+      from: `"Doctor 24/7" <${process.env.MAIL_USER}`, // sender address
+      to: `${email}`, // list of receivers
+      //to: "davidlotfy123@gmail.com",
+      subject: "Ckeck Up Reminder", // Subject line
+      // text: "You need to ckeck Up with your Doctor",
+      html: `<h2 style=" text-transform: capitalize">Hello ${name}!</h2>
+          <h4>You need to ckeck Up with your Doctor</h4>
+          <p  style=" text-transform: capitalize">Doctor Name: Dr.<b>${
+            checkUpListtt.Doc_Id.Doc_FirstName
+          }</b></p>
+          <p>Ckeck Up Date: <b>${checkUpListtt.CheckUpDay.toDateString()}</b></p>
+          <p>Have a nice day!</p>`, // plain text body
+      // send mail with defined transport object
+    };
+    res.render("./Patient/Patienthome.ejs", {
+      name: name,
+      number: number,
+      appo: appo,
+      userCont: countUser,
+      Phar: countPhar,
+      Doc: countDoc,
+      result: result,
+    });
+  } catch (e) {
+    console.log(e.message);
+    // console.log(result);
+    const appo = await Appo.find({ Pat_Id: id })
+      .populate("Pat_Id")
+      .populate("Doc_Id")
+      .sort({ _id: -1 })
+      .limit(5);
+    const number = await Appo.countDocuments({ Pat_Id: id });
+    console.log(number);
+    res.render("./Patient/PatientHomeWithoutCheckUp.ejs", {
+      name: name,
+      number: number,
+      appo: appo,
+      userCont: countUser,
+      Phar: countPhar,
+      Doc: countDoc,
+    });
   }
-
-  // const date = new Date();
-  // const dataStr = date.toDateString();
-  const checkUpList = await Prescription.find({
-    Pat_Id: id,
-  });
-  const result = checkUpList.filter(
-    (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
-  );
-
-  // console.log(result);
-  const appo = await Appo.find({ Pat_Id: id })
-    .populate("Pat_Id")
-    .populate("Doc_Id")
-    .sort({ _id: -1 })
-    .limit(5);
-  const number = await Appo.countDocuments({ Pat_Id: id });
-  console.log(number);
-  res.render("./Patient/Patienthome.ejs", {
-    name: name,
-    number: number,
-    appo: appo,
-    userCont: countUser,
-    Phar: countPhar,
-    Doc: countDoc,
-    result: result,
-  });
 });
 
 ///------------------------------------End fo profile--------------------------------------------------------
