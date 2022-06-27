@@ -3,8 +3,8 @@ const mongoose = require("mongoose");
 const DoctorSchema = new mongoose.Schema(
   {
     Doc_username: { type: String, required: true, unique: true, trim: true },
-    Doc_FirstName: { type: String, required: true, trim: true },
-    Doc_Lastname: { type: String, required: true, trim: true },
+    Doc_FirstName: { type: String, required: true, trim: true, lowercase: true },
+    Doc_Lastname: { type: String, required: true, trim: true ,  lowercase: true},
     Doc_Email: { type: String, required: true, unique: true, trim: true },
     Doc_Gender: { type: String, required: true },
     Doc_password: { type: String, required: true },
