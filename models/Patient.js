@@ -3,8 +3,13 @@ const mongoose = require("mongoose");
 const patientSchema = new mongoose.Schema(
   {
     Pat_username: { type: String, required: true, unique: true, trim: true },
-    pat_FirstName: { type: String, required: true, trim: true },
-    pat_Lastname: { type: String, required: true, trim: true },
+    pat_FirstName: {
+      type: String,
+      required: true,
+      trim: true,
+      lowercase: true,
+    },
+    pat_Lastname: { type: String, required: true, trim: true, lowercase: true },
     pat_Email: { type: String, required: true, unique: true, trim: true },
     pat_Gender: { type: String, required: true },
     pat_password: { type: String, required: true },
