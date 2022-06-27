@@ -31,6 +31,16 @@ const Doc_Schedule = require("../models/Doc_Schedule");
 
 router.post("/register", async (req, res) => {
   console.log(req.body);
+  // nodeMail transport
+  let transporter = nodemailer.createTransport({
+    service: "gmail",
+    secure: false, // true for 465, false for other ports
+    auth: {
+      user: process.env.MAIL_USER, // generated ethereal user
+      pass: process.env.MAIL_PASS, // generated ethereal password
+    },
+  });
+
   try {
     const NewUser = new User({
       Pat_username: req.body.Pat_username,
@@ -56,6 +66,44 @@ router.post("/register", async (req, res) => {
   try {
     //  const savedUser = await NewUser.save();
     //  console.log(NewUser);
+    const email = req.body.pat_Email;
+    const name = req.body.pat_FirstName;
+    let masgEmail = {
+      from: `"Doctor 24/7" <${process.env.MAIL_USER}`, // sender address
+      to: `${email}`, // list of receivers
+      //to: "davidlotfy123@gmail.com",
+      subject: "Welcome", // Subject line
+      // text: "You need to ckeck Up with your Doctor",
+      html: `<h2 style=" text-transform: capitalize">Hello ${name}!</h2>
+          <h4>Welcome to 24/7 doctor our team looks forward to help you out as much as possible 
+          So here is a briefing on how to use our website:</h4>
+          <p  style=" text-transform: capitalize">
+          1.sign in
+         <b></b></p>
+          <p  style=" text-transform: capitalize">
+          2.search for or select the Specialisation/ doctor that you desire
+         <b></b></p>
+          <p  style=" text-transform: capitalize">
+          3.book any of the available appointments and select the type of communication
+         <b></b></p>
+          <p  style=" text-transform: capitalize">
+          4.select your payment method and pay the upfront fees
+         <b></b></p>
+          <p  style=" text-transform: capitalize">
+          5.recieve a message from the doctor at the time of your appointment
+         <b></b></p>
+          <p  style=" text-transform: capitalize">
+          6. The appoinment starts and we hope you get better soon
+          For further information please contact us via the ticket in the website
+         <b></b></p>
+          <p>Have a nice day!</p>`, // plain text body
+      // send mail with defined transport object
+    };
+    transporter.sendMail(masgEmail, (err, data) => {
+      if (err) {
+        res.status(400).send(err);
+      } else res.send(`Email Sent: ${data}`);
+    });
 
     res.render("signIn.ejs", {
       errorMessage: "",
