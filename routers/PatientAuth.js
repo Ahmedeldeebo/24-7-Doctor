@@ -72,7 +72,6 @@ router.post("/login", async (req, res) => {
     const user = await User.findOne({ Pat_username: req.body.Pat_username });
     !user &&
       res.render("signIn.ejs", { errorMessage: "Wrong username", Message: "" });
-    //res.Status(401).json("Wrong credentials!");
     const hashedPassword = CryptoJS.AES.decrypt(
       user.pat_password,
       process.env.PASS_SEC
@@ -81,7 +80,6 @@ router.post("/login", async (req, res) => {
 
     Originalpassword !== req.body.pat_password &&
       res.render("signIn.ejs", { errorMessage: "Wrong password", Message: "" });
-    // res.status(401).json("Wrong credentials!");
 
     const accessToken = jwt.sign(
       {
@@ -91,22 +89,7 @@ router.post("/login", async (req, res) => {
       {
         expiresIn: "3d",
       }
-      // (err, token) => {
-      //   if (err)
-      //     return res
-      //       .status(400)
-      //       .send({ msg: "Something went wrong. Please try again" });
-      //   return res.json({
-      //     accessToken: token,
-      //     name: user.pat_FirstName,
-      //     role: "user",
-      //   });
-      // }
     );
-    // res.cookie("accessToken", accessToken, {
-    //   httpOnly: true,
-    // });
-
     const token = req.body.token;
     const name = user.pat_FirstName;
     console.log(accessToken);
@@ -117,14 +100,12 @@ router.post("/login", async (req, res) => {
         httpOnly: true,
       })
       .redirect("/patient/profile-home");
-
-    //res.status(200).json({ ...others, accessToken });
   } catch (e) {
     return console.log(e.message);
   }
 });
 //-------------------------------------------- End Login ---------------------------------------------------
-//-------------------------------------------- Start  profile ---------------------------------------------------
+//-------------------------------------------- Start  profile ----------------*-----------------------------------
 router.get("/profile-setting", authorization, async (req, res, next) => {
   console.log(res.locals.user.id);
   const id = res.locals.user.id;
