@@ -350,7 +350,9 @@ p {
     box-shadow: none;
     resize: none
 }
-
+.c{
+    text-transform: capitalize
+}
 </style>
 
         </head>
@@ -413,18 +415,18 @@ p {
                 <div class="col-md-6"> 
                     <div class="text-center px-1 py-5"> 
                         <div class="forms p-4 py-5 bg-white"> 
-                            <h5><i class="fa-solid fa-money-bill"></i> Issue Appointment Bill</h5> 
+                            <h5><i class="fa-solid fa-money-bill"></i> View Appointment Bill</h5> 
                             
 
                             <div class="form-row">
 
                                 <div class="form-group col-md-6 mt-3 text-left">
-                                  <h6 class="text-left">Patient Name</h6>
-                                 <input type="text" class="form-control mt-3 input-sm"  placeholder="<%=bill.Pat_Id.pat_FirstName %>" name="" disabled />
+                                  <h6 class="text-left c ">Patient Name</h6>
+                                 <input type="text" class="form-control mt-3 input-sm c"  placeholder="<%=bill.Pat_Id.pat_FirstName %>" name="" disabled />
                                 </div>
                                 <div class="form-group col-md-6 mt-3 text-left">
-                                  <h6 class="text-left">Doctor Name</h6>
-                                  <input type="text" class="form-control mt-3 input-sm" placeholder="<%=bill.Doc_Id.Doc_FirstName %>" name="" disabled />                                  
+                                  <h6 class="text-left c ">Doctor Name</h6>
+                                  <input type="text" class="form-control mt-3 input-sm c" placeholder="<%=bill.Doc_Id.Doc_FirstName %>" name="" disabled />                                  
                               </div>
                               </div>
 
@@ -435,7 +437,7 @@ p {
                                 <div class="form-outline mt-4"> 
                                     <h6 class="text-left">Bill Amount</h6>
                                     <input type="number" class="form-control mt-3
-                                    input-sm" placeholder="<%=bill.Bill_Amount%>" name="Bill_Amount"  disabled/>
+                                    input-sm" placeholder="<%=bills.Bill_Amount%>" name="Bill_Amount"  disabled/>
                                   </div>
 
                                   <p class="mt-5" style="color: black;"><strong>Note:</strong> Our website 24/7 Doctor takes 10% commission of the fees </p>

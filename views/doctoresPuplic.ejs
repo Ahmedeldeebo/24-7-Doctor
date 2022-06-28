@@ -261,19 +261,19 @@ padding: 12px
 .c{
     text-transform: capitalize
 }
-
 </style>
 </head>
-    <!--Start Hader-->
-    <%- include ('./partials/navHome.ejs') %>
-    <!--End Hader-->
+  <!--Start Header-->
+  <%- include ('./partials/nav.ejs') %>
+  <!--End Header-->
+  
     <body>
 
 
 <div class="row" id="container">
 <div class="col-md-4" id="main">
 
-    <form action="http://localhost:5000/doctor/doctorview" method="post">
+    <form action="http://localhost:5000/doctorview-puplic" method="post">
         
         <div class="wrapper center-block hidden-xs">
 
@@ -390,12 +390,12 @@ padding: 12px
     
     <span class="doctor-fees price-new">Fees : <%=Sch.Upfront_fees%> </span>
     <!-- <div class="text-right refine" ><a href="http://localhost:5000/booking" class="btn btn-info" role="button">Book Appointment</a> </div> -->
-   <form action="http://localhost:5000/doctor/viewDocSch" method="post">
+  
     <div class="text-right refine" >
-    <input hidden value="<%=Sch.Doctor_id._id %>" name="Doc_Id">
-   <button  class="btn btn-info" type="submit">Doctor Schedule</button> 
+  
+   <a href="http://localhost:5000/signuptest" class="btn btn-info" type="submit" role="button">Doctor Schedule</a> 
  </div>
-   </form>
+
         
    
     

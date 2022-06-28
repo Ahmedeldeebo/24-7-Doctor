@@ -6,7 +6,7 @@ const User = require("../models/Doctor");
 const Appo = require("../models/Aappointment");
 const DocSche = require("../models/Doc_Schedule");
 const ticket = require("../models/Ticket");
-const bill = require("../models/Bill");
+const Bill = require("../models/Bill");
 const nodemailer = require("nodemailer");
 const Prescription = require("../models/Prescription");
 const CryptoJS = require("crypto-js");
@@ -173,7 +173,7 @@ router.get("/doctorview", authorization, async (req, res) => {
   const result = scheduleList.filter((schedule) => schedule.Start_Time != "");
   //--Notification
   const checkUpList = await Prescription.find({
-    Pat_id: id,
+    Pat_Id: id,
   });
 
   const date = new Date();
@@ -217,7 +217,7 @@ router.post("/doctorview", authorization, async (req, res) => {
   //--Notification
 
   const checkUpList = await Prescription.find({
-    Pat_id: id,
+    Pat_Id: id,
   });
 
   const date = new Date();
@@ -759,6 +759,8 @@ router.post("/WriteBill", authorization, async (req, res, next) => {
   // console.log(res.locals.user.id);
   const id = res.locals.user.id;
   const user = await User.findById(id);
+  const bill = await Bill.findOne({ Doc_Id: id });
+
   // console.log(user);
   const name = user.Doc_FirstName;
   const appo_id = req.body.Appo_Id;
@@ -780,6 +782,7 @@ router.post("/WriteBill", authorization, async (req, res, next) => {
     number: number,
     appo: appo,
     bill: appoId,
+    bills: bill,
   });
 });
 router.get("/WriteBill", authorization, async (req, res, next) => {
@@ -790,11 +793,13 @@ router.get("/WriteBill", authorization, async (req, res, next) => {
     const shcdeule = await DocSche.find({ Doctor_id: id }).populate(
       "Doctor_id"
     );
+
     console.log(shcdeule);
   } catch (e) {
     console.log(e.message);
   }
   // console.log(user);
+  const bill = await Bill.findOne({ Doc_Id: id });
   const name = user.Doc_FirstName;
   const appo_id = req.body.Appo_Id;
   // console.log(appo_id);
@@ -816,6 +821,7 @@ router.get("/WriteBill", authorization, async (req, res, next) => {
     appo: appo,
     bill: appoId,
     sehc: shcdeule,
+    bill: bill,
   });
 });
 router.post("/WriteBill-post", authorization, async (req, res, next) => {

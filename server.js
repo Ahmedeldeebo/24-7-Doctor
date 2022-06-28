@@ -11,6 +11,7 @@ const PatientAuthRouter = require("./routers/PatientAuth");
 const PhamacyAuthRouter = require("./routers/PharmacyAuth");
 const DoctorAuthRouter = require("./routers/DoctorAuth");
 const ticket = require("./models/Ticket");
+const DocSche = require("./models/Doc_Schedule");
 const nodemailer = require("nodemailer");
 const stripe = require("stripe")(process.env.STRIPE_PEIVATE_KEY);
 
@@ -155,7 +156,33 @@ app.get("/logOut", authorization, (req, res) => {
   return res.clearCookie("accessToken").redirect("/");
 });
 //------------------------------------logOut end--------------------------------------------------------
+//------------------------------------start Dcotor view puplic------------------------------------------------------
+app.get("/doctorview-puplic", async (req, res) => {
+  const scheduleList = await DocSche.find({})
+    .populate("Doctor_id")
+    .sort({ _id: -1 });
+  const result = scheduleList.filter((schedule) => schedule.Start_Time != "");
 
+  res.render("doctoresPuplic.ejs", {
+    Sch: result,
+  });
+});
+app.post("/doctorview-puplic", async (req, res) => {
+  const SpecName = req.body.SpecName;
+  console.log(SpecName);
+
+  let scheduleList = await DocSche.find()
+    .populate("Doctor_id")
+    .sort({ _id: -1 });
+  const result = scheduleList.filter(
+    (schedule) => schedule.Doctor_id.Specialization_Name === SpecName
+    //&& schedule.Meeting_Maximum_Patient > 0
+  );
+  res.render("doctoresPuplic.ejs", {
+    Sch: result,
+  });
+});
+//------------------------------------End Dcotor view puplic------------------------------------------------------
 ///------------------------------------Doctor Profile Update--------------------------------------------------------
 // app.get("/DoctorUpdate", (req, res) => {
 //   res.render("Doc/DocProfileEdit.ejs")
