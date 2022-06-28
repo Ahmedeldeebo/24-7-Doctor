@@ -85,9 +85,9 @@
    <%- include ('../partials/navHome.ejs') %>
     <!--End Header-->
 
-    <div class="container mt-5" id="container">
+    <div class="container mt-5 container">
       <div class="row d-flex justify-content-center">
-        <div class="row d-flex justify-content-center" id="main">
+        <div class="row d-flex justify-content-center main">
           <!-------------------------------------------START HEADERS -------------------------------------------------->
 
           <form
@@ -230,91 +230,10 @@
       </div>
     </div>
 
-          <!-------------------------------------------END FIRST ROW  -------------------------------------------------->
-
-          <!-- -----------------------------------------START SECOND ROW  ----------------------------------------------
-
-          <div
-            class="d-md-flex d-sm-block justify-content-md-between justify-content-sm-center text-center border-bottom border-2 my-2 bg-light p-2 rounded-3"
-          >
-            <div
-              class="col-md-2 text-sm-center text-md-start align-self-center my-2"
-            >
-              <h1 class="h6">03/09/2022</h1>
-            </div>
-
-            <div
-              class="col-md-3 text-sm-center text-md-start align-self-center my-2"
-            >
-              <h1 class="h6">Face to Face</h1>
-            </div>
-
-            <div
-              class="col-md-2 text-sm-center text-md-start align-self-center my-2"
-            >
-              <a class="btn btn-outline-dark w-100" href="#">Details</a>
-            </div>
-
-            <div
-              class="col-md-2 text-sm-center text-md-start align-self-center my-2"
-            >
-              <form method="get" action="controller" class="d-flex btn-group">
-                <input
-                  type="hidden"
-                  name="command"
-                  value="refresh-order-status"
-                />
-                <h1 class="h6">Pending</h1>
-                <select name="status" class="btn btn-outline-dark"> 
-                         </select> 
-              </form>
-            </div>
-          </div>
-          -----------------------------------------END SECOND ROW  -------------------------------------------------->
-
-          <!-------------------------------------------START THIRD ROW  ---------------------------------------------
-
-          <div
-            class="d-md-flex d-sm-block justify-content-md-between justify-content-sm-center text-center border-bottom border-2 my-2 bg-light p-2 rounded-3"
-          >
-            <div
-              class="col-md-2 text-sm-center text-md-start align-self-center my-2"
-            >
-              <h1 class="h6">19/10/2022</h1>
-            </div>
-
-            <div
-              class="col-md-3 text-sm-center text-md-start align-self-center my-2"
-            >
-              <h1 class="h6">Zoom Meeting</h1>
-            </div>
-
-            <div
-              class="col-md-2 text-sm-center text-md-start align-self-center my-2"
-            >
-              <a class="btn btn-outline-dark w-100" href="#">Details</a>
-            </div>
-
-            <div
-              class="col-md-2 text-sm-center text-md-start align-self-center my-2"
-            >
-              <form method="get" action="controller" class="d-flex btn-group">
-                <input
-                  type="hidden"
-                  name="command"
-                  value="refresh-order-status"
-                />
-                <h1 class="h6">Payment Paid</h1>
-                 <select name="status" class="btn btn-outline-dark">
-                                 </select> 
-              </form>
-            </div>
-          </div>
-          -----------------------------------------END THIRD ROW  ------------------------------------------------ -->
   
   </body>
 
-  <footer id="footer">
+  <footer class="footer">
     <div  class="mt-5"><%- include ('../partials/footer.ejs') %></div>
     
       </footer>

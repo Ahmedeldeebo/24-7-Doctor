@@ -30,8 +30,9 @@
             color: grey
         }
         .c {
-  text-transform: capitalize;
-}
+            text-transform: capitalize;
+        }
+        
         .head{
             color: #97989a;
             font-size: 17px;
@@ -63,56 +64,56 @@
     <%- include ('../partials/navHome.ejs') %>  
 
 
-    <div class="container mt-5">
-        <div class="row d-flex justify-content-center">
-            <div class="col-md-16">
-                <div class="card py-5 text-center">
-                    <div class="row">
-                        <div class="col-md-7 border-right no-gutters">
-                            <div class="py-3"><img src="/img/Profile.jpg" width="150" height="150" class="rounded-circle">
-                            <h4 class="text-secondary c"><%=DocUser.Doc_FirstName%> </h4>
-                                <div class="allergy"><span><%=DocUser.Specialization_Name%></span></div>
-                                <div class="stats">
-                                    <table class="table table-borderless">
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex flex-column"> <span class="text-left head">Available Days</span> <span class="text-left bottom"><%=shce.Available_Days%></span> </div>
-                                                </td>
-                                                <!-- Leave it empty -->
-                                                <td>
-                                                    <div class="d-flex flex-column"> <span class="text-left head"></span> <span class="text-left bottom"></span> </div>
-                                                </td>
-                                                <!-- Leave it empty -->
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex flex-column"> <span class="text-left head">Time-Period
-                                                    </span> <span class="text-left bottom"><%=shce.Start_Time%></span> </div>
-                                                </td>
-                                                <!-- Leave it empty -->
-                                                <td>
-                                                    <div class="d-flex flex-column"> <span class="text-left head"></span> <span class="text-left bottom"></span> </div>
-                                                </td>
-                                                <!-- Leave it empty -->
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex flex-column"> <span class="text-left head">Patients per-day</span> <span class="text-left bottom"><%=shce.Meeting_Maximum_Patient%></span> </div>
-                                                </td>
-                                                <!-- Leave it empty -->
-                                                <td>
-                                                    <div class="d-flex flex-column"> <span class="text-left head"></span> <span class="text-left bottom"></span> </div>
-                                                </td>
-                                                <!-- Leave it empty -->
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex flex-column"> <span class="text-left head">Available methods</span> <span class="text-left bottom"><%=shce.Available_methods%></span> </div>
-                                                </td>
-                                                <!-- Leave it empty -->
-                                                <td>
-                                                    <div class="d-flex flex-column"> <span class="text-left head"></span> <span class="text-left bottom"></span> </div>
+<div class="container mt-5">
+<div class="row d-flex justify-content-center">
+ <div class="col-md-16">
+<div class="card py-5 text-center">
+    <div class="row">
+ <div class="col-md-7 border-right no-gutters">
+     <div class="py-3"><img src="/img/Profile.jpg" width="150" height="150" class="rounded-circle">
+     <h4 class="text-secondary c"><%=DocUser.Doc_FirstName%> </h4>
+         <div class="allergy"><span><%=DocUser.Specialization_Name%></span></div>
+ <div class="stats">
+     <table class="table table-borderless">
+         <tbody>
+             <tr>
+                 <td>
+                     <div class="d-flex flex-column"> <span class="text-left head">Available Days</span> <span class="text-left bottom"><%=shce.Available_Days%></span> </div>
+                 </td>
+                 <!-- Leave it empty -->
+                 <td>
+                     <div class="d-flex flex-column"> <span class="text-left head"></span> <span class="text-left bottom"></span> </div>
+                 </td>
+                 <!-- Leave it empty -->
+             </tr>
+             <tr>
+                 <td>
+                     <div class="d-flex flex-column"> <span class="text-left head">Time-Period
+                     </span> <span class="text-left bottom"><%=shce.Start_Time%></span> </div>
+                 </td>
+                 <!-- Leave it empty -->
+                 <td>
+                     <div class="d-flex flex-column"> <span class="text-left head"></span> <span class="text-left bottom"></span> </div>
+                 </td>
+                 <!-- Leave it empty -->
+             </tr>
+             <tr>
+                 <td>
+                     <div class="d-flex flex-column"> <span class="text-left head">Patients per-day</span> <span class="text-left bottom"><%=shce.Meeting_Maximum_Patient%></span> </div>
+                 </td>
+                 <!-- Leave it empty -->
+                 <td>
+                     <div class="d-flex flex-column"> <span class="text-left head"></span> <span class="text-left bottom"></span> </div>
+                 </td>
+                 <!-- Leave it empty -->
+             </tr>
+             <tr>
+                            <td>
+                                <div class="d-flex flex-column"> <span class="text-left head">Available methods</span> <span class="text-left bottom"><%=shce.Available_methods%></span> </div>
+                            </td>
+                                   <!-- Leave it empty -->
+                                           <td>
+                                               <div class="d-flex flex-column"> <span class="text-left head"></span> <span class="text-left bottom"></span> </div>
                                                 </td>
                                                 <!-- Leave it empty -->
                                             </tr>

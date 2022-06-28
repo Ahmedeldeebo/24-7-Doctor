@@ -120,7 +120,6 @@
             <div
               class="col-md-2 text-sm-center text-md-start align-self-center my-2 text"
             >
-              <!-- <h1 class="h6">=appoo.createdAt%></h1> -->
               <% let date =appoo.createdAt.toDateString(); %> 
               <h1 class="h6"><%=date%></h1>
             </div>
@@ -137,34 +136,7 @@
             <form action="http://localhost:5000/patient/viewappoint" method="post">
               <input hidden value="<%=appoo._id %>" name="Appo_Id">
               <button class="btn btn-outline-dark w-100" type="submit">Details</button>
-            <!-- <a class="btn btn-outline-dark w-100" href="http://localhost:5000/patient/AppDetails">Details</a> -->
-          </form>
-              <!--  NORMAL DETAILS BUTTON <a href="#demo" class="btn btn-outline-dark w-100" type="button" data-toggle="collapse">Details</a>  --> 
-
-              <!--  POP OVER - WORKING FINE  -->
-              <!-- <button 
-              type="button" 
-              id="firstButton" 
-              class="btn btn-outline-dark w-100" href="http://localhost:5000/patient/AppDetails"
-              rel="popover" 
-              data-bs-container="body" 
-              data-bs-toggle="popover" 
-              data-bs-placement="bottom" 
-              data-bs-content="Bottom popover" 
-              data-message="=appoo.Doc_Id.Doc_FirstName%> - =appoo.Doc_Id.Specialization_Name%> - =appoo.App_visit_day%> - =appoo.App_RegVisit_time%>">
-                Details
-              </button> -->
-              <!-- POPOVER END -->
-
-              <!-- COLLAPSE - Not working fine, opens all Details on the page not one by one  -->
-              <!-- <button type="button" class="btn btn-outline-dark w-100" data-toggle="collapse" data-target="#demo">Details</button>
-              <div id="demo" class="collapse">
-                <p> Doctor Name </p>
-                <p> Doctor Specialization </p>
-                <p> Chosen Day </p>
-                <p> Chosen Hour</p>
-              </div> -->
-              <!-- END COLLAPSE  -->
+            </form>
 
             </div>
 
@@ -173,95 +145,13 @@
             >
               <form method="get" action="controller" class="d-flex btn-group">
                 <h1 class="h6"><%=appoo.App_visit_status%></h1>
-                <!-- <input type="hidden" name="command" value="refresh-order-status">
-                     <select name="status" class="btn btn-outline-dark">   
-                    </select>  -->
+
               </form>
             </div>
           </div>
           <%})%>
 
-          <!-------------------------------------------END FIRST ROW  -------------------------------------------------->
 
-          <!-- -----------------------------------------START SECOND ROW  ----------------------------------------------
-
-          <div
-            class="d-md-flex d-sm-block justify-content-md-between justify-content-sm-center text-center border-bottom border-2 my-2 bg-light p-2 rounded-3"
-          >
-            <div
-              class="col-md-2 text-sm-center text-md-start align-self-center my-2"
-            >
-              <h1 class="h6">03/09/2022</h1>
-            </div>
-
-            <div
-              class="col-md-3 text-sm-center text-md-start align-self-center my-2"
-            >
-              <h1 class="h6">Face to Face</h1>
-            </div>
-
-            <div
-              class="col-md-2 text-sm-center text-md-start align-self-center my-2"
-            >
-              <a class="btn btn-outline-dark w-100" href="#">Details</a>
-            </div>
-
-            <div
-              class="col-md-2 text-sm-center text-md-start align-self-center my-2"
-            >
-              <form method="get" action="controller" class="d-flex btn-group">
-                <input
-                  type="hidden"
-                  name="command"
-                  value="refresh-order-status"
-                />
-                <h1 class="h6">Pending</h1>
-                <select name="status" class="btn btn-outline-dark"> 
-                         </select> 
-              </form>
-            </div>
-          </div>
-          -----------------------------------------END SECOND ROW  -------------------------------------------------->
-
-          <!-------------------------------------------START THIRD ROW  ---------------------------------------------
-
-          <div
-            class="d-md-flex d-sm-block justify-content-md-between justify-content-sm-center text-center border-bottom border-2 my-2 bg-light p-2 rounded-3"
-          >
-            <div
-              class="col-md-2 text-sm-center text-md-start align-self-center my-2"
-            >
-              <h1 class="h6">19/10/2022</h1>
-            </div>
-
-            <div
-              class="col-md-3 text-sm-center text-md-start align-self-center my-2"
-            >
-              <h1 class="h6">Zoom Meeting</h1>
-            </div>
-
-            <div
-              class="col-md-2 text-sm-center text-md-start align-self-center my-2"
-            >
-              <a class="btn btn-outline-dark w-100" href="#">Details</a>
-            </div>
-
-            <div
-              class="col-md-2 text-sm-center text-md-start align-self-center my-2"
-            >
-              <form method="get" action="controller" class="d-flex btn-group">
-                <input
-                  type="hidden"
-                  name="command"
-                  value="refresh-order-status"
-                />
-                <h1 class="h6">Payment Paid</h1>
-                 <select name="status" class="btn btn-outline-dark">
-                                 </select> 
-              </form>
-            </div>
-          </div>
-          -----------------------------------------END THIRD ROW  ------------------------------------------------ -->
         </div>
       </div>
     </div>
@@ -271,24 +161,6 @@
 
   </footer>
   
-  <script>
-$(function () {
-    $('#firstButton').popover({
-      container: "body",
-      html: true,
-      content: function () {
-        return '<div class="popover-message">' + $(this).data("message") + '</div>';
-      }
-    });
-    $('#secondButton').popover(); // <-- The first initializer does this, which causes the next one to fail on the next line.
-    $('#secondButton').popover({
-      container: "body",
-      html: true,
-      content: function () {
-        return '<div class="popover-message">' + $(this).data("message") + '</div>';
-      }
-    });
-});  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"></link>
