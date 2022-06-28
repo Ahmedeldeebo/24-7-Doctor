@@ -127,8 +127,8 @@ router.post("/Docter-login", async (req, res) => {
         httpOnly: true,
       })
       .redirect("/doctor/profile-home-doc"); //res.status(200).json({ ...others, accessToken });
-  } catch (err) {
-    return console.log(err);
+  } catch (e) {
+    return console.log(e.message);
   }
 });
 router.get("/profile-home-doc", authorization, async (req, res, next) => {
@@ -167,7 +167,9 @@ router.get("/doctorview", authorization, async (req, res) => {
   const id = res.locals.user.id;
   const user = await Patient.findById(id);
   const name = user.pat_FirstName;
-  const scheduleList = await DocSche.find({}).populate("Doctor_id");
+  const scheduleList = await DocSche.find({})
+    .populate("Doctor_id")
+    .sort({ _id: -1 });
   const result = scheduleList.filter((schedule) => schedule.Start_Time != "");
   //--Notification
   const checkUpList = await Prescription.find({
