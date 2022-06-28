@@ -115,8 +115,8 @@ html, body {
             <%Sche.forEach(Sche=>{%>
 
         <div class="col" >
-            <select class="custom-select" name="Methed_of_comm">
-                <option selected>Communication Method</option>
+            <select class="custom-select" name="Methed_of_comm" required>
+                <option value="Communication Method" selected disabled>Communication Method</option>
                 <option value="<%=Sche.Available_methods[0]%>"><%=Sche.Available_methods[0]%></option>
                 <option value="<%=Sche.Available_methods[1]%>"><%=Sche.Available_methods[1]%></option>
                 <option value="<%=Sche.Available_methods[2]%>"><%=Sche.Available_methods[2]%></option>
@@ -125,8 +125,8 @@ html, body {
         </div>  
         
         <div class="col">
-            <select class="custom-select" name="App_visit_day" autocomplete="off">
-                <option selected>Available Days</option>
+            <select class="custom-select" name="App_visit_day" autocomplete="off" required>
+                <option value="Available Days"  selected disabled>Available Days</option>
                 <option value="<%=Sche.Available_Days[0]%>"><%=Sche.Available_Days[0]%></option>
                     <option value="<%=Sche.Available_Days[1]%>"><%=Sche.Available_Days[1]%></option>
                     <option value="<%=Sche.Available_Days[2]%>"><%=Sche.Available_Days[2]%></option>
@@ -140,7 +140,7 @@ html, body {
         <%})%>
         
         <div class="col">
-            <select class="custom-select" name="App_RegVisit_time">
+            <select class="custom-select" name="App_RegVisit_time" required>
                 <option selected>Hour of Choice</option>
                 <option value="11:00 AM" disabled>11:00 AM</option>
                     <option value="12:00 AM" disabled>12:00 AM</option>
@@ -171,8 +171,6 @@ html, body {
         
 
 </body>
-
-
 
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
