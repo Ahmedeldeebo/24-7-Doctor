@@ -48,6 +48,9 @@
         margin-bottom: 60px;
   min-height: 100%;
       }
+      .c{
+        text-transform: capitalize;
+      }
 
 
 
@@ -89,7 +92,7 @@
           <!-------------------------------------------END HEADERS -------------------------------------------------->
 
           <!-------------------------------------------START FIRST ROW  -------------------------------------------------->
-          prse.forEach(prse=>{
+         <%prse.forEach(prse=>{%>
       
           <div
             class="d-md-flex d-sm-block justify-content-md-between justify-content-sm-center text-center border-bottom border-2 my-2 bg-light p-2 rounded-3"
@@ -98,8 +101,8 @@
               class="col-md-2 text-sm-center text-md-start align-self-center my-2 text"
             >
               <!-- <h1 class="h6">=appoo.createdAt%></h1> -->
-                 let date =prse.Pres_Arrival_Date.toDateString(); 
-              <h1 class="h6">=date </h1>
+              <% let date =prse.Pres_Arrival_Date.toDateString(); %>
+              <h1 class="h6"><%=date %></h1>
             </div>
 
 
@@ -112,26 +115,36 @@
                       <!-- <form action="http://localhost:5000/doctor/WritePrescription-create" method="post">            -->
                           <div class="form-outline mt-4"> 
                               <h6 class="text-left">Patient Name</h6>
-                         <input type="text" class="form-control mt-3 c" placeholder="=appoo.Pat_Id.pat_FirstName" name="" disabled>
+                         <input type="text" class="form-control mt-3 c" placeholder="<%=prse.Pat_Id.pat_FirstName%>" name="" disabled>
                           </div>
 
                           <div class="form-row">
                               <div class="form-group col-md-6 mt-3 text-left">
                                 <h6 class="text-left">Patient Address</h6>
                                 <input type="text" class="form-control mt-3
-                                input-sm"  placeholder="=appoo.Pat_Id.addres_details" name="" disabled />
+                                input-sm"  placeholder="<%=prse.Pat_Id.addres_details%>" name="" disabled />
                               </div>
 
                               <div class="form-group col-md-6 mt-3 text-left">
                                 <h6 class="text-left">Patient Area</h6>
                                 <input type="text" class="form-control mt-3
-                                input-sm" placeholder="=appoo.Pat_Id.city" name="" disabled />                                
+                                input-sm" placeholder="<%=prse.Pat_Id.city%>" name="" disabled />                                
+                            </div>
+                              <div class="form-group col-md-6 mt-3 text-left">
+                                <h6 class="text-left">Patient Phone</h6>
+                                <input type="text" class="form-control mt-3
+                                input-sm" placeholder="<%=prse.Pat_Id.Pat_TelNo%>" name="" disabled />                                
+                            </div>
+                              <div class="form-group col-md-6 mt-3 text-left">
+                                <h6 class="text-left">Patient Email</h6>
+                                <input type="text" class="form-control mt-3
+                                input-sm" placeholder="<%=prse.Pat_Id.pat_Email%>" name="" disabled />                                
                             </div>
                           </div>
 
                           <div class="form-outline m4-4"> 
                               <h6 class="text-left">Prescription Details </h6>
-                         <textarea class="form-control mt-3" placeholder="Prescription Details" name="" disabled>=pres.pres_Description</textarea> 
+                         <textarea class="form-control mt-3" placeholder="Prescription Details" name="" disabled><%=prse.pres_Description%></textarea> 
                           </div>
                           <div class="button mt-5 text-center"> 
                             <button class="btn btn-success d-print-none" onclick="myFunction()"><span class="fa-solid fa-check" aria-hidden="true"></span> Confirm Availability</button>
@@ -147,7 +160,7 @@
               
             </div>
             </div>
-            })
+            <%})%>
           </div>
       </div>
     </div>

@@ -2,6 +2,7 @@ const router = require("express").Router();
 const User = require("../models/Pharmacy");
 const Doctor = require("../models/Doctor");
 const Patient = require("../models/Patient");
+const Prescription = require("../models/Prescription");
 const Tikcet = require("../models/Ticket");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
@@ -48,7 +49,9 @@ router.post("/Pharmacy-login", async (req, res) => {
   try {
     const user = await User.findOne({ Phar_userName: req.body.Phar_userName });
     !user &&
-      res.render("./Pharmacy/signInPhar.ejs", { errorMessage: "Wrong username" });
+      res.render("./Pharmacy/signInPhar.ejs", {
+        errorMessage: "Wrong username",
+      });
     //res.Status(401).json("Wrong credentials!");
     const hashedPassword = CryptoJS.AES.decrypt(
       user.Phar_Password,
@@ -185,7 +188,12 @@ router.get("/Prescriptions", authorization, async (req, res) => {
   const id = res.locals.user.id;
   const user = await User.findById(id);
   const name = user.Phar_name;
-  res.render("Pharmacy/Prescriptions.ejs", { name: name });
+  const Prescriptions = await Prescription.find({ Phar_Id: id })
+    .populate("Pat_Id")
+    .populate("Doc_Id")
+    .populate("Phar_Id");
+  console.log(Prescriptions);
+  res.render("Pharmacy/Prescriptions.ejs", { name: name, prse: Prescriptions });
 });
 //------------------------------------End Pharmacy Prescription view--------------------------------------------------------
 

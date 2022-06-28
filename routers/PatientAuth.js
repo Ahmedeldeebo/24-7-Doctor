@@ -9,6 +9,7 @@ const Bill = require("../models/Bill");
 const Appo = require("../models/Aappointment");
 const payment = require("../models/Payment");
 const Prescription = require("../models/Prescription");
+const Phar = require("../models/Pharmacy");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
@@ -1545,4 +1546,142 @@ router.post("/ZoomPatient", authorization, async (req, res) => {
   }
 });
 //------------------------------------End Zoom Patient--------------------------------------------------------
+//------------------------------------Start Pharmacy Choice--------------------------------------------------------
+// router.get("/PharmacyChoice", authorization, async (req, res) => {
+//   const id = res.locals.user.id;
+//   const user = await User.findById(id);
+//   const name = user.pat_FirstName;
+//   const area = user.area;
+//   const phar = await Phar.find({ area: area });
+//   //--Notification
+
+//   const checkUpList = await Prescription.find({
+//     Pat_Id: id,
+//   });
+
+//   const date = new Date();
+//   const dataStr = date.toDateString();
+//   const result = checkUpList.filter(
+//     (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
+//   );
+
+//   // console.log(result);
+//   const appo = await Appo.find({ Pat_Id: id })
+//     .populate("Pat_Id")
+//     .populate("Doc_Id")
+//     .sort({ _id: -1 })
+//     .limit(5);
+//   const number = await Appo.countDocuments({ Pat_Id: id });
+//   console.log(number);
+
+//   res.render("./Patient/PharmciesChoice.ejs", {
+//     name: name,
+//     number: number,
+//     appo: appo,
+//     result: result,
+//     phar: phar,
+//   });
+// });
+router.post("/PharmacyChoice", authorization, async (req, res) => {
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  const PresId = req.body.Pres_id;
+  console.log(PresId);
+  const name = user.pat_FirstName;
+  const area = user.area;
+  const phar = await Phar.find({ area: area });
+  //--Notification
+
+  const checkUpList = await Prescription.find({
+    Pat_Id: id,
+  });
+
+  const date = new Date();
+  const dataStr = date.toDateString();
+  const result = checkUpList.filter(
+    (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
+  );
+
+  // console.log(result);
+  const appo = await Appo.find({ Pat_Id: id })
+    .populate("Pat_Id")
+    .populate("Doc_Id")
+    .sort({ _id: -1 })
+    .limit(5);
+  const number = await Appo.countDocuments({ Pat_Id: id });
+  console.log(number);
+
+  res.render("./Patient/PharmciesChoice.ejs", {
+    name: name,
+    number: number,
+    appo: appo,
+    result: result,
+    phar: phar,
+    PresId: PresId,
+  });
+});
+router.post("/send-pres-phar", authorization, async (req, res) => {
+  const id = res.locals.user.id;
+  const user = await User.findById(id);
+  const PresId = req.body.Pres_id;
+  console.log(PresId + " PresId");
+  const name = user.pat_FirstName;
+  const area = user.area;
+  const phar = await Phar.find({ area: area });
+  const pharName = phar.Phar_name;
+
+  try {
+    const pahrId = req.body.phar_id;
+    console.log(pahrId + " pahrId");
+    const addPharId = await Prescription.findByIdAndUpdate(PresId, {
+      Phar_Id: pahrId,
+    });
+    console.log(addPharId + " add");
+  } catch (e) {
+    console.log(e.message);
+  }
+
+  const pres = await Prescription.findById(PresId);
+  const ApppId = pres.Appoinment_Id;
+  const appoDetails = await Appo.findById(ApppId)
+    .populate("Pat_Id")
+    .populate("Doc_Id");
+  console.log(appoDetails);
+  const PresDesc = await Prescription.findOne({
+    Appoinment_Id: ApppId,
+  });
+  //--Notification
+
+  const checkUpList = await Prescription.find({
+    Pat_Id: id,
+  });
+
+  const date = new Date();
+  const dataStr = date.toDateString();
+  const result = checkUpList.filter(
+    (checkUp) => checkUp.CheckUpDay.toDateString() <= dataStr
+  );
+
+  // console.log(result);
+  const appo = await Appo.find({ Pat_Id: id })
+    .populate("Pat_Id")
+    .populate("Doc_Id")
+    .sort({ _id: -1 })
+    .limit(5);
+  const number = await Appo.countDocuments({ Pat_Id: id });
+  console.log(number);
+
+  res.render("./Patient/ViewPres.ejs", {
+    name: name,
+    number: number,
+    Message: "Prescription Sent Successfully",
+    errorMessage: "",
+    appo: appo,
+    result: result,
+    phar: phar,
+    appoo: appoDetails,
+    pres: PresDesc,
+  });
+});
+//------------------------------------End Pharmacy Choice--------------------------------------------------------
 module.exports = router;

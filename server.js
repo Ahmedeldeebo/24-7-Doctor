@@ -249,9 +249,9 @@ app.get("/Pharmacies", (req, res) => {
 // //------------------------------------End ZoomDoc--------------------------------------------------------
 
 // //------------------------------------Start ZoomDoc--------------------------------------------------------
- app.get("/PharmciesChoice", (req, res) => {
-   res.render("Patient/PharmciesChoice.ejs");
- });
+//  app.get("/PharmciesChoice", (req, res) => {
+//    res.render("Patient/PharmciesChoice.ejs");
+//  });
 // //------------------------------------End ZoomDoc--------------------------------------------------------
 
 app.get("*", (req, res) => {

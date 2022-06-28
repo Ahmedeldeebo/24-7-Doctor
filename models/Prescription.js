@@ -26,6 +26,7 @@ const prescriptionSchema = new mongoose.Schema({
     required: true,
   },
   Phar_Id: {
+    unique: true,
     type: mongoose.Schema.Types.ObjectId,
     ref: "Pharmacy",
     required: false,

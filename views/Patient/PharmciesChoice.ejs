@@ -46,7 +46,16 @@
         height: 60px;
         margin: 22px auto 0;
       }
-      h2 { color: #000000; font-family: 'Droid serif', serif; font-size: 90px; font-weight: 400; font-style: italic; line-height: 50px; margin: 0 0 12px; text-align: center; }
+      h2 {
+        color: #000000;
+        font-family: "Droid serif", serif;
+        font-size: 90px;
+        font-weight: 400;
+        font-style: italic;
+        line-height: 50px;
+        margin: 0 0 12px;
+        text-align: center;
+      }
 
       .c {
         text-transform: capitalize;
@@ -56,6 +65,7 @@
 
   <body>
     <!--Start Hader-->
+    <%- include ('../partials/navHome.ejs') %>
     <!--End Hader-->
 
     <div class="search">
@@ -64,19 +74,17 @@
           action="http://localhost:5000/doctor/DocSearch-patient"
           method="post"
         >
-         <h2>Our Pharmices</h2>
-
+          <h2>Our Pharmices</h2>
         </form>
       </div>
     </div>
     <div class="container py-5">
       <div class="row">
         <div class="col-lg-12 mx-auto">
-
           <ul class="list-group shadow">
             <li class="list-group-item">
               <!-- Sch.forEach(Sch=>{%> -->
-
+              <%phar.forEach(phar=>{%>
               <div class="media align-items-lg-center flex-column flex-lg-row">
                 <img
                   src="/img/Phar.png"
@@ -90,7 +98,7 @@
                   <h5 class="mt-0 mb-1">
                     <div class="c">
                       <!-- Doctor Name =Sch.Doc_FirstName%> =Sch.Doc_Lastname%> -->
-                      Phar Name
+                      Phar Name <%-phar.Phar_name%>
                     </div>
                   </h5>
 
@@ -101,7 +109,6 @@
                   >
                     <div class="text-right refine">
                       <input hidden value="=Sch._id%>" name="Doc_Id" />
-                      
                     </div>
                   </form>
 
@@ -115,40 +122,53 @@
                         <img
                           src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"
                         />
-                         Phar City
+                        Phar City <%-phar.city%>
                       </li>
                       <li>
                         <img
                           src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"
-                        /> Phar Area
+                        />
+                        Phar Area <%-phar.area%>
                       </li>
                       <li>
                         <img
                           src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"
-                        /> Phar Address
+                        />
+                        Phar Address <%-phar.addres_details%>
                       </li>
                       <li>
                         <img
                           src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"
-                        /> Phar Email
+                        />
+                        Phar Email <%-phar.Phar_Email%>
                       </li>
                     </ul>
-                    <button class="btn btn-success" type="submit">
-                      Send Prescription
-                    </button> 
+                    <form
+                      action="http://localhost:5000/patient/send-pres-phar"
+                      method="post"
+                    >
+                      <input
+                        type="hidden"
+                        name="phar_id"
+                        value="<%=phar._id%>"
+                      />
+                      <input type="hidden" name="Pres_id" value="<%=PresId%>" />
+                      <button class="btn btn-success" type="submit">
+                        Send Prescription
+                      </button>
+                    </form>
                   </div>
                 </div>
               </div>
+
               <hr class="seperator" />
-              
+              <%})%>
             </li>
           </ul>
         </div>
       </div>
     </div>
   </body>
-
-
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
