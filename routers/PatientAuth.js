@@ -805,6 +805,7 @@ router.post("/ViewPrescription", authorization, async (req, res) => {
     res.render("./Patient/viewPresNull.ejs", {
       name: name,
       pres: PresDesc,
+      Message: "",
       errorMessage: "",
       number: number,
       appo: appo,
@@ -834,6 +835,7 @@ router.post("/ViewPrescription", authorization, async (req, res) => {
     res.render("./Patient/ViewPres.ejs", {
       name: name,
       pres: PresDesc,
+      Message: "",
       errorMessage: "",
       number: number,
       appo: appo,
